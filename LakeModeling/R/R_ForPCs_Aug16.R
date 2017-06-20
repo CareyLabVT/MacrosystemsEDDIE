@@ -76,7 +76,7 @@ nml_template_path() #this should give you a path that tells you where the exampl
 #	be sure to keep the original versions in the extdata folder). Once they are copied and pasted
 #	safely into this new folder, we'll now need to tell R where these files are. We do that by...
 
-sim_folder<-'C:/Users/renato/Desktop/GLM' ##!! Edit this line of code to redefine your sim_folder
+sim_folder<-'C:/Users/farrellk/Desktop/R/ProjectEDDIE/LakeModeling' ##!! Edit this line of code to redefine your sim_folder
 #	path. This should be replaced with the path to your brand new folder that you just created on
 #	your computer.  For me, it is a path to a new folder on my Desktop called "GLM"- for everyone
 #	else's computer, this will be slightly different.
