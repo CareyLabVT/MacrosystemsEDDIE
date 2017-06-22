@@ -407,7 +407,7 @@ cat( readLines( job_desc ) , sep = "\n" )                  # print its contents
 # You can create multiple objects to run multiple experiments! Just give them different names
 # (e.g. MyExp2, MyExp3)
 
-graplerURL<-"http://graple.acis.ufl.edu"  # specify web service address for the GRAPLEr.
+graplerURL<-"https://graple.acis.ufl.edu"  # specify web service address for the GRAPLEr.
 
 MyExp <- Graple(GWSURL=graplerURL, ExpRootDir=MyExpRootDir, ResultsDir=MyResultsDir,
                 ExpName="EDDIE", TempDir = tempdir())
