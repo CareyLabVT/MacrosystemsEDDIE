@@ -305,7 +305,7 @@
    cloud_mode  = 4
    !-- BC file details
    subdaily    = .true.
-   meteo_fl    = 'met_hourly_SIMULATEDSUMMERSTORMS.csv'
+   meteo_fl    = 'met_hourly.csv'
    wind_factor = 1.0
    sw_factor = 1.0
    lw_factor = 1.0
