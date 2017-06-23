@@ -13,24 +13,22 @@
 # This script was modified last by KJF on 23 June 2017.
 
 ########## ACTIVITY A - OBJECTIVE 1 ############################################
-# Download the GLM files and R packages successfully onto your computer.
-# If you are a PC user and having trouble, check the direction of your \ / marks- sometimes this may be
-#	different between operating systems.
+# Download R packages and GLM files successfully onto your computer.
 
-install.packages('sp') #NOTE: you'll get output that says "There is a binary version available
+install.packages('sp') # NOTE: you may get output that says "There is a binary version available
 #	but the source version is later... Do you want to install from sources the package which
 #	needs compilation? y/n" Type 'y' (without the quotes) and hit enter. You may now be prompted
 #	to download the command line developer tools. Click Install and then re-run the
 #	install.packages(sp) once the install of the tools is finished. This should now
 #	successfully load- when it's done, it should say 'DONE(sp)' if it worked successfully.
 
-install.packages('glmtools', repos=c('http://cran.rstudio.com', 'http://owi.usgs.gov/R')) #you
-#	need to be connected to the internet for this step- this step enables you to access the USGS
-#	website and download the R packages that allow you to work with GLM in R. Note: if you are on
-#	a slow internet connection, this may take a few minutes.
+install.packages('glmtools', repos=c('http://cran.rstudio.com', 'http://owi.usgs.gov/R')) 
+# This step enables you to access the USGS	website and download the R packages 
+# that allow you to work with GLM in R. 
+# Note: if you are on a slow internet connection, this may take a few minutes.
 
-library(glmtools) #load the two packages that you need to run GLM and manipulate its output
-#	note: you may get lots of output messages at this step- if this worked successfully, you
+library(glmtools) # Load the two packages that you need to run GLM and manipulate its output
+#	NOTE: you may get lots of output messages at this step- if this worked successfully, you
 #	should read: "This information is preliminary or provisional and is subject to revision. It
 #	is being provided to meet the need for timely best science. The information has not received
 #	final approval by the U.S. Geological Survey (USGS) and is provided on the condition that
@@ -41,18 +39,17 @@ library(glmtools) #load the two packages that you need to run GLM and manipulate
 #	shall the fact of distribution constitute any such warranty, and no responsibility is assumed
 #	by the USGS in connection therewith".
 
-library(GLMr) #if this worked, you should be able to successfully get GLMr to load without any
-#	error messages. Hurray!
+library(GLMr) # If this worked, GLMr should load without any error messages. Hurray!
 
-glm_version() #see what version of GLM you are running- should be at least v.2.x.x
+glm_version() # See what version of GLM you are running- should be at least v.2.x.x
 
-#CONGRATS! You've now succesfully loaded GLM onto your computer!
+# CONGRATS! You've now succesfully loaded GLM onto your computer! Proceed to Objective 2! 
 
 ########## ACTIVITY A - OBJECTIVE 2 ############################################
 # Now, we need to migrate the example files that come with your
 #	downloaded GLM files onto a new directory on your computer.
 
-#NOTE! Throughout the rest of the module, you may need to modify some of the lines of code
+# NOTE! Throughout the rest of the module, you may need to modify some of the lines of code
 #	written below to run on your computer. If you do need to modify a line of code, I marked that
 #	particular line with ##!! symbols at the beginning of that line's annotation.  If you do not
 #	see those symbols, then you do not need to edit that line of code (you can merely run it as
