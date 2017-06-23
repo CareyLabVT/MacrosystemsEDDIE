@@ -46,8 +46,7 @@ glm_version() # See what version of GLM you are running- should be at least v.2.
 # CONGRATS! You've now succesfully loaded GLM onto your computer! Proceed to Objective 2! 
 
 ########## ACTIVITY A - OBJECTIVE 2 ############################################
-# Now, we need to migrate the example files that come with your
-#	downloaded GLM files onto a new directory on your computer.
+# Now, we will explore the example files that come with your downloaded GLM files 
 
 # NOTE! Throughout the rest of the module, you may need to modify some of the lines of code
 #	written below to run on your computer. If you do need to modify a line of code, I marked that
@@ -55,22 +54,7 @@ glm_version() # See what version of GLM you are running- should be at least v.2.
 #	see those symbols, then you do not need to edit that line of code (you can merely run it as
 #	normal).
 
-nml_template_path() #this should give you a path that tells you where the example GLM nml file
-#	is. On my computer, it is "/Library/Frameworks/R.framework/Versions/3.1/Resources/library/
-#	GLMr/extdata/glm2.nml" but on yours, it may be slightly different.
-
-#Now, actually go to the folder where that nml file is (for Mac users, you can use Finder's 'Go
-#	to folder' feature and paste in the path). Within that folder, there should be two files, a
-#	"met_hourly.csv" file and a "glm2.nml" file.  DO NOT OPEN THESE YET!
-
-#Make a new folder elsewhere on your computer (e.g., your Desktop or My Documents or somewhere
-#	else). On my computer, I made a new folder called "GLM" on my desktop. Copy all of the files
-#	from the folder GLM path folder into this new folder. This should include "met_hourly.csv"
-#	and "glm2.nml".  DO NOT OPEN these files, just copy and paste them into this new folder (and,
-#	be sure to keep the original versions in the extdata folder). Once they are copied and pasted
-#	safely into this new folder, we'll now need to tell R where these files are. We do that by...
-
-sim_folder<-'C:/Users/renato/Desktop/GLM' ##!! Edit this line of code to redefine your sim_folder
+sim_folder<-'C:/Users/farrellk/Desktop/R/ProjectEDDIE/Lake Modeling Module' ##!! Edit this line of code to redefine your sim_folder
 #	path. This should be replaced with the path to your brand new folder that you just created on
 #	your computer.  For me, it is a path to a new folder on my Desktop called "GLM"- for everyone
 #	else's computer, this will be slightly different.
@@ -79,125 +63,138 @@ setwd(sim_folder) ##!! Edit this line of code to reset your working directory
 #	to the sim_folder. The point of this step is to make sure that any new files you create
 #	(e.g., figures of output) end up in this directory, vs. elsewhere in your computer.
 
-nml_file<-paste0(sim_folder,"/glm2.nml") #this step sets the nml_file for your simulation to be
+nml_file<-paste0(sim_folder,"/glm2.nml") # This step sets the nml_file for your simulation to be
 #	in the new sim_folder location.
 
-nml<-read_nml(nml_file)  #read in your nml file from your new directory
+nml<-read_nml(nml_file) # Read in your nml file from your new directory
 
-print(nml) #this shows you what is in your nml file.  This is the 'master script' of the GLM
-#	simulation- the nml file tells the GLM model all of the initial conditions about your lake,
+print(nml) # this shows you what is in your nml file.  This is the 'master script' of the GLM
+#	simulation; the nml file tells the GLM model all of the initial conditions about your lake,
 #	how you are defining parameters, and more - this is a really important file! There should be
-#	multiple sections, including glm_setup, morphometry, etc.
+#	multiple sections, including glm_setup, morphometry, meteorology, etc.
 
-get_nml_value(nml, 'lake_name') ##!! this command is really useful because it tells you each of
-#	the parameters that you are running within your nml file. Here, you are asking what the lake
+get_nml_value(nml, 'lake_name') ##!! use this command to find out the values of different parameters 
+# that you are running within your nml file. Here, you are asking what the lake
 #	name is in the nml file, but you could also use this to learn what the 'latitude',
-#	'lake_depth', 'num_inflows', etc. is as well. Modify this command to learn where your model
-#	lake is located by its latitude and longitude coordinates, the lake's maximum depth, and the
-#	number of inflow streams into this lake.
+#	'lake_depth', 'num_inflows', etc. is as well. 
+# Modify this command to learn where your model lake is located by its latitude & longitude 
+# coordinates, the lake's maximum depth, and the number of inflow streams into this lake.
 
-plot_meteo(nml_file) #this command plots the meterological input data for the simulation- short
-#	wave & long wave radiation, air temp, etc. for the duration of the simulation run. Do these
-#	plots look reasonable for the latitude and longitude of your model lake?
+plot_meteo(nml_file) # this command plots the meterological input data for the simulation- 
+# short wave & long wave radiation, air temp, etc. for the duration of the simulation run. 
+# Do these plots look reasonable for the latitude and longitude of your model lake?
 
 ########## ACTIVITY A - OBJECTIVE 3 ############################################
 # Now, the fun part- we get to run the model and look at output!
 
-run_glm(sim_folder, verbose=TRUE) #so simple and elegant... if this works, you should see output
-#	that says "Simulation begins.." and then shows all the time steps. At the end of the model
-#	run, it should say "Run complete" if everything worked ok.
+run_glm(sim_folder, verbose=TRUE) # so simple and elegant... if this works, you should see output
+#	that says "Simulation begins.." and then shows all the time steps. 
+# At the end of the model run, it should say "Run complete" if everything worked ok.
 
-#Now, go to the sim_folder on your computer- if everything happened correctly, you should see the
-#	addition of new files that were created during the simulation with a recent date and time
-#	stamp, including 'output.nc', 'lake.csv', and 'overflow.csv'. The most important these is the
+# Now, go to the sim_folder on your computer (in RStudio, you can find this by clicking on the 'Files' 
+# tab- if everything happened correctly, you should see the addition of new files 
+# that were created during the simulation with a recent date and time stamp, 
+# including 'output.nc', 'lake.csv', and 'overflow.csv'. The most important these is the
 #	'output.nc' file, which contains all of the output data from your simulation in netCDF
 #	format.
 
-nc_file <- file.path(sim_folder, 'output.nc') #this defines the output.nc file as being within
-#	the sim_folder.  We need to know where the output.nc file is so that the glmtools package can
-#	plot and analyze the model output.
+# We need to know where the output.nc file is so that the glmtools package can
+#	plot and analyze the model output. We tell R where to find the output file using the line below:
 
-plot_temp(file=nc_file, fig_path=FALSE) #this plots your simulated water temperatures in a heat
-#	map, where time is displayed on the x-axis, depth is displayed on the y-axis, and the
+nc_file <- file.path(sim_folder, 'output.nc') # this defines the output.nc file as being within
+#	the sim_folder.  
+
+plot_temp(file=nc_file, fig_path=FALSE) # this plots your simulated water temperatures in a heat
+#	map, where time is displayed on the x-axis, lake depth is displayed on the y-axis, and the
 #	different colors represent different temperatures.
 
-#if you are a Mac user and want to save this figure as a pdf file while it is still open, use the
-#	command: quartz.save("TempFileNameWhatever", type = "pdf", device = dev.cur(),
-#	canvas="white").  Note: the file will be saved in your working directory.
+# If you want to save your plot as a pdf file while it is still open, use the
+#	following command to save it to your working directory: 
+dev.print(pdf, 'filename.pdf') ##!! You can change the 'filename' portion to give your 
+# plot a more descriptive name (e.g., "TemperatureHeatMap.pdf")
 
 ########## ACTIVITY A - OBJECTIVE 4 ############################################
 # Examine how your modeled GLM data compares to the observed field data for your lake.
 
-#Let's compare the model data to the observed data. Upload the 'field_data.csv' file and place it
-	#into your sim_folder. Then run:
+#Let's compare the model data (nc_file) to the observed data (lake_modeling_module_dataset.csv). 
 
-field_file <- file.path(sim_folder, 'field_data.csv') #define the observed field data
+field_file <- file.path(sim_folder, 'lake_modeling_module_dataset.csv') # define the observed field data
+##### KF!! Need to rename the 3rd column: currently wTemp, needs to be temp
+##### KF!! also, file downloads from website with incorrect DateTime format
 
-plot_temp_compare(nc_file, field_file) #plot your GLM simulated data vs. the observed data from
-#	the field_data.csv file. How do the water temperatures and thermocline depths in the two
-#	plots compare? The black circles in the observed data represent temperature observations at
+plot_temp_compare(nc_file, field_file) #plot your GLM simulated data vs. the observed data 
+# How do the water temperatures and thermocline depths in the two plots compare? 
+# The black circles in the observed data represent temperature observations at
 #	different depths and times. Because our observed data were collected with high-frequency
 #	thermistors on a buoy, there are lots of  black circles in the figure collected at the same
 #	depths over time.
 
-#Now, let's compare different physical lake characteristics between the simulated lake and the
+# Now, let's compare different physical lake characteristics between the simulated and the
 #	observed lake.  To see what metrics we can compare between the observed and simulated data,
-#	first check out this command from the glmtools package:
-sim_metrics(with_nml = FALSE) #the option includes "thermo.depth" or the depth of the
-#	thermocline, "buoyancy.freq" or buoyancy frequency, an index of thermal stratification,
+#	first check out this command from the glmtools package to see what variables are available to plot:
+sim_metrics(with_nml = FALSE) # the options include "thermo.depth" (depth of the thermocline), 
+# "buoyancy.freq" (buoyancy frequency, an index of thermal stratification), as well as 
 #	"water.density" and "water.temperature".
 
-compare_to_field(nc_file, field_file, metric="thermo.depth", as_value=TRUE, na.rm=TRUE) ##!! this
-#	command gives the thermocline depth of the observed and modeled data for comparison.
-#	Try this for the other metrics as well!
+compare_to_field(nc_file, field_file, metric="thermo.depth", as_value=TRUE, na.rm=TRUE) ##!! 
+# This command lists the thermocline depth of the observed and modeled data for comparison.
+#	Try changing this command to compare the other metrics as well!
 
-#to make a simple plot of the observed vs. simulated thermocline depths, use this script:
+# To make a simple plot of the observed vs. simulated thermocline depths, use this script:
 therm_depths <- compare_to_field(nc_file, field_file, metric="thermo.depth", as_value=TRUE, na.rm=TRUE)
-plot(therm_depths$DateTime, therm_depths$obs, type="l", col="blue", ylim=c(0,32), ylab="Thermocline depth in meters")  #this plots DateTime vs. Observed data in blue, with a
-#	y-axis set to 0-32 m, and a y-axis label.
-lines(therm_depths$DateTime, therm_depths$mod, col="red") #this adds a red line of the modeled
+plot(therm_depths$DateTime, therm_depths$obs, type="l", col="blue", ylim=c(0,32), 
+     ylab="Thermocline depth in meters", xlab="Date")  # This plots DateTime vs. Observed data in blue, 
+# with a y-axis set to 0-32 m, and a y-axis label.
+lines(therm_depths$DateTime, therm_depths$mod, col="red") # this adds a red line of the modeled
 #	thermocline depths
-legend("topright",c("Observed", "Modeled"),lty=c(1,1), col=c("blue", "red")) #this adds a legend
+legend("topright",c("Observed", "Modeled"),lty=c(1,1), col=c("blue", "red")) # this adds a legend
 #	to the figure.
 
-#There are lots of other fun glmtools that you can play with, such as:
+# How does the modeled thermocline depth compare to the observed thermocline depth?
+
+#There are lots of other fun glmtools that you can play with.
+#These two commands allow you to explore ice cover and evaporation in your model output.
 get_ice(nc_file)
-get_evaporation(nc_file) #These two commands allow you to explore ice cover and evaporation in
-#	your model output.
+get_evaporation(nc_file) 
 
 ########## ACTIVITY B - OBJECTIVE 5 ############################################
-# Using your knowledge of potential climate change, work with a partner
-#	to develop a climate change scenario for your model lake, modify the input data accordingly,
-#	run the simulation, and analyze the output to determine how this scenario alters lake thermal
-#	structure. After you have analyzed the model output, create some figures to present your
-#	model simulation and output to the rest of the class.
+# Using your knowledge of potential climate change, work with a partner to develop 
+# a climate change scenario for your model lake. 
 
-#To breakdown this objective into a few steps, work with your partner to:
-
-# 1) Develop a climate scenario (it can be for any region!)
-# 2) Create a corresponding meteorological input file. Think through all of the components of the
-	 # proposed scenario. For example, which of the meteorological variables (air temperature,
-	 # precipitation, wind, etc.) will be modified and how? Will they be short-term or long-term
-	 # modifications?
-# 3) Run the file and examine how it alters the physical structure of the lake.  How does your
-	# climate scenario change the thermal structure of the lake? What does the temperature profile
-	# look like?  How does the depth of the thermocline change? How does the timing of
-	# stratification and magnitude of evaporation change?
-# 4) Compare the modeled output to the observed. What are the implications of your climate
-	# scenario for future water quality and quantity?
-# 5) Create a few figures to highlight the results of your climate scenario and present them to the
-	# rest of the class. It would be helpful to present both the meteorological input file as well
-	# as the lake thermal plots so that we can see how the lake responded to your climate forcing.
-
-#To complete this activity, you will need to modify the input meterological data and then run the
+# To complete this activity, you will need to modify the input meterological data and then run the
 #	model to examine the effects of your scenario on the thermal structure of the lake.
 
-#1- ##!! Practice modifying the glm2.nml file. For example, open the nml file in a text editor (on
-#	Macs, TextEdit or TextWrangler are good options), and change the time of the simulation so that
-#	the model run starts on '2000-03-01 00:00:00' and ends on '2000-12-31 00:00:00' (or choose some
-#	other date and time!). Plot the altered temperature. Note that GLM (as of the v.2.0 version)
-#	does not handle ice well, so starting in the spring and running through the late fall may be
-#	the best option for ice-covered lakes.
+# To break this objective, work with your partner to complete each of the following steps:
+# 1) Develop a climate scenario (it can be for any region!)
+
+# 2) Create a corresponding meteorological input (met) file. Think through all of the components of the
+	 # proposed scenario. For example, which of the meteorological variables (air temperature,
+	 # precipitation, wind, etc.) will be modified and how? Will they be short-term or long-term
+	 # modifications? Look to line XX for detailed directions on how to modify your met file.
+
+# 3) Run the file and examine how it alters the physical structure of the lake.  
+  # How does your climate scenario change the thermal structure of the lake? 
+  # What does the temperature profile look like?  How does the depth of the thermocline change? 
+  # How does the timing of stratification and magnitude of evaporation change?
+
+# 4) Compare the modeled output to the observed. 
+  # What are the implications of your climate scenario for future water quality and quantity?
+
+# 5) Create and save a few figures to highlight the results of your climate scenario and 
+  # present them to the rest of the class. It would be helpful to present both 
+  # the meteorological input file as well as the lake thermal plots so that we 
+  # can see how the lake responded to your climate forcing.
+
+# Detailed directions for modifying your met file: 
+
+#1- ##!! Practice modifying the glm2.nml file. 
+   #  For example, open the nml file in a text editor (on Windows, try Notepad) 
+   #  and change the time of the simulation so that the model run starts on 
+   #  '2000-03-01 00:00:00' and ends on '2000-12-31 00:00:00' (or choose some
+   #	other date and time!). Save the file, then plot the altered temperature. 
+   #  Note that GLM (as of the v.2.0 version) does not handle ice well, 
+   #  so starting in the spring and running through the late fall may be
+   #	the best option for ice-covered lakes.
 
 #2- SOMETHING THAT IS REALLY REALLY IMPORTANT! Opening up the met_hourly.csv file in Microsoft
 #	Excel will unexplicably alter the date/time formatting of the file so that GLM cannot read it.
@@ -244,13 +241,13 @@ write.csv(metdata, "met_hourly_SIMULATEDSUMMERSTORMS.csv", row.names=FALSE, quot
 #	and not slanted- sometimes the nml default alters the quotes so that the file cannot be read in
 #	properly (super tricky!).
 
-#Once you havve edited the nml file name, you can always check to make sure that it is
+# Once you havve edited the nml file name, you can always check to make sure that it is
 #	correct with the command:
-nml<-read_nml(nml_file)  #read in your nml file from your new directory
-get_nml_value(nml, 'meteo_fl') #if you have done this correctly, you should get an output that lists
+nml<-read_nml(nml_file)  # read in your nml file from your new directory
+get_nml_value(nml, 'meteo_fl') # if you have done this correctly, you should get an output that lists
 #	the name of your new meteorological file altered for your weather/climate scenario.
 
-#FIFTH, you can now run the model with the new edited nml file, following the instructions as
+# FIFTH, you can now run the model with the new edited nml file, following the instructions as
 #	described above for Objective 3.  Exciting!
 
 # Plot the output using the commands you learned above: how does your scenario change the thermal
