@@ -152,6 +152,17 @@ legend("topright",c("Observed", "Modeled"),lty=c(1,1), col=c("blue", "red")) # t
 
 # How does the modeled thermocline depth compare to the observed thermocline depth?
 
+# The code below plots the observed vs. simulated water temperature.
+# First, run the code. Then try changing the code to instead plot the observed vs. simulated water density! 
+water_temp <- compare_to_field(nc_file, field_file, metric="water.temperature", as_value=TRUE, na.rm=TRUE)
+plot(water_temp$DateTime, water_temp$obs, type="p", col="blue", ylim=c(15,35), 
+     ylab="Water temperature in C", xlab="Date")  # This plots DateTime vs. Observed data in blue, 
+points(water_temp$DateTime, water_temp$mod, col="red") # this adds a red line of the modeled
+legend("topleft",c("Observed", "Modeled"),lty=c(1,1), col=c("blue", "red")) # this adds a legend
+
+# For the temperature and density plots, there are multiple data points for each day. Why?
+# What do these plots tell you about thermal stratification over the course of a year?
+
 #There are lots of other fun glmtools that you can play with.
 #These two commands allow you to explore ice cover and evaporation in your model output.
 get_ice(nc_file)
@@ -241,7 +252,7 @@ write.csv(metdata, "met_hourly_SIMULATEDSUMMERSTORMS.csv", row.names=FALSE, quot
 #	and not slanted- sometimes the nml default alters the quotes so that the file cannot be read in
 #	properly (super tricky!).
 
-# Once you havve edited the nml file name, you can always check to make sure that it is
+# Once you have edited the nml file name, you can always check to make sure that it is
 #	correct with the command:
 nml<-read_nml(nml_file)  # read in your nml file from your new directory
 get_nml_value(nml, 'meteo_fl') # if you have done this correctly, you should get an output that lists
@@ -320,7 +331,7 @@ list.files(MyExpRootDir) # double-checking that the file copy worked properly.
                          # !! you *must* see the glm2.nml, met_hourly.csv, and job_desc.json
                          # files listed here before continuing !!
 
-#In Objective 5 above, you designed a climate scenario for one lake and modified the meteorological
+# In Objective 5 above, you designed a climate scenario for one lake and modified the meteorological
 #	input data and nml file manually. But what if you want to repeat this process for hundreds of
 #	simulations that all have slightly different meteorological input data? It would not be very
 #	efficient to do this manually by editing hundreds of Excel files one by one. Instead, we are
@@ -328,7 +339,7 @@ list.files(MyExpRootDir) # double-checking that the file copy worked properly.
 #	via an automated method, submit the jobs, and then receive the output back into your sim_folder,
 #	saving you many hours of time!
 
-#To start, let us first create a scenario in which we want to examine the effects of altered air
+# To start, let us first create a scenario in which we want to examine the effects of altered air
 #	temperatures on lakes throughout the year. In Objective 5 above, you may have done this manually
 #	by setting a constant offset of +2 oC to all of the baseline air temperatures in a year.  But
 #	what if you also want to know the effects of a constant offset of +1.96 oC, +1.92 oC, etc. all
@@ -336,11 +347,11 @@ list.files(MyExpRootDir) # double-checking that the file copy worked properly.
 #	thelake over the year? Are there any thresholds in lake responses that happen when you compare
 #	the different offsets?
 
-#To do this, we first need to define a scenario in which we vary air temperatures between -2 oC and
+# To do this, we first need to define a scenario in which we vary air temperatures between -2 oC and
 #	+2 oC from the baseline air temperature in the meteorological file for the entire simulation
 #	period.
 
-#These scenarios have been configured in a sample input file (job_desc.json) that is part of your
+# These scenarios have been configured in a sample input file (job_desc.json) that is part of your
 # project EDDIE module (and which you should have copied to the MyExpRoot directory)
 # This file should *always* reside in the ExpRootDir of a GRAPLEr experiment, and should
 # *always" be named job_desc.json
@@ -352,13 +363,13 @@ list.files(MyExpRootDir) # double-checking that the file copy worked properly.
 job_desc <- paste(MyExpRootDir,sep='/','job_desc.json')   # locate the job_desc.json file
 cat( readLines( job_desc ) , sep = "\n" )                  # print its contents
 
-#You will see the following information in this file:
-#"met_hourly.csv" - this tells the GRAPLEr the name of your meteorological file in
+# You will see the following information in this file:
+# "met_hourly.csv" - this tells the GRAPLEr the name of your meteorological file in
 #	your MyExpRoot directory. Note: If you are using a modified file from Objective 5, such as
 #	"met_hourly_SIMULATEDSUMMERSTORMS.csv", you will need to edit this line to code to ensure that
 #	you have the right file name here.
 
-#"AirTemp" - for this scenario, we are modifying air temperature. You need to make sure
+# "AirTemp" - for this scenario, we are modifying air temperature. You need to make sure
 #	that you exactly match this formatting, which comes from the meteorological file column headers.
 #	Note: you could also modify "ShortWave", "LongWave", "RelHum", "WindSpeed", "Rain", or "Snow".
 #	However, you cannot have a negative offset for the light or precipitation data, because that
@@ -366,7 +377,7 @@ cat( readLines( job_desc ) , sep = "\n" )                  # print its contents
 #	negative light or precipitation! In this case, you would want to modify the file on an offset
 #	ranging from 0 to some other positive value.
 
-#"distribution": "linear" - this specifies what distribution GRAPLEr will use to generate your
+# "distribution": "linear" - this specifies what distribution GRAPLEr will use to generate your
 # experiment; in this example, we will use a linear distribution, where we set
 # "start" : -2 as the minimum offset added to the baseline air temperature (i.e., we are adding
 #	-2oC to the baseline temperatures for the entire year)
@@ -393,12 +404,12 @@ cat( readLines( job_desc ) , sep = "\n" )                  # print its contents
 # You can create multiple objects to run multiple experiments! Just give them different names
 # (e.g. MyExp2, MyExp3)
 
-graplerURL<-"http://graple.acis.ufl.edu"  # specify web service address for the GRAPLEr.
+graplerURL<-"https://graple.acis.ufl.edu"  # specify web service address for the GRAPLEr.
 
 MyExp <- new("Graple", GWSURL=graplerURL, ExpRootDir=MyExpRootDir, ResultsDir=MyResultsDir,
                 ExpName="EDDIE", TempDir = tempdir())
 
-#At this point, let us double-check that all of those packages were installed correctly and that
+# At this point, let us double-check that all of those packages were installed correctly and that
 #	everything is in order before we start sending GLM runs to the GRAPLEr.
 
 MyExp <- GrapleCheckService(MyExp)
@@ -415,25 +426,26 @@ MyExp <- GrapleRunSweepExperiment(MyExp) #	This command submits simulations to t
 # Now let's check the status of your submission:
 print(MyExp@StatusMsg)
 
-# If this worked, it should have returned:
+#  If this worked, it should have returned:
 # "The simulation was submitted successfully, JobID: 8477FY8V963SL96LCVIJ2IJ6K2ECNXS1E82PV5XP"
 #	Your JobID will have a different string; this means that everything is running ok.
+# You may also see the message "WARNING: No API key provided". This is fine.
 
 # Now, we wait! You can check the status of your experiment by running the following lines:
 
 MyExp <- GrapleCheckExperimentCompletion(MyExp)
 print(MyExp@StatusMsg)
 
-#You should see an output with a percentage of completion (from 0.0% to 100.0%)
+# You should see an output with a percentage of completion (from 0.0% to 100.0%)
 # You can run *both* these two lines of code every few seconds to check the status
 # of your simulations, until it hits 100.0%. (You can continue to use R normally as you
-#	 wait, but be sure to save the MyGraplerExp object if you close R so that you can retrieve your
-#  results later. You need to have the information in this object to access your results)
+#	wait, but be sure to save the MyGraplerExp object if you close R so that you can retrieve your
+# results later. You need to have the information in this object to access your results)
 
 # Ah, the anticipation! Patience.
 # Once the status is "100.0% complete", you can move on to the next step - retrieve results!
 
-#Note that this step may take a while to prepare the outputs and download them to your computer in a
+# Note that this step may take a while to prepare the outputs and download them to your computer in a
 #	compressed zip folder in your GRAPLEr working directory. Using all of the example files as described
 # in the default simulation above, the compressed output will be about 50-100MB in size- it is
 #	dependent on how long your simulated period is, how many depths you simulated, etc.)
@@ -460,36 +472,36 @@ print(MyExp@StatusMsg)
 #                                         /Sim21_1/Results/output.nc
 
 
-#Note: if there are any error in your original GLM simulation, the GRAPLEr will not give any error
+# Note: if there are any error in your original GLM simulation, the GRAPLEr will not give any error
 #	messages, so if you do not have any output in your sim folders, it is likely due to a problem with
 #	the baseline GLM model. I would recommend on seeing if you can get that model to run on its own,
 #	before trying to run hundreds of simulations with offsets.
 
-#Let's check a couple of simulation outputs now. Each simulation is in its own folder, under
+# Let's check a couple of simulation outputs now. Each simulation is in its own folder, under
 #	MyResults/EDDIE/Sims/SimX_Y/Results (where X is a number between 1 and 21 and Y between 1 
-#       and 5 in our scenario; this is because GRAPLEr "packs" 5 simulations into a job. You can
-#       always find the mapping between your offsets and simulation folder names in the file
-#       sim_summary.csv returned from GRAPLEr)
+# and 5 in our scenario; this is because GRAPLEr "packs" 5 simulations into a job. You can
+# always find the mapping between your offsets and simulation folder names in the file
+# sim_summary.csv returned from GRAPLEr)
 
-#Let's check simulations 1 and 101 first. All of the simulations will be placed in a separate folder by
+# Let's check simulations 1 and 101 first. All of the simulations will be placed in a separate folder by
 #	their simulation number within the zip folder; this command sets the directory for that simulation
 #	by appending Sims/Sim1_1/Results to your sim_folder:
 sim_folder_1<-paste(MyResultsDir,sep='/','EDDIE','Sims','Sim1_1','Results')
 sim_folder_101<-paste(MyResultsDir,sep='/','EDDIE','Sims','Sim21_1','Results')
 
-#We need to define the output files and tell R where to look where they are to analyze the output.
+# We need to define the output files and tell R where to look where they are to analyze the output.
 #	Unlike above, when we were working with just one output netCDF file, we now have to give the output
 #	file a number in its file name so that we can keep all of the different separate.
 nc_file_1 <- file.path(sim_folder_1, 'output.nc')
 nc_file_101 <- file.path(sim_folder_101, 'output.nc')
 #you can also copy this code and modify it for any simulation number between 1 and 101.
 
-#Let's plot the two different simulations, which represent the minimum and maximum offset scenarios:
+# Let's plot the two different simulations, which represent the minimum and maximum offset scenarios:
 plot_temp(file=nc_file_1, fig_path=FALSE)
 plot_temp(file=nc_file_101, fig_path=FALSE)
-#How do these two figures compare, in terms of water temperature, thermocline depth, etc.?
+# How do these two figures compare, in terms of water temperature, thermocline depth, etc.?
 
-#Now, let's look plot the temperature of all of the 101 simulations. To do this, run all of the code in
+# Now, let's look plot the temperature of all of the 101 simulations. To do this, run all of the code in
 #	the lines below. This is a for-loop, which means that R will go through each of the simulation
 #	folders, extract the temperature data, and create a plot. If you have your plotting R window open,
 #	then you can see how the lake gets sequentially warmer and thermal structure changes with each
@@ -509,7 +521,7 @@ for (n in 1:101) {
  plot_temp(file=nc_file_n, fig_path=FALSE)
 }
 
-#Now that you and your partner have run through this demonstration, it is now time for you to design
+# Now that you and your partner have run through this demonstration, it is now time for you to design
 #	your own GRAPLEr GLM "experiment" with your partner and use the GRAPLEr to examine the offsets of a
 #	meteorological variable and magnitude of your choice. Create some figures from your simulation and
 #	share them with the class!  Note that there are many different ways to analyze the output from each
@@ -518,20 +530,18 @@ for (n in 1:101) {
 #	glmtools package has many different options for analyzing and plotting GLM output that we invite you
 #	to explore.
 
-#Remember that you may should create a new working directory for inputs and outputs of each new
+# Remember that you may should create a new working directory for inputs and outputs of each new
 # GRAPLEr experiment - e.g. MyExpRootDir2 and MyResultsDir2, copy the nml/csv files to
 # your experiment root directory MyExpRootDir2, edit the job_desc.json
 #	Otherwise, you may accidentially submit previous results with your next jobs. Having these
 #	subdirectories will substantialy slow down your GRAPLEr jobs, so we strongly encourage you to start
 #	with an empty, new working directory for each GRAPLEr experiment.
 
-#Thinking ahead: how could you use the GRAPLEr in your own research? You could use the GRAPLEr to
+# Thinking ahead: how could you use the GRAPLEr in your own research? You could use the GRAPLEr to
 #	examine hundreds of simulations for any GLM model (not just the default Awesome Lake, but your own
 #	research lake!) so think through what science questions you can ask using this R package.
 
-#Bravo, you are done!
+# Bravo, you are done!! 
 
-#We welcome feedback on this module and encourage you to contact Cayelan Carey or Renato
-	#Figueiredo if you have questions. Note that this script will likely need to be updated for future
-	#versions of R, GLMr, glmtools, and GRAPLEr, so we highly recommend that you download the most
-	#recent version from our website: github.com/GRAPLE/GRAPLEr/wiki
+# We welcome feedback on this module and encourage you to contact Cayelan Carey or 
+# Renato Figueiredo if you have questions. 
