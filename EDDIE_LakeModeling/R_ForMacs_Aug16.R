@@ -11,14 +11,13 @@
 #R code for students to work through the module activities A, B, and C.
 #This module consists of 6 objectives. Activity A consists of Objectives 1-4,
 #	Activity B consists of Objective 5, and Activity C consists of Objective 6.
-#This script was modified last by CCC on 9 August 2016
+# This script was modified last by KJF on 29 June 2017.
 
 ########################################################################################
 
 #ACTIVITY A - OBJECTIVE 1: Download the GLM files and R packages successfully onto your computer.
-#The example code below is for a Mac operating system, but should also work on a PC- if you are a
-#	PC user and having trouble, check the direction of your \ / marks- sometimes this may be
-#	different between operating systems.
+#The example code below is for a Mac operating system, but should also work on a PC
+
 
 install.packages('sp') #NOTE: you'll get output that says "There is a binary version available
 #	but the source version is later... Do you want to install from sources the package which
@@ -63,21 +62,21 @@ glm_version() #see what version of GLM you are running- should be at least v.2.x
 #	normal).
 
 nml_template_path() #this should give you a path that tells you where the example GLM nml file
-#	is. On my computer, it is "/Library/Frameworks/R.framework/Versions/3.1/Resources/library/
-#	GLMr/extdata/glm2.nml" but on yours, it may be slightly different.
+#	(glm2.nml) is. On my computer, it is "/Documents/R/win-library/3.4/GLMr/extdata" 
+# but on yours, it may be slightly different.
 
-#Now, actually go to the folder where that nml file is (for Mac users, you can use Finder's 'Go
-#	to folder' feature and paste in the path). Within that folder, there should be two files, a
+#Now, actually go to the folder where that nml file is (for Windows users, you can use the 
+#	"Search programs and files" feature and paste in the path). Within that folder, there should be two files, a
 #	"met_hourly.csv" file and a "glm2.nml" file.  DO NOT OPEN THESE YET!
 
-#Make a new folder elsewhere on your computer (e.g., your Desktop or My Documents or somewhere
-#	else). On my computer, I made a new folder called "GLM" on my desktop. Copy all of the files
-#	from the folder GLM path folder into this new folder. This should include "met_hourly.csv"
-#	and "glm2.nml".  DO NOT OPEN these files, just copy and paste them into this new folder (and,
+# When you downloaded this script, you unzipped the EDDIE_LakeModeling folder to your Desktop. 
+# Copy all of the files	from the GLM path folder into this EDDIE_LakeModeling folder. 
+# This should include "met_hourly.csv" and "glm2.nml".  
+# DO NOT OPEN these files, just copy and paste them into the EDDIE_LakeModeling folder (and,
 #	be sure to keep the original versions in the extdata folder). Once they are copied and pasted
-#	safely into this new folder, we'll now need to tell R where these files are. We do that by...
+#	safely into the EDDIE_LakeModeling folder, we'll now need to tell R where these files are. We do that by...
 
-sim_folder<-'/Users/renato/glm' ##!! Edit this line of code to redefine your sim_folder
+sim_folder<-'C:/Users/farrellk/Desktop/EDDIE_LakeModeling' ##!! Edit this line of code to redefine your sim_folder
 #	path. This should be replaced with the path to your brand new folder that you just created on
 #	your computer.  For me, it is a path to a new folder on my Desktop called "GLM"- for everyone
 #	else's computer, this will be slightly different.
@@ -408,7 +407,7 @@ cat( readLines( job_desc ) , sep = "\n" )                  # print its contents
 # You can create multiple objects to run multiple experiments! Just give them different names
 # (e.g. MyExp2, MyExp3)
 
-graplerURL<-"http://graple.acis.ufl.edu"  # specify web service address for the GRAPLEr.
+graplerURL<-"https://graple.acis.ufl.edu"  # specify web service address for the GRAPLEr.
 
 MyExp <- new("Graple", GWSURL=graplerURL, ExpRootDir=MyExpRootDir, ResultsDir=MyResultsDir,
                 ExpName="EDDIE", TempDir = tempdir())
