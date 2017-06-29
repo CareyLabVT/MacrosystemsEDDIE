@@ -1,0 +1,8 @@
+{
+    "ExpFiles": [{
+                "driverfile": "met_hourly.csv",
+                "variables":[{
+                    "AirTemp": { "distribution" : "linear", "operation" : "add", "start" : -2, "end" : 2, "steps" : 100 }
+                 }]
+            }]
+}
