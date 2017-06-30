@@ -1,16 +1,16 @@
 # Modeling Climate Change Effects on Lakes Using Distributed Computing Module ####
-# This module was initially developed by Carey, C.C., S. Aditya, K. Subratie, &
-#	R. Figueiredo. 1 May 2016.
+# This module was initially developed by Carey, C.C., S. Aditya, K. Subratie, 
+#	R. Figueiredo, and K.J. Farrell. 30 June 2017.
 
-# Project EDDIE: Modeling Climate Change Effects on Lakes Using Distributed Computing.
-#	Project EDDIE Module 4, Version 1.
-#	http://cemast.illinoisstate.edu/data-for-students/modules/lake-modeling.shtml.
-#	Module development was supported by NSF DEB 1245707 and ACI 1234983.
+# Macrosystems EDDIE: Climate Change Effects on Lake Temperatures.
+#	Macrosystems EDDIE Module 1, Version 1.
+#	NEW SERC WEBSITE.
+#	Module development was supported by NSF DEB 1245707, ACI 1234983, & EF 1702506.
 
 # R code for students to work through the module activities A, B, and C.
 # This module consists of 6 objectives. Activity A consists of Objectives 1-4,
 #	Activity B consists of Objective 5, and Activity C consists of Objective 6.
-# This script was modified last by KJF on 23 June 2017.
+# This script was modified last by KJF on 30 June 2017.
 
 ########## ACTIVITY A - OBJECTIVE 1 ############################################
 # Download R packages and GLM files successfully onto your computer.
@@ -54,12 +54,15 @@ glm_version() # See what version of GLM you are running- should be at least v.2.
 #	see those symbols, then you do not need to edit that line of code (you can merely run it as
 #	normal).
 
-sim_folder<-'C:/Users/farrellk/Desktop/R/ProjectEDDIE/Lake Modeling Module' ##!! Edit this line of code to redefine your sim_folder
+# When you downloaded this script, you unzipped the ClimateChange_LakesModel folder to your Desktop. 
+# We now need to tell R where these files are. We do that by...
+
+sim_folder<-'C:/Users/farrellk/Desktop/R/ProjectEDDIE/Lake Modeling Module_2.0' ##!! Edit this line of code to redefine your sim_folder
 #	path. This should be replaced with the path to your brand new folder that you just created on
 #	your computer.  For me, it is a path to a new folder on my Desktop called "GLM"- for everyone
 #	else's computer, this will be slightly different.
 
-setwd(sim_folder) ##!! Edit this line of code to reset your working directory
+setwd(sim_folder) ##!! This line of code is used to reset your working directory
 #	to the sim_folder. The point of this step is to make sure that any new files you create
 #	(e.g., figures of output) end up in this directory, vs. elsewhere in your computer.
 
