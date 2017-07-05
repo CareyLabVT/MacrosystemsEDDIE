@@ -54,10 +54,10 @@ glm_version() # See what version of GLM you are running- should be at least v.2.
 #  see those symbols, then you do not need to edit that line of code (you can merely run it as
 #  normal).
 
-# When you downloaded this script, you unzipped the ClimateChange_LakesModel folder to your Desktop. 
+# When you downloaded this script, you unzipped the student_files_running_module folder to your Desktop. 
 # We now need to tell R where these files are. We do that by...
 
-sim_folder <- 'C:/Users/farrellk/Desktop/ClimateChange_LakesModel' ##!! Edit this line of code to redefine 
+sim_folder <- 'C:/Users/farrellk/Desktop/student_files_running_module' ##!! Edit this line of code to redefine 
 #  your sim_folder path. This should be replaced with the path to the Desktop folder where you 
 #  extracted your zipped files.  
 
