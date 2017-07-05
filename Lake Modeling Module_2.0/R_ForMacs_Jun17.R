@@ -215,18 +215,23 @@ get_evaporation(nc_file)
 		# have a backup in case of any mistakes. Rename this file something like
 		# "met_hourly_UNALTERED.csv" and be sure not to open it.
 
-	# SECOND, open the met_hourly.csv file in Excel.  Manipulate the different input meteorological
-		#	variables to create your climate/weather scenario of your choice (be creative!). 
-		# Note: the order of the columns in the met file does not matter- but you can only have one 
-		# of each variable and they must keep the EXACT same header name (i.e., it must always be 
-		# 'AirTemp', not 'AirTemp+3oC'). When you are done editing the meteorological file, highlight 
-		# all of the 'time' column in Excel, then click on 'Format Cells', and then 'Custom'. 
-		# In the "Type" or "Formatting" box, change the default to "YYYY-MM-DD hh:mm:ss" exactly (no quotes). 
-		# This is the only time/date format that GLM is able to read. 
-		# When you click ok, this should change the format of the 'time'  column so that it reads: 
-		# "1999-12-31 00:00:00" with exactly that spacing and punctuation. 
-		# Save this new file under a different name, following how you have created your scenario, 
-		# e.g., "met_hourly_SIMULATEDSUMMERSTORMS.csv". Close the csv file, saving your changes.
+  # SECOND, open the met_hourly.csv file in Excel.  Manipulate the different input meteorological
+    #	variables to create your climate/weather scenario of your choice (be creative!). 
+    # NOTE ABOUT UNITS: In the met_hourly file, the units for rain are in meters per day. You will likely
+    # think about the amount of rain your change in the met_hourly file by millimeters per day instead-- 
+    # to convert from mm/d to m/d, simply multiply by 0.001. Other units are more intuitive-- open up the 
+    # Variable_Name_Metadata.csv file for more details.
+
+    # NOTE ABOUT COLUMN NAMES: the order of the columns in the met file does not matter- but you can only have one 
+    # of each variable and they must keep the EXACT same header name (i.e., it must always be 
+    # 'AirTemp', not 'AirTemp+3oC'). When you are done editing the meteorological file, highlight 
+    # all of the 'time' column in Excel, then click on 'Format Cells', and then 'Custom'. 
+    # In the "Type" or "Formatting" box, change the default to "YYYY-MM-DD hh:mm:ss" exactly (no quotes). 
+    # This is the only time/date format that GLM is able to read. 
+    # When you click ok, this should change the format of the 'time'  column so that it reads: 
+    # "1999-12-31 00:00:00" with exactly that spacing and punctuation. 
+    # Save this new file under a different name, following how you have created your scenario, 
+    # e.g., "met_hourly_SIMULATEDSUMMERSTORMS.csv". Close the csv file, saving your changes.
 
 	# THIRD, you have now edited the time/date formatting file in Excel, but that Excel formatting has
 		# still altered the underlying structure of the 'time' column, which needs to be fixed in R before

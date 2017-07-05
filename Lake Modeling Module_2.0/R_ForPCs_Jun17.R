@@ -217,7 +217,12 @@ get_evaporation(nc_file)
 
 	# SECOND, open the met_hourly.csv file in Excel.  Manipulate the different input meteorological
 		#	variables to create your climate/weather scenario of your choice (be creative!). 
-		# Note: the order of the columns in the met file does not matter- but you can only have one 
+    # NOTE ABOUT UNITS: In the met_hourly file, the units for rain are in meters per day. You will likely
+    # think about the amount of rain your change in the met_hourly file by millimeters per day instead-- 
+    # to convert from mm/d to m/d, simply multiply by 0.001. Other units are more intuitive-- open up the 
+    # Variable_Name_Metadata.csv file for more details.
+    
+		# NOTE ABOUT COLUMN NAMES: the order of the columns in the met file does not matter- but you can only have one 
 		# of each variable and they must keep the EXACT same header name (i.e., it must always be 
 		# 'AirTemp', not 'AirTemp+3oC'). When you are done editing the meteorological file, highlight 
 		# all of the 'time' column in Excel, then click on 'Format Cells', and then 'Custom'. 
@@ -227,22 +232,12 @@ get_evaporation(nc_file)
 		# "1999-12-31 00:00:00" with exactly that spacing and punctuation. 
 		# Save this new file under a different name, following how you have created your scenario, 
 		# e.g., "met_hourly_SIMULATEDSUMMERSTORMS.csv". Close the csv file, saving your changes.
+    # Now, do NOT open the file in Excel again- otherwise, you will need to
+    # repeat this formatting process before reading the altered met file into GLM.
 
-	# THIRD, you have now edited the time/date formatting file in Excel, but that Excel formatting has
-		# still altered the underlying structure of the 'time' column, which needs to be fixed in R before
-		# GLM can properly read the file to run the simulation. You need to run this code:
-
+# Then read in your altered met_hourly file using the command below:
 metdata <- read.csv("met_hourly_SIMULATEDSUMMERSTORMS.csv", header=TRUE) ##!! Edit the name of the
 # CSV file so that it matches your new met file name.
-metdata$time <-as.POSIXct(strptime(metdata$time, "%Y-%m-%d %H:%M:%S", tz="EST")) #this command
-# converts the time column into the proper time/date structure that GLM uses.
-write.csv(metdata, "met_hourly_SIMULATEDSUMMERSTORMS.csv", row.names=FALSE, quote=FALSE) ##!! Edit
-# this command to export a CSV file with the proper name- this CSV file will now have the proper
-# date/time formatting- yay!  Now, do NOT open the file in Excel again- otherwise, you will need to
-# repeat this process before reading the altered met file into GLM.
-
-# IMPORTANT note: any time you alter the meteorological input file, you will have to repeat this step
-#  to be able to read it into R and run the model in GLM.
 
 	# FOURTH, you need to edit the glm2.nml file to change the name of the input meteorological
 		# file so that it reads in the new, edited meteorological file for your climate scenario, not the
