@@ -206,7 +206,7 @@ get_evaporation(nc_file)
    #  the best option for ice-covered lakes.
 
 # 2- SOMETHING THAT IS REALLY REALLY IMPORTANT! 
-	# Opening up the met_hourly.csv file in Microsoft Excel will unexplicably alter the date/time 
+	# Opening up the met_hourly.csv file in Microsoft Excel will inexplicably alter the date/time 
 	# formatting of the file so that GLM cannot read it.
 	# You will get an error something like this: "Day 2451545 (2000-01-01) not found".  
 	# To get around this error, you need to follow the FIVE steps listed below.
@@ -232,30 +232,20 @@ get_evaporation(nc_file)
     # "1999-12-31 00:00:00" with exactly that spacing and punctuation. 
     # Save this new file under a different name, following how you have created your scenario, 
     # e.g., "met_hourly_SIMULATEDSUMMERSTORMS.csv". Close the csv file, saving your changes.
+    # Now, do NOT open the file in Excel again- otherwise, you will need to
+    # repeat this formatting process before reading the altered met file into GLM.
 
-	# THIRD, you have now edited the time/date formatting file in Excel, but that Excel formatting has
-		# still altered the underlying structure of the 'time' column, which needs to be fixed in R before
-		# GLM can properly read the file to run the simulation. You need to run this code:
-
+  # THIRD: Read in your altered met_hourly file using the command below:
 metdata <- read.csv("met_hourly_SIMULATEDSUMMERSTORMS.csv", header=TRUE) ##!! Edit the name of the
 # CSV file so that it matches your new met file name.
-metdata$time <-as.POSIXct(strptime(metdata$time, "%Y-%m-%d %H:%M:%S", tz="EST")) #this command
-# converts the time column into the proper time/date structure that GLM uses.
-write.csv(metdata, "met_hourly_SIMULATEDSUMMERSTORMS.csv", row.names=FALSE, quote=FALSE) ##!! Edit
-# this command to export a CSV file with the proper name- this CSV file will now have the proper
-# date/time formatting- yay!  Now, do NOT open the file in Excel again- otherwise, you will need to
-# repeat this process before reading the altered met file into GLM.
 
-# IMPORTANT note: any time you alter the meteorological input file, you will have to repeat this step
-#  to be able to read it into R and run the model in GLM.
-
-	# FOURTH, you need to edit the glm2.nml file to change the name of the input meteorological
-		# file so that it reads in the new, edited meteorological file for your climate scenario, not the
-		# default "met_hourly.csv".  In the nml file, scroll down to the meteorology section, and change
-		# the 'meteo_fl' entry to the new met file name (e.g., 'met_hourly_SIMULATEDSUMMERSTORMS.csv').
-		# Note to Mac users- check to make sure that your quotes ' and ' around the file name are upright,
-		# and not slanted- sometimes the nml default alters the quotes so that the file cannot be read in
-		# properly (super tricky!).
+  # FOURTH, you need to edit the glm2.nml file to change the name of the input meteorological
+    # file so that it reads in the new, edited meteorological file for your climate scenario, not the
+    # default "met_hourly.csv".  In the nml file, scroll down to the meteorology section, and change
+    # the 'meteo_fl' entry to the new met file name (e.g., 'met_hourly_SIMULATEDSUMMERSTORMS.csv').
+    # Note to Mac users- check to make sure that your quotes ' and ' around the file name are upright,
+    # and not slanted- sometimes the nml default alters the quotes so that the file cannot be read in
+    # properly (super tricky!).
 
 # Once you have edited the nml file name, you can always check to make sure that it is correct with the command:
 nml <- read_nml(nml_file)  # Read in your nml file from your new directory
@@ -274,7 +264,7 @@ get_nml_value(nml, 'meteo_fl') # If you have done this correctly, you should get
 # Modify the code above to plot modeled vs. observed thermocline depths, as well as other thermal characteristics. 
 # Ultimately, we want you to explore the implications of your scenario for future water quality and quantity. 
 # If you have extra time, create another scenario with your partner, and share your results with the rest of your
-#  classmates.
+# classmates.
 
 ########## ACTIVITY C - OBJECTIVE 6 ############################################
 # GRAPLEr!  The GRAPLEr is an R package that allows you to set up hundreds

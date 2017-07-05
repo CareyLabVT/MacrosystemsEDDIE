@@ -206,7 +206,7 @@ get_evaporation(nc_file)
    #  the best option for ice-covered lakes.
 
 # 2- SOMETHING THAT IS REALLY REALLY IMPORTANT! 
-	# Opening up the met_hourly.csv file in Microsoft Excel will unexplicably alter the date/time 
+	# Opening up the met_hourly.csv file in Microsoft Excel will inexplicably alter the date/time 
 	# formatting of the file so that GLM cannot read it.
 	# You will get an error something like this: "Day 2451545 (2000-01-01) not found".  
 	# To get around this error, you need to follow the FIVE steps listed below.
@@ -235,7 +235,7 @@ get_evaporation(nc_file)
     # Now, do NOT open the file in Excel again- otherwise, you will need to
     # repeat this formatting process before reading the altered met file into GLM.
 
-# Then read in your altered met_hourly file using the command below:
+    # THIRD: Read in your altered met_hourly file using the command below:
 metdata <- read.csv("met_hourly_SIMULATEDSUMMERSTORMS.csv", header=TRUE) ##!! Edit the name of the
 # CSV file so that it matches your new met file name.
 
@@ -264,7 +264,7 @@ get_nml_value(nml, 'meteo_fl') # If you have done this correctly, you should get
 # Modify the code above to plot modeled vs. observed thermocline depths, as well as other thermal characteristics. 
 # Ultimately, we want you to explore the implications of your scenario for future water quality and quantity. 
 # If you have extra time, create another scenario with your partner, and share your results with the rest of your
-#  classmates.
+# classmates.
 
 ########## ACTIVITY C - OBJECTIVE 6 ############################################
 # GRAPLEr!  The GRAPLEr is an R package that allows you to set up hundreds
