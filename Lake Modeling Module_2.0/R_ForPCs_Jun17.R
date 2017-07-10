@@ -1,16 +1,16 @@
-# Modeling Climate Change Effects on Lakes Using Distributed Computing Module ####
-# This module was initially developed by Carey, C.C., S. Aditya, K. Subratie, 
-#  R. Figueiredo, and K.J. Farrell. 30 June 2017.
-#  Macrosystems EDDIE: Climate Change Effects on Lake Temperatures.
-#  Macrosystems EDDIE Module 1, Version 1.
-#  NEW SERC WEBSITE.
-#  Module development was supported by NSF DEB 1245707, ACI 1234983, & EF 1702506.
+# Modeling Climate Change Effects on Lakes Using Distributed Computing ####		 
+# This module was initially developed by Carey, C.C., S. Aditya, K. Subratie, 		
+#  R. Figueiredo, and K.J. Farrell. 30 June 2017.		 
+#  Macrosystems EDDIE: Climate Change Effects on Lake Temperatures.		
+#  Macrosystems EDDIE Module 1, Version 1.		 
+#  https://serc.carleton.edu/enviro_data/macrosystems/module1.html. 		
+#  Module development was supported by NSF DEB 1245707, ACI 1234983, & EF 1702506.		
 
-# R code for students to work through the module activities A, B, and C.
-#  This module consists of 6 objectives. Activity A consists of Objectives 1-4,
-#  Activity B consists of Objective 5, and Activity C consists of Objective 6.
+# R code for students to work through the module activities A, B, and C.		  
+#  This module consists of 8 objectives. Activity A consists of Objectives 1-4,		  
+#  Activity B consists of Objective 5-6, and Activity C consists of Objective 7-8.		 
 
-# This script was modified last by KJF on 30 June 2017.
+# This script was last modified by KJF on 10 July 2017.
 
 ########## ACTIVITY A - OBJECTIVE 1 ############################################
 # Download R packages and GLM files successfully onto your computer.
@@ -77,10 +77,14 @@ print(nml) # This shows you what is in your nml file.  This is the 'master scrip
 
 get_nml_value(nml, 'lake_name') ##!! Use this command to find out the values of different parameters 
 #  that you are running within your nml file. Here, you are asking what the lake
-#  name is in the nml file, but you could also use this to learn what the 'latitude',
-#  'lake_depth', 'num_inflows', etc. is as well. 
-#  Modify this command to learn where your model lake is located by its latitude & longitude 
-#  coordinates, the lake's maximum depth, and the number of inflow streams into this lake.
+#  name is in the nml file, but you could also use this to learn the 'lake_depth', 
+#  'num_inflows', 'latitude', 'longitude', etc. as well. 
+
+#  Modify this command to learn the lake's maximum depth, and the number of inflow streams into this lake.
+
+# Awesome Lake is based on a real lake on the globe-- now modify the code above to find out the 
+#  latitude and longitude, then use an online map (e.g., http://www.latlong.net/Show-Latitude-Longitude.html)
+#  to determine the location of the lake! 
 
 plot_meteo(nml_file) # This command plots the meterological input data for the simulation- 
 #  short wave & long wave radiation, air temp, etc. for the duration of the simulation run. 
@@ -255,18 +259,27 @@ get_nml_value(nml, 'meteo_fl') # If you have done this correctly, you should get
 	# FIFTH, you can now run the model with the new edited nml file, following the instructions as
 		# described above for Objective 3.  Exciting!
 
-# Plot the output using the commands you learned above. Then answer the following questions: 
-# How does your scenario change the thermal structure of the lake? 
-# What does the temperature profile over time look like? 
-# When and what is the maximum and minimum water temperature? 
-# How does the depth of the thermocline change? 
-# How does the timing of stratification change? 
+########## ACTIVITY B - OBJECTIVE 6 ############################################
+# Prepare figures to share with your classmates that demonstrate the effects of your  
+#  climate change scenario on the thermal structure of your model lake. 
+
+# Plot the output using the commands you learned above. 
+# Organize your plots into a short presentation to share with your classmates.
+# Make sure your presentation addresses the following questions: 
+# 1) How does your scenario change the thermal structure of the lake? 
+# 2) What does the temperature profile over time look like? 
+# 3) When and what is the maximum and minimum water temperature? 
+# 4) How does the depth of the thermocline change? 
+# 5) How does the timing of stratification change? 
+
 # Modify the code above to plot modeled vs. observed thermocline depths, as well as other thermal characteristics. 
+
 # Ultimately, we want you to explore the implications of your scenario for future water quality and quantity. 
+
 # If you have extra time, create another scenario with your partner, and share your results with the rest of your
 # classmates.
 
-########## ACTIVITY C - OBJECTIVE 6 ############################################
+########## ACTIVITY C - OBJECTIVE 7 ############################################
 # GRAPLEr!  The GRAPLEr is an R package that allows you to set up hundreds
 #  of GLM simulations with varying input meteorological data and run those simulations efficiently
 #  and quickly using distributed computing. The model "jobs" are submitted via a web service to run
@@ -528,6 +541,17 @@ for (n in 1:101) {
 #  Otherwise, you may accidentially submit previous results with your next jobs. Having these
 #  subdirectories will substantialy slow down your GRAPLEr jobs, so we strongly encourage you to start
 #  with an empty, new working directory for each GRAPLEr experiment.
+
+########## ACTIVITY C - OBJECTIVE 8 ############################################
+# Prepare figures to share with your classmates that demonstrate the effects of your  
+#  climate change scenarios on the thermal structure of your model lake. 
+
+# Plot the output of your GRAPLEr experiment using the commands you learned above. 
+# Organize some of your plots into a short presentation to share with your classmates.
+
+# Make sure your presentation addresses the following questions: 
+# 1) What did your scenario test? What was the range of conditions you ran over your GRAPLEr experiment? 
+# 2) In which scenarios did you see the biggest change in lake thermal structure? 
 
 # Thinking ahead: how could you use the GRAPLEr in your own research? You could use the GRAPLEr to
 #  examine hundreds of simulations for any GLM model (not just the default Awesome Lake, but your own
