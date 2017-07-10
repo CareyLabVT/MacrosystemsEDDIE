@@ -59,7 +59,8 @@ glm_version() # See what version of GLM you are running- should be at least v.2.
 
 sim_folder <- 'C:/Users/farrellk/Desktop/lake_climate_change' ##!! Edit this line of code to redefine 
 #  your sim_folder path. This should be replaced with the path to the Desktop folder where you 
-#  extracted your zipped files.  
+#  extracted your zipped files. Most likely, you will need to change the part after Users/ to give
+#  the name of your computer (e.g., my computer name is farrellk, but yours will be different!)
 
 setwd(sim_folder) ##!! This line of code is used to reset your working directory
 #  to the sim_folder. The point of this step is to make sure that any new files you create
