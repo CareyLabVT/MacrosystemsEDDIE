@@ -10,7 +10,7 @@
 #  This module consists of 8 objectives. Activity A consists of Objectives 1-4,		  
 #  Activity B consists of Objective 5-6, and Activity C consists of Objective 7-8.		 
   
-# This script was last modified by KJF on 10 July 2017.
+# This script was last modified by KJF on 13 July 2017.
 
 ########## ACTIVITY A - OBJECTIVE 1 ############################################
 # Download R packages and GLM files successfully onto your computer.
@@ -61,6 +61,7 @@ sim_folder <- 'C:/Users/farrellk/Desktop/lake_climate_change' ##!! Edit this lin
 #  your sim_folder path. This should be replaced with the path to the Desktop folder where you 
 #  extracted your zipped files. Most likely, you will need to change the part after Users/ to give
 #  the name of your computer (e.g., my computer name is farrellk, but yours will be different!)
+# Look in the Files tab on RStudio to see your file path. 
 
 setwd(sim_folder) ##!! This line of code is used to reset your working directory
 #  to the sim_folder. The point of this step is to make sure that any new files you create
@@ -264,16 +265,15 @@ get_nml_value(nml, 'meteo_fl') # If you have done this correctly, you should get
 # Prepare figures to share with your classmates that demonstrate the effects of your  
 #  climate change scenario on the thermal structure of your model lake. 
 
-# Plot the output using the commands you learned above. 
-# Organize your plots into a short presentation to share with your classmates.
-# Make sure your presentation addresses the following questions: 
-# 1) How does your scenario change the thermal structure of the lake? 
-# 2) What does the temperature profile over time look like? 
-# 3) When and what is the maximum and minimum water temperature? 
-# 4) How does the depth of the thermocline change? 
-# 5) How does the timing of stratification change? 
+# Plot the output using the commands you learned above (in objectives 3 and 4). 
 
-# Modify the code above to plot modeled vs. observed thermocline depths, as well as other thermal characteristics. 
+# Organize your plots into a short presentation to share with your classmates.
+
+# Make sure your presentation includes the following elements: 
+# 1) An introduction of your climate scenario (what you changed and why)
+# 2) Your hypothesized changes in lake thermal structure
+# 3) Some figures of the model output
+# 4) Whether the model output supports or contradicts your hypotheses
 
 # Ultimately, we want you to explore the implications of your scenario for future water quality and quantity. 
 
