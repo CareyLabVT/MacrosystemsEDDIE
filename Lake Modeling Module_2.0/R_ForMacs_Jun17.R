@@ -15,7 +15,7 @@
 #  This module consists of 8 objectives. Activity A consists of Objectives 1-4,		  
 #  Activity B consists of Objective 5-6, and Activity C consists of Objective 7-8.		 
 
-# This script was last modified by CCC on 21 July 2017.
+# This script was last modified by KJF on 21 July 2017.
 
 ########## ACTIVITY A - OBJECTIVE 1 ############################################
 # Download R packages and GLM files successfully onto your computer.
@@ -127,10 +127,14 @@ plot_temp(file=nc_file, fig_path=FALSE) # This plots your simulated water temper
 #  different colors represent different temperatures. Again, this figure should be visible in the Plots window
 #  in the bottom righthand corner of RStudio's interface.
 
-# If you want to save your plot as a pdf file while it is still open, use the
-#  following command to save it to your working directory: 
-dev.print(pdf, 'filename.pdf') ##!! Change the 'filename' portion to give your 
-# plot a more descriptive name (e.g., "TemperatureHeatMap.pdf")
+# To copy your plot (e.g., onto a PowerPoint slide), click "Export" within the Plots tab.
+# Then click "Copy to Clipboard", and click "Copy plot" in the preview window. You can then 
+# paste your plot into Word, PowerPoint, etc. 
+
+# If you want to save your plot as an image file or pdf file instead of copying it, click
+# "Export" within the Plots tab, then choose "Save as Image" or "Save as PDF". In the preview window,
+# give your plot a descriptive file name (e.g., "TemperatureHeatMap.pdf"), then press "Save". 
+# Your plot image and/or PDF file will be saved in the lake_climate_change folder on your Desktop.
 
 ########## ACTIVITY A - OBJECTIVE 4 ############################################
 # Examine how your modeled GLM data compares to the observed field data for your lake.
