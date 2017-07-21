@@ -1,16 +1,21 @@
-# Modeling Climate Change Effects on Lakes Using Distributed Computing ####		 
-# This module was initially developed by Carey, C.C., S. Aditya, K. Subratie, 		
-#  R. Figueiredo, and K.J. Farrell. 30 June 2017.		 
 #  Macrosystems EDDIE: Climate Change Effects on Lake Temperatures.		
 #  Macrosystems EDDIE Module 1, Version 1.		 
 #  https://serc.carleton.edu/enviro_data/macrosystems/module1.html. 		
-#  Module development was supported by NSF DEB 1245707, ACI 1234983, & EF 1702506.		
-  
-# R code for students to work through the module activities A, B, and C.		  
+#  Some parts of this module were developed by Carey, C.C., S. Aditya, K. Subratie, 		
+#  and R. Figueiredo as part of the Project EDDIE module, "Modeling Climate Change Effects on Lakes 
+#  Using Distributed Computing Module" and were subsequently revised by Carey, C.C. and
+#  K.J. Farrell on 21 July 2017 as part of the Macrosystems EDDIE project. 
+
+#  Please cite this module as: "Carey, C.C., S. Aditya, K. Subratie, R. Figueiredo, and K.J. Farrell. 
+#  21 July 2017. Macrosystems EDDIE: Climate Change Effects on Lake Temperatures. Macrosystems EDDIE 
+#  Module 1, Version 1. https://serc.carleton.edu/enviro_data/macrosystems/module1.html. Module 
+#  development was supported by NSF DEB 1245707, ACI 1234983, and EF 1702506."		
+
+#  R code for students to work through the module activities A, B, and C.		  
 #  This module consists of 8 objectives. Activity A consists of Objectives 1-4,		  
 #  Activity B consists of Objective 5-6, and Activity C consists of Objective 7-8.		 
-  
-# This script was last modified by KJF on 13 July 2017.
+
+# This script was last modified by CCC on 21 July 2017.
 
 ########## ACTIVITY A - OBJECTIVE 1 ############################################
 # Download R packages and GLM files successfully onto your computer.
@@ -20,7 +25,9 @@ install.packages('sp') # NOTE: you may get output that says "There is a binary v
 #  needs compilation? y/n" Type 'y' (without the quotes) and hit enter. You may now be prompted
 #  to download the command line developer tools. Click Install and then re-run the
 #  install.packages(sp) once the install of the tools is finished. This should now
-#  successfully load- when it's done, it should say 'DONE(sp)' if it worked successfully.
+#  successfully load- when it's done, it should say 'DONE(sp)' if it worked successfully. Note that if you 
+#  already installed the sp package for previous projects, you may not have any output after 
+#  completing this step.
 
 install.packages('glmtools', repos=c('http://cran.rstudio.com', 'http://owi.usgs.gov/R')) 
 # This step enables you to access the USGS	website and download the R packages 
@@ -29,11 +36,11 @@ install.packages('glmtools', repos=c('http://cran.rstudio.com', 'http://owi.usgs
 
 library(glmtools) # Load the two packages that you need to run GLM and manipulate its output
 # NOTE: you may get lots of output messages at this step- if this worked successfully, you
-#  should read: "This information is preliminary or provisional and is subject to revision. It
-#  is being provided to meet the need for timely best science. The information has not received
-#  final approval by the U.S. Geological Survey (USGS) and is provided on the condition that
-#  neither the USGS nor the U.S. Government shall be held liable for any damages resulting from
-#  the authorized or unauthorized use of the information. Although this software program has
+#  should read something in red font similar to: "This information is preliminary or provisional and 
+#  is subject to revision. It is being provided to meet the need for timely best science. 
+#  The information has not received final approval by the U.S. Geological Survey (USGS) and is provided 
+#  on the condition that neither the USGS nor the U.S. Government shall be held liable for any damages 
+#  resulting from the authorized or unauthorized use of the information. Although this software program has
 #  been used by the USGS, no warranty, expressed or implied, is made by the USGS or the U.S.
 #  Government as to the accuracy and functioning of the program and related program material nor
 #  shall the fact of distribution constitute any such warranty, and no responsibility is assumed
@@ -57,15 +64,16 @@ glm_version() # See what version of GLM you are running- should be at least v.2.
 # When you downloaded this script, you unzipped the lake_climate_change folder to your Desktop. 
 # We now need to tell R where these files are. We do that by...
 
-sim_folder <- 'C:/Users/farrellk/Desktop/lake_climate_change' ##!! Edit this line of code to redefine 
+sim_folder <- '/Users/cayelan/Desktop/lake_climate_change' ##!! Edit this line of code to redefine 
 #  your sim_folder path. This should be replaced with the path to the Desktop folder where you 
 #  extracted your zipped files. Most likely, you will need to change the part after Users/ to give
-#  the name of your computer (e.g., my computer name is farrellk, but yours will be different!)
+#  the name of your computer (e.g., my computer name is cayelan, but yours will be different!)
 # Look in the Files tab on RStudio to see your file path. 
 
 setwd(sim_folder) ##!! This line of code is used to reset your working directory
 #  to the sim_folder. The point of this step is to make sure that any new files you create
 #  (e.g., figures of output) end up together in this directory, vs. elsewhere in your computer.
+# Look in the Files tab on RStudio to see your file path. 
 
 nml_file <- paste0(sim_folder,"/glm2.nml") # This step sets the nml_file for your simulation to be
 #  in the new sim_folder location.
@@ -84,12 +92,14 @@ get_nml_value(nml, 'lake_name') ##!! Use this command to find out the values of 
 
 #  Modify this command to learn the lake's maximum depth, and the number of inflow streams into this lake.
 
-# Awesome Lake is based on a real lake on the globe-- now modify the code above to find out the 
+#  Awesome Lake is based on a real lake on the globe-- now modify the code above to find out the 
 #  latitude and longitude, then use an online map (e.g., http://www.latlong.net/Show-Latitude-Longitude.html)
 #  to determine the location of the lake! 
 
 plot_meteo(nml_file) # This command plots the meterological input data for the simulation- 
 #  short wave & long wave radiation, air temp, etc. for the duration of the simulation run. 
+#  Look at the figure in the "Plots" window in the bottom right corner of RStudio. This window
+#  can be expanded by clicking the Zoom tab at the top of the figure panel.
 #  Do these plots look reasonable for the latitude and longitude of your model lake?
  
 ########## ACTIVITY A - OBJECTIVE 3 ############################################
@@ -99,7 +109,7 @@ run_glm(sim_folder, verbose=TRUE) # So simple and elegant... if this works, you 
 #  that says "Simulation begins.." and then shows all the time steps. 
 #  At the end of the model run, it should say "Run complete" if everything worked ok.
 
-# Now, go to the sim_folder on your computer (in RStudio, you can find this by clicking on the 'Files' 
+#  Now, go to the sim_folder on your computer (in RStudio, you can find this by clicking on the 'Files' 
 #  tab- if everything happened correctly, you should see the addition of new files 
 #  that were created during the simulation with a recent date and time stamp, 
 #  including 'output.nc', 'lake.csv', and 'overflow.csv'. The most important these is the
@@ -114,7 +124,8 @@ nc_file <- file.path(sim_folder, 'output.nc') # This defines the output.nc file 
 
 plot_temp(file=nc_file, fig_path=FALSE) # This plots your simulated water temperatures in a heat
 #  map, where time is displayed on the x-axis, lake depth is displayed on the y-axis, and the
-#  different colors represent different temperatures.
+#  different colors represent different temperatures. Again, this figure should be visible in the Plots window
+#  in the bottom righthand corner of RStudio's interface.
 
 # If you want to save your plot as a pdf file while it is still open, use the
 #  following command to save it to your working directory: 
@@ -160,23 +171,24 @@ legend("topright",c("Observed", "Modeled"),lty=c(1,1), col=c("blue", "red")) # t
 # First, run the code. Then try changing the code to instead plot the observed vs. simulated water density! 
 water_temp <- compare_to_field(nc_file, field_file, metric="water.temperature", as_value=TRUE, na.rm=TRUE)
 plot(water_temp$DateTime, water_temp$obs, type="p", col="blue", ylim=c(15,35), 
-     ylab="Water temperature in C", xlab="Date")  # This plots DateTime vs. Observed data in blue, 
+     ylab="Water temperature in degrees C", xlab="Date")  # This plots DateTime vs. Observed data in blue, 
 points(water_temp$DateTime, water_temp$mod, col="red") # this adds a red line of the modeled
 legend("topleft",c("Observed", "Modeled"),lty=c(1,1), col=c("blue", "red")) # this adds a legend
 
 # For the temperature and density plots, there are multiple data points for each day. Why?
 # What do these plots tell you about thermal stratification over the course of a year?
 
-#There are lots of other fun glmtools that you can play with.
+# There are lots of other fun glmtools that you can play with.
 # These two commands allow you to explore ice cover and evaporation in your model output.
-get_ice(nc_file)
-get_evaporation(nc_file) 
+get_ice(nc_file) #Is there any ice on Awesome Lake? Does this make sense, given the air temperatures in your
+# meteorological plot?
+get_evaporation(nc_file) #in units of mm/day
 
 ########## ACTIVITY B - OBJECTIVE 5 ############################################
-# Using your knowledge of potential climate change, work with a partner to develop 
+#  Using your knowledge of potential climate change, work with a partner to develop 
 #  a climate change scenario for your model lake. 
 
-# To complete this activity, you will need to modify the input meterological data and then run the
+#  To complete this activity, you will need to modify the input meterological data and then run the
 #  model to examine the effects of your scenario on the thermal structure of the lake.
 
 # Here is an overview of the steps you will complete with your partner to accomplish this (detailed directions below):
@@ -185,9 +197,10 @@ get_evaporation(nc_file)
 # 2) Create a corresponding meteorological input (met) file. Think through all of the components of the
 	# proposed scenario. For example, which of the meteorological variables (air temperature,
 	# precipitation, wind, etc.) will be modified and how? Will they be short-term or long-term
-	# modifications? 
+	# modifications? After you develop your scenario, work with a partner to hypothesize how these changes will affect
+  # Awesome Lake's thermal structure.
 
-# 3) Run the GLM using your new met file and examine how it alters the physical structure of the lake.  
+# 3) Test your hypotheses! Run the GLM using your new met file and examine how it alters the physical structure of the lake.  
 	# How does your climate scenario change the thermal structure of the lake? 
 	# What does the temperature profile look like?  How does the depth of the thermocline change? 
 	# How does the timing of stratification and magnitude of evaporation change?
@@ -219,14 +232,14 @@ get_evaporation(nc_file)
 
 	# FIRST, copy and paste an extra version of the met_hourly.csv file in your sim folder so that you
 		# have a backup in case of any mistakes. Rename this file something like
-		# "met_hourly_UNALTERED.csv" and be sure not to open it.
+    # "met_hourly_UNALTERED.csv" and be sure *not* to open it.
 
   # SECOND, open the met_hourly.csv file in Excel.  Manipulate the different input meteorological
     #	variables to create your climate/weather scenario of your choice (be creative!). 
     # NOTE ABOUT UNITS: In the met_hourly file, the units for rain are in meters per day. You will likely
     # think about the amount of rain your change in the met_hourly file by millimeters per day instead-- 
     # to convert from mm/d to m/d, simply multiply by 0.001. Other units are more intuitive-- open up the 
-    # Variable_Name_Metadata.csv file for more details.
+    # Variable_Name_Metadata.csv file from the module zipped folder for more details.
 
     # NOTE ABOUT COLUMN NAMES: the order of the columns in the met file does not matter- but you can only have one 
     # of each variable and they must keep the EXACT same header name (i.e., it must always be 
@@ -243,7 +256,7 @@ get_evaporation(nc_file)
 
   # THIRD: Read in your altered met_hourly file using the command below:
 metdata <- read.csv("met_hourly_SIMULATEDSUMMERSTORMS.csv", header=TRUE) ##!! Edit the name of the
-# CSV file so that it matches your new met file name.
+    # CSV file so that it matches your new met file name.
 
   # FOURTH, you need to edit the glm2.nml file to change the name of the input meteorological
     # file so that it reads in the new, edited meteorological file for your climate scenario, not the
@@ -253,10 +266,10 @@ metdata <- read.csv("met_hourly_SIMULATEDSUMMERSTORMS.csv", header=TRUE) ##!! Ed
     # and not slanted- sometimes the nml default alters the quotes so that the file cannot be read in
     # properly (super tricky!).
 
-# Once you have edited the nml file name, you can always check to make sure that it is correct with the command:
+    # Once you have edited the nml file name, you can always check to make sure that it is correct with the command:
 nml <- read_nml(nml_file)  # Read in your nml file from your new directory
 get_nml_value(nml, 'meteo_fl') # If you have done this correctly, you should get an output that lists
-# the name of your new meteorological file altered for your weather/climate scenario.
+    # the name of your new meteorological file altered for your weather/climate scenario.
 
 	# FIFTH, you can now run the model with the new edited nml file, following the instructions as
 		# described above for Objective 3.  Exciting!
@@ -296,24 +309,24 @@ install.packages("RCurl")
 install.packages("jsonlite")		
 install.packages("devtools")		
 library("devtools")		
-devtools::install_github("GRAPLE/GRAPLEr") # If this worked correctly, you should get output saying		
-#  "DONE (GrapleR)". Depending on your internet connection, this step may take a few minutes to		
-#  complete.		
-		
+devtools::install_github("GRAPLE/GRAPLEr") # If this worked correctly, you should get multiple lines of output in 
+#  red font that ends with "DONE (GrapleR)". Depending on your internet connection, this step may take a few minutes to
+#  complete.
+
 library(httr) # A package necessary for the GRAPLEr to work		
 library(RCurl) # If you have trouble loading this package with this step, consider updating R to the		
 #  most recent version- this seemed to help for me.		
 library(jsonlite) # A package necessary for the GRAPLEr to work		
 library(GRAPLEr) # If this loads successfully, you should get a return statement that says, "GRAPLEr		
-# has been developed with support from a supplement the the PRAGMA award (NSF OCI-1234983)."		
+# has been developed with support from a supplement to the PRAGMA award (NSF OCI-1234983)."		
 # Woohooo!!!		
 	
 # First, we will explore the folders needed for your GRAPLEr "Experiment". 		
 #  We call an "Experiment" a set of simulations that you submit to run on GRAPLEr. 		
 #  Each "Experiment" is configured in a folder (also known as directory) in your computer 		
 #  called an "Experiment Root Directory". You also need a "Results" folder to hold 		
-#  the output files from your Experiment when simulations are finished.		
-		
+#  the output files from your Experiment when all of the many simulations are finished.
+
 # When you unzipped your module files, the folder included two sub-folders for your GRAPLEr Experiment.		
 #  One is called an "Experiment Root Directory" (ExpRootDir), which contains inputs (e.g. csv driver		
 #  files, GLM nml files) and a job description (more on this later) for your simulations		
@@ -327,8 +340,8 @@ MyResultsDir <- paste(sim_folder,sep='/','MyResults') # Outputs will go here
 dir.create(MyResultsDir)  # Create the MyResults directory in your computer		
 		
 list.files(MyExpRootDir) # Double-check that the necessary files are in your Experimental Root Directory		
-                        # You *must* see the glm2.nml, met_hourly.csv, and job_desc.json		
-                        # files listed here before continuing!! 		
+                         # You *must* see the glm2.nml, met_hourly.csv, and job_desc.json		
+                         # files listed here before continuing!! 		
 		
 # !! IMPORTANT!!		
 # From the line of code above, your file structure within your sim_folder MUST include these files:		
@@ -414,7 +427,7 @@ cat( readLines( job_desc ) , sep = "\n" )                  # Print its contents
 graplerURL <- "https://graple.acis.ufl.edu"  # Specify web service address for the GRAPLEr.		
 		
 MyExp <- new("Graple", GWSURL=graplerURL, ExpRootDir=MyExpRootDir, ResultsDir=MyResultsDir,		
-                               ExpName="EDDIE", TempDir = tempdir())		
+          ExpName="EDDIE", TempDir = tempdir())		
 		
 # At this point, let us double-check that all of those packages were installed correctly and that		
 #  everything is in order before we start sending GLM runs to the GRAPLEr.		
@@ -452,10 +465,10 @@ print(MyExp@StatusMsg)
 #  Ah, the anticipation! Patience.		
 #  Once the status is "100.0% complete", you can move on to the next step - retrieve results!		
 		
-#Note that this step may take a while to prepare the outputs and download them to your computer in a		
-#	compressed zip folder in your GRAPLEr working directory. Using all of the example files as described		
-# in the default simulation above, the compressed output will be about 50-100MB in size- it is		
-#	dependent on how long your simulated period is, how many depths you simulated, etc.)		
+# Note that this step may take a while to prepare the outputs and download them to your computer in a		
+#	 compressed zip folder in your GRAPLEr working directory. Using all of the example files as described		
+#  in the default simulation above, the compressed output will be about 50-100MB in size- it is		
+#	 dependent on how long your simulated period is, how many depths you simulated, etc.)		
 # Note also that error messages for bzip2 may appear - you can ignore them		
 		
 MyExp <- GrapleGetExperimentResults(MyExp);		
@@ -480,7 +493,7 @@ print(MyExp@StatusMsg)
 		
 # Note: if there are any errors in your original GLM simulation, the GRAPLEr will not give any error		
 #  messages (but will not run correctly!), so if you do not have any output in your sim folders, 		
-#  it is likely due to a problem with the baseline GLM model. I would recommend trying to run one 		
+#  it is likely due to a problem with the baseline GLM model. We strongly recommend trying to run one 		
 #  GLM model to run on its own (as we did in ACtivity A), before trying to run hundreds of simulations with offsets.		
 		
 # Let's check a couple of simulation outputs now. Each simulation is in its own folder, under		
@@ -544,7 +557,7 @@ for (n in 1:101) {
 #  with an empty, new working directory for each GRAPLEr experiment.		
 		
 ########## ACTIVITY C - OBJECTIVE 8 ############################################
-# Prepare figures to share with your classmates that demonstrate the effects of your  
+# Prepare figures to share with your classmates that demonstrate the effects of your many GRAPLEr-enabled
 #  climate change scenarios on the thermal structure of your model lake. 
 
 # Plot the output of your GRAPLEr experiment using the commands you learned above. 
