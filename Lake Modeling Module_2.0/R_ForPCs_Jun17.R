@@ -285,10 +285,10 @@ get_nml_value(nml, 'meteo_fl') # If you have done this correctly, you should get
 # Organize your plots into a short presentation to share with your classmates.
 
 # Make sure your presentation includes the following elements: 
-# 1) An introduction of your climate scenario (what you changed and why)
-# 2) Your hypothesized changes in lake thermal structure
-# 3) Some figures of the model output
-# 4) Whether the model output supports or contradicts your hypotheses
+  # 1) An introduction of your climate scenario (what you changed and why)
+  # 2) Your hypothesized changes in lake thermal structure
+  # 3) Some figures of the model output
+  # 4) Whether the model output supports or contradicts your hypotheses
 
 # Ultimately, we want you to explore the implications of your scenario for future water quality and quantity. 
 
@@ -575,4 +575,6 @@ for (n in 1:101) {
 
 # Bravo, you are done!! 
 
-# We welcome feedback on this module and encourage you to contact Cayelan Carey or Renato Figueiredo if you have questions. 
+# We welcome feedback on this module and encourage you to provide comments, questions, and suggestions. 
+#  Please visit the SERC website (https://serc.carleton.edu/enviro_data/macrosystems/module1.html) 
+#  to submit feedback to the module developers. 
