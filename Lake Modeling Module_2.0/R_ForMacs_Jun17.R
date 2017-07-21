@@ -1,4 +1,4 @@
-#  Macrosystems EDDIE: Climate Change Effects on Lake Temperatures.		
+#  Macrosystems EDDIE: Climate Change Effects on Lake Temperatures.		####
 #  Macrosystems EDDIE Module 1, Version 1.		 
 #  https://serc.carleton.edu/enviro_data/macrosystems/module1.html. 		
 #  Some parts of this module were developed by Carey, C.C., S. Aditya, K. Subratie, 		
