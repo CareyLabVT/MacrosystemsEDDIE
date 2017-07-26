@@ -70,7 +70,7 @@ sim_folder <- 'C:/Users/farrellk/Desktop/lake_climate_change' ##!! Edit this lin
 #  the name of your computer (e.g., my computer name is farrellk, but yours will be different!)
 # Look in the Files tab on RStudio to see your file path. 
 
-setwd(sim_folder) ##!! This line of code is used to reset your working directory
+setwd(sim_folder) ## This line of code is used to reset your working directory
 #  to the sim_folder. The point of this step is to make sure that any new files you create
 #  (e.g., figures of output) end up together in this directory, vs. elsewhere in your computer.
 # Look in the Files tab on RStudio to see your file path. 
@@ -86,9 +86,9 @@ print(nml) # This shows you what is in your nml file.  This is the 'master scrip
 #  multiple sections, including glm_setup, morphometry, meteorology, etc.
 
 get_nml_value(nml, 'lake_name') ##!! Use this command to find out the values of different parameters 
-#  that you are running within your nml file. Here, you are asking what the lake
-#  name is in the nml file, but you could also use this to learn the 'lake_depth', 
-#  'num_inflows', 'latitude', 'longitude', etc. as well. 
+#  that you are running within your nml file. Here, you are first asking what the lake
+#  name is in the nml file. Then try using this command learn the 'lake_depth', 
+#  'num_inflows', 'latitude', 'longitude', etc. 
 
 #  Modify this command to learn the lake's maximum depth, and the number of inflow streams into this lake.
 
@@ -110,9 +110,9 @@ run_glm(sim_folder, verbose=TRUE) # So simple and elegant... if this works, you 
 #  At the end of the model run, it should say "Run complete" if everything worked ok.
 
 #  Now, go to the sim_folder on your computer (in RStudio, you can find this by clicking on the 'Files' 
-#  tab- if everything happened correctly, you should see the addition of new files 
+#  tab)- if everything happened correctly, you should see the addition of new files 
 #  that were created during the simulation with a recent date and time stamp, 
-#  including 'output.nc', 'lake.csv', and 'overflow.csv'. The most important these is the
+#  including 'output.nc', 'lake.csv', and 'overflow.csv'. The most important of these is the
 #  'output.nc' file, which contains all of the output data from your simulation in netCDF
 #  format.
 
@@ -159,7 +159,7 @@ sim_metrics(with_nml = FALSE) # The options include "thermo.depth" (depth of the
 
 compare_to_field(nc_file, field_file, metric="thermo.depth", as_value=TRUE, na.rm=TRUE) ##!! 
 # This command lists the thermocline depth of the observed and modeled data for comparison.
-#  Try changing this command to compare the other metrics as well!
+# Try changing this command to compare the other metrics as well!
 
 # To make a simple plot of the observed vs. simulated thermocline depths, use this script:
 therm_depths <- compare_to_field(nc_file, field_file, metric="thermo.depth", as_value=TRUE, na.rm=TRUE)
@@ -172,7 +172,8 @@ legend("topright",c("Observed", "Modeled"),lty=c(1,1), col=c("blue", "red")) # t
 # How does the modeled thermocline depth compare to the observed thermocline depth?
 
 # The code below plots the observed vs. simulated water temperature.
-# First, run the code. Then try changing the code to instead plot the observed vs. simulated water density! 
+# !! First, run the code. Then try changing the code to instead plot the observed vs. simulated water density!
+# Hint: for water density, you may need to put a # before ylim=c(15,35) to visualize all the data
 water_temp <- compare_to_field(nc_file, field_file, metric="water.temperature", as_value=TRUE, na.rm=TRUE)
 plot(water_temp$DateTime, water_temp$obs, type="p", col="blue", ylim=c(15,35), 
      ylab="Water temperature in degrees C", xlab="Date")  # This plots DateTime vs. Observed data in blue, 
@@ -345,7 +346,7 @@ list.files(MyExpRootDir) # Double-check that the necessary files are in your Exp
                          # You *must* see the glm2.nml, met_hourly.csv, and job_desc.json
                          # files listed here before continuing! 
 
-# !! IMPORTANT!!
+# IMPORTANT!!
 # From the line of code above, your file structure within your sim_folder MUST include these files:
 # (your sim_folder from activity A)  /MyExpRoot/met_hourly.csv
 #                                              /glm2.nml
@@ -429,7 +430,7 @@ cat( readLines( job_desc ) , sep = "\n" )                  # Print its contents
 graplerURL <- "https://graple.acis.ufl.edu"  # Specify web service address for the GRAPLEr.
 
 MyExp <- new("Graple", GWSURL=graplerURL, ExpRootDir=MyExpRootDir, ResultsDir=MyResultsDir,
-                ExpName="EDDIE", TempDir = tempdir())
+                ExpName="EDDIE", TempDir = tempdir()) # Set up your GRAPLEr experiment
 
 # At this point, let us double-check that all of those packages were installed correctly and that
 #  everything is in order before we start sending GLM runs to the GRAPLEr.
