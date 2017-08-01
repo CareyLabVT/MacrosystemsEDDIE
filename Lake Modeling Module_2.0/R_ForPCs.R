@@ -1,6 +1,6 @@
 #  Macrosystems EDDIE: Climate Change Effects on Lake Temperatures.		####
 #  Macrosystems EDDIE Module 1, Version 1.		 
-#  https://serc.carleton.edu/enviro_data/macrosystems/module1.html. 		
+#  https://serc.carleton.edu/eddie/macrosystems/module1.html. 		
 #  Some parts of this module were developed by Carey, C.C., S. Aditya, K. Subratie, 		
 #  and R. Figueiredo as part of the Project EDDIE module, "Modeling Climate Change Effects on Lakes 
 #  Using Distributed Computing Module" and were subsequently revised by Carey, C.C. and
@@ -8,14 +8,14 @@
 
 #  Please cite this module as: "Carey, C.C., S. Aditya, K. Subratie, R. Figueiredo, and K.J. Farrell. 
 #  21 July 2017. Macrosystems EDDIE: Climate Change Effects on Lake Temperatures. Macrosystems EDDIE 
-#  Module 1, Version 1. https://serc.carleton.edu/enviro_data/macrosystems/module1.html. Module 
+#  Module 1, Version 1. https://serc.carleton.edu/eddie/macrosystems/module1.html. Module 
 #  development was supported by NSF DEB 1245707, ACI 1234983, and EF 1702506."		
 
 #  R code for students to work through the module activities A, B, and C.		  
 #  This module consists of 8 objectives. Activity A consists of Objectives 1-4,		  
 #  Activity B consists of Objective 5-6, and Activity C consists of Objective 7-8.		 
 
-# This script was last modified by KJF on 21 July 2017.
+# This script was last modified by KJF on 1 August 2017.
 
 ########## ACTIVITY A - OBJECTIVE 1 ############################################
 # Download R packages and GLM files successfully onto your computer.
@@ -577,5 +577,5 @@ for (n in 1:101) {
 # Bravo, you are done!! 
 
 # We welcome feedback on this module and encourage you to provide comments, questions, and suggestions. 
-#  Please visit the SERC website (https://serc.carleton.edu/enviro_data/macrosystems/module1.html) 
+#  Please visit the SERC website (https://serc.carleton.edu/eddie/macrosystems/module1.html) 
 #  to submit feedback to the module developers. 
