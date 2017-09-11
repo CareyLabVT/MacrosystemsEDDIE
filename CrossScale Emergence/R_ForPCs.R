@@ -234,6 +234,7 @@ plot_var(file = climate, "PHY_TCHLA") # Heatmap of chlorophyll-a
 
 # Using these plots, the figures from your baseline scenario, and the other team's plots from their lake,
   # put together a brief presentation of your model simulation and output to share with the rest of the class 
+
   # Make sure your presentation answers the following questions: 
   # a) Does the model output support or contradict your hypotheses? 
   # b) How does the output from the two lakes compare? 
@@ -326,10 +327,66 @@ landuse <- file.path(sim_folder, 'output.nc') # This defines the output.nc file 
 chla_output["LandUse_Chla"] <- `*tmp*`[2] # Attach the chl-a data from your land use simulation to the same file
 # that contains your baseline scenario and climate change scenario chl-a concentrations
 
+# Plot the output of your land use scenario using the commands you learned above. 
+plot_temp(file=climate, fig_path=FALSE) # Heatmap of temperature
+plot_var(file = climate, "PHY_TCHLA") # Heatmap of chlorophyll-a
 
+# Finally, we want to see what happens when land use and climate interact! 
+# Luckily, testing the simultaneous effects of your land use and climate change scenarios will be pretty easy!
+# Since we already have modified met data (climate scenario) and inflow data (land use scenario), we just have
+# GLM read them both at once. We can do this by changing the glm2.nml file to include our modified files.
 
+# In the glm2.nml file, make the following TWO changes:
 
+# 1) In the meteorology section, change the 'meteo_fl' entry to the met file that represents 
+  # your climate change scenario (e.g., 'met_hourly_climate.csv')
 
+# 2) In the inflow section, change the 'inflow_fl' entry to the inflow file that represents
+  # your land use change scenario (e.g., 'inflow_landuse.csv')
+
+# Save your glm2.nml file, then run the following commands to check that the changes were made correctly.
+nml <- read_nml(nml_file)  # Read in your nml file from your new directory
+get_nml_value(nml, 'inflow_fl') # If you have done this correctly, you should get an output that lists
+# the name of your altered inflow file.
+get_nml_value(nml, 'meteo_fl') # If you have done this correctly, you should get an output that lists
+# the name of your altered meteorological file.
+
+# Run GLM one more time!
+run_glm(sim_folder, verbose=TRUE) # Run your GLM model for your lake. 
+#  At the end of the model run, it should say "Run complete" if everything worked ok.
+
+# As above, we need to tell R where the output.nc file is so that the glmtools package can
+# plot and analyze the model output. We tell R where to find the output file using the line below:
+climate_landuse <- file.path(sim_folder, 'output.nc') # This defines the output.nc file as being within
+# the sim_folder. Note that we've called this output "climate_landuse" since it is the output from our 
+# simultaneous climate AND land use change simulations.
+
+# As before, we want to save the model output of the daily chlorophyll-a concentrations in the lake, 
+# to compare to our baseline, climate, and land use scenarios. 
+`*tmp*` <- get_var(file=climate_landuse, "PHY_TCHLA", reference='surface', z_out=c(1)) # Extract surface chl-a
+chla_output["Climate_LandUse_Chla"] <- `*tmp*`[2] # Attach the chl-a data from your combined simulation to the same file
+# that contains your baseline, climate change, and land use scenario chl-a concentrations
+
+# Plot the output of your land use scenario using the commands you learned above. 
+plot_temp(file=climate_landuse, fig_path=FALSE) # Heatmap of temperature
+plot_var(file = climate_landuse, "PHY_TCHLA") # Heatmap of chlorophyll-a
+
+# Add these new plots to the presentation you're making with your team. 
+  # Think about how land use and climate change interacted to affect phytoplankton blooms in your lake. 
+  # How do these newest plots compare to the figures you made from climate change or land use change scenarios alone?
+
+# Now that you've run four different scenarios (baseline, climate only, land use only, and climate + land use), let's plot 
+# how the lakes responded under the different scenarios. 
+attach(chla_output)
+plot(DateTime, Baseline_Chla, type="l", col="black", ylim=c(0, 20),
+     ylab="Chlorophyll-a (ug/L)", xlab="Date")  # This plots DateTime vs. Observed data in blue, 
+lines(DateTime, Climate_Chla, col="red") # this adds a red line of the climate change scenario
+lines(DateTime, LandUse_Chla, col="blue") # this adds a blue line of the land use scenario
+lines(DateTime, Climate_LandUse_Chla, col="green") # this adds a green line of simultaneous climate and land use scenario
+legend("topleft",c("Baseline", "Climate Only", "Land Use Only", "Combined C + LU"), lty=c(1,1,1,1),
+       col=c("black","red","blue", "green")) # this adds a legend
+
+###### ADD SOME FINAL WRAP UP TEXT HERE!! ######
 
 # Bravo, you are done!! 
 
