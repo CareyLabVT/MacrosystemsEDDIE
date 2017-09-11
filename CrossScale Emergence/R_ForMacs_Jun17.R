@@ -9,7 +9,7 @@
 #   This module consists of 6 objectives. Activity A consists of Objectives 1-4,
 #   Activity B consists of Objective 5, and Activity C consists of Objective 6.
 
-# This script was modified last by KJF on 10 July 2017.
+# This script was modified last by KJF on 11 Sept 2017.
 
 ########## ACTIVITY A - OBJECTIVE 1 ############################################
 # Download R packages and GLM files successfully onto your computer.
@@ -42,9 +42,8 @@ library(GLMr) # If this worked, GLMr should load without any error messages. Hur
 
 glm_version() # See what version of GLM you are running- should be at least v.2.x.x
 
-# CONGRATS! You've now succesfully loaded GLM onto your computer! Proceed to Objective 2! 
+# CONGRATS! You've now succesfully loaded GLM onto your computer! 
 
-########## ACTIVITY A - OBJECTIVE 2 ############################################
 # Now, we will explore the files that come with your downloaded GLM files 
 
 # NOTE! Throughout the rest of the module, you may need to modify some of the lines of code
@@ -57,12 +56,11 @@ glm_version() # See what version of GLM you are running- should be at least v.2.
 # We now need to tell R where these files are. We do that by...
 
 sim_folder <- 'C:/Users/farrellk/Desktop/R/ProjectEDDIE/CrossScale Emergence/Sunapee'  # !! KF placeholder sim_folder
-#sim_folder <- 'C:/Users/farrellk/Desktop/cross_scale_emergence_LAKE' ##!! Edit this line 
-#   of code to redefine your sim_folder path. 
+#sim_folder <- 'C:/Users/farrellk/Desktop/cross_scale_emergence' ##!! Edit this line of code to redefine your sim_folder path. 
 # This should be replaced with the path to the Desktop folder where you extracted 
 #  your zipped files. Most likely, you will need to change the part after Users/ to give
 #  the name of your computer (e.g., my computer name is farrellk, but yours will be different!)
-# as well as modify LAKE to tell which lake you are modeling (e.g., Mendota or Sunapee)
+#  as well as modify LAKE to tell which lake you are modeling (e.g., Mendota or Sunapee)
 
 setwd(sim_folder) ##!! This line of code is used to reset your working directory
 #  to the sim_folder. The point of this step is to make sure that any new files you create
@@ -91,7 +89,7 @@ plot_meteo(nml_file) # This command plots the meterological input data for the s
 #   short wave & long wave radiation, air temp, etc. for the duration of the simulation run. 
 #  Do these plots look reasonable for the latitude and longitude of your model lake?
  
-########## ACTIVITY A - OBJECTIVE 3 ############################################
+########## ACTIVITY A - OBJECTIVE 2 ############################################
 # Now, the fun part- we get to run the model and look at output!
 
 run_glm(sim_folder, verbose=TRUE) # So simple and elegant... if this works, you should see output
@@ -113,12 +111,17 @@ nc_file <- file.path(sim_folder, 'output.nc') # This defines the output.nc file 
 
 plot_temp(file=nc_file, fig_path=FALSE) # This plots your simulated water temperatures in a heat
 #  map, where time is displayed on the x-axis, lake depth is displayed on the y-axis, and the
-#  different colors represent different temperatures.
+#  different colors represent different temperatures. Again, this figure should be visible in the Plots window
+#  in the bottom righthand corner of RStudio's interface.
 
-# If you want to save your plot as a pdf file while it is still open, use the
-#  following command to save it to your working directory: 
-dev.print(pdf, 'filename.pdf') ##!! Change the 'filename' portion to give your 
-# plot a more descriptive name (e.g., "TemperatureHeatMap.pdf")
+# To copy your plot (e.g., onto a PowerPoint slide), click "Export" within the Plots tab.
+# Then click "Copy to Clipboard", and click "Copy plot" in the preview window. You can then 
+# paste your plot into Word, PowerPoint, etc. 
+
+# If you want to save your plot as an image file or pdf file instead of copying it, click
+# "Export" within the Plots tab, then choose "Save as Image" or "Save as PDF". In the preview window,
+# give your plot a descriptive file name (e.g., "TemperatureHeatMap.pdf"), then press "Save". 
+# Your plot image and/or PDF file will be saved in the lake_climate_change folder on your Desktop.
 
 # This pair of commands can be used to list the variables that were output as part of your GLM run
 var_names <- sim_vars(nc_file)
@@ -136,54 +139,7 @@ plot_var(file = "output.nc", "PHY_TCHLA")
 # Try modifying the plot_var command to create a heatmap of a different variable 
 #  from the output!
 
-
-########## ACTIVITY A - OBJECTIVE 4 ############################################
-# Examine how your modeled GLM data compares to the observed field data for your lake.
-
-# Let's compare the model data (nc_file) to the observed data (field_data.csv). 
-
-field_file <- file.path(sim_folder, 'field_data.csv') # Define the observed field data
-
-plot_temp_compare(nc_file, field_file) # Plot your GLM simulated data vs. the observed data 
-#  How do the water temperatures and thermocline depths in the two plots compare? 
-#  The black circles in the observed data represent temperature observations at
-#  different depths and times. Because our observed data were collected with high-frequency
-#  thermistors on a buoy, there are lots of  black circles in the figure collected at the same
-#  depths over time.
-
-# Now, let's compare different physical lake characteristics between the simulated and the
-#  observed lake.  To see what metrics we can compare between the observed and simulated data,
-#  first check out this command from the glmtools package to see what variables are available to plot:
-sim_metrics(with_nml = FALSE) # The options include "thermo.depth" (depth of the thermocline), 
-#  "buoyancy.freq" (buoyancy frequency, an index of thermal stratification), as well as 
-#  "water.density" and "water.temperature".
-
-compare_to_field(nc_file, field_file, metric="thermo.depth", as_value=TRUE, na.rm=TRUE) ##!! 
-# This command lists the thermocline depth of the observed and modeled data for comparison.
-#  Try changing this command to compare the other metrics as well!
-
-# To make a simple plot of the observed vs. simulated thermocline depths, use this script:
-therm_depths <- compare_to_field(nc_file, field_file, metric="thermo.depth", as_value=TRUE, na.rm=TRUE)
-plot(therm_depths$DateTime, therm_depths$obs, type="l", col="blue", ylim=c(0,32), 
-     ylab="Thermocline depth in meters", xlab="Date")  # This plots DateTime vs. Observed data in blue, 
-# with a y-axis set to 0-32 m, and a y-axis label.
-lines(therm_depths$DateTime, therm_depths$mod, col="red") # this adds a red line of the modeled thermocline depths
-legend("topright",c("Observed", "Modeled"),lty=c(1,1), col=c("blue", "red")) # this adds a legend to the figure.
-
-# How does the modeled thermocline depth compare to the observed thermocline depth?
-
-# The code below plots the observed vs. simulated water temperature.
-# First, run the code. Then try changing the code to instead plot the observed vs. simulated water density! 
-water_temp <- compare_to_field(nc_file, field_file, metric="water.temperature", as_value=TRUE, na.rm=TRUE)
-plot(water_temp$DateTime, water_temp$obs, type="p", col="blue", ylim=c(15,35), 
-     ylab="Water temperature in C", xlab="Date")  # This plots DateTime vs. Observed data in blue, 
-points(water_temp$DateTime, water_temp$mod, col="red") # this adds a red line of the modeled
-legend("topleft",c("Observed", "Modeled"),lty=c(1,1), col=c("blue", "red")) # this adds a legend
-
-# For the temperature and density plots, there are multiple data points for each day. Why?
-# What do these plots tell you about thermal stratification over the course of a year?
-
-########## ACTIVITY B - OBJECTIVE 5 ############################################
+########## ACTIVITY B - OBJECTIVE 3 ############################################
 # Using your knowledge of potential climate change, work with a partner to develop 
 #  a climate change scenario for your model lake. 
 
