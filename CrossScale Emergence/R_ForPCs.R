@@ -143,99 +143,97 @@ plot_var(file = baseline, "PHY_TCHLA")
   # during our baseline simulation, because we'll be comparing it to our climate and land use scenarios later. 
   # To do this, we use the following commands:
 chla_output <- get_var(file=baseline, "PHY_TCHLA", reference='surface', z_out=c(1)) # Save surface chl-a
-colnames(chla_output)[2] <- "Baseline" # Rename the chl-a column so we remember it is from the Baseline scenario
+colnames(chla_output)[2] <- "Baseline_Chla" # Rename the chl-a column so we remember it is from the Baseline scenario
 
 ########## ACTIVITY B - OBJECTIVE 3 ############################################
 # Using your knowledge of potential climate change, work with a partner to develop 
-# a climate change scenario for your model lake based on changes in air temperature.
-# To complete this activity, you will need to modify the input meterological data (met_hourly) and then 
-# rerun the model to examine the effects of your scenario on lake thermal structure and phytoplankton.
+  # a climate change scenario for your model lake based on changes in air temperature.
+  # To complete this activity, you will need to modify the input meterological data (met_hourly) and then 
+  # rerun the model to examine the effects of your scenario on lake thermal structure and phytoplankton.
 
 # Here is an overview of the steps you will complete with your partner to accomplish this (detailed directions below):
 # 1) Develop a climate scenario based on changing air temperatures (it can be for any region!)
 
 # 2) Create a corresponding meteorological input (met) file. Think through how air temperature will change in
-# your proposed scenario, in terms of when and how much air temperature will change. 
+  # your proposed scenario, in terms of when and how much air temperature will change. 
 
 # 3) Run the GLM using your new met file and examine how it changess the physical structure of the lake.  
-# How does your climate scenario change the thermal structure of the lake? 
-# What does the temperature profile look like?  How does the phytoplankton respond? 
-# What are the implications of your climate scenario for future water quality and phytoplankton blooms?
+  # How does your climate scenario change the thermal structure of the lake? 
+  # What does the temperature profile look like?  How does the phytoplankton respond? 
+  # What are the implications of your climate scenario for future water quality and phytoplankton blooms?
 
 # 4) Create and save a few figures to highlight the results of your climate scenario and present them to 
-# the rest of the class. It would be helpful to present both the meteorological input file as well as 
-# temperature and chlorophyll plots so that we can see how the lake responded to your climate forcing.
+  # the rest of the class. It would be helpful to present both the meteorological input file as well as 
+  # temperature and chlorophyll plots so that we can see how the lake responded to your climate forcing.
 
 # Detailed directions for modifying your met file: 
 
-# 1- ##!! Practice modifying the glm2.nml file. 
-   #  For example, open the nml file in a text editor (on Windows, try Notepad) 
-   #  and change the time of the simulation so that the model run starts on 
-   #  '2000-03-01 00:00:00' and ends on '2000-12-31 00:00:00' (or choose some
-   #  other date and time!). Save the file, then plot the altered temperature. 
-   #  Note that GLM (as of the v.2.0 version) does not handle ice well, 
-   #  so starting in the spring and running through the late fall may be
-   #  the best option for ice-covered lakes.
+## SOMETHING THAT IS REALLY REALLY IMPORTANT! ##
+  # Opening up the met_hourly.csv file in Microsoft Excel will inexplicably alter the date/time 
+  # formatting of the file so that GLM cannot read it.
+  # You will get an error something like this: "Day 2451545 (2000-01-01) not found".  
+  # To avoid this error, carefully follow the THREE steps listed below to modify your met file.
 
-# 2- SOMETHING THAT IS REALLY REALLY IMPORTANT! 
-	# Opening up the met_hourly.csv file in Microsoft Excel will inexplicably alter the date/time 
-	# formatting of the file so that GLM cannot read it.
-	# You will get an error something like this: "Day 2451545 (2000-01-01) not found".  
-	# To get around this error, you need to follow the FIVE steps listed below.
+# 1) Copy and paste an extra version of the met_hourly.csv file in your sim folder so that you
+  # have a backup in case of any mistakes. Rename this file something like
+  # "met_hourly_baseline.csv" and be sure not to open it.
 
-	# FIRST, copy and paste an extra version of the met_hourly.csv file in your sim folder so that you
-		# have a backup in case of any mistakes. Rename this file something like
-		# "met_hourly_UNALTERED.csv" and be sure not to open it.
+# 2) Open the met_hourly.csv file in Excel.  Change the values in the AirTemp column to represent your 
+  # climate change scenario. 
 
-	# SECOND, open the met_hourly.csv file in Excel.  Manipulate the different input meteorological
-		#	variables to create your climate/weather scenario of your choice (be creative!). 
-    # NOTE ABOUT UNITS: In the met_hourly file, the units for rain are in meters per day. You will likely
-    # think about the amount of rain your change in the met_hourly file by millimeters per day instead-- 
-    # to convert from mm/d to m/d, simply multiply by 0.001. Other units are more intuitive-- open up the 
-    # Variable_Name_Metadata.csv file for more details.
-    
-		# NOTE ABOUT COLUMN NAMES: the order of the columns in the met file does not matter- but you can only have one 
-		# of each variable and they must keep the EXACT same header name (i.e., it must always be 
-		# 'AirTemp', not 'AirTemp+3oC'). When you are done editing the meteorological file, highlight 
-		# all of the 'time' column in Excel, then click on 'Format Cells', and then 'Custom'. 
-		# In the "Type" or "Formatting" box, change the default to "YYYY-MM-DD hh:mm:ss" exactly (no quotes). 
-		# This is the only time/date format that GLM is able to read. 
-		# When you click ok, this should change the format of the 'time'  column so that it reads: 
-		# "1999-12-31 00:00:00" with exactly that spacing and punctuation. 
-		# Save this new file under a different name, following how you have created your scenario, 
-		# e.g., "met_hourly_SIMULATEDSUMMERSTORMS.csv". Close the csv file, saving your changes.
-    # Now, do NOT open the file in Excel again- otherwise, you will need to
-    # repeat this formatting process before reading the altered met file into GLM.
+  # NOTE ABOUT COLUMN NAMES: the order of the columns in the met file does not matter, but you can only 
+  # have one of each variable and they must keep the EXACT same header name 
+  # (i.e., it must always be 'AirTemp', not 'AirTemp+3oC') 
 
-    # THIRD: Read in your altered met_hourly file using the command below:
-metdata <- read.csv("met_hourly_SIMULATEDSUMMERSTORMS.csv", header=TRUE) ##!! Edit the name of the
-# CSV file so that it matches your new met file name.
+  # When you are done editing the meteorological file, highlight all of the 'time' column in Excel, 
+  # by clicking the capital letter above the 'time' column. Right click, then select 'Format Cells', 
+  # and then 'Custom'. In the "Type" or "Formatting" box, change the default to "YYYY-MM-DD hh:mm:ss" 
+  # exactly (no quotes). This is the only time/date format that GLM is able to read. 
+  # When you click ok, this should change the format of the 'time'  column so that it reads: 
+  # "2011-09-01 00:00:00" with exactly that spacing and punctuation. 
+  # Save this new file under a different name that tells what scenario it represents, e.g., "met_hourly_climate.csv". 
+  # Close the csv file, saving your changes.
+  # Now, do NOT open the file in Excel again- otherwise, you will need to
+  # repeat this formatting process before reading the altered met file into GLM.
 
-	# FOURTH, you need to edit the glm2.nml file to change the name of the input meteorological
-		# file so that it reads in the new, edited meteorological file for your climate scenario, not the
-		# default "met_hourly.csv".  In the nml file, scroll down to the meteorology section, and change
-		# the 'meteo_fl' entry to the new met file name (e.g., 'met_hourly_SIMULATEDSUMMERSTORMS.csv').
-		# Note to Mac users- check to make sure that your quotes ' and ' around the file name are upright,
-		# and not slanted- sometimes the nml default alters the quotes so that the file cannot be read in
-		# properly (super tricky!).
+# 3) You now need to edit the glm2.nml file to change the name of the input meteorological
+  # file so that it reads in the new, edited meteorological file for your climate scenario, not the
+  # default "met_hourly.csv".  Open the nml file in a text editor (on Windows, try Notepad), 
+  # scroll down to the meteorology section, and change the 'meteo_fl' entry to the new met file name 
+  # (e.g., 'met_hourly_climate.csv'). Save your modified glm2.nml file.
+  # Note: check to make sure that your quotes ' and ' around the file name are upright,
+  # and not slanted- sometimes the nml default alters the quotes so that the file cannot be read in
+  # properly (super tricky!).
 
 # Once you have edited the nml file name, you can always check to make sure that it is correct with the command:
 nml <- read_nml(nml_file)  # Read in your nml file from your new directory
 get_nml_value(nml, 'meteo_fl') # If you have done this correctly, you should get an output that lists
-# the name of your new meteorological file altered for your weather/climate scenario.
+  # the name of your new meteorological file altered for your weather/climate scenario.
 
-	# FIFTH, you can now run the model with the new edited nml file, following the instructions as
-		# described above for Objective 3.  Exciting!
+# You can now run the model for your climate change scenario using the new edited nml file, following the instructions as
+  # described above for Objective 2.  Exciting!
 
-# Plot the output using the commands you learned above. Then answer the following questions: 
-# How does your scenario change the thermal structure of the lake? 
-# What does the temperature profile over time look like? 
-# When and what is the maximum and minimum water temperature? 
-# How does the depth of the thermocline change? 
-# How does the timing of stratification change? 
-# Modify the code above to plot modeled vs. observed thermocline depths, as well as other thermal characteristics. 
-# Ultimately, we want you to explore the implications of your scenario for future water quality and quantity. 
-# If you have extra time, create another scenario with your partner, and share your results with the rest of your
-# classmates.
+run_glm(sim_folder, verbose=TRUE) # Run your GLM model for your lake. 
+#  At the end of the model run, it should say "Run complete" if everything worked ok.
+
+# Again, we need to tell R where the output.nc file is so that the glmtools package can
+  # plot and analyze the model output. We tell R where to find the output file using the line below:
+climate <- file.path(sim_folder, 'output.nc') # This defines the output.nc file as being within
+#  the sim_folder. Note that we've called this output "climate" since it is the output from our climate change simulation.
+
+# As before, we want to save the model output of the daily chlorophyll-a concentrations in the lake 
+# during our climate change simulation, to compare to our baseline and land use scenarios later. 
+`*tmp*` <- get_var(file=climate, "PHY_TCHLA", reference='surface', z_out=c(1)) # Extract surface chl-a
+chla_output["Climate_Chla"] <- `*tmp*`[2] # Attach the chl-a data from your climate simulation to the same file
+  # that contains your baseline scenario chl-a concentrations
+
+# Plot the output using the commands you learned above. 
+plot_temp(file=climate, fig_path=FALSE) # Heatmap of temperature
+plot_var(file = climate, "PHY_TCHLA") # Heatmap of chlorophyll-a
+# Then answer the following questions: 
+  # How does your climate scenario change the thermal structure of the lake? 
+  # What does the temperature profile look like over time?  What about the chlorophyll-a profile? 
+  # When and what is the maximum and minimum water temperature? Chlorophyll-a?
+  # What are the implications of your climate scenario for future water quality and phytoplankton blooms?
 
 ########## ACTIVITY C - OBJECTIVE 6 ############################################
