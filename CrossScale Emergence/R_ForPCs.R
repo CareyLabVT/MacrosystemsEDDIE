@@ -227,13 +227,22 @@ climate <- file.path(sim_folder, 'output.nc') # This defines the output.nc file 
 chla_output["Climate_Chla"] <- `*tmp*`[2] # Attach the chl-a data from your climate simulation to the same file
   # that contains your baseline scenario chl-a concentrations
 
+########## ACTIVITY B - OBJECTIVE 4 ############################################
 # Plot the output using the commands you learned above. 
 plot_temp(file=climate, fig_path=FALSE) # Heatmap of temperature
 plot_var(file = climate, "PHY_TCHLA") # Heatmap of chlorophyll-a
-# Then answer the following questions: 
-  # How does your climate scenario change the thermal structure of the lake? 
-  # What does the temperature profile look like over time?  What about the chlorophyll-a profile? 
-  # When and what is the maximum and minimum water temperature? Chlorophyll-a?
-  # What are the implications of your climate scenario for future water quality and phytoplankton blooms?
 
-########## ACTIVITY C - OBJECTIVE 6 ############################################
+# Using these plots, the figures from your baseline scenario, and the other team's plots from their lake,
+  # put together a brief presentation of your model simulation and output to share with the rest of the class 
+  # Make sure your presentation answers the following questions: 
+  # a) Does the model output support or contradict your hypotheses? 
+  # b) How does the output from the two lakes compare? 
+  # c) Which lake’s water temperature and chlorophyll is more sensitive to the climate scenario?
+
+########## ACTIVITY C - OBJECTIVE 5 ############################################
+
+# Bravo, you are done!! 
+
+# We welcome feedback on this module and encourage you to provide comments, questions, and suggestions. 
+  # Please visit the SERC website (https://serc.carleton.edu/eddie/macrosystems/module2.html) 
+  # to submit feedback to the module developers.
