@@ -147,31 +147,24 @@ colnames(chla_output)[2] <- "Baseline" # Rename the chl-a column so we remember 
 
 ########## ACTIVITY B - OBJECTIVE 3 ############################################
 # Using your knowledge of potential climate change, work with a partner to develop 
-#  a climate change scenario for your model lake. 
-
-# To complete this activity, you will need to modify the input meterological data and then run the
-#  model to examine the effects of your scenario on the thermal structure of the lake.
+  # a climate change scenario for your model lake based on changes in air temperature.
+  # To complete this activity, you will need to modify the input meterological data (met_hourly) and then 
+  # rerun the model to examine the effects of your scenario on lake thermal structure and phytoplankton.
 
 # Here is an overview of the steps you will complete with your partner to accomplish this (detailed directions below):
-# 1) Develop a climate scenario (it can be for any region!)
+# 1) Develop a climate scenario based on changing air temperatures (it can be for any region!)
 
-# 2) Create a corresponding meteorological input (met) file. Think through all of the components of the
-	# proposed scenario. For example, which of the meteorological variables (air temperature,
-	# precipitation, wind, etc.) will be modified and how? Will they be short-term or long-term
-	# modifications? 
+# 2) Create a corresponding meteorological input (met) file. Think through how air temperature will change in
+	# your proposed scenario, in terms of when and how much air temperature will change. 
 
-# 3) Run the GLM using your new met file and examine how it alters the physical structure of the lake.  
+# 3) Run the GLM using your new met file and examine how it changess the physical structure of the lake.  
 	# How does your climate scenario change the thermal structure of the lake? 
-	# What does the temperature profile look like?  How does the depth of the thermocline change? 
-	# How does the timing of stratification and magnitude of evaporation change?
+	# What does the temperature profile look like?  How does the phytoplankton respond? 
+	# What are the implications of your climate scenario for future water quality and phytoplankton blooms?
 
-# 4) Compare the modeled output to the observed. 
-	# What are the implications of your climate scenario for future water quality and quantity?
-
-# 5) Create and save a few figures to highlight the results of your climate scenario and 
-	# present them to the rest of the class. It would be helpful to present both 
-	# the meteorological input file as well as the lake thermal plots so that we 
-	# can see how the lake responded to your climate forcing.
+# 4) Create and save a few figures to highlight the results of your climate scenario and present them to 
+  # the rest of the class. It would be helpful to present both the meteorological input file as well as 
+  # temperature and chlorophyll plots so that we can see how the lake responded to your climate forcing.
 
 # Detailed directions for modifying your met file: 
 
