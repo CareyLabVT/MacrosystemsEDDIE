@@ -2,11 +2,11 @@
 ! general model setup
 !-------------------------------------------------------------------------------
 !
-! sim_name         [string]  title of simulation
-! max_layers       [integer] maximum number of layers
-! min_layer_vol    [real]    minimum layer volume (m3 * 1000)
-! min_layer_thick  [real]    minimum layer thickness (m)
-! max_layer_thick  [real]    maximum layer thickness (m)
+! sim_name         [string]  title of simulation       
+! max_layers       [integer] maximum number of layers  
+! min_layer_vol    [real]    minimum layer volume (m3 * 1000)      
+! min_layer_thick  [real]    minimum layer thickness (m)  
+! max_layer_thick  [real]    maximum layer thickness (m) 
 ! Kw               [real]    background light attenuation (m**-1)
 ! coef_mix_conv    [real]    mixing efficiency - convective overturn
 ! coef_wind_stir   [real]    mixing efficiency - wind stirring
@@ -18,20 +18,20 @@
 !
 !-------------------------------------------------------------------------------
 &glm_setup
-sim_name =  'MacrosystemsEDDIE_Sunapee'
-max_layers = 250
-min_layer_vol = 0.025
-min_layer_thick = 0.05
-max_layer_thick = 0.75
-!-- Light Parameters
-Kw = 0.17
-!-- Mixing Parameters
-coef_mix_conv = 0.08213
-coef_wind_stir = 1.27
-coef_mix_shear = 0.296
-coef_mix_turb = 0.526
-coef_mix_KH = 0.415
-coef_mix_hyp = 0.453
+   sim_name = 'MacrosystemsEDDIE_Mendota'
+   max_layers = 500 !300
+   min_layer_vol = 0.025
+   min_layer_thick = 0.050 !0.150
+   max_layer_thick = 0.500 !0.500
+   !-- Light Parameters
+   Kw = 0.10
+   !-- Mixing Parameters
+   coef_mix_conv = 0.125 !JR = 0.125, 0.27213 
+   coef_wind_stir = 0.23  !JR = 0.23, 0.27787     
+   coef_mix_shear = 0.20 !JR = 0.20, 0.276115      
+   coef_mix_turb = 0.51  !JR = 0.51, 0.5261    
+   coef_mix_KH = 0.30  !JR = 0.30, 0.341025
+   coef_mix_hyp = 0.50 !JR = 0.50, 0.453
 /
 !-------------------------------------------------------------------------------
 ! wq setup
@@ -54,14 +54,14 @@ coef_mix_hyp = 0.453
 !                     in bottom layer, or on flanks of all layers (.true.)
 !-------------------------------------------------------------------------------
 &wq_setup
-  wq_lib =  'aed2'
-  wq_nml_file =  'aed2.nml'
-  ode_method = 1
-  split_factor = 1
-  bioshade_feedback = .true.
-  repair_state = .true.
-! mobility_off = .false.
-  multi_ben = .true.
+   wq_lib = 'aed2'
+   wq_nml_file = 'aed2.nml'
+   ode_method = 1
+   split_factor = 1
+   bioshade_feedback = .true.
+   repair_state = .true.
+!  mobility_off = .false.
+   multi_ben = .true.
 /
 !-------------------------------------------------------------------------------
 ! lake details
@@ -80,14 +80,14 @@ coef_mix_hyp = 0.453
 !
 !-------------------------------------------------------------------------------
 &morphometry
-lake_name =  'Sunapee'
-latitude = 43.395
-longitude = -72.053
-bsn_len = 12870
-bsn_wid = 3000
-bsn_vals = 82
-H = 299.43,299.943,300.443,300.943,301.443,301.943,302.443,302.943,303.443,303.943,304.443,304.943,305.443,305.943,306.443,306.943,307.443,307.943,308.443,308.943,309.443,309.943,310.443,310.943,311.443,311.943,312.443,312.943,313.443,313.943,314.443,314.943,315.443,315.943,316.443,316.943,317.443,317.943,318.443,318.943,319.443,319.943,320.443,320.943,321.443,321.943,322.443,322.943,323.443,323.943,324.443,324.943,325.443,325.943,326.443,326.943,327.443,327.943,328.443,328.943,329.443,329.943,330.443,330.943,331.443,331.943,332.343,332.443,332.543,332.643,332.743,332.843,332.943,333.043,333.143,333.243,333.343,333.443,333.543,333.643,333.743,333.943
-A = 1,16.90309,38.87712,64.23176,158.88908,7254.80801,25205.89398,33207.81875,41551.18602,51853.62190,62734.14360,79030.41666,105037.51731,133941.80829,168576.24818,214836.63623,269137.82616,327112.05845,401221.98440,483528.22071,575947.57823,676930.04325,797467.69789,925704.71190,1088626.87510,1283336.99713,1505854.39934,1740820.93038,1988527.32348,2234911.89462,2485285.59597,2723309.89675,2978076.71227,3264022.97524,3653258.97559,4050485.06854,4414109.50064,4796077.17050,5158332.45198,5579849.98152,6016348.72339,6468883.43068,6928267.27171,7476296.00935,8028820.97004,8623779.45825,9274820.72252,9852960.63206,10365149.73920,10843023.87491,11253594.96068,11644117.28649,12013032.38706,12356310.56475,12673823.35603,12988489.66626,13285122.06535,13576406.32546,13863498.61821,14148319.13512,14418854.84716,14691317.51194,14951571.07182,15234317.57908,15510517.51797,15780918.00526,16009460,16071489,16135107,16203453,16273655,16349525,16489737,16603406,16760708,16788809,16804233,16826128,16844170,16863779,16885473,16934251.6
+   lake_name  = 'Mendota'
+   latitude   = 43
+   longitude  = -89.41
+   bsn_len    = 9500
+   bsn_wid    = 7400
+   bsn_vals   = 15
+   H = 375.00640,376.79166,378.57691,380.36217,382.14743,383.93269, 385.71794,387.50320,389.28846,391.07371,392.85897,394.64423, 396.42949,398.21474,400.00000
+   A = 0.00000,2827226.39,5654452.79,8481679.18,11308905.58,14136131.97, 16963358.37,19790584.76,22617811.16,25445037.55,28272263.95,31099490.34, 33926716.74,36753943.13,39581169.52
 !
 /
 !-------------------------------------------------------------------------------
@@ -103,11 +103,11 @@ A = 1,16.90309,38.87712,64.23176,158.88908,7254.80801,25205.89398,33207.81875,41
 !
 !-------------------------------------------------------------------------------
 &time
-timefmt = 2
-start =  '2011-09-01 00:00:00'
-stop =  '2013-12-31 23:00:00'
-dt = 3600
-timezone = -5
+   timefmt = 2
+   start = '2011-09-01 00:00:00'
+   stop = '2013-12-31 23:00:00'
+   dt = 3600.0
+   timezone = -6.0
 /
 !-------------------------------------------------------------------------------
 ! format for output and filename(s)
@@ -129,12 +129,12 @@ timezone = -5
 ! csv_ovrflw_fname  [string] name of csv file to record amount and quality of overflow
 !
 !-------------------------------------------------------------------------------
-&output
-out_dir =  '.'
-out_fn =  'output'
-nsave = 24
-/
-!-------------------------------------------------------------------------------
+ &output 
+ out_dir = '.'
+ out_fn = 'output'
+ nsave = 24
+/ 
+-------------------------------------------------------------------------------
 ! initial condition profiles
 !-------------------------------------------------------------------------------
 !
@@ -151,32 +151,38 @@ nsave = 24
 &init_profiles
     num_depths = 6
     the_depths = 0.0, 4.0, 8.0, 12.0, 16.0, 20.0
-    the_temps  = 21.97, 21.6, 19.97, 12.1, 9.6, 8.9
+    the_temps  = 5.1, 5.0, 4.9, 4.9, 4.8, 4.8
     the_sals   = 0.00, 0.00, 0.00, 0.00, 0.00, 0.00
-    lake_depth = 33.696792 ! Set based on stage on start date 
-    num_wq_vars = 11
-wq_names =  'OGM_don',  
-            'OGM_pon',  
-            'OGM_dop',
-            'OGM_pop',
-			'OGM_doc',
-			'OGM_poc',
-			'OXY_oxy',
-			'CAR_dic',
-			'NIT_amm',
-			'NIT_nit',
-			'PHS_frp'
-wq_init_vals =  11,11,11,11,11,11,
-			    10,10,10,10,10,10,
-				0.0369,0.0369,0.0369,0.0369,0.0369,0.0369,
-				0.058,0.058,0.058,0.058,0.058,0.058,
-			    80,80,80,80,80,80,
-				6,6,6,6,6,6,
-			    440.625,437.5,434.375,425,400,387.5,
-				5,5,5,5,5,5,
-				0.7,0.7,0.7,0.7,0.7,0.7,
-				0.7,0.7,0.7,0.7,0.7,0.7,
-				0.01,0.01,0.01,0.01,0.01,0.01
+    lake_depth = 25
+    num_wq_vars = 14
+    wq_names =  'CAR_pH',
+                'CAR_dic',
+                'OGM_don',
+                'OGM_pon',
+                'OGM_dop',
+                'OGM_pop',
+                'OGM_docr',
+                'OGM_doc',
+                'OGM_poc',
+				'SIL_rsi',
+				'OXY_oxy',
+				'NIT_amm',
+				'NIT_nit',
+				'PHS_frp'
+	wq_init_vals = 	8.4, 8.4, 8.4, 8.4, 8.4, 8.4,
+	               3687.760, 3629.475, 3853.455, 3600.333, 3886.761, 3522.898, 
+	               20,20,20,20,20,20,
+                   6, 6, 6, 6, 6, 6,
+                   0.5812, 0.7427, 0.7104, 0.7104, 0.7427, 0.9041,
+                   1,1,1,1,1,1,
+                   375, 375, 375, 375, 375, 375,
+                   0,0,0,0,0,0,
+				   50,50,50,50,50,50,
+				   190, 190, 190, 190, 190, 190,
+					440.625, 437.500, 434.375, 425.000, 400.000, 387.500,
+					5, 5, 5, 5, 5, 5,
+					50,50,50,50,50,50,
+					3.0,3.0,3.0,3.0,3.0,3.0
 /
 !-------------------------------------------------------------------------------
 ! meteorology
@@ -209,29 +215,28 @@ wq_init_vals =  11,11,11,11,11,11,
 !
 !-------------------------------------------------------------------------------
 &meteorology
-met_sw = .true.
-lw_type =  'LW_IN'
-rain_sw = .false.
-snow_sw = .true.
-atm_stab = .false.
-catchrain = .false.
-rad_mode = 2
-albedo_mode = 1
-cloud_mode = 4
-!-- BC file details =
-meteo_fl =  'met_hourly.csv'
-subdaily = .true.
-wind_factor = 1
-sw_factor = 0.66
-cd = 0.0008 
-ce = 0.0013
-ch = 0.0013
-rain_threshold = 0.01
-runoff_coef = 0.3
-!  time_fmt = YYYY-MM-DD hh:mm:ss'
+   met_sw     = .true.
+   lw_type    = 'LW_IN'
+   rain_sw    = .false.
+   snow_sw    = .true.
+   atm_stab   = .false. !JR = .true.
+   catchrain   = .false.
+   rad_mode    = 1
+   albedo_mode = 1
+   cloud_mode  = 4
+   !-- BC file details
+   meteo_fl   = 'met_hourly.csv'
+   subdaily = .true. 
+   wind_factor = 1.0
+   cd         = 0.0013 ! tune this down to 0.001 for sheltered systems
+   ce         = 0.0013
+   ch         = 0.0013
+   rain_threshold = 0.01
+   runoff_coef    = 0.3
+!  time_fmt = 'YYYY-MM-DD hh:mm:ss'
 /
 !-------------------------------------------------------------------------------
-! inflows
+! inflows 
 !-------------------------------------------------------------------------------
 !
 !  num_inflows       [integer]   number of inflowing streams (0+)
@@ -243,22 +248,22 @@ runoff_coef = 0.3
 !  inflow_fl         [string]    inflow data filename(s) (comma separated list)
 !  inflow_varnum     [integer]   number of columns (excluding date) to be read
 !  inflow_vars       [string]    variable names of inflow file columns
-!                                This should be a comma separated list, and must
-!                                include FLOW, SALT & TEMP (for GLM), and
+!                                This should be a comma separated list, and must 
+!                                include FLOW, SALT & TEMP (for GLM), and 
 !                                optionally can include FABM var names.
 ! coef_inf_entrain   [real]      entrainment coefficient for inflows
 !
 !-------------------------------------------------------------------------------
 &inflow
-num_inflows = 1
-names_of_strms =  'stream'
-strm_hf_angle = 65.0
-strmbd_slope = 3.0
-strmbd_drag = 0.0160
-inflow_factor = 1.0
-inflow_fl =  'inflow.csv'
-inflow_varnum = 13
-inflow_vars =  'FLOW','SALT','TEMP','OGM_doc','OGM_poc','OGM_don','NIT_nit','NIT_amm','OGM_pon','PHS_frp','OGM_dop','OGM_pop','PHS_frp_ads'
+   num_inflows    = 1
+   names_of_strms = 'stream'    
+   strm_hf_angle  = 65.0        
+   strmbd_slope   = 3.0      
+   strmbd_drag    = 0.0160      
+   inflow_factor  = 1.0
+   inflow_fl      = 'inflow.csv'
+   inflow_varnum  = 13
+   inflow_vars    = 'FLOW', 'SALT', 'TEMP', 'OGM_doc', 'OGM_poc', 'OGM_don', 'NIT_nit', 'NIT_amm', 'OGM_pon', 'PHS_frp', 'OGM_dop', 'OGM_pop','PHS_frp_ads'
 /
 !-------------------------------------------------------------------------------
 ! outflows
@@ -276,21 +281,21 @@ inflow_vars =  'FLOW','SALT','TEMP','OGM_doc','OGM_poc','OGM_don','NIT_nit','NIT
 !
 !-------------------------------------------------------------------------------
 &outflow
-num_outlet = 1
-flt_off_sw = .false.
-outl_elvs = 329.4
-bsn_len_outl = 799
-bsn_wid_outl = 398
-outflow_fl =  'outflow.csv'
-outflow_factor = 1
+   num_outlet   = 1
+   flt_off_sw   = .false.
+   outl_elvs    = 396
+   bsn_len_outl = 799
+   bsn_wid_outl = 398
+   outflow_fl   = 'outflow.csv'
+   outflow_factor = 1.0
 /
-&snowice
-   snow_albedo_factor = 1
-   snow_rho_max = 500
-   snow_rho_min = 100
-/
-&sed_heat
-   sed_temp_mean = 12
-   sed_temp_amplitude = 11
-   sed_temp_peak_doy = 242.5
-/
+!&snowice
+!	snow_albeto_factor = 1.0
+!	snow_rho_max = 300
+!	snow_rho_min = 50
+!/
+!&sed_heat
+!	sed_temp_mean = 9.7
+!	sed_temp_amplitude = 2.7
+!	sed_temp_peak_doy = 242.5
+!/
