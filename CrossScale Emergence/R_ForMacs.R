@@ -240,6 +240,93 @@ plot_var(file = climate, "PHY_TCHLA") # Heatmap of chlorophyll-a
 # c) Which lake’s water temperature and chlorophyll is more sensitive to the climate scenario?
 
 ########## ACTIVITY C - OBJECTIVE 5 ############################################
+# Now, using your knowledge of potential land use effects on nutrients coming into a lake, 
+# work with a partner to develop a land use change scenario for your model lake based on changes in 
+# phosphorus. 
+
+# To complete this activity, you will need to modify the input driver data (inflow.csv)
+# and then rerun the model to examine the effects of your scenario on lake phytoplankton.
+
+# Here are the steps you will complete with your partner to accomplish this:
+# 1) Develop a land use scenario based on changing the balance of agriculture, urbanization, and undisturbed
+# land cover in the lake watershed (it can be for any region!)
+
+# 2) Create a corresponding change in the stream inflow file. Think through how phosphorus 
+# concentrations will change in your proposed scenario, in terms of the timing and intensity of nutrient inflows. 
+
+# 3) Run the GLM using your new inflow file and the original met file (met_hourly.csv) and examine how it 
+# changes the lake.  
+# How does your land use scenario change the chlorophyll-a profile of the lake? 
+# Does lake temperature change with the land use scenario? 
+# What are the implications of your land use scenario for future water quality and phytoplankton blooms?
+
+# 4) Create and save a few figures to highlight the results of your land use scenario. 
+# It would be helpful to present both the driver file as well as 
+# chlorophyll plots so that we can see how the lake responded to your land use change.
+
+# Detailed directions for modifying your inflow file: 
+
+## SOMETHING THAT IS REALLY REALLY IMPORTANT! ##
+# Opening up the inflow.csv file in Microsoft Excel will inexplicably alter the date/time 
+# formatting of the file so that GLM cannot read it.
+# You will get an error something like this: "Day 2451545 (2000-01-01) not found".  
+# To avoid this error, carefully follow the THREE steps listed below to modify your inflow file.
+
+# 1) Copy and paste an extra version of the inflow.csv file in your sim folder so that you
+# have a backup in case of any mistakes. Rename this file something like
+# "inflow_baseline.csv" and be sure not to open it.
+
+# 2) Open the inflow.csv file in Excel.  Change the values in the PHS_frp column to represent how your 
+# land use change scenario alters the amount of phosphorus flowing into your lake. 
+
+# NOTE ABOUT COLUMN NAMES: As with the met_hourly file, the order of the columns in the inflow file 
+# does not matter, but you can only have one of each variable and they must keep the EXACT same header name 
+# (i.e., it must always be 'PHS_frp') 
+
+# When you are done editing the inflow file, highlight all of the 'time' column in Excel, 
+# by clicking the capital letter above the 'time' column. Right click, then select 'Format Cells', 
+# and then 'Custom'. In the "Type" or "Formatting" box, change the default to "YYYY-MM-DD hh:mm:ss" 
+# exactly (no quotes). This is the only time/date format that GLM is able to read. 
+# When you click ok, this should change the format of the 'time'  column so that it reads: 
+# "2011-09-01 00:00:00" with exactly that spacing and punctuation. 
+# Save this new file under a different name that tells what scenario it represents, e.g., "inflow_landuse.csv". 
+# Close the csv file, saving your changes.
+# Now, do NOT open the file in Excel again- otherwise, you will need to
+# repeat this formatting process before reading the altered inflow file into GLM.
+
+# 3) You now need to edit the glm2.nml file to change the name of the inflow file so that it reads in the new, 
+# edited inflow file for your land use scenario, not the default "inflow.csv".  
+# Open the nml file, scroll down to the inflows section, and change the 'inflow_fl' entry to the new file name 
+# (e.g., 'inflow_landuse.csv'). 
+
+# ALSO change your met file in the glm2.nml BACK to the original (baseline) met file (e.g., in the meteorology 
+# section, make sure your 'meteo_fl' entry is 'met_hourly_baseline.csv'. Save your modified glm2.nml file.
+
+# Once you have edited the nml file name, you can always check to make sure that it is correct with the commands:
+nml <- read_nml(nml_file)  # Read in your nml file from your new directory
+get_nml_value(nml, 'inflow_fl') # If you have done this correctly, you should get an output that lists
+# the name of your altered inflow file.
+get_nml_value(nml, 'meteo_fl') # If you have done this correctly, you should get an output that lists
+# the name of your baseline meteorological file.
+
+# You can now run the model for your climate change scenario using the new edited nml file, following the instructions as
+# described above for Objective 2.  Exciting!
+
+run_glm(sim_folder, verbose=TRUE) # Run your GLM model for your lake. 
+#  At the end of the model run, it should say "Run complete" if everything worked ok.
+
+# Again, we need to tell R where the output.nc file is so that the glmtools package can
+# plot and analyze the model output. We tell R where to find the output file using the line below:
+landuse <- file.path(sim_folder, 'output.nc') # This defines the output.nc file as being within
+#  the sim_folder. Note that we've called this output "landuse" since it is the output from our land use change simulation.
+
+# As before, we want to save the model output of the daily chlorophyll-a concentrations in the lake 
+# during our land use change simulation, to compare to our baseline and climate scenarios later. 
+`*tmp*` <- get_var(file=landuse, "PHY_TCHLA", reference='surface', z_out=c(1)) # Extract surface chl-a
+chla_output["LandUse_Chla"] <- `*tmp*`[2] # Attach the chl-a data from your land use simulation to the same file
+# that contains your baseline scenario and climate change scenario chl-a concentrations
+
+
 
 # Bravo, you are done!! 
 
