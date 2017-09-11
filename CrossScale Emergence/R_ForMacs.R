@@ -106,10 +106,10 @@ run_glm(sim_folder, verbose=TRUE) # So simple and elegant... if this works, you 
 # We need to know where the output.nc file is so that the glmtools package can
 #  plot and analyze the model output. We tell R where to find the output file using the line below:
 
-nc_file <- file.path(sim_folder, 'output.nc') # This defines the output.nc file as being within
+baseline <- file.path(sim_folder, 'output.nc') # This defines the output.nc file as being within
 #  the sim_folder.  
 
-plot_temp(file=nc_file, fig_path=FALSE) # This plots your simulated water temperatures in a heat
+plot_temp(file=baseline, fig_path=FALSE) # This plots your simulated water temperatures in a heat
 #  map, where time is displayed on the x-axis, lake depth is displayed on the y-axis, and the
 #  different colors represent different temperatures. Again, this figure should be visible in the Plots window
 #  in the bottom righthand corner of RStudio's interface.
@@ -124,7 +124,7 @@ plot_temp(file=nc_file, fig_path=FALSE) # This plots your simulated water temper
 # Your plot image and/or PDF file will be saved in the lake_climate_change folder on your Desktop.
 
 # This pair of commands can be used to list the variables that were output as part of your GLM run
-var_names <- sim_vars(nc_file)
+var_names <- sim_vars(baseline)
 print(var_names)
 
 # We are particularly interested in the amount of chlorophyll-a (chl-a), because that is 
@@ -132,12 +132,18 @@ print(var_names)
 #  and it is reported in units of micrograms per liter of water (ug/L)
 
 # Use the code below to create a heatmap of chl-a in the lake over time. 
-plot_var(file = "output.nc", "PHY_TCHLA")
+plot_var(file = baseline, "PHY_TCHLA")
 # What do you notice about seasonal patterns in chl-a? 
 # How does chl-a vary with depth, and why do you think you see the patterns you do?
 
 # Try modifying the plot_var command to create a heatmap of a different variable 
 #  from the output!
+
+# We also want to save the model output of the daily chlorophyll-a concentrations in the lake 
+# during our baseline simulation, because we'll be comparing it to our climate and land use scenarios later. 
+# To do this, we use the following commands:
+chla_output <- get_var(file=baseline, "PHY_TCHLA", reference='surface', z_out=c(1)) # Save surface chl-a
+colnames(chla_output)[2] <- "Baseline" # Rename the chl-a column so we remember it is from the Baseline scenario
 
 ########## ACTIVITY B - OBJECTIVE 3 ############################################
 # Using your knowledge of potential climate change, work with a partner to develop 
