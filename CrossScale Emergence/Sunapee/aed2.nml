@@ -18,10 +18,7 @@
             'aed2_nitrogen',
             'aed2_phosphorus',
             'aed2_organic_matter',
-            'aed2_phytoplankton',
-            'aed2_zooplankton',
-            'aed2_tracer',
-            'aed2_totals'
+            'aed2_phytoplankton'
 /
 
 
