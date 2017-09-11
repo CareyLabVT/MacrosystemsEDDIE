@@ -15,28 +15,28 @@
 # Download R packages and GLM files successfully onto your computer.
 
 install.packages('sp') # NOTE: you may get output that says "There is a binary version available
-#  but the source version is later... Do you want to install from sources the package which
-#  needs compilation? y/n" Type 'y' (without the quotes) and hit enter. You may now be prompted
-#  to download the command line developer tools. Click Install and then re-run the
-#  install.packages(sp) once the install of the tools is finished. This should now
-#  successfully load- when it's done, it should say 'DONE(sp)' if it worked successfully.
+  #  but the source version is later... Do you want to install from sources the package which
+  #  needs compilation? y/n" Type 'y' (without the quotes) and hit enter. You may now be prompted
+  #  to download the command line developer tools. Click Install and then re-run the
+  #  install.packages(sp) once the install of the tools is finished. This should now
+  #  successfully load- when it's done, it should say 'DONE(sp)' if it worked successfully.
 
 install.packages('glmtools', repos=c('http://cran.rstudio.com', 'http://owi.usgs.gov/R')) 
 # This step enables you to access the USGS	website and download the R packages 
-#  that allow you to work with GLM in R. 
-# Note: if you are on a slow internet connection, this may take a few minutes.
+  #  that allow you to work with GLM in R. 
+  # Note: if you are on a slow internet connection, this may take a few minutes.
 
 library(glmtools) # Load the two packages that you need to run GLM and manipulate its output
 # NOTE: you may get lots of output messages at this step- if this worked successfully, you
-#  should read: "This information is preliminary or provisional and is subject to revision. It
-#  is being provided to meet the need for timely best science. The information has not received
-#  final approval by the U.S. Geological Survey (USGS) and is provided on the condition that
-#  neither the USGS nor the U.S. Government shall be held liable for any damages resulting from
-#  the authorized or unauthorized use of the information. Although this software program has
-#  been used by the USGS, no warranty, expressed or implied, is made by the USGS or the U.S.
-#  Government as to the accuracy and functioning of the program and related program material nor
-#  shall the fact of distribution constitute any such warranty, and no responsibility is assumed
-#  by the USGS in connection therewith".
+  # should read: "This information is preliminary or provisional and is subject to revision. It
+  # is being provided to meet the need for timely best science. The information has not received
+  # final approval by the U.S. Geological Survey (USGS) and is provided on the condition that
+  # neither the USGS nor the U.S. Government shall be held liable for any damages resulting from
+  # the authorized or unauthorized use of the information. Although this software program has
+  # been used by the USGS, no warranty, expressed or implied, is made by the USGS or the U.S.
+  # Government as to the accuracy and functioning of the program and related program material nor
+  # shall the fact of distribution constitute any such warranty, and no responsibility is assumed
+  # by the USGS in connection therewith".
 
 library(GLMr) # If this worked, GLMr should load without any error messages. Hurray!
 
@@ -47,43 +47,45 @@ glm_version() # See what version of GLM you are running- should be at least v.2.
 # Now, we will explore the files that come with your downloaded GLM files 
 
 # NOTE! Throughout the rest of the module, you may need to modify some of the lines of code
-#  written below to run on your computer. If you do need to modify a line of code, I marked that
-#  particular line with ##!! symbols at the beginning of that line's annotation.  If you do not
-#  see those symbols, then you do not need to edit that line of code (you can merely run it as
-#  normal).
+  # written below to run on your computer. If you do need to modify a line of code, I marked that
+  # particular line with ##!! symbols at the beginning of that line's annotation.  If you do not
+  # see those symbols, then you do not need to edit that line of code (you can merely run it as
+  # normal).
 
 # When you downloaded this script, you unzipped the lake folder to your Desktop. 
-# We now need to tell R where these files are. We do that by...
+  # We now need to tell R where these files are. We do that by...
 
 sim_folder <- 'C:/Users/farrellk/Desktop/R/ProjectEDDIE/CrossScale Emergence/Sunapee'  # !! KF placeholder sim_folder
-#sim_folder <- 'C:/Users/farrellk/Desktop/cross_scale_emergence' ##!! Edit this line of code to redefine your sim_folder path. 
-# This should be replaced with the path to the Desktop folder where you extracted 
-#  your zipped files. Most likely, you will need to change the part after Users/ to give
-#  the name of your computer (e.g., my computer name is farrellk, but yours will be different!)
-#  as well as modify LAKE to tell which lake you are modeling (e.g., Mendota or Sunapee)
+#sim_folder <- 'C:/Users/farrellk/Desktop/cross_scale_emergence/LAKE' ##!! Edit this line of code to redefine your sim_folder path. 
+  # This should be replaced with the path to the Desktop folder where you extracted 
+  # your zipped files. Most likely, you will need to change the part after Users/ to give
+  # the name of your computer (e.g., my computer name is farrellk, but yours will be different!)
+  # as well as modify LAKE to tell which lake you are modeling (e.g., Mendota or Sunapee)
 
 setwd(sim_folder) ##!! This line of code is used to reset your working directory
-#  to the sim_folder. The point of this step is to make sure that any new files you create
-#  (e.g., figures of output) end up together in this directory, vs. elsewhere in your computer.
+  # to the sim_folder. The point of this step is to make sure that any new files you create
+  # (e.g., figures of output) end up together in this directory, vs. elsewhere in your computer.
 
 nml_file <- paste0(sim_folder,"/glm2.nml") # This step sets the nml_file for your simulation to be
-#  in the new sim_folder location.
+  # in the new sim_folder location.
 
 nml <- read_nml(nml_file) # Read in your nml file from your new directory
 
 print(nml) # This shows you what is in your nml file.  This is the 'master script' of the GLM
-#  simulation; the nml file tells the GLM model all of the initial conditions about your lake,
-#  how you are defining parameters, and more - this is a really important file! There should be
-#  multiple sections, including glm_setup, morphometry, meteorology, etc.
+  # simulation; the nml file tells the GLM model all of the initial conditions about your lake,
+  # how you are defining parameters, and more - this is a really important file! There should be
+  # multiple sections, including glm_setup, morphometry, meteorology, etc.
 
 get_nml_value(nml, 'lake_name') ##!! Use this command to find out the values of different parameters 
-#  that you are running within your nml file. 
-# Here, you are asking what the lake name is in the nml file (it should be Mendota or Sunapee!)
-#   but you could also use this to learn the 'latitude', 'lake_depth', 'num_inflows', etc. 
+  # that you are running within your nml file. 
+  # Here, you are asking what the lake name is in the nml file (it should be Mendota or Sunapee!)
+  # but you could also use this to learn the 'latitude', 'lake_depth', 'num_inflows', etc. 
+
 # Modify this command to learn where your model lake is located by its latitude & longitude 
-#  coordinates, and the lake's maximum depth.
+  # coordinates, and the lake's maximum depth.
+
 # Use a web mapping program (e.g., Google Maps or similar) to locate your lake based on the lat/long
-#  from your nml file.
+  # from your nml file.
 
 plot_meteo(nml_file) # This command plots the meterological input data for the simulation- 
 #   short wave & long wave radiation, air temp, etc. for the duration of the simulation run. 
