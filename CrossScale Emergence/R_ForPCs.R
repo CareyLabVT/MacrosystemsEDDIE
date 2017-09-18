@@ -9,7 +9,7 @@
 #   This module consists of 6 objectives. Activity A consists of Objectives 1-4,
 #   Activity B consists of Objective 5, and Activity C consists of Objective 6.
 
-# This script was modified last by KJF on 11 Sept 2017.
+# This script was modified last by CCC on 17 Sept 2017.
 
 ########## ACTIVITY A - OBJECTIVE 1 ############################################
 # Download R packages and GLM files successfully onto your computer.
@@ -36,7 +36,7 @@ library(glmtools) # Load the two packages that you need to run GLM and manipulat
   #  been used by the USGS, no warranty, expressed or implied, is made by the USGS or the U.S.
   #  Government as to the accuracy and functioning of the program and related program material nor
   #  shall the fact of distribution constitute any such warranty, and no responsibility is assumed
-  #  by the USGS in connection therewith".
+  #  by the USGS in connection therewith" (or some modified version of this statement!)
 
 library(GLMr) # If this worked, GLMr should load without any error messages. Hurray!
 
@@ -60,7 +60,7 @@ sim_folder <- 'C:/Users/farrellk/Desktop/R/ProjectEDDIE/CrossScale Emergence/Sun
   # This should be replaced with the path to the Desktop folder where you extracted 
   # your zipped files. Most likely, you will need to change the part after Users/ to give
   # the name of your computer (e.g., my computer name is farrellk, but yours will be different!)
-  # as well as modify LAKE to tell which lake you are modeling (e.g., Mendota or Sunapee)
+  # as well as modify LAKE to tell which lake you are modeling (e.g., Mendota OR Sunapee)
 
 setwd(sim_folder) ##!! This line of code is used to reset your working directory
   #  to the sim_folder. The point of this step is to make sure that any new files you create
@@ -88,7 +88,7 @@ get_nml_value(nml, 'lake_name') ##!! Use this command to find out the values of 
   # from your nml file.
 
 plot_meteo(nml_file) # This command plots the meterological input data for the simulation- 
-  # short wave & long wave radiation, air temp, etc. for the duration of the simulation run. 
+  # short wave & long wave radiation, air temp, relative humidity, etc. for the duration of the simulation. 
   # Do these plots look reasonable for the latitude and longitude of your model lake?
  
 ########## ACTIVITY A - OBJECTIVE 2 ############################################
@@ -96,7 +96,8 @@ plot_meteo(nml_file) # This command plots the meterological input data for the s
 
 run_glm(sim_folder, verbose=TRUE) # So simple and elegant... if this works, you should see output
 #  that says "Simulation begins.." and then shows all the time steps. 
-#  At the end of the model run, it should say "Run complete" if everything worked ok.
+#  At the end of the model run, it should say "Run complete" if everything worked ok. This may take
+#  a few minutes, depending on your computer.
 
 # Now, go to the sim_folder on your computer (in RStudio, you can find this by clicking on the 'Files' 
 #  tab- if everything happened correctly, you should see the addition of new files 
@@ -125,17 +126,19 @@ plot_temp(file=baseline, fig_path=FALSE) # This plots your simulated water tempe
 # give your plot a descriptive file name (e.g., "TemperatureHeatMap.pdf"), then press "Save". 
 # Your plot image and/or PDF file will be saved in the lake_climate_change folder on your Desktop.
 
-# This pair of commands can be used to list the variables that were output as part of your GLM run
+# This pair of commands can be used to list the variables that were output as part of your GLM run.
 var_names <- sim_vars(baseline)
-print(var_names)
+print(var_names) # This will print a list of 91 variables that the model simulates.
 
-# We are particularly interested in the amount of chlorophyll-a (chl-a), because that is 
+# We are particularly interested in the amount of total chlorophyll-a (chl-a), because that is 
 #  related to phytoplankton blooms. The variable name for chl-a is "PHY_TCHLA", 
-#  and it is reported in units of micrograms per liter of water (ug/L)
+#  and it is reported in units of micrograms per liter of water (ug/L). 
+# Search through the list of variables to find PHY_TCHLA.
 
 # Use the code below to create a heatmap of chl-a in the lake over time. 
 plot_var(file = baseline, "PHY_TCHLA")
 # What do you notice about seasonal patterns in chl-a? 
+# Look at the color gradient scale: when is there the highest concentration of chla-a during the year?
 # How does chl-a vary with depth, and why do you think you see the patterns you do?
 
 # Try modifying the plot_var command to create a heatmap of a different variable 
@@ -144,17 +147,17 @@ plot_var(file = baseline, "PHY_TCHLA")
 # We also want to save the model output of the daily chlorophyll-a concentrations in the lake 
   # during our baseline simulation, because we'll be comparing it to our climate and land use scenarios later. 
   # To do this, we use the following commands:
-chla_output <- get_var(file=baseline, "PHY_TCHLA", reference='surface', z_out=c(1)) # Save surface chl-a
+chla_output <- get_var(file=baseline, "PHY_TCHLA", reference='surface', z_out=c(1)) # Save the chl-a from the surface only
 colnames(chla_output)[2] <- "Baseline_Chla" # Rename the chl-a column so we remember it is from the Baseline scenario
 
 ########## ACTIVITY B - OBJECTIVE 3 ############################################
 # Using your knowledge of potential climate change, work with a partner to develop 
   # a climate change scenario for your model lake based on changes in air temperature.
-  # To complete this activity, you will need to modify the input meterological data (met_hourly) and then 
+  # To complete this activity, you will need to modify the input meterological data (the met_hourly file) and  
   # rerun the model to examine the effects of your scenario on lake thermal structure and phytoplankton.
 
 # Here is an overview of the steps you will complete with your partner to accomplish this (detailed directions below):
-# 1) Develop a climate scenario based on changing air temperatures (it can be for any region!)
+# 1) Develop a climate scenario based on changing air temperatures for your focal lake (Sunapee or Mendota)
 
 # 2) Create a corresponding meteorological input (met) file. Think through how air temperature will change in
   # your proposed scenario, in terms of when and how much air temperature will change. 
