@@ -162,18 +162,18 @@ colnames(chla_output)[2] <- "Baseline_Chla" # Rename the chl-a column so we reme
 # 2) Create a corresponding meteorological input (met) file. Think through how air temperature will change in
   # your proposed scenario, in terms of when and how much air temperature will change. 
 
-# 3) Run the GLM using your new met file and examine how it changess the physical structure of the lake.  
+# 3) Run the GLM using your new met file and examine how it changes the physical structure of the lake.  
   # How does your climate scenario change the thermal structure of the lake? 
-  # What does the temperature profile look like?  How does the phytoplankton respond? 
+  # What does the temperature profile look like?  How do the phytoplankton (i.e., chl-a) respond? 
   # What are the implications of your climate scenario for future water quality and phytoplankton blooms?
 
 # 4) Create and save a few figures to highlight the results of your climate scenario and present them to 
-  # the rest of the class. It would be helpful to present both the meteorological input file as well as 
+  # the rest of the class. It would be helpful to present the meteorological input plot as well as 
   # temperature and chlorophyll plots so that we can see how the lake responded to your climate forcing.
 
 # Detailed directions for modifying your met file: 
 
-## SOMETHING THAT IS REALLY REALLY IMPORTANT! ##
+## SOMETHING THAT IS REALLY IMPORTANT! ##
   # Opening up the met_hourly.csv file in Microsoft Excel will inexplicably alter the date/time 
   # formatting of the file so that GLM cannot read it.
   # You will get an error something like this: "Day 2451545 (2000-01-01) not found".  
@@ -203,7 +203,7 @@ colnames(chla_output)[2] <- "Baseline_Chla" # Rename the chl-a column so we reme
 
 # 3) You now need to edit the glm2.nml file to change the name of the input meteorological
   # file so that it reads in the new, edited meteorological file for your climate scenario, not the
-  # default "met_hourly.csv".  Open the nml file in a text editor (on Windows, try Notepad), 
+  # default "met_hourly.csv".  Open the nml file in a text editor (on Windows, try Notepad; on Mac, try TextEdit), 
   # scroll down to the meteorology section, and change the 'meteo_fl' entry to the new met file name 
   # (e.g., 'met_hourly_climate.csv'). Save your modified glm2.nml file.
   # Note: check to make sure that your quotes ' and ' around the file name are upright,
@@ -213,7 +213,8 @@ colnames(chla_output)[2] <- "Baseline_Chla" # Rename the chl-a column so we reme
 # Once you have edited the nml file name, you can always check to make sure that it is correct with the command:
 nml <- read_nml(nml_file)  # Read in your nml file from your new directory
 get_nml_value(nml, 'meteo_fl') # If you have done this correctly, you should get an output that lists
-  # the name of your new meteorological file altered for your weather/climate scenario.
+  # the name of your new meteorological file altered for your weather/climate scenario. If it doesn't,
+  # repeat step 3 above.
 
 # You can now run the model for your climate change scenario using the new edited nml file, following the instructions as
   # described above for Objective 2.  Exciting!
@@ -230,49 +231,53 @@ climate <- file.path(sim_folder, 'output.nc') # This defines the output.nc file 
 # during our climate change simulation, to compare to our baseline and land use scenarios later. 
 `*tmp*` <- get_var(file=climate, "PHY_TCHLA", reference='surface', z_out=c(1)) # Extract surface chl-a
 chla_output["Climate_Chla"] <- `*tmp*`[2] # Attach the chl-a data from your climate simulation to the same file
-  # that contains your baseline scenario chl-a concentrations
+  # that contains your baseline scenario chl-a concentrations. You can now compare your climate scenario
+  # to your baseline- well done!
 
 ########## ACTIVITY B - OBJECTIVE 4 ############################################
 # Plot the output using the commands you learned above. 
-plot_temp(file=climate, fig_path=FALSE) # Heatmap of temperature
-plot_var(file = climate, "PHY_TCHLA") # Heatmap of chlorophyll-a
+plot_temp(file=climate, fig_path=FALSE) # Create a heatmap of temperature. How does this compare to your baseline?
+plot_var(file=climate, "PHY_TCHLA") # Create a heatmap of chlorophyll-a. How does this compare to your baseline?
 
 # Using these plots, the figures from your baseline scenario, and the other team's plots from their lake,
   # put together a brief presentation of your model simulation and output to share with the rest of the class 
 
   # Make sure your presentation answers the following questions: 
-  # a) Does the model output support or contradict your hypotheses? 
-  # b) How does the output from the two lakes compare? 
+  # a) Does the model output support or contradict your original hypotheses of how the climate scenario will 
+  #    affect the two lakes' temperatures and phytoplankton? 
+  # b) How does the temperature and chlorophyll output from the two lakes compare (both baseline and 
+  #    scenario conditions? 
   # c) Which lake’s water temperature and chlorophyll is more sensitive to the climate scenario?
 
 ########## ACTIVITY C - OBJECTIVE 5 ############################################
 # Now, using your knowledge of potential land use effects on nutrients coming into a lake, 
-  # work with a partner to develop a land use change scenario for your model lake based on changes in 
-  # phosphorus. 
+  # work with your partner to develop a land use change scenario for your model lake based on changes in 
+  # phosphorus concentrations in the inflow file. 
 
 # To complete this activity, you will need to modify the input driver data (inflow.csv)
   # and then rerun the model to examine the effects of your scenario on lake phytoplankton.
 
-# Here are the steps you will complete with your partner to accomplish this:
+# Here are the overview steps you will complete with your partner to accomplish this (detailed info below!):
   # 1) Develop a land use scenario based on changing the balance of agriculture, urbanization, and undisturbed
-    # land cover in the lake watershed (it can be for any region!)
+  # land cover in your model lake's watershed.
 
   # 2) Create a corresponding change in the stream inflow file. Think through how phosphorus 
-    # concentrations will change in your proposed scenario, in terms of the timing and intensity of nutrient inflows. 
+    # concentrations will change in your proposed scenario, in terms of both the timing and intensity 
+    # of nutrient inflows. 
 
-  # 3) Run the GLM using your new inflow file and the original met file (met_hourly.csv) and examine how it 
-    # changes the lake.  
+  # 3) Run the GLM model using your new inflow file and the original met file (met_hourly.csv) and examine 
+    # how it changes the lake in comparison to baseline conditions. Think through these questions:
     # How does your land use scenario change the chlorophyll-a profile of the lake? 
     # Does lake temperature change with the land use scenario? 
     # What are the implications of your land use scenario for future water quality and phytoplankton blooms?
 
   # 4) Create and save a few figures to highlight the results of your land use scenario. 
-    # It would be helpful to present both the driver file as well as 
-    # chlorophyll plots so that we can see how the lake responded to your land use change.
+    # It would be helpful to present both the land use driver file as well as 
+    # chlorophyll plots so that we can see how the lake responded to your land use change scenario.
 
 # Detailed directions for modifying your inflow file: 
 
-## SOMETHING THAT IS REALLY REALLY IMPORTANT! ##
+## SOMETHING THAT IS REALLY IMPORTANT! ##
 # Opening up the inflow.csv file in Microsoft Excel will inexplicably alter the date/time 
   # formatting of the file so that GLM cannot read it.
   # You will get an error something like this: "Day 2451545 (2000-01-01) not found".  
@@ -283,7 +288,9 @@ plot_var(file = climate, "PHY_TCHLA") # Heatmap of chlorophyll-a
   # "inflow_baseline.csv" and be sure not to open it.
 
 # 2) Open the inflow.csv file in Excel.  Change the values in the PHS_frp column to represent how your 
-  # land use change scenario alters the amount of phosphorus flowing into your lake. 
+  # land use change scenario alters the amount of phosphorus flowing into your lake. PHS_frp is an 
+  # abbreviation for the filterable reactive phosphorus fraction, or the fraction of phosphorus that is 
+  # phytoplankton need the most for their growth and division.
 
   # NOTE ABOUT COLUMN NAMES: As with the met_hourly file, the order of the columns in the inflow file 
   # does not matter, but you can only have one of each variable and they must keep the EXACT same header name 
@@ -302,11 +309,14 @@ plot_var(file = climate, "PHY_TCHLA") # Heatmap of chlorophyll-a
 
 # 3) You now need to edit the glm2.nml file to change the name of the inflow file so that it reads in the new, 
   # edited inflow file for your land use scenario, not the default "inflow.csv".  
-  # Open the nml file, scroll down to the inflows section, and change the 'inflow_fl' entry to the new file name 
+  # Open the glm2.nml file, scroll down to the inflows section, and change the 'inflow_fl' entry to the new file name 
   # (e.g., 'inflow_landuse.csv'). 
 
-  # ALSO change your met file in the glm2.nml BACK to the original (baseline) met file (e.g., in the meteorology 
-  # section, make sure your 'meteo_fl' entry is 'met_hourly_baseline.csv'. Save your modified glm2.nml file.
+# IMPORTANT: Be sure to ALSO change your met file name in the glm2.nml BACK to the original (baseline) 
+  # met file (e.g., in the meteorology section, make sure your 'meteo_fl' entry is 'met_hourly_baseline.csv'. 
+  # This is because we want to examine the effects of your land use scenario separate from the climate
+  # scenario you developed earlier. Save your modified glm2.nml file that has baseline meteorology and
+  # altered land use.
 
 # Once you have edited the nml file name, you can always check to make sure that it is correct with the commands:
 nml <- read_nml(nml_file)  # Read in your nml file from your new directory
@@ -335,6 +345,9 @@ chla_output["LandUse_Chla"] <- `*tmp*`[2] # Attach the chl-a data from your land
 # Plot the output of your land use scenario using the commands you learned above. 
 plot_temp(file=climate, fig_path=FALSE) # Heatmap of temperature
 plot_var(file = climate, "PHY_TCHLA") # Heatmap of chlorophyll-a
+# How does your phytoplankton heatmap look in comparison to the baseline? Be sure to check the scale of
+#  of the color gradient representing chl-a when comparing plots!
+
 
 # Finally, we want to see what happens when land use and climate interact! 
 # Luckily, testing the simultaneous effects of your land use and climate change scenarios will be pretty easy!
@@ -381,17 +394,30 @@ plot_var(file = climate_landuse, "PHY_TCHLA") # Heatmap of chlorophyll-a
   # How do these newest plots compare to the figures you made from climate change or land use change scenarios alone?
 
 # Now that you've run four different scenarios (baseline, climate only, land use only, and climate + land use), let's plot 
-# how the lakes responded under the different scenarios. 
+# how the chl-a in the lakes responded to the different scenarios. We can do this by:
 attach(chla_output)
 plot(DateTime, Baseline_Chla, type="l", col="black", ylim=c(0, 20),
-     ylab="Chlorophyll-a (ug/L)", xlab="Date")  # This plots DateTime vs. Observed data in blue, 
+     ylab="Chlorophyll-a (ug/L)", xlab="Date")  # This plots DateTime vs. Observed data in black, 
 lines(DateTime, Climate_Chla, col="red") # this adds a red line of the climate change scenario
 lines(DateTime, LandUse_Chla, col="blue") # this adds a blue line of the land use scenario
 lines(DateTime, Climate_LandUse_Chla, col="green") # this adds a green line of simultaneous climate and land use scenario
 legend("topleft",c("Baseline", "Climate Only", "Land Use Only", "Combined C + LU"), lty=c(1,1,1,1),
        col=c("black","red","blue", "green")) # this adds a legend
 
-###### ADD SOME FINAL WRAP UP TEXT HERE!! ######
+###### One last step! ######
+
+## Using this line plot and the other team's line plot from their lake, put together a brief 
+#     presentation of your model simulation and output to share with the rest of the class. 
+
+# Make sure your presentation answers the following questions: 
+# a) Does the model output support or contradict your original hypotheses of how climate, land use,
+#    and their combined effects will interact to affect the two lakes' phytoplankton? 
+# b) How does the chlorophyll output from the four scenarios in the two lakes compare? (be sure to
+#    compare heatmap color scales among plots!)
+# c) Which lake’s chlorophyll is more sensitive to climate change? Land use? Their combined effects?
+# d) Similar phenomena (e.g., phytoplankton blooms) among ecosystems due to different combinations of
+#    drivers is part of cross-scale emergence: what do the two lakes' responses to climate and land use
+#    tell you about how water quality will respond to human activities in the future?
 
 # Bravo, you are done!! 
 
