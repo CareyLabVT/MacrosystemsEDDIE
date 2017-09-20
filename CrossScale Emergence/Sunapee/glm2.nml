@@ -60,8 +60,6 @@ coef_mix_hyp = 0.453
   split_factor = 1
   bioshade_feedback = .true.
   repair_state = .true.
-! mobility_off = .false.
-  multi_ben = .true.
 /
 !-------------------------------------------------------------------------------
 ! lake details
@@ -212,7 +210,6 @@ wq_init_vals =  11,11,11,11,11,11,
 met_sw = .true.
 lw_type =  'LW_IN'
 rain_sw = .false.
-snow_sw = .true.
 atm_stab = .false.
 catchrain = .false.
 rad_mode = 2

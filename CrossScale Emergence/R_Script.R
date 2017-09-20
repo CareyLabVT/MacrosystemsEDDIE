@@ -401,13 +401,17 @@ plot_var(file = climate_landuse, "PHY_TCHLA") # Heatmap of chlorophyll-a
 # Now that you've run four different scenarios (baseline, climate only, land use only, and climate + land use), let's plot 
   # how the chl-a in the lakes responded to the different scenarios. We can do this by:
 attach(chla_output)
-plot(DateTime, Baseline_Chla, type="l", col="black", ylim=c(0, 20),
-     ylab="Chlorophyll-a (ug/L)", xlab="Date")  # This plots DateTime vs. Observed data in black, 
+
+plot(DateTime, Baseline_Chla, type="l", col="black", ylim=c(0, 30),
+     ylab="Chlorophyll-a (ug/L)", xlab="Date")  # This plots DateTime vs. Observed data in black 
 lines(DateTime, Climate_Chla, col="red") # this adds a red line of the climate change scenario
 lines(DateTime, LandUse_Chla, col="blue") # this adds a blue line of the land use scenario
 lines(DateTime, Climate_LandUse_Chla, col="green") # this adds a green line of simultaneous climate and land use scenario
 legend("topleft",c("Baseline", "Climate Only", "Land Use Only", "Combined C + LU"), lty=c(1,1,1,1),
        col=c("black","red","blue", "green")) # this adds a legend
+# !! Note that the command ylim=c(0, 30) tells R what you want the minimum and maximum values on the
+  # y-axis to be (here, we're plotting from 0 to 30 ug/L). You may need to adjust this range to make
+  # sure all your data are shown in the plot.
 
 ########## ACTIVITY C - OBJECTIVE 6 ############################################
 # Using the line plot you just created, and the other team's line plot from their lake, put together a brief 
