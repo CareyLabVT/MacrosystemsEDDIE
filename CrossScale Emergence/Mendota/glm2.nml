@@ -60,8 +60,6 @@
    split_factor = 1
    bioshade_feedback = .true.
    repair_state = .true.
-!  mobility_off = .false.
-!   multi_ben = .true.
 /
 !-------------------------------------------------------------------------------
 ! lake details
@@ -155,34 +153,28 @@
     the_sals   = 0.00, 0.00, 0.00, 0.00, 0.00, 0.00
     lake_depth = 25
     num_wq_vars = 14
-    wq_names =  'CAR_pH',
-                'CAR_dic',
-                'OGM_don',
-                'OGM_pon',
-                'OGM_dop',
-                'OGM_pop',
-                'OGM_docr',
-                'OGM_doc',
-                'OGM_poc',
-				'SIL_rsi',
+	wq_names =  'OGM_don',  
+				'OGM_pon',  
+				'OGM_dop',
+				'OGM_pop',
+				'OGM_doc',
+				'OGM_poc',
 				'OXY_oxy',
+				'CAR_dic',
 				'NIT_amm',
 				'NIT_nit',
 				'PHS_frp'
-	wq_init_vals = 	8.4, 8.4, 8.4, 8.4, 8.4, 8.4,
-	               3687.760, 3629.475, 3853.455, 3600.333, 3886.761, 3522.898, 
-	               20,20,20,20,20,20,
-                   6, 6, 6, 6, 6, 6,
-                   0.5812, 0.7427, 0.7104, 0.7104, 0.7427, 0.9041,
-                   1,1,1,1,1,1,
-                   375, 375, 375, 375, 375, 375,
-                   0,0,0,0,0,0,
-				   50,50,50,50,50,50,
-				   190, 190, 190, 190, 190, 190,
-					440.625, 437.500, 434.375, 425.000, 400.000, 387.500,
-					5, 5, 5, 5, 5, 5,
-					50,50,50,50,50,50,
-					3.0,3.0,3.0,3.0,3.0,3.0
+	wq_init_vals = 20,20,20,20,20,20, !OGM_don
+                   6, 6, 6, 6, 6, 6, !OGM_pon
+                   0.5812, 0.7427, 0.7104, 0.7104, 0.7427, 0.9041, !OGM_dop
+                   1,1,1,1,1,1, !OGM_pop
+                   375, 375, 375, 375, 375, 375,  !OGM_doc
+				   50,50,50,50,50,50, !OGM_poc
+				   440.625, 437.500, 434.375, 425.000, 400.000, 387.500, !OXY_oxy
+				   3687.760, 3629.475, 3853.455, 3600.333, 3886.761, 3522.898,  !CAR_dic
+					5, 5, 5, 5, 5, 5, ! NIT_amm
+					50,50,50,50,50,50, ! NIT_nit
+					3.0,3.0,3.0,3.0,3.0,3.0 ! PHS_frp
 /
 !-------------------------------------------------------------------------------
 ! meteorology
@@ -200,12 +192,11 @@
 !
 !   meteo_fl       [string] name of file with meteorology input data
 !   wind_factor    [float]  wind multiplication factor (-)
-!   wind_factor    [float]  wind multiplication factor (-)
-!   rain_factor    [float]  wind multiplication factor (-)
-!   sw_factor      [float]  wind multiplication factor (-)
-!   lw_factor      [float]  wind multiplication factor (-)
-!   at_factor      [float]  wind multiplication factor (-)
-!   rh_factor      [float]  wind multiplication factor (-)
+!   rain_factor    [float]  rainfall multiplication factor (-)
+!   sw_factor      [float]  shortwave multiplication factor (-)
+!   lw_factor      [float]  longwave multiplication factor (-)
+!   at_factor      [float]  air temp. multiplication factor (-)
+!   rh_factor      [float]  rel. humidity multiplication factor (-)
 !
 !   ce             [float]  bulk aerodynamic coefficient for latent heat transfer
 !   ch             [float]  bulk aerodynamic coefficient for sensible heat transfer
@@ -218,17 +209,17 @@
    met_sw     = .true.
    lw_type    = 'LW_IN'
    rain_sw    = .false.
-!   snow_sw    = .true.
-   atm_stab   = .false. !JR = .true.
+   atm_stab   = .false. 
    catchrain   = .false.
-   rad_mode    = 1
+   rad_mode    = 2
    albedo_mode = 1
    cloud_mode  = 4
    !-- BC file details
    meteo_fl   = 'met_hourly.csv'
    subdaily = .true. 
    wind_factor = 1.0
-   cd         = 0.0013 ! tune this down to 0.001 for sheltered systems
+   sw_factor = 1
+   cd         = 0.0013 
    ce         = 0.0013
    ch         = 0.0013
    rain_threshold = 0.01
@@ -289,13 +280,3 @@
    outflow_fl   = 'outflow.csv'
    outflow_factor = 1.0
 /
-!&snowice
-!	snow_albeto_factor = 1.0
-!	snow_rho_max = 300
-!	snow_rho_min = 50
-!/
-!&sed_heat
-!	sed_temp_mean = 9.7
-!	sed_temp_amplitude = 2.7
-!	sed_temp_peak_doy = 242.5
-!/

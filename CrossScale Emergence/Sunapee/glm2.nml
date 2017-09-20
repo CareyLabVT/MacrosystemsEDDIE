@@ -192,12 +192,11 @@ wq_init_vals =  11,11,11,11,11,11,
 !
 !   meteo_fl       [string] name of file with meteorology input data
 !   wind_factor    [float]  wind multiplication factor (-)
-!   wind_factor    [float]  wind multiplication factor (-)
-!   rain_factor    [float]  wind multiplication factor (-)
-!   sw_factor      [float]  wind multiplication factor (-)
-!   lw_factor      [float]  wind multiplication factor (-)
-!   at_factor      [float]  wind multiplication factor (-)
-!   rh_factor      [float]  wind multiplication factor (-)
+!   rain_factor    [float]  rainfall multiplication factor (-)
+!   sw_factor      [float]  shortwave multiplication factor (-)
+!   lw_factor      [float]  longwave multiplication factor (-)
+!   at_factor      [float]  air temp. multiplication factor (-)
+!   rh_factor      [float]  rel. humidity multiplication factor (-)
 !
 !   ce             [float]  bulk aerodynamic coefficient for latent heat transfer
 !   ch             [float]  bulk aerodynamic coefficient for sensible heat transfer
@@ -219,7 +218,7 @@ cloud_mode = 4
 meteo_fl =  'met_hourly.csv'
 subdaily = .true.
 wind_factor = 1
-sw_factor = 0.66
+sw_factor = 1 !0.66
 cd = 0.0008 
 ce = 0.0013
 ch = 0.0013
@@ -280,14 +279,4 @@ bsn_len_outl = 799
 bsn_wid_outl = 398
 outflow_fl =  'outflow.csv'
 outflow_factor = 1
-/
-&snowice
-   snow_albedo_factor = 1
-   snow_rho_max = 500
-   snow_rho_min = 100
-/
-&sed_heat
-   sed_temp_mean = 12
-   sed_temp_amplitude = 11
-   sed_temp_peak_doy = 242.5
 /
