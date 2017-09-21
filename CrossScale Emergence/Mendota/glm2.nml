@@ -19,19 +19,19 @@
 !-------------------------------------------------------------------------------
 &glm_setup
    sim_name = 'MacrosystemsEDDIE_Mendota'
-   max_layers = 500 !300
+   max_layers = 500 
    min_layer_vol = 0.025
-   min_layer_thick = 0.050 !0.150
-   max_layer_thick = 0.500 !0.500
+   min_layer_thick = 0.050 
+   max_layer_thick = 0.500 
    !-- Light Parameters
    Kw = 0.10
    !-- Mixing Parameters
-   coef_mix_conv = 0.125 !JR = 0.125, 0.27213 
-   coef_wind_stir = 0.23  !JR = 0.23, 0.27787     
-   coef_mix_shear = 0.20 !JR = 0.20, 0.276115      
-   coef_mix_turb = 0.51  !JR = 0.51, 0.5261    
-   coef_mix_KH = 0.30  !JR = 0.30, 0.341025
-   coef_mix_hyp = 0.50 !JR = 0.50, 0.453
+   coef_mix_conv = 0.125 
+   coef_wind_stir = 0.23    
+   coef_mix_shear = 0.20   
+   coef_mix_turb = 0.51    
+   coef_mix_KH = 0.30 
+   coef_mix_hyp = 0.50
 /
 !-------------------------------------------------------------------------------
 ! wq setup
@@ -54,12 +54,12 @@
 !                     in bottom layer, or on flanks of all layers (.true.)
 !-------------------------------------------------------------------------------
 &wq_setup
-   wq_lib = 'aed2'
-   wq_nml_file = 'aed2.nml'
-   ode_method = 1
-   split_factor = 1
-   bioshade_feedback = .true.
-   repair_state = .true.
+  wq_lib =  'aed2'
+  wq_nml_file =  'aed2.nml'
+  ode_method = 1
+  split_factor = 1
+  bioshade_feedback = .true.
+  repair_state = .true.
 /
 !-------------------------------------------------------------------------------
 ! lake details
@@ -127,12 +127,12 @@
 ! csv_ovrflw_fname  [string] name of csv file to record amount and quality of overflow
 !
 !-------------------------------------------------------------------------------
- &output 
- out_dir = '.'
- out_fn = 'output'
- nsave = 24
-/ 
--------------------------------------------------------------------------------
+&output
+out_dir =  '.'
+out_fn =  'output'
+nsave = 24
+/
+!-------------------------------------------------------------------------------
 ! initial condition profiles
 !-------------------------------------------------------------------------------
 !
@@ -153,28 +153,28 @@
     the_sals   = 0.00, 0.00, 0.00, 0.00, 0.00, 0.00
     lake_depth = 25
     num_wq_vars = 11
-	wq_names =  'OGM_don', 
-	'OGM_pon',
-	'OGM_dop',
-	'OGM_pop',
-	'OGM_doc',
-	'OGM_poc',
-	'OXY_oxy',
-	'CAR_dic',
-	'NIT_amm',
-	'NIT_nit',
-	'PHS_frp'
-wq_init_vals = 20,20,20,20,20,20,
-				6, 6, 6, 6, 6, 6,
-				0.5812, 0.7427, 0.7104, 0.7104, 0.7427, 0.9041,
-				1,1,1,1,1,1,
-				375, 375, 375, 375, 375, 375,
-				50,50,50,50,50,50,
-				440.625, 437.500, 434.375, 425.000, 400.000, 387.500,
-				3687.760, 3629.475, 3853.455, 3600.333, 3886.761, 3522.898,
-				5, 5, 5, 5, 5, 5,
-				50,50,50,50,50,50,
-				3.0,3.0,3.0,3.0,3.0,3.0
+    wq_names =  'CAR_dic',
+                'OGM_don',
+                'OGM_pon',
+                'OGM_dop',
+                'OGM_pop',
+                'OGM_doc',
+                'OGM_poc',
+				'OXY_oxy',
+				'NIT_amm',
+				'NIT_nit',
+				'PHS_frp'
+	wq_init_vals = 	3687.760, 3629.475, 3853.455, 3600.333, 3886.761, 3522.898, 
+	               20,20,20,20,20,20,
+                   6, 6, 6, 6, 6, 6,
+                   0.5812, 0.7427, 0.7104, 0.7104, 0.7427, 0.9041,
+                   1,1,1,1,1,1,
+                   375, 375, 375, 375, 375, 375,
+				   50,50,50,50,50,50,
+				   440.625, 437.500, 434.375, 425.000, 400.000, 387.500,
+					5, 5, 5, 5, 5, 5,
+					50,50,50,50,50,50,
+					3.0,3.0,3.0,3.0,3.0,3.0
 /
 !-------------------------------------------------------------------------------
 ! meteorology
@@ -214,11 +214,11 @@ wq_init_vals = 20,20,20,20,20,20,
    rad_mode    = 2
    albedo_mode = 1
    cloud_mode  = 4
-   !-- BC file details
+!-- BC file details
    meteo_fl   = 'met_hourly.csv'
    subdaily = .true. 
    wind_factor = 1.0
-   sw_factor = 1
+   sw_factor = 1.0
    cd         = 0.0013 
    ce         = 0.0013
    ch         = 0.0013
@@ -247,14 +247,14 @@ wq_init_vals = 20,20,20,20,20,20,
 !-------------------------------------------------------------------------------
 &inflow
    num_inflows    = 1
-   names_of_strms = 'stream'    
-   strm_hf_angle  = 65.0        
+   names_of_strms = 'stream'   
+   strm_hf_angle  = 65.0         
    strmbd_slope   = 3.0      
-   strmbd_drag    = 0.0160      
+   strmbd_drag    = 0.0160       
    inflow_factor  = 1.0
    inflow_fl      = 'inflow.csv'
    inflow_varnum  = 13
-   inflow_vars    = 'FLOW', 'SALT', 'TEMP', 'OGM_doc', 'OGM_poc', 'OGM_don', 'NIT_nit', 'NIT_amm', 'OGM_pon', 'PHS_frp', 'OGM_dop', 'OGM_pop','PHS_frp_ads'
+   inflow_vars    = 'FLOW', 'SALT', 'TEMP', 'OGM_doc', 'OGM_poc', 'OGM_don', 'NIT_nit', 'NIT_amm', 'OGM_pon', 'PHS_frp', 'OGM_dop', 'OGM_pop', 'PHS_frp_ads'
 /
 !-------------------------------------------------------------------------------
 ! outflows
