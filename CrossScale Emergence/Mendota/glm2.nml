@@ -253,8 +253,8 @@ nsave = 24
    strmbd_drag    = 0.0160       
    inflow_factor  = 1.0
    inflow_fl      = 'inflow.csv'
-   inflow_varnum  = 13
-   inflow_vars    = 'FLOW', 'SALT', 'TEMP', 'OGM_doc', 'OGM_poc', 'OGM_don', 'NIT_nit', 'NIT_amm', 'OGM_pon', 'OGM_dop', 'OGM_pop', 'PHS_frp_ads','PHS_frp'
+   inflow_varnum  = 6
+   inflow_vars    = 'FLOW', 'TEMP', 'OGM_don', 'NIT_nit', 'NIT_amm', 'PHS_frp'
 /
 !-------------------------------------------------------------------------------
 ! outflows
