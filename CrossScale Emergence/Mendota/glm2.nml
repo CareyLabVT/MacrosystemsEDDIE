@@ -26,12 +26,13 @@
    !-- Light Parameters
    Kw = 0.10
    !-- Mixing Parameters
-   coef_mix_conv = 0.125 
+   coef_mix_conv = 0.125  
    coef_wind_stir = 0.23    
    coef_mix_shear = 0.20   
    coef_mix_turb = 0.51    
    coef_mix_KH = 0.30 
    coef_mix_hyp = 0.50
+   deep_mixing = .false.
 /
 !-------------------------------------------------------------------------------
 ! wq setup
@@ -251,7 +252,7 @@ nsave = 24
    names_of_strms = 'stream'   
    strm_hf_angle  = 65.0         
    strmbd_slope   = 3.0      
-   strmbd_drag    = 0.0160       
+   strmbd_drag    = 0.0160 
    inflow_factor  = 1.0
    inflow_fl      = 'inflow.csv'
    inflow_varnum  = 7
@@ -280,6 +281,7 @@ nsave = 24
    bsn_wid_outl = 398
    outflow_fl   = 'outflow.csv'
    outflow_factor = 1.0
+   seepage_rate = 0
 /
 &snowice
    snow_albedo_factor = 1
