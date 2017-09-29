@@ -209,6 +209,7 @@ nsave = 24
    met_sw     = .true.
    lw_type    = 'LW_IN'
    rain_sw    = .false.
+   snow_sw = .true.
    atm_stab   = .false. 
    catchrain   = .false.
    rad_mode    = 2
@@ -216,7 +217,7 @@ nsave = 24
    cloud_mode  = 4
 !-- BC file details
    meteo_fl   = 'met_hourly.csv'
-   subdaily = .true. 
+   subdaily = .false. 
    wind_factor = 1.0
    sw_factor = 1.0
    cd         = 0.0013 
@@ -253,8 +254,8 @@ nsave = 24
    strmbd_drag    = 0.0160       
    inflow_factor  = 1.0
    inflow_fl      = 'inflow.csv'
-   inflow_varnum  = 6
-   inflow_vars    = 'FLOW', 'TEMP', 'OGM_don', 'NIT_nit', 'NIT_amm', 'PHS_frp'
+   inflow_varnum  = 7
+   inflow_vars    = 'FLOW', 'SALT','TEMP', 'OGM_don', 'NIT_nit', 'NIT_amm', 'PHS_frp'
 /
 !-------------------------------------------------------------------------------
 ! outflows
@@ -279,4 +280,14 @@ nsave = 24
    bsn_wid_outl = 398
    outflow_fl   = 'outflow.csv'
    outflow_factor = 1.0
+/
+&snowice
+   snow_albedo_factor = 1
+   snow_rho_max = 500
+   snow_rho_min = 100
+/
+&sed_heat
+   sed_temp_mean = 12
+   sed_temp_amplitude = 11
+   sed_temp_peak_doy = 242.5
 /
