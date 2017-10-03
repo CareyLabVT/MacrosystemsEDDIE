@@ -24,7 +24,7 @@
    min_layer_thick = 0.050 
    max_layer_thick = 0.500 
    !-- Light Parameters
-   Kw = 0.10
+   Kw = 0.10 
    !-- Mixing Parameters
    coef_mix_conv = 0.125  
    coef_wind_stir = 0.23    
@@ -61,6 +61,7 @@
   split_factor = 1
   bioshade_feedback = .true.
   repair_state = .true.
+  multi_ben = .true.
 /
 !-------------------------------------------------------------------------------
 ! lake details
@@ -87,7 +88,6 @@
    bsn_vals   = 15
    H = 375.00640,376.79166,378.57691,380.36217,382.14743,383.93269, 385.71794,387.50320,389.28846,391.07371,392.85897,394.64423, 396.42949,398.21474,400.00000
    A = 0.00000,2827226.39,5654452.79,8481679.18,11308905.58,14136131.97, 16963358.37,19790584.76,22617811.16,25445037.55,28272263.95,31099490.34, 33926716.74,36753943.13,39581169.52
-!
 /
 !-------------------------------------------------------------------------------
 ! duration of run
@@ -213,16 +213,16 @@ nsave = 24
    snow_sw = .true.
    atm_stab   = .false. 
    catchrain   = .false.
-   rad_mode    = 2
+   rad_mode    = 2 
    albedo_mode = 1
    cloud_mode  = 4
 !-- BC file details
    meteo_fl   = 'met_hourly.csv'
-   subdaily = .false. 
+   subdaily = .true. 
    wind_factor = 1.0
-   sw_factor = 1.0
+   sw_factor = 0.9
    cd         = 0.0013 
-   ce         = 0.0013
+   ce         = 0.0014
    ch         = 0.0013
    rain_threshold = 0.01
    runoff_coef    = 0.3
@@ -255,7 +255,7 @@ nsave = 24
    strmbd_drag    = 0.0160 
    inflow_factor  = 1.0
    inflow_fl      = 'inflow.csv'
-   inflow_varnum  = 7
+   inflow_varnum  = 3
    inflow_vars    = 'FLOW', 'SALT','TEMP', 'OGM_don', 'NIT_nit', 'NIT_amm', 'PHS_frp'
 /
 !-------------------------------------------------------------------------------
@@ -276,7 +276,7 @@ nsave = 24
 &outflow
    num_outlet   = 1
    flt_off_sw   = .false.
-   outl_elvs    = 396
+   outl_elvs    = 400
    bsn_len_outl = 799
    bsn_wid_outl = 398
    outflow_fl   = 'outflow.csv'
@@ -285,11 +285,11 @@ nsave = 24
 /
 &snowice
    snow_albedo_factor = 1
-   snow_rho_max = 500
-   snow_rho_min = 100
+   snow_rho_max = 300
+   snow_rho_min = 50
 /
 &sed_heat
-   sed_temp_mean = 12
-   sed_temp_amplitude = 11
+   sed_temp_mean = 9.7
+   sed_temp_amplitude = 2.7
    sed_temp_peak_doy = 242.5
 /

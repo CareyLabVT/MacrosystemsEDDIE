@@ -10,6 +10,11 @@ baseline <- file.path(sim_folder, 'output.nc')
 plot_temp(file=baseline, fig_path=FALSE) 
 #plot_var(file = baseline, "PHY_TCHLA")
 
+# Plots: Tot_V = lake volume, m3 // evap = evaporation (m/s) // precip = rain (m/s)
+plot_var(baseline, 'Tot_V', fig_path=F, reference = 'surface') # Lake Volume plot
+plot_var(baseline, 'precip') # Rain plot
+plot_var(baseline, 'evap') # Evaporation plot
+
 temp <- get_temp(baseline, reference="surface", z_out=c(0,1,5,10,23))
 tempLong <- melt(temp, id.vars=c("DateTime"))
 tempLong <- tempLong[complete.cases(tempLong),]
