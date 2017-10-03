@@ -226,7 +226,7 @@ nsave = 24
    ch         = 0.0013
    rain_threshold = 0.01
    runoff_coef    = 0.3
-!  time_fmt = 'YYYY-MM-DD hh:mm:ss'
+  time_fmt = 'YYYY-MM-DD hh:mm:ss'
 /
 !-------------------------------------------------------------------------------
 ! inflows 
@@ -255,13 +255,13 @@ nsave = 24
    strmbd_drag    = 0.0160 
    inflow_factor  = 1.0
    inflow_fl      = 'inflow.csv'
-   inflow_varnum  = 3
+   inflow_varnum  = 7
    inflow_vars    = 'FLOW', 'SALT','TEMP', 'OGM_don', 'NIT_nit', 'NIT_amm', 'PHS_frp'
 /
 !-------------------------------------------------------------------------------
 ! outflows
 !-------------------------------------------------------------------------------
-!
+
 !  num_outlet      [integer]  no. of outlets
 !  flt_off_sw      [bool]     floating offtake switches
 !  outl_elvs       [float]    outlet elevations (comma separated list)
