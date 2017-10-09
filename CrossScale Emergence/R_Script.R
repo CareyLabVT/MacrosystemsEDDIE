@@ -9,34 +9,24 @@
   # This module consists of 6 objectives. Activity A consists of Objectives 1-2,
   # Activity B consists of Objectives 3-4, and Activity C consists of Objectives 5-6.
 
-# This script was modified last by KJF on 19 Sept 2017.
+# This script was modified last by CCC on 9 Oct 2017.
 
 ########## ACTIVITY A - OBJECTIVE 1 ############################################
 # Download R packages and GLM files successfully onto your computer.
 
 install.packages('sp') # NOTE: you may get output that says "There is a binary version available
-  #  but the source version is later... Do you want to install from sources the package which
-  #  needs compilation? y/n" Type 'y' (without the quotes) and hit enter. You may now be prompted
+  #  Do you want to install from sources the package which needs compilation? y/n" 
+  #  Type 'y' (without the quotes) and hit enter. You may now be prompted
   #  to download the command line developer tools. Click Install and then re-run the
   #  install.packages(sp) once the install of the tools is finished. This should now
   #  successfully load- when it's done, it should say 'DONE(sp)' if it worked successfully.
 
 install.packages('glmtools', repos=c('http://cran.rstudio.com', 'http://owi.usgs.gov/R')) 
-# This step enables you to access the USGS	website and download the R packages 
-  #  that allow you to work with GLM in R. 
-  # Note: if you are on a slow internet connection, this may take a few minutes.
+# This step enables you to download the R packages that allow you to work with GLM in R. 
 
-library(glmtools) # Load the two packages that you need to run GLM and manipulate its output
-# NOTE: you may get lots of output messages at this step- if this worked successfully, you
-  #  should read: "This information is preliminary or provisional and is subject to revision. It
-  #  is being provided to meet the need for timely best science. The information has not received
-  #  final approval by the U.S. Geological Survey (USGS) and is provided on the condition that
-  #  neither the USGS nor the U.S. Government shall be held liable for any damages resulting from
-  #  the authorized or unauthorized use of the information. Although this software program has
-  #  been used by the USGS, no warranty, expressed or implied, is made by the USGS or the U.S.
-  #  Government as to the accuracy and functioning of the program and related program material nor
-  #  shall the fact of distribution constitute any such warranty, and no responsibility is assumed
-  #  by the USGS in connection therewith" (or some modified version of this statement!)
+library(glmtools) # Load the two packages that you need to analyze GLM output
+# NOTE: you may get lots of output messages in red at this step- if this worked successfully, you
+  #  should read a lot of text that starts with: "This information is preliminary or provisional..." 
 
 library(GLMr) # If this worked, GLMr should load without any error messages. Hurray!
 
@@ -55,7 +45,7 @@ glm_version() # See what version of GLM you are running- should be at least v.2.
 # When you downloaded this script, you unzipped the lake folder to your Desktop. 
   # We now need to tell R where these files are. We do that by...
 
-sim_folder <- 'C:/Users/KFarrell/Desktop/cross_scale_emergence/LAKE' ##!! Edit this line of code to redefine your sim_folder path. 
+sim_folder <- 'C:/Users/KFarrell/Desktop/cross_scale_emergence/LAKE' ##!! Edit this to define your sim_folder location. 
   # This should be replaced with the path to the Desktop folder where you extracted 
   # your zipped files. Most likely, you will need to change the part after Users/ to give
   # the name of your computer (e.g., my computer name is KFarrell, but yours will be different!).
@@ -63,7 +53,7 @@ sim_folder <- 'C:/Users/KFarrell/Desktop/cross_scale_emergence/LAKE' ##!! Edit t
 
 setwd(sim_folder) ##!! This line of code is used to reset your working directory
   #  to the sim_folder. The point of this step is to make sure that any new files you create
-  #  (e.g., figures of output) end up together in this directory, vs. elsewhere in your computer.
+  #  (e.g., figures of output) end up together in this folder, vs. elsewhere in your computer.
 
 nml_file <- paste0(sim_folder,"/glm2.nml") # This step sets the nml_file for your simulation to be
   #  in the new sim_folder location.
@@ -76,8 +66,7 @@ print(nml) # This shows you what is in your nml file.  This is the 'master scrip
   #  multiple sections, including glm_setup, morphometry, meteorology, etc.
 
 get_nml_value(nml, 'lake_name') ##!! Use this command to find out the values of different parameters 
-  # that you are running within your nml file. 
-  # Here, you are asking what the lake name is in the nml file (it should be Mendota or Sunapee!)
+  # in your nml file. Here, you are asking what the lake name is (it should be Mendota or Sunapee!)
   # but you could also use this to learn the 'latitude', 'lake_depth', 'num_inflows', etc. 
 
 # Modify this command to learn where your model lake is located by its latitude & longitude 
@@ -88,33 +77,28 @@ get_nml_value(nml, 'lake_name') ##!! Use this command to find out the values of 
 
 plot_meteo(nml_file) # This command plots the meterological input data for the simulation- 
   # short wave & long wave radiation, air temp, relative humidity, etc. for the duration of the simulation. 
-  # Do these plots look reasonable for the latitude and longitude of your model lake?
  
 ########## ACTIVITY A - OBJECTIVE 2 ############################################
 # Now, the fun part- we get to run the model and look at output!
 
 run_glm(sim_folder, verbose=TRUE) # So simple and elegant... if this works, you should see output
   # that says "Simulation begins.." and then shows all the time steps. 
-  # At the end of the model run, it should say "Run complete" if everything worked ok. This may take
-  # a few minutes, depending on your computer.
+  # At the end, it should say "Run complete" if everything worked ok. This may take a few minutes.
 
 # Now, go to the sim_folder on your computer (in RStudio, you can find this by clicking on the 'Files' 
   # tab- if everything happened correctly, you should see the addition of new files 
   # that were created during the simulation with a recent date and time stamp, 
   # including 'output.nc', 'lake.csv', and 'overflow.csv'. The most important these is the
-  # 'output.nc' file, which contains all of the output data from your simulation in netCDF
-  # format.
+  # 'output.nc' file, which contains all of the output data from your simulation.
 
 # We need to know where the output.nc file is so that the glmtools package can
   # plot and analyze the model output. We tell R where to find the output file using the line below:
 
-baseline <- file.path(sim_folder, 'output.nc') # This defines the output.nc file as being within
-  # the sim_folder.  
+baseline <- file.path(sim_folder, 'output.nc') # This says that the output.nc file is in the sim_folder.  
 
 plot_temp(file=baseline, fig_path=FALSE) # This plots your simulated water temperatures in a heat
   # map, where time is displayed on the x-axis, lake depth is displayed on the y-axis, and the
-  # different colors represent different temperatures. Again, this figure should be visible in the Plots window
-  # in the bottom righthand corner of RStudio's interface.
+  # different colors represent different temperatures. 
 
 # To copy your plot (e.g., onto a PowerPoint slide), click "Export" within the Plots tab.
   # Then click "Copy to Clipboard", and click "Copy plot" in the preview window. You can then 
@@ -123,7 +107,7 @@ plot_temp(file=baseline, fig_path=FALSE) # This plots your simulated water tempe
 # If you want to save your plot as an image file or pdf file instead of copying it, click
   # "Export" within the Plots tab, then choose "Save as Image" or "Save as PDF". In the preview window,
   # give your plot a descriptive file name (e.g., "TemperatureHeatMap.pdf"), then press "Save". 
-  # Your plot image and/or PDF file will be saved in the lake_climate_change folder on your Desktop.
+  # Your plot image and/or PDF file will be saved in the sim_folder on your Desktop.
 
 # This pair of commands can be used to list the variables that were output as part of your GLM run.
 var_names <- sim_vars(baseline)
@@ -132,16 +116,12 @@ print(var_names) # This will print a list of 91 variables that the model simulat
 # We are particularly interested in the amount of total chlorophyll-a (chl-a), because that is 
   # related to phytoplankton blooms. The variable name for chl-a is "PHY_TCHLA", 
   # and it is reported in units of micrograms per liter of water (ug/L). 
-  # search through the list of variables to find PHY_TCHLA.
+  # Search through the list of variables to find PHY_TCHLA.
 
 # Use the code below to create a heatmap of chl-a in the lake over time. 
-plot_var(file = baseline, "PHY_TCHLA")
-# What do you notice about seasonal patterns in chl-a? 
-  # Look at the color gradient scale: when is there the highest concentration of chla-a during the year?
-  # How does chl-a vary with depth, and why do you think you see the patterns you do?
+plot_var(file = baseline, "PHY_TCHLA") # What do you notice about seasonal patterns in chl-a? 
 
-# Try modifying the plot_var command to create a heatmap of a different variable 
-  # from the output!
+# Try modifying the plot_var command to create a heatmap of a different variable!
 
 # We also want to save the model output of the daily chlorophyll-a concentrations in the lake 
   # during our baseline simulation, because we'll be comparing it to our climate and land use scenarios later. 
@@ -150,16 +130,12 @@ chla_output <- get_var(file=baseline, "PHY_TCHLA", reference='surface', z_out=c(
 colnames(chla_output)[2] <- "Baseline_Chla" # Rename the chl-a column so we remember it is from the Baseline scenario
 
 ########## ACTIVITY B - OBJECTIVE 3 ############################################
-# For Activity B and C, you will compare how your lake responds to climate and land use change to how another
-  # lake responds. To do this, you will work with a partner on your lake, plus another team that is modeling
-  # another lake. You will develop climate and land use change scenarios, run the same scenario for both lakes, 
-  # and evaluate how the lakes respond. 
-
-# Using your knowledge of potential climate change, work with your partner and another team to develop 
-  # a climate change scenario for your model lakes based on changes in air temperature.
+# For Activity B, you will work with your partner to model your lake, plus another team that is modeling
+  # another lake. Using your knowledge of potential climate change, work with your partner and another team to develop 
+  # a climate change scenario for the two lakes based on changes in air temperature.
   # To complete this activity, you will need to modify the input meterological data (the met_hourly file) and  
   # rerun the model to examine the effects of your scenario on lake thermal structure and phytoplankton.
-  # Remember that both teams should run the SAME climate change scenario on their individual lake.
+  # Remember that both teams should run the SAME climate change scenario on their separate lakes and compare output.
 
 # Here is an overview of the steps you will complete with your partner to accomplish this (detailed directions below):
 # 1) Develop a climate scenario based on changing air temperatures for your focal lake (Sunapee or Mendota)
@@ -168,9 +144,6 @@ colnames(chla_output)[2] <- "Baseline_Chla" # Rename the chl-a column so we reme
   # your proposed scenario, in terms of when and how much air temperature will change. 
 
 # 3) Run the GLM using your new met file and examine how it changes the physical structure of the lake.  
-  # How does your climate scenario change the thermal structure of the lake? 
-  # What does the temperature profile look like?  How do the phytoplankton (i.e., chl-a) respond? 
-  # What are the implications of your climate scenario for future water quality and phytoplankton blooms?
 
 # 4) Create and save a few figures to highlight the results of your climate scenario and present them to 
   # the rest of the class. It would be helpful to present the meteorological input plot as well as 
@@ -202,8 +175,7 @@ colnames(chla_output)[2] <- "Baseline_Chla" # Rename the chl-a column so we reme
   # When you click ok, this should change the format of the 'time'  column so that it reads: 
   # "2011-09-01 00:00:00" with exactly that spacing and punctuation. 
   # Save this new file under a different name that tells what scenario it represents, e.g., "met_hourly_climate.csv". 
-  # Close the csv file, saving your changes.
-  # Now, do NOT open the file in Excel again- otherwise, you will need to
+  # Close the csv file, saving your changes. Now, do NOT open the file in Excel again- otherwise, you will need to
   # repeat this formatting process before reading the altered met file into GLM.
 
 # 3) You now need to edit the glm2.nml file to change the name of the input meteorological
@@ -218,14 +190,13 @@ colnames(chla_output)[2] <- "Baseline_Chla" # Rename the chl-a column so we reme
 # Once you have edited the nml file name, you can always check to make sure that it is correct with the command:
 nml <- read_nml(nml_file)  # Read in your nml file from your new directory
 get_nml_value(nml, 'meteo_fl') # If you have done this correctly, you should get an output that lists
-  # the name of your new meteorological file altered for your weather/climate scenario. If it doesn't,
+  # the name of your new meteorological file altered for your climate scenario. If it doesn't,
   # repeat step 3 above.
 
 # You can now run the model for your climate change scenario using the new edited nml file, following the instructions as
   # described above for Objective 2.  Exciting!
 
 run_glm(sim_folder, verbose=TRUE) # Run your GLM model for your lake. 
-#  At the end of the model run, it should say "Run complete" if everything worked ok.
 
 # Again, we need to tell R where the output.nc file is so that the glmtools package can
   # plot and analyze the model output. We tell R where to find the output file using the line below:
@@ -248,16 +219,9 @@ plot_var(file=climate, "PHY_TCHLA") # Create a heatmap of chlorophyll-a. How doe
   # and the other team's plots from their lake (climate scenario and baseline plots), put together 
   # a brief presentation of your model simulation and output to share with the rest of the class. 
 
-# Make sure your presentation answers the following questions: 
-  # a) Does the model output support or contradict your original hypotheses of how the climate scenario will 
-  #    affect the two lakes' temperatures and phytoplankton? 
-  # b) How does the temperature and chlorophyll output from the two lakes compare (both baseline and 
-  #    scenario conditions? 
-  # c) Which lake’s water temperature and chlorophyll is more sensitive to the climate scenario?
-
 ########## ACTIVITY C - OBJECTIVE 5 ############################################
 # Now, using your knowledge of potential land use effects on nutrients coming into a lake, 
-  # work with your partner and the other team to develop a land use change scenario for your model lake 
+  # work with your partner and the other team to develop a land use change scenario for your two model lakes 
   # based on changes in phosphorus concentrations in the inflow file. 
 
 # To complete this activity, you will need to modify the input driver data (inflow.csv)
@@ -267,15 +231,11 @@ plot_var(file=climate, "PHY_TCHLA") # Create a heatmap of chlorophyll-a. How doe
   # 1) Develop a land use scenario based on changing the balance of agriculture, urbanization, and undisturbed
   # land cover in your model lake's watershed.
 
-  # 2) Create a corresponding change in the stream inflow file. Think through how phosphorus 
-    # concentrations will change in your proposed scenario, in terms of both the timing and intensity 
-    # of nutrient inflows. 
+  # 2) Create a corresponding change in the stream inflow file. Think through how phosphorus inflow
+    # concentrations will change in your proposed scenario, in terms of both the timing and intensity. 
 
   # 3) Run the GLM model using your new inflow file and the original met file (met_hourly.csv) and examine 
     # how it changes the lake in comparison to baseline conditions. Think through these questions:
-    # How does your land use scenario change the chlorophyll-a profile of the lake? 
-    # Does lake temperature change with the land use scenario? 
-    # What are the implications of your land use scenario for future water quality and phytoplankton blooms?
 
   # 4) Create and save a few figures to highlight the results of your land use scenario. 
     # It would be helpful to present both the land use driver file as well as 
@@ -350,9 +310,8 @@ chla_output["LandUse_Chla"] <- `*tmp*`[2] # Attach the chl-a data from your land
 
 # Plot the output of your land use scenario using the commands you learned above. 
 plot_temp(file=landuse, fig_path=FALSE) # Heatmap of temperature
-plot_var(file=landuse, "PHY_TCHLA") # Heatmap of chlorophyll-a
-# How does your phytoplankton heatmap look in comparison to the baseline? Be sure to check the scale of
-  # of the color gradient representing chl-a when comparing plots!
+plot_var(file=landuse, "PHY_TCHLA") # Heatmap of chla. How does your phytoplankton heatmap look in comparison to the baseline? 
+  # Be sure to check the scale of the color gradient representing chl-a when comparing plots!
 
 # Finally, we want to see what happens when land use and climate interact! 
   # Luckily, testing the simultaneous effects of your land use and climate change scenarios will be pretty easy!
@@ -376,10 +335,8 @@ get_nml_value(nml, 'meteo_fl') # If you have done this correctly, you should get
 
 # Run GLM one more time!
 run_glm(sim_folder, verbose=TRUE) # Run your GLM model for your lake. 
-# At the end of the model run, it should say "Run complete" if everything worked ok.
 
-# As above, we need to tell R where the output.nc file is so that the glmtools package can
-  # plot and analyze the model output. We tell R where to find the output file using the line below:
+# As above, we need to tell R where the output.nc file is:
 climate_landuse <- file.path(sim_folder, 'output.nc') # This defines the output.nc file as being within
   # the sim_folder. Note that we've called this output "climate_landuse" since it is the output from our 
   # simultaneous climate AND land use change simulations.
@@ -393,10 +350,6 @@ chla_output["Climate_LandUse_Chla"] <- `*tmp*`[2] # Attach the chl-a data from y
 # Plot the output of your land use scenario using the commands you learned above. 
 plot_temp(file=climate_landuse, fig_path=FALSE) # Heatmap of temperature
 plot_var(file=climate_landuse, "PHY_TCHLA") # Heatmap of chlorophyll-a
-
-# Add these new plots to the presentation you're making with your team. 
-  # Think about how land use and climate change interacted to affect phytoplankton blooms in your lake. 
-  # How do these newest plots compare to the figures you made from climate change or land use change scenarios alone?
 
 # Now that you've run four different scenarios (baseline, climate only, land use only, and climate + land use), let's plot 
   # how the chl-a in the lakes responded to the different scenarios. We can do this by:
@@ -417,15 +370,7 @@ legend("topleft",c("Baseline", "Climate Only", "Land Use Only", "Combined C + LU
 # Using the line plot you just created, and the other team's line plot from their lake, put together a brief 
   # presentation of your model simulation and output to share with the rest of the class. 
 
-# Make sure your presentation answers the following questions: 
-  # a) Does the model output support or contradict your original hypotheses of how climate, land use,
-  #    and their combined effects will interact to affect the two lakes' phytoplankton? 
-  # b) How does the chlorophyll output from the four scenarios in the two lakes compare? (be sure to
-  #    compare heatmap color scales among plots!)
-  # c) Which lake’s chlorophyll is more sensitive to climate change? Land use? Their combined effects?
-  # d) Observing similar phenomena (e.g., phytoplankton blooms) among ecosystems that experience different 
-  #    combinations of drivers are part of cross-scale emergence: what do the two lakes' responses to 
-  #    climate and land use tell you about how water quality might respond to human activities in the future?
+# Make sure your presentation answers the questions listed in your handout.
 
 # Bravo, you are done!! 
 
