@@ -349,8 +349,8 @@ chla_output["LandUse_Chla"] <- `*tmp*`[2] # Attach the chl-a data from your land
   # that contains your baseline scenario and climate change scenario chl-a concentrations
 
 # Plot the output of your land use scenario using the commands you learned above. 
-plot_temp(file=climate, fig_path=FALSE) # Heatmap of temperature
-plot_var(file = climate, "PHY_TCHLA") # Heatmap of chlorophyll-a
+plot_temp(file=landuse, fig_path=FALSE) # Heatmap of temperature
+plot_var(file=landuse, "PHY_TCHLA") # Heatmap of chlorophyll-a
 # How does your phytoplankton heatmap look in comparison to the baseline? Be sure to check the scale of
   # of the color gradient representing chl-a when comparing plots!
 
@@ -392,7 +392,7 @@ chla_output["Climate_LandUse_Chla"] <- `*tmp*`[2] # Attach the chl-a data from y
 
 # Plot the output of your land use scenario using the commands you learned above. 
 plot_temp(file=climate_landuse, fig_path=FALSE) # Heatmap of temperature
-plot_var(file = climate_landuse, "PHY_TCHLA") # Heatmap of chlorophyll-a
+plot_var(file=climate_landuse, "PHY_TCHLA") # Heatmap of chlorophyll-a
 
 # Add these new plots to the presentation you're making with your team. 
   # Think about how land use and climate change interacted to affect phytoplankton blooms in your lake. 
@@ -402,7 +402,7 @@ plot_var(file = climate_landuse, "PHY_TCHLA") # Heatmap of chlorophyll-a
   # how the chl-a in the lakes responded to the different scenarios. We can do this by:
 attach(chla_output)
 
-plot(DateTime, Baseline_Chla, type="l", col="black", ylim=c(0, 30),
+plot(DateTime, Baseline_Chla, type="l", col="black", ylim=c(0, 100),
      ylab="Chlorophyll-a (ug/L)", xlab="Date")  # This plots DateTime vs. Observed data in black 
 lines(DateTime, Climate_Chla, col="red") # this adds a red line of the climate change scenario
 lines(DateTime, LandUse_Chla, col="blue") # this adds a blue line of the land use scenario
