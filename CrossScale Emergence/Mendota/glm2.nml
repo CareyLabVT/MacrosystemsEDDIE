@@ -32,7 +32,7 @@
    coef_mix_turb = 0.51    
    coef_mix_KH = 0.30 
    coef_mix_hyp = 0.50
-   deep_mixing = .false.
+!   deep_mixing = .false.
 /
 !-------------------------------------------------------------------------------
 ! wq setup
@@ -153,26 +153,32 @@ nsave = 24
     the_temps  = 25.1, 24.9, 24.3, 15.3, 12.5, 11.8
     the_sals   = 0.00, 0.00, 0.00, 0.00, 0.00, 0.00
     lake_depth = 25
-    num_wq_vars = 11
-    wq_names =  'CAR_dic',
+    num_wq_vars = 14
+    wq_names =  'CAR_pH',
+                'CAR_dic',
                 'OGM_don',
                 'OGM_pon',
                 'OGM_dop',
                 'OGM_pop',
+                'OGM_docr',
                 'OGM_doc',
                 'OGM_poc',
+				'SIL_rsi',
 				'OXY_oxy',
 				'NIT_amm',
 				'NIT_nit',
 				'PHS_frp'
-	wq_init_vals = 	3687.760, 3629.475, 3853.455, 3600.333, 3886.761, 3522.898, 
+	wq_init_vals = 	8.4, 8.4, 8.4, 8.4, 8.4, 8.4,
+	               3687.760, 3629.475, 3853.455, 3600.333, 3886.761, 3522.898, 
 	               20,20,20,20,20,20,
                    6, 6, 6, 6, 6, 6,
                    0.5812, 0.7427, 0.7104, 0.7104, 0.7427, 0.9041,
                    1,1,1,1,1,1,
                    375, 375, 375, 375, 375, 375,
+                   0,0,0,0,0,0,
 				   50,50,50,50,50,50,
-				   440.625, 437.500, 434.375, 425.000, 400.000, 387.500,
+				   190, 190, 190, 190, 190, 190,
+					440.625, 437.500, 434.375, 425.000, 400.000, 387.500,
 					5, 5, 5, 5, 5, 5,
 					50,50,50,50,50,50,
 					3.0,3.0,3.0,3.0,3.0,3.0
@@ -213,20 +219,20 @@ nsave = 24
    snow_sw = .true.
    atm_stab   = .false. 
    catchrain   = .false.
-   rad_mode    = 2 
+   rad_mode    = 2  !PCH radmode = 1
    albedo_mode = 1
    cloud_mode  = 4
 !-- BC file details
    meteo_fl   = 'met_hourly.csv'
    subdaily = .true. 
    wind_factor = 1.0
-   sw_factor = 0.9
+ !  sw_factor = 0.9 !PCH had off
    cd         = 0.0013 
-   ce         = 0.0014
+   ce         = 0.0013
    ch         = 0.0013
    rain_threshold = 0.01
    runoff_coef    = 0.3
-  time_fmt = 'YYYY-MM-DD hh:mm:ss'
+!  time_fmt = 'YYYY-MM-DD hh:mm:ss'
 /
 !-------------------------------------------------------------------------------
 ! inflows 
