@@ -61,7 +61,7 @@
   split_factor = 1
   bioshade_feedback = .true.
   repair_state = .true.
-  multi_ben = .true.
+!  multi_ben = .true.
 /
 !-------------------------------------------------------------------------------
 ! lake details
@@ -153,15 +153,15 @@ nsave = 24
     the_temps  = 25.1, 24.9, 24.3, 15.3, 12.5, 11.8
     the_sals   = 0.00, 0.00, 0.00, 0.00, 0.00, 0.00
     lake_depth = 25
-    num_wq_vars = 14
+    num_wq_vars = 13
     wq_names =  'CAR_pH',
                 'CAR_dic',
                 'OGM_don',
                 'OGM_pon',
                 'OGM_dop',
                 'OGM_pop',
-                'OGM_docr',
                 'OGM_doc',
+				!'OGM_docr',
                 'OGM_poc',
 				'SIL_rsi',
 				'OXY_oxy',
@@ -175,7 +175,7 @@ nsave = 24
                    0.5812, 0.7427, 0.7104, 0.7104, 0.7427, 0.9041,
                    1,1,1,1,1,1,
                    375, 375, 375, 375, 375, 375,
-                   0,0,0,0,0,0,
+                   !0,0,0,0,0,0,
 				   50,50,50,50,50,50,
 				   190, 190, 190, 190, 190, 190,
 					440.625, 437.500, 434.375, 425.000, 400.000, 387.500,
@@ -216,7 +216,7 @@ nsave = 24
    met_sw     = .true.
    lw_type    = 'LW_IN'
    rain_sw    = .false.
-   snow_sw = .true.
+!   snow_sw = .true.
    atm_stab   = .false. 
    catchrain   = .false.
    rad_mode    = 2  !PCH radmode = 1

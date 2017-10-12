@@ -18,8 +18,12 @@
             'aed2_nitrogen',
             'aed2_phosphorus',
             'aed2_organic_matter',
-            'aed2_phytoplankton'
+            'aed2_phytoplankton',
+            'aed2_zooplankton',
+            'aed2_tracer',
+            'aed2_totals'
 /
+
 !###############################################################################
 ! aed2_sedflux
 !  sediment flux model types :
@@ -250,7 +254,10 @@
 !-------------------------------------------------------------------------------
 &aed2_organic_matter
    !-- ORGANIC NITROGEN
-   docr_initial = 0.00001
+    ! Initial values for recalcitrant pools
+   docr_initial = 0
+   donr_initial = 0
+   dopr_initial = 0
    w_pon = -0.1 !Snortheim -0.1238, Manual: -10
    Rpon_miner = 0.01 !Manual: 0.005 - 0.03, Emily: 0.035
    Rdon_miner = 0.01 !Manual: 0.003 - 0.05
@@ -263,9 +270,9 @@
    theta_don_miner = 1.07
    theta_sed_don = 1.07
    don_miner_product_variable='NIT_amm'
-   donr_initial = 0.0
    !-- ORGANIC PHOSPHORUS
-   dopr_initial = 0.0
+   pop_initial = 1.0
+   dop_initial = 1.0
    w_pop = -2 !Manual: -1
    Rpop_miner = 0.01 !0.005 !Manual: 0.01 - 0.03 (maybe up to 0.099?)
    Rdop_miner = 0.05 !0.05 !Manual: 0.01 - 0.05
@@ -279,7 +286,8 @@
    theta_sed_dop = 1.07
    dop_miner_product_variable='PHS_frp'
    !-- ORGANIC CARBON
-   docr_initial = 0.0
+   poc_initial = 80.0
+   doc_initial = 400.0
    w_poc = -0.5 !Snortheim -0.1238, Manual: -1
    Rpoc_miner = 0.005 !Manual: 0.01 - 0.07 (0.008)
    Rdoc_miner = 0.04 !Manual: 0.035 - 0.05
@@ -330,4 +338,113 @@
    si_uptake_target_variable='SIL_rsi'
    do_uptake_target_variable='OXY_oxy'
    c_uptake_target_variable='CAR_dic'
+/
+!###############################################################################
+! aed2_pathogens
+!  num_pathogens = number of pathogens to model
+!  the_pathogens = list of pathogens classes (referencing the pathogens database)
+!-------------------------------------------------------------------------------
+&aed2_pathogens
+   num_pathogens = 1
+   the_pathogens = 1 !,3,5
+/
+!###############################################################################
+! aed2_zooplankton - AED zooplankton model
+!-------------------------------------------------------------------------------
+! num_zoops      [integer]
+!                   number of zooplankton groups within this module to include
+! the_zoops      [integer]
+!                   list of ID's of groups in aed_zoop_pars.nml (len=num_zoops)
+! dX_target_variable  [string]
+!                   state variable linked to provide/receive dissoved OM
+! pX_target_variable  [string]
+!                   state variable linked to provide/receive particulate OM
+!
+! NOTE: Users must supply a valid "aed_zoops_pars.nml" file
+!
+!
+! NOTE: Processes such as zoop grazing or turbidity calc within any other
+!       AED modules should be configured to use the following names:
+!        aed_zooplankton_name        (where name is as defined in the nml)
+!
+! DIAGNOSTICS:
+!       -
+!
+!-------------------------------------------------------------------------------
+&aed2_zooplankton
+   num_zoops = 3
+   the_zoops = 1,2,3
+   dn_target_variable='OGM_don'  ! dissolved nitrogen target variable
+   pn_target_variable='OGM_pon'  ! particulate nitrogen target variable
+   dp_target_variable='OGM_dop'  ! dissolved phosphorus target variable
+   pp_target_variable='OGM_pop'  ! particulate phosphorus target variable
+   dc_target_variable='OGM_doc'  ! dissolved carbon target variable
+   pc_target_variable='OGM_poc'  ! particulate carbon target variable
+/
+
+!###############################################################################
+! aed2_tracer
+!   num_tracers = number of tracers to model
+!   decay       = list of decay rates for the tracers
+!   settling    = list of settling rates for the tracers
+!   fsed        = list of sedimentation fluxes for the tracers
+!-------------------------------------------------------------------------------
+&aed2_tracer
+   num_tracers = 1
+   decay = 0      !, 0, 0, ...
+   settling = -0.1  !, 0, 0, ....
+   fsed = 0       !, 0, 0, ...
+   epsilon = 0.02 !, 0.02, 0.02
+   tau_0 = 0.01   !, 0.01, 0.01
+   tau_r = 1.0    !, 1.0, 1.0
+   Ke_ss = 0.02   !, 0.02, 0.02
+   retention_time = .true.
+/
+
+
+!###############################################################################
+! aed2_totals
+!  TN_vars      = list of variable contributing to total nitrogen
+!  TN_varscale  = scaling of TN variables contribution
+!  TP_vars      = list of variable contributing to total phosphorus
+!  TP_varscale  = scaling of TP variables contribution
+!  TOC_vars     = list of variable contributing to total organic carbon
+!  TOC_varscale = scaling of TOC variables contribution
+!  TSS_vars     = list of variable contributing to total suspended solids
+!  TSS_varscale = scaling of TSS variables contribution
+!-------------------------------------------------------------------------------
+&aed2_totals
+   TN_vars =  'NIT_nit',
+              'NIT_amm',
+              'OGM_don',
+              'OGM_pon',
+              'PHY_CYANOPCH1_IN',
+              'PHY_CYANONPCH2_IN',
+              'PHY_CHLOROPCH3_IN',
+              'PHY_DIATOMPCH4_IN'
+   TN_varscale = 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0
+   TP_vars =  'PHS_frp',
+              'PHS_frp_ads',
+              'OGM_dop',
+              'OGM_pop',
+              'PHY_CYANOPCH1_IP',
+              'PHY_CYANONPCH2_IP',
+              'PHY_CHLOROPCH3_IP',
+              'PHY_DIATOMPCH4_IP'
+   TP_varscale = 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 ,1.0 ,1.0
+   TOC_vars = !'OGM_docr',
+              'OGM_doc',
+              'OGM_poc',
+              'PHY_CYANOPCH1',
+   			  'PHY_CYANONPCH2',
+   			  'PHY_CHLOROPCH3',
+   			  'PHY_DIATOMPCH4'
+   TOC_varscale = 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0
+   TSS_vars = 'OGM_poc',
+   			  'PHY_CYANOPCH1',
+   			  'PHY_CYANONPCH2',
+   			  'PHY_CHLOROPCH3',
+   			  'PHY_DIATOMPCH4'
+ 
+   TSS_varscale = 0.012,0.012,0.012,0.012,0.012 ! because AED likes mg/L for this var
 /
