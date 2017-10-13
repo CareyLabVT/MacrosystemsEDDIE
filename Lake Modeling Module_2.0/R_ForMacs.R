@@ -29,7 +29,7 @@ install.packages('sp') # NOTE: you may get output that says "There is a binary v
 #  already installed the sp package for previous projects, you may not have any output after 
 #  completing this step.
 
-install.packages('devtools') # This package allows you to access 
+install.packages('devtools')
 library(devtools)
 devtools::install_github("CareyLabVT/GLMr")
 

@@ -29,6 +29,10 @@ install.packages('sp') # NOTE: you may get output that says "There is a binary v
 #  already installed the sp package for previous projects, you may not have any output after 
 #  completing this step.
 
+install.packages('devtools')
+library(devtools)
+devtools::install_github("CareyLabVT/GLMr")
+
 install.packages('glmtools', repos=c('http://cran.rstudio.com', 'http://owi.usgs.gov/R')) 
 # This step enables you to access the USGS	website and download the R packages 
 #  that allow you to work with GLM in R. 
@@ -310,8 +314,6 @@ get_nml_value(nml, 'meteo_fl') # If you have done this correctly, you should get
 install.packages("httr")
 install.packages("RCurl")
 install.packages("jsonlite")
-install.packages("devtools")
-library("devtools")
 devtools::install_github("GRAPLE/GRAPLEr") # If this worked correctly, you should get multiple lines of output in 
 #  red font that ends with "DONE (GrapleR)". Depending on your internet connection, this step may take a few minutes to
 #  complete.
