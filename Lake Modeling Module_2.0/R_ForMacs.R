@@ -15,7 +15,7 @@
 #  This module consists of 8 objectives. Activity A consists of Objectives 1-4,		  
 #  Activity B consists of Objective 5-6, and Activity C consists of Objective 7-8.		 
 
-# This script was last modified by KJF on 1 August 2017.
+# This script was last modified by KJF on 13 October 2017.
 
 ########## ACTIVITY A - OBJECTIVE 1 ############################################
 # Download R packages and GLM files successfully onto your computer.
@@ -28,6 +28,10 @@ install.packages('sp') # NOTE: you may get output that says "There is a binary v
 #  successfully load- when it's done, it should say 'DONE(sp)' if it worked successfully. Note that if you 
 #  already installed the sp package for previous projects, you may not have any output after 
 #  completing this step.
+
+install.packages('devtools') # This package allows you to access 
+library(devtools)
+devtools::install_github("CareyLabVT/GLMr")
 
 install.packages('glmtools', repos=c('http://cran.rstudio.com', 'http://owi.usgs.gov/R')) 
 # This step enables you to access the USGS	website and download the R packages 
@@ -312,8 +316,6 @@ get_nml_value(nml, 'meteo_fl') # If you have done this correctly, you should get
 install.packages("httr")		
 install.packages("RCurl")		
 install.packages("jsonlite")		
-install.packages("devtools")		
-library("devtools")		
 devtools::install_github("GRAPLE/GRAPLEr") # If this worked correctly, you should get multiple lines of output in 
 #  red font that ends with "DONE (GrapleR)". Depending on your internet connection, this step may take a few minutes to
 #  complete.
