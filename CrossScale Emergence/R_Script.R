@@ -14,21 +14,25 @@
 ########## ACTIVITY A - OBJECTIVE 1 ############################################
 # Download R packages and GLM files successfully onto your computer.
 
-install.packages('sp') # NOTE: you may get output that says "There is a binary 
-  # version available. Do you want to install from sources the package which 
-  # needs compilation? y/n" Type 'y' (without the quotes) and hit enter. You may 
-  # now be prompted to download the command line developer tools. Click Install 
-  # and then re-run the install.packages(sp) once the install of the tools is 
+install.packages('sp') # NOTE: depending on your computer, you may get output that says, 
+  # "There is a binary version available. Do you want to install from sources that 
+  # need compilation? y/n" If this pops up, type 'y' (without the quotes) and hit enter. You may 
+  # now be prompted to download the command line developer tools in a pop-up window. Command line
+  # developer tools is a program used to run modeling software. 
+  # Click Install and then re-run the install.packages(sp) once the install of the tools is 
   # finished. This should now successfully load- when it's done, it should say 
   # 'DONE(sp)' if it worked successfully.
 
-install.packages('devtools')
-library(devtools)
-devtools::install_github("CareyLabVT/GLMr")
+install.packages('devtools') # this is another R package used to run modeling software.
+
+library(devtools) # load the package
+
+devtools::install_github("CareyLabVT/GLMr") #download the GLMr software. This may take a few minutes. If
+  # it downloaded successfully, you should see "DONE (GLMr)" at the end of red output.
 
 install.packages('glmtools', repos=c('http://cran.rstudio.com', 
                                      'http://owi.usgs.gov/R')) # This step 
-  # enables you to download the R packages that allow you to work with GLM in R. 
+  # downloads the R packages that allow you to work with GLM in R. 
 
 library(glmtools) # Load the two packages that you need to analyze GLM output
 # NOTE: you may get lots of output messages in red at this step- if this worked 
