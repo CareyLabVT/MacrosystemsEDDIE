@@ -1,89 +1,101 @@
 # Cross-Scale Emergence Module ####
-# This module was initially developed by Carey, C.C. and K.J. Farrell. 13 August 2017.
-  # Macrosystems EDDIE: Cross-Scale Emergence. 
-  # Macrosystems EDDIE Module 2, Version 1. 
-  # https://serc.carleton.edu/enviro_data/macrosystems/module2.html
-  # Module development was supported by NSF EF 1702506.
+# This module was initially developed by Carey, C.C. and K.J. Farrell. 13 Aug. 2017.
+ # Macrosystems EDDIE: Cross-Scale Emergence. 
+ # Macrosystems EDDIE Module 2, Version 1. 
+ # https://serc.carleton.edu/enviro_data/macrosystems/module2.html
+ # Module development was supported by NSF EF 1702506.
 
 # R code for students to work through the module activities A, B, and C.
-  # This module consists of 6 objectives. Activity A consists of Objectives 1-2,
-  # Activity B consists of Objectives 3-4, and Activity C consists of Objectives 5-6.
+ # This module consists of 6 objectives. Activity A consists of Objectives 1-2,
+ # Activity B consists of Objectives 3-4, & Activity C consists of Objectives 5-6.
 
-# This script was modified last by CCC on 9 Oct 2017.
+# This script was modified last by KJF on 18 Oct 2017.
 
 ########## ACTIVITY A - OBJECTIVE 1 ############################################
 # Download R packages and GLM files successfully onto your computer.
 
-install.packages('sp') # NOTE: you may get output that says "There is a binary version available
-  #  Do you want to install from sources the package which needs compilation? y/n" 
-  #  Type 'y' (without the quotes) and hit enter. You may now be prompted
-  #  to download the command line developer tools. Click Install and then re-run the
-  #  install.packages(sp) once the install of the tools is finished. This should now
-  #  successfully load- when it's done, it should say 'DONE(sp)' if it worked successfully.
+install.packages('sp') # NOTE: you may get output that says "There is a binary 
+  # version available. Do you want to install from sources the package which 
+  # needs compilation? y/n" Type 'y' (without the quotes) and hit enter. You may 
+  # now be prompted to download the command line developer tools. Click Install 
+  # and then re-run the install.packages(sp) once the install of the tools is 
+  # finished. This should now successfully load- when it's done, it should say 
+  # 'DONE(sp)' if it worked successfully.
 
-install.packages('glmtools', repos=c('http://cran.rstudio.com', 'http://owi.usgs.gov/R')) 
-# This step enables you to download the R packages that allow you to work with GLM in R. 
+install.packages('devtools')
+library(devtools)
+devtools::install_github("CareyLabVT/GLMr")
+
+install.packages('glmtools', repos=c('http://cran.rstudio.com', 
+                                     'http://owi.usgs.gov/R')) # This step 
+  # enables you to download the R packages that allow you to work with GLM in R. 
 
 library(glmtools) # Load the two packages that you need to analyze GLM output
-# NOTE: you may get lots of output messages in red at this step- if this worked successfully, you
-  #  should read a lot of text that starts with: "This information is preliminary or provisional..." 
+# NOTE: you may get lots of output messages in red at this step- if this worked 
+  # successfully, you should read a lot of text that starts with: "This 
+  # information is preliminary or provisional..." 
 
-library(GLMr) # If this worked, GLMr should load without any error messages. Hurray!
+library(GLMr) # If this worked, GLMr should load without error messages. Hurray!
 
-glm_version() # See what version of GLM you are running- should be at least v.2.x.x
+glm_version() # See what version of GLM you are running- should be v.2.x.x
 
 # CONGRATS! You've now succesfully loaded GLM onto your computer! 
 
 # Now, we will explore the files that come with your downloaded GLM files 
 
-# NOTE! Throughout the rest of the module, you may need to modify some of the lines of code
-  #  written below to run on your computer. If you do need to modify a line of code, I marked that
-  #  particular line with ##!! symbols at the beginning of that line's annotation.  If you do not
-  #  see those symbols, then you do not need to edit that line of code (you can merely run it as
-  #  normal).
+# NOTE! Throughout the rest of the module, you may need to modify some of the 
+  # lines of code written below to run on your computer. If you do need to modify 
+  # a line of code, I marked that particular line with ##!! symbols at the 
+  # beginning of that line's annotation.  If you do not see those symbols, then 
+  # you do not need to edit that line of code (you can merely run it as normal).
 
 # When you downloaded this script, you unzipped the lake folder to your Desktop. 
   # We now need to tell R where these files are. We do that by...
 
-sim_folder <- 'C:/Users/KFarrell/Desktop/cross_scale_emergence/LAKE' ##!! Edit this to define your sim_folder location. 
-  # This should be replaced with the path to the Desktop folder where you extracted 
-  # your zipped files. Most likely, you will need to change the part after Users/ to give
-  # the name of your computer (e.g., my computer name is KFarrell, but yours will be different!).
-  # Also modify LAKE to the name of lake you are modeling (e.g., Mendota OR Sunapee)
+sim_folder <- 'C:/Users/KFarrell/Desktop/cross_scale_emergence/LAKE' ##!! Edit 
+  # this to define your sim_folder location.  This should be replaced with the 
+  # path to the Desktop folder where you extracted your zipped files. Most 
+  # likely, you will need to change the part after Users/ to give  the name of 
+  # your computer (e.g., my computer name is KFarrell).
+  # Also modify LAKE to the lake you are modeling (e.g., Mendota or Sunapee)
 
 setwd(sim_folder) ##!! This line of code is used to reset your working directory
-  #  to the sim_folder. The point of this step is to make sure that any new files you create
-  #  (e.g., figures of output) end up together in this folder, vs. elsewhere in your computer.
+  #  to the sim_folder. The point of this step is to make sure that any new files 
+  # you create (e.g., figures of output) end up together in this folder.
 
-nml_file <- paste0(sim_folder,"/glm2.nml") # This step sets the nml_file for your simulation to be
-  #  in the new sim_folder location.
+nml_file <- paste0(sim_folder,"/glm2.nml") # This step sets the nml_file for your 
+  # simulation to be in the new sim_folder location.
 
 nml <- read_nml(nml_file) # Read in your nml file from your new directory
 
-print(nml) # This shows you what is in your nml file.  This is the 'master script' of the GLM
-  #  simulation; the nml file tells the GLM model all of the initial conditions about your lake,
-  #  how you are defining parameters, and more - this is a really important file! There should be
-  #  multiple sections, including glm_setup, morphometry, meteorology, etc.
+print(nml) # This shows you what is in your nml file.  This is the 'master script' 
+  # of the GLM simulation; the nml file tells the GLM model all of the initial 
+  # conditions about your lake, how you are defining parameters, and more - this 
+  # is a really important file! There should be multiple sections, including 
+  # glm_setup, morphometry, meteorology, etc.
 
-get_nml_value(nml, 'lake_name') ##!! Use this command to find out the values of different parameters 
-  # in your nml file. Here, you are asking what the lake name is (it should be Mendota or Sunapee!)
-  # but you could also use this to learn the 'latitude', 'lake_depth', 'num_inflows', etc. 
+get_nml_value(nml, 'lake_name') ##!! Use this command to find out the values of 
+  # different parameters in your nml file. Here, you are asking what the lake 
+  # name is (it should be Mendota or Sunapee!) but you could also use this to 
+  # learn the 'latitude', 'lake_depth', 'num_inflows', etc. 
 
-# Modify this command to learn where your model lake is located by its latitude & longitude 
-  # coordinates, and the lake's maximum depth.
+# Modify this command to learn where your model lake is located by its latitude 
+  # & longitude coordinates, and the lake's maximum depth.
 
-# Use a web mapping program (e.g., Google Maps or similar) to locate your lake based on the lat/long
-  # from your nml file.
+# Use a web mapping program (e.g., Google Maps or similar) to locate your lake 
+  # based on the lat/long from your nml file.
 
-plot_meteo(nml_file) # This command plots the meterological input data for the simulation- 
-  # short wave & long wave radiation, air temp, relative humidity, etc. for the duration of the simulation. 
+plot_meteo(nml_file) # This command plots the meterological input data for the 
+  # simulation: short wave & long wave radiation, air temp, relative humidity, 
+  # etc. for the duration of the simulation. 
  
 ########## ACTIVITY A - OBJECTIVE 2 ############################################
 # Now, the fun part- we get to run the model and look at output!
 
-run_glm(sim_folder, verbose=TRUE) # So simple and elegant... if this works, you should see output
-  # that says "Simulation begins.." and then shows all the time steps. 
-  # At the end, it should say "Run complete" if everything worked ok. This may take a few minutes.
+run_glm(sim_folder, verbose=TRUE) # So simple and elegant... if this works, you 
+  # should see output that says "Simulation begins.." and then shows all the 
+  # time steps.  At the end, it should say "Run complete" if everything worked ok. 
+  # This may take a few minutes.
 
 # Now, go to the sim_folder on your computer (in RStudio, you can find this by clicking on the 'Files' 
   # tab- if everything happened correctly, you should see the addition of new files 
