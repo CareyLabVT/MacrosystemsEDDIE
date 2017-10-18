@@ -1,5 +1,5 @@
 # Cross-Scale Emergence Module ####
-# This module was initially developed by Carey, C.C. and K.J. Farrell. 10 July 2017.
+# This module was initially developed by Carey, C.C. and K.J. Farrell. 13 August 2017.
   # Macrosystems EDDIE: Cross-Scale Emergence. 
   # Macrosystems EDDIE Module 2, Version 1. 
   # https://serc.carleton.edu/enviro_data/macrosystems/module2.html
