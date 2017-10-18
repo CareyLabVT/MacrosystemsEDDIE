@@ -20,39 +20,36 @@
 ########## ACTIVITY A - OBJECTIVE 1 ############################################
 # Download R packages and GLM files successfully onto your computer.
 
-install.packages('sp') # NOTE: you may get output that says "There is a binary version available
-#  but the source version is later... Do you want to install from sources the package which
-#  needs compilation? y/n" Type 'y' (without the quotes) and hit enter. You may now be prompted
-#  to download the command line developer tools. Click Install and then re-run the
-#  install.packages(sp) once the install of the tools is finished. This should now
-#  successfully load- when it's done, it should say 'DONE(sp)' if it worked successfully. Note that if you 
-#  already installed the sp package for previous projects, you may not have any output after 
-#  completing this step.
+install.packages('sp') # NOTE: depending on your computer, you may get output that says, 
+# "There is a binary version available. Do you want to install from sources that 
+# need compilation? y/n" If this pops up, type 'y' (without the quotes) and hit enter. You may 
+# now be prompted to download the command line developer tools in a pop-up window. Command line
+# developer tools is a program used to run modeling software. 
+# Click Install and then re-run the install.packages(sp) once the install of the tools is 
+# finished. This should now successfully load- when it's done, it should say 
+# 'DONE(sp)' if it worked successfully.
 
-install.packages('devtools')
-library(devtools)
-devtools::install_github("CareyLabVT/GLMr")
+install.packages('devtools') # this is another R package used to run modeling software. If you
+# get an error message that says, "package ‘devtools’ is not available (for R version x.x.x)", be sure
+# to check that your R software is up to date to the most recent version.
 
-install.packages('glmtools', repos=c('http://cran.rstudio.com', 'http://owi.usgs.gov/R')) 
-# This step enables you to access the USGS	website and download the R packages 
-#  that allow you to work with GLM in R. 
-# Note: if you are on a slow internet connection, this may take a few minutes.
+library(devtools) # load the package
 
-library(glmtools) # Load the two packages that you need to run GLM and manipulate its output
-# NOTE: you may get lots of output messages at this step- if this worked successfully, you
-#  should read something in red font similar to: "This information is preliminary or provisional and 
-#  is subject to revision. It is being provided to meet the need for timely best science. 
-#  The information has not received final approval by the U.S. Geological Survey (USGS) and is provided 
-#  on the condition that neither the USGS nor the U.S. Government shall be held liable for any damages 
-#  resulting from the authorized or unauthorized use of the information. Although this software program has
-#  been used by the USGS, no warranty, expressed or implied, is made by the USGS or the U.S.
-#  Government as to the accuracy and functioning of the program and related program material nor
-#  shall the fact of distribution constitute any such warranty, and no responsibility is assumed
-#  by the USGS in connection therewith".
+devtools::install_github("CareyLabVT/GLMr") #download the GLMr software. This may take a few minutes. If
+# it downloaded successfully, you should see "DONE (GLMr)" at the end of red output.
 
-library(GLMr) # If this worked, GLMr should load without any error messages. Hurray!
+install.packages('glmtools', repos=c('http://cran.rstudio.com', 
+                                     'http://owi.usgs.gov/R')) # This step 
+# downloads the R packages that allow you to work with GLM in R. 
 
-glm_version() # See what version of GLM you are running- should be at least v.2.x.x
+library(glmtools) # Load the two packages that you need to analyze GLM output
+# NOTE: you may get lots of output messages in red at this step- if this worked 
+# successfully, you should read a lot of text that starts with: "This 
+# information is preliminary or provisional..." 
+
+library(GLMr) # If this worked, GLMr should load without error messages. Hurray!
+
+glm_version() # See what version of GLM you are running- should be v.2.x.x
 
 # CONGRATS! You've now succesfully loaded GLM onto your computer! Proceed to Objective 2! 
 
