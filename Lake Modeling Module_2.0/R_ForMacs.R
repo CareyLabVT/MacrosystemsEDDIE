@@ -2,14 +2,16 @@
 #  Macrosystems EDDIE Module 1, Version 1.		 
 #  https://serc.carleton.edu/eddie/macrosystems/module1.html. 		
 #  Some parts of this module were developed by Carey, C.C., S. Aditya, K. Subratie, 		
-#  and R. Figueiredo as part of the Project EDDIE module, "Modeling Climate Change Effects on Lakes 
-#  Using Distributed Computing Module" and were subsequently revised by Carey, C.C. and
-#  K.J. Farrell on 21 July 2017 as part of the Macrosystems EDDIE project. 
+#  and R. Figueiredo as part of the Project EDDIE module, "Modeling Climate 
+#  Change Effects on Lakes Using Distributed Computing Module" and were 
+#  subsequently revised by Carey, C.C. and K.J. Farrell on 21 July 2017 as part 
+#  of the Macrosystems EDDIE project. 
 
-#  Please cite this module as: "Carey, C.C., S. Aditya, K. Subratie, R. Figueiredo, and K.J. Farrell. 
-#  21 July 2017. Macrosystems EDDIE: Climate Change Effects on Lake Temperatures. Macrosystems EDDIE 
-#  Module 1, Version 1. https://serc.carleton.edu/eddie/macrosystems/module1.html. Module 
-#  development was supported by NSF DEB 1245707, ACI 1234983, and EF 1702506."		
+#  Please cite this module as: "Carey, C.C., S. Aditya, K. Subratie, R. Figueiredo, 
+#  and K.J. Farrell. 21 July 2017. Macrosystems EDDIE: Climate Change Effects on 
+#  Lake Temperatures. Macrosystems EDDIE Module 1, Version 1. 
+#  https://serc.carleton.edu/eddie/macrosystems/module1.html. Module development 
+#  was supported by NSF DEB 1245707, ACI 1234983, and EF 1702506."		
 
 #  R code for students to work through the module activities A, B, and C.		  
 #  This module consists of 8 objectives. Activity A consists of Objectives 1-4,		  
@@ -20,23 +22,25 @@
 ########## ACTIVITY A - OBJECTIVE 1 ############################################
 # Download R packages and GLM files successfully onto your computer.
 
-install.packages('sp') # NOTE: depending on your computer, you may get output that says, 
-# "There is a binary version available. Do you want to install from sources that 
-# need compilation? y/n" If this pops up, type 'y' (without the quotes) and hit enter. You may 
-# now be prompted to download the command line developer tools in a pop-up window. Command line
-# developer tools is a program used to run modeling software. 
-# Click Install and then re-run the install.packages(sp) once the install of the tools is 
-# finished. This should now successfully load- when it's done, it should say 
-# 'DONE(sp)' if it worked successfully.
+install.packages('sp') # NOTE: depending on your computer, you may get output 
+#  that says, "There is a binary version available. Do you want to install from 
+#  sources that need compilation? y/n" If this pops up, type 'y' (without the 
+#  quotes) and hit enter. You may now be prompted to download the command line 
+#  developer tools in a pop-up window. Command line developer tools is a program 
+#  used to run modeling software. Click Install and then re-run the 
+#  install.packages(sp) once the install of the tools is finished. This should 
+#  now successfully load- when it's done, it should say 'DONE(sp)' if it worked.
 
-install.packages('devtools') # this is another R package used to run modeling software. If you
-# get an error message that says, "package ‘devtools’ is not available (for R version x.x.x)", be sure
-# to check that your R software is up to date to the most recent version.
+install.packages('devtools') # this is another R package used to run modeling 
+#  software. If you get an error message that says, "package ‘devtools’ is not 
+#  available (for R version x.x.x)", be sure to check that your R software is up 
+#  to date to the most recent version.
 
 library(devtools) # load the package
 
-devtools::install_github("CareyLabVT/GLMr") #download the GLMr software. This may take a few minutes. If
-# it downloaded successfully, you should see "DONE (GLMr)" at the end of red output.
+devtools::install_github("CareyLabVT/GLMr", force = TRUE) #download the GLMr 
+#  software. This may take a few minutes. If downloaded successfully, you should 
+#  see "DONE (GLMr)" at the end of the output.
 
 install.packages('glmtools', repos=c('http://cran.rstudio.com', 
                                      'http://owi.usgs.gov/R')) # This step 
@@ -51,91 +55,101 @@ library(GLMr) # If this worked, GLMr should load without error messages. Hurray!
 
 glm_version() # See what version of GLM you are running- should be v.2.x.x
 
-# CONGRATS! You've now succesfully loaded GLM onto your computer! Proceed to Objective 2! 
+# CONGRATS! You've now loaded GLM onto your computer! Proceed to Objective 2! 
 
 ########## ACTIVITY A - OBJECTIVE 2 ############################################
-# Now, we will explore the example files that come with your downloaded GLM files 
+# Now, we will explore the examples that come with your downloaded GLM files 
 
-# NOTE! Throughout the rest of the module, you may need to modify some of the lines of code
-#  written below to run on your computer. If you do need to modify a line of code, I marked that
-#  particular line with ##!! symbols at the beginning of that line's annotation.  If you do not
-#  see those symbols, then you do not need to edit that line of code (you can merely run it as
-#  normal).
+# NOTE! Throughout the rest of the module, you may need to modify some of the 
+#  lines of code written below to run on your computer. If you do need to modify 
+#  a line of code, I marked that particular line with ##!! symbols at the 
+#  beginning of that line's annotation.  If you do not see those symbols, then 
+#  you do not need to edit that line of code (you can run it as normal).
 
-# When you downloaded this script, you unzipped the lake_climate_change folder to your Desktop. 
-# We now need to tell R where these files are. We do that by...
+# When you downloaded this script, you unzipped the lake_climate_change folder 
+#  to your Desktop. We now need to tell R where these files are. We do that by...
 
-sim_folder <- '/Users/cayelan/Desktop/lake_climate_change' ##!! Edit this line of code to redefine 
-#  your sim_folder path. This should be replaced with the path to the Desktop folder where you 
-#  extracted your zipped files. Most likely, you will need to change the part after Users/ to give
-#  the name of your computer (e.g., my computer name is cayelan, but yours will be different!)
-# Look in the Files tab on RStudio to see your file path. 
+sim_folder <- '/Users/cayelan/Desktop/lake_climate_change' ##!! Edit this line 
+#  of code to redefine your sim_folder path. This should be replaced with the 
+#  path to the Desktop folder where you extracted your zipped files. Most likely, 
+#  you will need to change the part after Users/ to give the name of your computer 
+#  (e.g., my computer name is cayelan, but yours will be different!) Look in the 
+#  Files tab on RStudio to see your file path. 
 
 setwd(sim_folder) ## This line of code is used to reset your working directory
-#  to the sim_folder. The point of this step is to make sure that any new files you create
-#  (e.g., figures of output) end up together in this directory, vs. elsewhere in your computer.
-# Look in the Files tab on RStudio to see your file path. 
+#  to the sim_folder. The point of this step is to make sure that any new files 
+#  you create (e.g., figures of output) end up together in this directory, vs. 
+#  elsewhere in your computer. Look in the Files tab on RStudio to see your file 
+#  path. 
 
-nml_file <- paste0(sim_folder,"/glm2.nml") # This step sets the nml_file for your simulation to be
-#  in the new sim_folder location.
+nml_file <- paste0(sim_folder,"/glm2.nml") # This step sets the nml_file for your 
+#  simulation to be in the new sim_folder location.
 
 nml <- read_nml(nml_file) # Read in your nml file from your new directory
 
-print(nml) # This shows you what is in your nml file.  This is the 'master script' of the GLM
-#  simulation; the nml file tells the GLM model all of the initial conditions about your lake,
-#  how you are defining parameters, and more - this is a really important file! There should be
-#  multiple sections, including glm_setup, morphometry, meteorology, etc.
+print(nml) # This shows you what is in your nml file.  This is the 'master script' 
+#  of the GLM simulation; the nml file tells the GLM model all of the initial 
+#  conditions about your lake, how you are defining parameters, and more - this 
+#  is a really important file! There should be multiple sections, including 
+#  glm_setup, morphometry, meteorology, etc.
 
-get_nml_value(nml, 'lake_name') ##!! Use this command to find out the values of different parameters 
-#  that you are running within your nml file. Here, you are first asking what the lake
-#  name is in the nml file. Then try using this command to learn the 'lake_depth', 
-#  'num_inflows', 'latitude', 'longitude', etc. 
+get_nml_value(nml, 'lake_name') ##!! Use this command to find out the values of 
+#  different parameters that you are running within your nml file. Here, you are 
+#  first asking what the lake name is in the nml file. Then try using this command 
+#  to learn the 'lake_depth', 'num_inflows', 'latitude', 'longitude', etc. 
 
-#  Modify this command to learn the lake's maximum depth, and the number of inflow streams into this lake.
+#  Modify this command to learn the lake's maximum depth, and the number of 
+#  inflow streams into this lake.
 
-#  Awesome Lake is based on a real lake on the globe-- now modify the code above to find out the 
-#  latitude and longitude, then use an online map (e.g., http://www.latlong.net/Show-Latitude-Longitude.html)
-#  to determine the location of the lake! 
+#  Awesome Lake is based on a real lake on the globe-- now modify the code above 
+#  to find out the latitude and longitude, then use an online map (e.g., 
+#  http://www.latlong.net/Show-Latitude-Longitude.html) to determine the location 
+#  of the lake! 
 
-plot_meteo(nml_file) # This command plots the meterological input data for the simulation- 
-#  short wave & long wave radiation, air temp, etc. for the duration of the simulation run. 
-#  Look at the figure in the "Plots" window in the bottom right corner of RStudio. This window
-#  can be expanded by clicking the Zoom tab at the top of the figure panel.
-#  Do these plots look reasonable for the latitude and longitude of your model lake?
+plot_meteo(nml_file) # This command plots the meterological input data for the 
+#  simulation- short wave & long wave radiation, air temp, etc. for the duration 
+#  of the simulation run. Look at the figure in the "Plots" window in the bottom 
+#  right corner of RStudio. This window can be expanded by clicking the Zoom tab 
+#  at the top of the figure panel. Do these plots look reasonable for the latitude 
+#  and longitude of your model lake?
  
 ########## ACTIVITY A - OBJECTIVE 3 ############################################
 # Now, the fun part- we get to run the model and look at output!
 
-run_glm(sim_folder, verbose=TRUE) # So simple and elegant... if this works, you should see output
-#  that says "Simulation begins.." and then shows all the time steps. 
-#  At the end of the model run, it should say "Run complete" if everything worked ok.
+run_glm(sim_folder, verbose=TRUE) # So simple and elegant... if this works, you 
+#  should see output that says "Simulation begins.." and then shows all the time 
+#  steps. At the end of the model run, it should say "Run complete" if everything 
+#  worked ok.
 
-#  Now, go to the sim_folder on your computer (in RStudio, you can find this by clicking on the 'Files' 
-#  tab)- if everything happened correctly, you should see the addition of new files 
-#  that were created during the simulation with a recent date and time stamp, 
-#  including 'output.nc', 'lake.csv', and 'overflow.csv'. The most important of these is the
-#  'output.nc' file, which contains all of the output data from your simulation in netCDF
-#  format.
+#  Now, go to the sim_folder on your computer (in RStudio, you can find this by 
+#  clicking on the 'Files' tab)- if everything happened correctly, you should see 
+#  the addition of new files that were created during the simulation with a 
+#  recent date and time stamp, including 'output.nc', 'lake.csv', and 'overflow.csv'. 
+#  The most important of these is the 'output.nc' file, which contains all of the 
+#  output data from your simulation in netCDF format.
 
 # We need to know where the output.nc file is so that the glmtools package can
-#  plot and analyze the model output. We tell R where to find the output file using the line below:
+#  plot and analyze the model output. We tell R where to find the output file 
+#  using the line below:
 
-nc_file <- file.path(sim_folder, 'output.nc') # This defines the output.nc file as being within
-#  the sim_folder.  
+nc_file <- file.path(sim_folder, 'output.nc') # This defines the output.nc file 
+#  as being within the sim_folder.  
 
-plot_temp(file=nc_file, fig_path=FALSE) # This plots your simulated water temperatures in a heat
-#  map, where time is displayed on the x-axis, lake depth is displayed on the y-axis, and the
-#  different colors represent different temperatures. Again, this figure should be visible in the Plots window
-#  in the bottom righthand corner of RStudio's interface.
+plot_temp(file=nc_file, fig_path=FALSE) # This plots your simulated water 
+#  temperatures in a heat map, where time is displayed on the x-axis, lake depth 
+#  is displayed on the y-axis, and the different colors represent different 
+#  temperatures. Again, this figure should be visible in the Plots window in the 
+#  bottom righthand corner of RStudio's interface.
 
-# To copy your plot (e.g., onto a PowerPoint slide), click "Export" within the Plots tab.
-# Then click "Copy to Clipboard", and click "Copy plot" in the preview window. You can then 
-# paste your plot into Word, PowerPoint, etc. 
+# To copy your plot (e.g., onto a PowerPoint slide), click "Export" within the 
+#  Plots tab. Then click "Copy to Clipboard", and click "Copy plot" in the 
+#  preview window. You can then paste your plot into Word, PowerPoint, etc. 
 
-# If you want to save your plot as an image file or pdf file instead of copying it, click
-# "Export" within the Plots tab, then choose "Save as Image" or "Save as PDF". In the preview window,
-# give your plot a descriptive file name (e.g., "TemperatureHeatMap.pdf"), then press "Save". 
-# Your plot image and/or PDF file will be saved in the lake_climate_change folder on your Desktop.
+# If you want to save your plot as an image file or pdf file instead of copying 
+#  it, click "Export" within the Plots tab, then choose "Save as Image" or "Save 
+#  as PDF". In the preview window, give your plot a descriptive file name (e.g., 
+#  "TemperatureHeatMap.pdf"), then press "Save". Your plot image and/or PDF file 
+#  will be saved in the lake_climate_change folder on your Desktop.
 
 ########## ACTIVITY A - OBJECTIVE 4 ############################################
 # Examine how your modeled GLM data compares to the observed field data for your lake.
@@ -561,22 +575,26 @@ for (n in 1:101) {
 #  with an empty, new working directory for each GRAPLEr experiment.		
 		
 ########## ACTIVITY C - OBJECTIVE 8 ############################################
-# Prepare figures to share with your classmates that demonstrate the effects of your many GRAPLEr-enabled
-#  climate change scenarios on the thermal structure of your model lake. 
+# Prepare figures to share with your classmates that demonstrate the effects of 
+#  your many GRAPLEr-enabled climate change scenarios on the thermal structure 
+#  of your model lake. 
 
 # Plot the output of your GRAPLEr experiment using the commands you learned above. 
 # Organize some of your plots into a short presentation to share with your classmates.
 
 # Make sure your presentation addresses the following questions: 
-# 1) What did your scenario test? What was the range of conditions you ran over your GRAPLEr experiment? 
+# 1) What did your scenario test? What was the range of conditions you ran over 
+#  your GRAPLEr experiment? 
 # 2) In which scenarios did you see the biggest change in lake thermal structure? 
 
-# Thinking ahead: how could you use the GRAPLEr in your own research? You could use the GRAPLEr to
-#  examine hundreds of simulations for any GLM model (not just the default Awesome Lake, but your own
-#  research lake!) so think through what science questions you can ask using this R package.
+# Thinking ahead: how could you use the GRAPLEr in your own research? You could 
+#  use the GRAPLEr to examine hundreds of simulations for any GLM model (not just 
+#  the default Awesome Lake, but your own research lake!) so think through what 
+#  science questions you can ask using this R package.
 
 # Bravo, you are done!! 
 
-# We welcome feedback on this module and encourage you to provide comments, questions, and suggestions. 
-#  Please visit the SERC website (https://serc.carleton.edu/eddie/macrosystems/module1.html) 
-#  to submit feedback to the module developers. 
+# We welcome feedback on this module and encourage you to provide comments, 
+#  questions, and suggestions. Please visit the SERC website 
+#  (https://serc.carleton.edu/eddie/macrosystems/module1.html) to submit feedback 
+#  to the module developers. 
