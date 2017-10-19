@@ -53,7 +53,7 @@ library(glmtools) # Load the two packages that you need to analyze GLM output
 
 library(GLMr) # If this worked, GLMr should load without error messages. Hurray!
 
-glm_version() # See what version of GLM you are running- should be v.2.x.x
+glm_version() # See what version of GLM you are running- should be at least v.2.x.x
 
 # CONGRATS! You've now loaded GLM onto your computer! Proceed to Objective 2! 
 
