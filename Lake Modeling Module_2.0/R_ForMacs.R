@@ -221,91 +221,101 @@ get_evaporation(nc_file) #in units of mm/day
 #  Using your knowledge of potential climate change, work with a partner to 
 #  develop a climate change scenario for your model lake. 
 
-#  To complete this activity, you will need to modify the input meterological data and then run the
-#  model to examine the effects of your scenario on the thermal structure of the lake.
+#  To complete this activity, you will need to modify the input meterological 
+#  data and then run the model to examine the effects of your scenario on the 
+#  thermal structure of the lake.
 
-# Here is an overview of the steps you will complete with your partner to accomplish this (detailed directions below):
+# Here is an overview of the steps you will complete with your partner to 
+#  accomplish this (detailed directions below):
 # 1) Develop a climate scenario (it can be for any region!)
 
-# 2) Create a corresponding meteorological input (met) file. Think through all of the components of the
-	# proposed scenario. For example, which of the meteorological variables (air temperature,
-	# precipitation, wind, etc.) will be modified and how? Will they be short-term or long-term
-	# modifications? After you develop your scenario, work with a partner to hypothesize how these changes will affect
-  # Awesome Lake's thermal structure.
+# 2) Create a corresponding meteorological input (met) file. Think through all of 
+#  the components of the proposed scenario. For example, which of the meteorological 
+#  variables (air temperature, precipitation, wind, etc.) will be modified and 
+#  how? Will they be short-term or long-term modifications? After you develop your 
+#  scenario, work with a partner to hypothesize how these changes will affect
+#  Awesome Lake's thermal structure.
 
-# 3) Test your hypotheses! Run the GLM using your new met file and examine how it alters the physical structure of the lake.  
-	# How does your climate scenario change the thermal structure of the lake? 
-	# What does the temperature profile look like?  How does the depth of the thermocline change? 
-	# How does the timing of stratification and magnitude of evaporation change?
+# 3) Test your hypotheses! Run the GLM using your new met file and examine how 
+#  it alters the physical structure of the lake. How does your climate scenario 
+#  change the thermal structure of the lake?What does the temperature profile 
+#  look like?  How does the depth of the thermocline change? How does the timing 
+#  of stratification and magnitude of evaporation change?
 
-# 4) Compare the modeled output to the observed. 
-	# What are the implications of your climate scenario for future water quality and quantity?
+# 4) Compare the modeled output to the observed. What are the implications of 
+#  your climate scenario for future water quality and quantity?
 
-# 5) Create and save a few figures to highlight the results of your climate scenario and 
-	# present them to the rest of the class. It would be helpful to present both 
-	# the meteorological input file as well as the lake thermal plots so that we 
-	# can see how the lake responded to your climate forcing.
+# 5) Create and save a few figures to highlight the results of your climate 
+#  scenario and present them to the rest of the class. It would be helpful to 
+#  present both the meteorological input file as well as the lake thermal plots 
+#  so that we can see how the lake responded to your climate forcing.
 
 # Detailed directions for modifying your met file: 
 
 # 1- ##!! Practice modifying the glm2.nml file. 
-   #  For example, open the nml file in a text editor (e.g., TextEdit) 
-   #  and change the time of the simulation so that the model run starts on 
-   #  '2000-03-01 00:00:00' and ends on '2000-12-31 00:00:00' (or choose some
-   #  other date and time!). Save the file, then plot the altered temperature. 
-   #  Note that GLM (as of the v.2.0 version) does not handle ice well, 
-   #  so starting in the spring and running through the late fall may be
-   #  the best option for ice-covered lakes.
+#  For example, open the nml file in a text editor (e.g., TextEdit) and change 
+#  the time of the simulation so that the model run starts on '2000-03-01 00:00:00' 
+#  and ends on '2000-12-31 00:00:00' (or choose some other date and time!). Save 
+#  the file, then plot the altered temperature. Note that GLM (as of the v.2.0 
+#  version) does not handle ice well, so starting in the spring and running 
+#  through the late fall may be the best option for ice-covered lakes.
 
 # 2- SOMETHING THAT IS REALLY REALLY IMPORTANT! 
-	# Opening up the met_hourly.csv file in Microsoft Excel will inexplicably alter the date/time 
-	# formatting of the file so that GLM cannot read it.
-	# You will get an error something like this: "Day 2451545 (2000-01-01) not found".  
-	# To get around this error, you need to follow the FIVE steps listed below.
+#  Opening up the met_hourly.csv file in Microsoft Excel will inexplicably alter 
+#  the date/time #  formatting of the file so that GLM cannot read it. You will 
+#  get an error something like this: "Day 2451545 (2000-01-01) not found". To get 
+#  around this error, you need to follow the FIVE steps listed below.
 
-	# FIRST, copy and paste an extra version of the met_hourly.csv file in your sim folder so that you
-		# have a backup in case of any mistakes. Rename this file something like
-    # "met_hourly_UNALTERED.csv" and be sure *not* to open it.
+	# FIRST, copy and paste an extra version of the met_hourly.csv file in your 
+    # sim folder so that you have a backup in case of any mistakes. Rename this 
+    # file something like "met_hourly_UNALTERED.csv" and be sure *not* to open it.
 
-  # SECOND, open the met_hourly.csv file in Excel.  Manipulate the different input meteorological
-    #	variables to create your climate/weather scenario of your choice (be creative!). 
-    # NOTE ABOUT UNITS: In the met_hourly file, the units for rain are in meters per day. You will likely
-    # think about the amount of rain your change in the met_hourly file by millimeters per day instead-- 
-    # to convert from mm/d to m/d, simply multiply by 0.001. Other units are more intuitive-- open up the 
-    # Variable_Name_Metadata.csv file from the module zipped folder for more details.
+  # SECOND, open the met_hourly.csv file in Excel.  Manipulate the different input 
+    # meteorological variables to create your climate/weather scenario of your 
+    # choice (be creative!). NOTE ABOUT UNITS: In the met_hourly file, the units 
+    # for rain are in meters per day. You will likely think about the amount of 
+    # rain your change in the met_hourly file by millimeters per day instead-- 
+    # to convert from mm/d to m/d, simply multiply by 0.001. Other units are more 
+    # intuitive-- open up the Variable_Name_Metadata.csv file from the module 
+    # zipped folder for more details.
 
-    # NOTE ABOUT COLUMN NAMES: the order of the columns in the met file does not matter- but you can only have one 
-    # of each variable and they must keep the EXACT same header name (i.e., it must always be 
-    # 'AirTemp', not 'AirTemp+3oC'). When you are done editing the meteorological file, highlight 
-    # all of the 'time' column in Excel, then click on 'Format Cells', and then 'Custom'. 
-    # In the "Type" or "Formatting" box, change the default to "YYYY-MM-DD hh:mm:ss" exactly (no quotes). 
-    # This is the only time/date format that GLM is able to read. 
-    # When you click ok, this should change the format of the 'time'  column so that it reads: 
-    # "1999-12-31 00:00:00" with exactly that spacing and punctuation. 
-    # Save this new file under a different name, following how you have created your scenario, 
-    # e.g., "met_hourly_SIMULATEDSUMMERSTORMS.csv". Close the csv file, saving your changes.
-    # Now, do NOT open the file in Excel again- otherwise, you will need to
-    # repeat this formatting process before reading the altered met file into GLM.
+    # NOTE ABOUT COLUMN NAMES: the order of the columns in the met file does not 
+    # matter- but you can only have one of each variable and they must keep the 
+    # EXACT same header name (i.e., it must always be 'AirTemp', not 'AirTemp+3oC'). 
+    # When you are done editing the meteorological file, highlight all of the 
+    # 'time' column in Excel, then click on 'Format Cells', and then 'Custom'. 
+    # In the "Type" or "Formatting" box, change the default to "YYYY-MM-DD hh:mm:ss" 
+    # exactly (no quotes). This is the only time/date format that GLM is able to 
+    # read. When you click ok, this should change the format of the 'time' column 
+    # so that it reads: "1999-12-31 00:00:00" with exactly that spacing and 
+    # punctuation. Save this new file under a different name, following how you 
+    # have created your scenario, e.g., "met_hourly_SIMULATEDSUMMERSTORMS.csv". 
+    # Close the csv file, saving your changes. Now, do NOT open the file in Excel 
+    # again- otherwise, you will need to repeat this formatting process before 
+    # reading the altered met file into GLM.
 
   # THIRD: Read in your altered met_hourly file using the command below:
-metdata <- read.csv("met_hourly_SIMULATEDSUMMERSTORMS.csv", header=TRUE) ##!! Edit the name of the
-    # CSV file so that it matches your new met file name.
+metdata <- read.csv("met_hourly_SIMULATEDSUMMERSTORMS.csv", header=TRUE) ##!! Edit 
+    # the name of the CSV file so that it matches your new met file name.
 
-  # FOURTH, you need to edit the glm2.nml file to change the name of the input meteorological
-    # file so that it reads in the new, edited meteorological file for your climate scenario, not the
-    # default "met_hourly.csv".  In the nml file, scroll down to the meteorology section, and change
-    # the 'meteo_fl' entry to the new met file name (e.g., 'met_hourly_SIMULATEDSUMMERSTORMS.csv').
-    # Note to Mac users- check to make sure that your quotes ' and ' around the file name are upright,
-    # and not slanted- sometimes the nml default alters the quotes so that the file cannot be read in
-    # properly (super tricky!).
+  # FOURTH, you need to edit the glm2.nml file to change the name of the input 
+    # meteorological file so that it reads in the new, edited meteorological file 
+    # for your climate scenario, not the default "met_hourly.csv".  In the nml 
+    # file, scroll down to the meteorology section, and change the 'meteo_fl' 
+    # entry to the new met file name (e.g., 'met_hourly_SIMULATEDSUMMERSTORMS.csv').
+    # Note to Mac users- check to make sure that your quotes ' and ' around the 
+    # file name are upright, and not slanted- sometimes the nml default alters 
+    # the quotes so that the file cannot be read in properly (super tricky!).
 
-    # Once you have edited the nml file name, you can always check to make sure that it is correct with the command:
+    # Once you have edited the nml file name, you can always check to make sure 
+    # that it is correct with the command:
 nml <- read_nml(nml_file)  # Read in your nml file from your new directory
-get_nml_value(nml, 'meteo_fl') # If you have done this correctly, you should get an output that lists
-    # the name of your new meteorological file altered for your weather/climate scenario.
+get_nml_value(nml, 'meteo_fl') # If you have done this correctly, you should get 
+    # an output that lists the name of your new meteorological file altered for 
+    # your weather/climate scenario.
 
-	# FIFTH, you can now run the model with the new edited nml file, following the instructions as
-		# described above for Objective 3.  Exciting!
+	# FIFTH, you can now run the model with the new edited nml file, following 
+    # the instructions as described above for Objective 3.  Exciting!
 
 ########## ACTIVITY B - OBJECTIVE 6 ############################################
 # Prepare figures to share with your classmates that demonstrate the effects of 
