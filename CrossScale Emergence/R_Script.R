@@ -59,7 +59,7 @@ glm_version() # See what version of GLM you are running- should be v.2.x.x
 # When you downloaded this script, you unzipped the module folder to your Desktop. 
 #  We now need to tell R where these files are. We do that by...
 
-sim_folder <- 'C:/Users/KFarrell/Desktop/cross_scale_emergence/LAKE' 
+sim_folder <- 'C:/Users/KJF/Desktop/R/ProjectEDDIE/CrossScale Emergence/Mendota' 
 ##!! Edit this to define your sim_folder location.  This should be replaced with 
 #  the path to the Desktop folder where you extracted your zipped files. Most 
 #  likely, you will need to change the part after Users/ to give  the name of 
@@ -205,6 +205,20 @@ colnames(chla_output)[2] <- "Baseline_Chla" # Here we rename the chl-a column so
   # NOT open the file in Excel again- otherwise, you will need to repeat this 
   # formatting process before reading the altered met file into GLM.
 
+  #!! Run the following lines to ensure your time column is formatted 
+  # for GLM. (This is especially important if you have an older version of Excel)
+metdata <- read.csv("inflow_landuse.csv", header=TRUE) ##!! Edit the name of the
+  #	CSV file so that it matches your new met file name for your climate scenario.
+  # Then run the following command to convert the time column into the time/date 
+  # structure that GLM uses
+metdata$time <-as.POSIXct(strptime(metdata$time, "%Y-%m-%d %H:%M:%S", tz="EST")) 
+write.csv(metdata, "inflow_landuse.csv", row.names=FALSE, quote=FALSE) ##!! Edit
+  #	this command so the file name matches your climate scenario met file name- this 
+  # CSV file will now have the proper date/time formatting
+
+  #IMPORTANT note: any time you alter the meteorological input file, you will have 
+  # to repeat this step to be able to read it into R and run the model in GLM.
+
 # 3) You now need to edit the glm2.nml file to change the name of the input 
   # meteorological file so that it reads in the new, edited meteorological file 
   # for your climate scenario, not the default "met_hourly.csv".  Open the nml 
@@ -319,6 +333,17 @@ plot_var(file=climate, "PHY_TCHLA") # Create a heatmap of chlorophyll-a. How
   # "inflow_landuse.csv". Close the csv file, saving your changes. Now, do NOT 
   # open the file in Excel again- otherwise, you will need to repeat this 
   # formatting process before reading the altered inflow file into GLM.
+
+  #!! Once again, run the following lines to ensure your time column is formatted 
+  # for GLM. (This is especially important if you have an older version of Excel)
+metdata <- read.csv("inflow_landuse.csv", header=TRUE) ##!! Edit the name of the
+  #	CSV file so that it matches your new met file name for your climate scenario.
+  # Then run the following command to convert the time column into the time/date 
+  # structure that GLM uses
+metdata$time <-as.POSIXct(strptime(metdata$time, "%Y-%m-%d %H:%M:%S", tz="EST")) 
+write.csv(metdata, "inflow_landuse.csv", row.names=FALSE, quote=FALSE) ##!! Edit
+  #	this command so the file name matches your climate scenario met file name- this 
+  # CSV file will now have the proper date/time formatting
 
 # 3) You now need to edit the glm2.nml file to change the name of the inflow file 
   #  so that it reads in the new, edited inflow file for your land use scenario, 
