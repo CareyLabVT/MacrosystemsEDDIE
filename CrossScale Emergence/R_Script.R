@@ -235,8 +235,7 @@ get_nml_value(nml, 'meteo_fl') # If you have done this correctly, you should get
 #  climate scenario. If it doesn't, repeat step 3 above.
 
 # You can now run the model for your climate change scenario using the new edited 
-#  nml file, following the instructions as described above for Objective 2.  
-#  Exciting!
+#  nml file using the commands below. Exciting!
 
 run_glm(sim_folder, verbose=TRUE) # Run your GLM model for your lake climate scenario. 
 
@@ -363,9 +362,8 @@ get_nml_value(nml, 'inflow_fl') # If you have done this correctly, you should ge
 get_nml_value(nml, 'meteo_fl') # If you have done this correctly, you should get 
 #  an output that lists the name of your baseline meteorological file.
 
-# You can now run the model for your climate change scenario using the new edited 
-#  nml file, following the instructions as described above for Objective 2.  
-#  Exciting!
+# You can now run the model for your land use scenario using the new edited 
+#  nml file using the commands below. Exciting!
 
 run_glm(sim_folder, verbose=TRUE) # Run your GLM model for your lake land use scenario. 
 # At the end of the model run, it should say "Run complete" if everything worked.
