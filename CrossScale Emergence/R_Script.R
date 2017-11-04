@@ -82,17 +82,6 @@ print(nml) # This shows you what is in your nml file.  This is the 'master scrip
 #  is a really important file! There should be multiple sections, including 
 #  glm_setup, morphometry, meteorology, etc.
 
-get_nml_value(nml, 'lake_name') ##!! Use this command to find out the values of 
-#  different parameters in your nml file. Here, you are asking what the lake 
-#  name is (it should be Mendota or Sunapee!) but you could also use this to 
-#  learn the 'latitude', 'lake_depth', 'num_inflows', etc. 
-
-# Modify this command to learn where your model lake is located by its latitude 
-#  & longitude coordinates, and the lake's maximum depth.
-
-# Use a web mapping program (e.g., Google Maps or similar) to locate your lake 
-#  based on the lat/long from your nml file.
-
 plot_meteo(nml_file) # This command plots the meterological input data for the 
 #  simulation: short wave & long wave radiation, air temp, relative humidity, 
 #  etc. for the duration of the simulation. 
