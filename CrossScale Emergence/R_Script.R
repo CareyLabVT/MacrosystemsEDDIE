@@ -59,7 +59,7 @@ glm_version() # See what version of GLM you are running- should be v.2.x.x
 # When you downloaded this script, you unzipped the module folder to your Desktop. 
 #  We now need to tell R where these files are. We do that by...
 
-sim_folder <- 'C:/Users/KFarrell/Desktop/cross.scale.emergence/LAKE' 
+sim_folder <- 'C:/Users/KFarrell/Desktop/cross_scale_emergence/LAKE' 
 ##!! Edit this to define your sim_folder location.  This should be replaced with 
 #  the path to the Desktop folder where you extracted your zipped files. Most 
 #  likely, you will need to change the part after Users/ to give  the name of 
