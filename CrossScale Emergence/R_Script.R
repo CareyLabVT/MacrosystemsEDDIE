@@ -34,9 +34,8 @@ devtools::install_github("CareyLabVT/GLMr", force = TRUE) #download the GLMr
 #  software. This may take a few minutes. If downloaded successfully, you should 
 #  see "DONE (GLMr)" at the end of the output.
 
-install.packages('glmtools', repos=c('http://cran.rstudio.com', 
-                                     'http://owi.usgs.gov/R')) # This step 
-#  downloads the R packages that allow you to work with GLM in R. 
+install.packages('glmtools', repos=c('http://cran.rstudio.com', 'http://owi.usgs.gov/R')) 
+# This step downloads the R packages that allow you to work with GLM in R. 
 
 library(glmtools) # Load the two packages that you need to analyze GLM output
 #  NOTE: you may get lots of output messages in red at this step- if this worked 
@@ -57,17 +56,17 @@ glm_version() # See what version of GLM you are running- should be v.2.x.x
 #  beginning of that line's annotation.  If you do not see those symbols, then 
 #  you do not need to edit that line of code (you can merely run it as normal).
 
-# When you downloaded this script, you unzipped the lake folder to your Desktop. 
+# When you downloaded this script, you unzipped the module folder to your Desktop. 
 #  We now need to tell R where these files are. We do that by...
 
-sim_folder <- 'C:/Users/KFarrell/Desktop/cross_scale_emergence/LAKE' ##!! Edit 
-#  this to define your sim_folder location.  This should be replaced with the 
-#  path to the Desktop folder where you extracted your zipped files. Most 
+sim_folder <- 'C:/Users/KFarrell/Desktop/cross_scale_emergence/LAKE' 
+##!! Edit this to define your sim_folder location.  This should be replaced with 
+#  the path to the Desktop folder where you extracted your zipped files. Most 
 #  likely, you will need to change the part after Users/ to give  the name of 
 #  your computer (e.g., my computer name is KFarrell).
 #  Also modify LAKE to the lake you are modeling (e.g., Mendota or Sunapee)
 
-setwd(sim_folder) ##!! This line of code is used to reset your working directory
+setwd(sim_folder) ## This line of code is used to reset your working directory
 #  to the sim_folder. The point of this step is to make sure that any new files 
 #  you create (e.g., figures of output) end up together in this folder.
 
@@ -137,8 +136,6 @@ print(var_names) # This will print a list of 91 variables that the model simulat
 plot_var(file = baseline, "PHY_TCHLA") # What do you notice about seasonal 
 #  patterns in chl-a? 
 
-# Try modifying the plot_var command to create a heatmap of a different variable!
-
 # We also want to save the model output of the daily chlorophyll-a concentrations 
 #  in the lake during our baseline simulation, because we'll be comparing it to 
 #  our climate and land use scenarios later.  To do this, we use the following 
@@ -146,7 +143,7 @@ plot_var(file = baseline, "PHY_TCHLA") # What do you notice about seasonal
 
 # Save the chl-a from the surface only:
 chla_output <- get_var(file=baseline, "PHY_TCHLA", reference='surface', z_out=c(1)) 
-colnames(chla_output)[2] <- "Baseline_Chla" # Rename the chl-a column so we 
+colnames(chla_output)[2] <- "Baseline_Chla" # Here we rename the chl-a column so we 
 #  remember it is from the Baseline scenario
 
 ########## ACTIVITY B - OBJECTIVE 3 ############################################
@@ -229,7 +226,7 @@ get_nml_value(nml, 'meteo_fl') # If you have done this correctly, you should get
 #  nml file, following the instructions as described above for Objective 2.  
 #  Exciting!
 
-run_glm(sim_folder, verbose=TRUE) # Run your GLM model for your lake. 
+run_glm(sim_folder, verbose=TRUE) # Run your GLM model for your lake climate scenario. 
 
 # Again, we need to tell R where the output.nc file is so that the glmtools package 
 #  can plot and analyze the model output. We tell R where to find the output file 
@@ -243,7 +240,7 @@ climate <- file.path(sim_folder, 'output.nc') # This defines the output.nc file
 #  our baseline and land use scenarios later. 
 #  Extract surface chl-a:
 `*tmp*` <- get_var(file=climate, "PHY_TCHLA", reference='surface', z_out=c(1)) 
-chla_output["Climate_Chla"] <- `*tmp*`[2] # Attach the chl-a data from your 
+chla_output["Climate_Chla"] <- `*tmp*`[2] # Here we attach the chl-a data from your 
 #  climate simulation to the same file that contains your baseline scenario chl-a 
 #  concentrations. You can now compare your climate scenario to your baseline- 
 #  well done!
@@ -348,7 +345,7 @@ get_nml_value(nml, 'meteo_fl') # If you have done this correctly, you should get
 #  nml file, following the instructions as described above for Objective 2.  
 #  Exciting!
 
-run_glm(sim_folder, verbose=TRUE) # Run your GLM model for your lake. 
+run_glm(sim_folder, verbose=TRUE) # Run your GLM model for your lake land use scenario. 
 # At the end of the model run, it should say "Run complete" if everything worked.
 
 # Again, we need to tell R where the output.nc file is so that the glmtools package 
@@ -363,7 +360,7 @@ landuse <- file.path(sim_folder, 'output.nc') # This defines the output.nc file
 #  to our baseline and climate scenarios later. 
 # Extract surface chl-a:
 `*tmp*` <- get_var(file=landuse, "PHY_TCHLA", reference='surface', z_out=c(1)) 
-chla_output["LandUse_Chla"] <- `*tmp*`[2] # Attach the chl-a data from your land 
+chla_output["LandUse_Chla"] <- `*tmp*`[2] # Here we attach the chl-a data from your land 
 #  use simulation to the same file that contains your baseline scenario and climate 
 #  change scenario chl-a concentrations
 
@@ -397,7 +394,8 @@ get_nml_value(nml, 'meteo_fl') # If you have done this correctly, you should get
 #  an output that lists the name of your altered meteorological file.
 
 # Run GLM one more time!
-run_glm(sim_folder, verbose=TRUE) # Run your GLM model for your lake. 
+run_glm(sim_folder, verbose=TRUE) # Run your GLM model for your lake climate + land use 
+#  scenario 
 
 # As above, we need to tell R where the output.nc file is:
 climate_landuse <- file.path(sim_folder, 'output.nc') # This defines the output.nc 
@@ -410,7 +408,7 @@ climate_landuse <- file.path(sim_folder, 'output.nc') # This defines the output.
 #  scenarios. 
 # Extract surface chl-a:
 `*tmp*` <- get_var(file=climate_landuse, "PHY_TCHLA", reference='surface', z_out=c(1)) 
-chla_output["Climate_LandUse_Chla"] <- `*tmp*`[2] # Attach the chl-a data from 
+chla_output["Climate_LandUse_Chla"] <- `*tmp*`[2] # Here we attach the chl-a data from 
 #  your combined simulation to the same file that contains your baseline, climate 
 #  change, and land use scenario chl-a concentrations
 
@@ -434,8 +432,8 @@ lines(DateTime, Climate_LandUse_Chla, col="green") # this adds a green line of
 #  simultaneous climate and land use scenario
 legend("topleft",c("Baseline", "Climate Only", "Land Use Only", "Combined C + LU"), 
        lty=c(1,1,1,1), col=c("black","red","blue", "green")) # this adds a legend
-# !! Note that the command ylim=c(0, 30) tells R what you want the minimum and 
-#  maximum values on the y-axis to be (here, we're plotting from 0 to 30 ug/L). 
+# !! Note that the command ylim=c(0, 100) tells R what you want the minimum and 
+#  maximum values on the y-axis to be (here, we're plotting from 0 to 100 ug/L). 
 #  You may need to adjust this range to make sure all your data are shown in the 
 #  plot.
 
