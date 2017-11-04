@@ -201,22 +201,20 @@ colnames(chla_output)[2] <- "Baseline_Chla" # Here we rename the chl-a column so
   # click ok, this should change the format of the 'time'  column so that it reads: 
   # "2011-09-01 00:00:00" with exactly that spacing and punctuation. Save this 
   # new file under a different name that tells what scenario it represents, e.g., 
-  # "met_hourly_climate.csv". Close the csv file, saving your changes. Now, do 
-  # NOT open the file in Excel again- otherwise, you will need to repeat this 
-  # formatting process before reading the altered met file into GLM.
+  # "met_hourly_climate.csv". Close the csv file, saving your changes. 
 
   #!! Run the following lines to ensure your time column is formatted 
   # for GLM. (This is especially important if you have an older version of Excel)
-metdata <- read.csv("inflow_landuse.csv", header=TRUE) ##!! Edit the name of the
+metdata <- read.csv("met_hourly_climate.csv", header=TRUE) ##!! Edit the name of the
   #	CSV file so that it matches your new met file name for your climate scenario.
   # Then run the following command to convert the time column into the time/date 
   # structure that GLM uses
 metdata$time <-as.POSIXct(strptime(metdata$time, "%Y-%m-%d %H:%M:%S", tz="EST")) 
-write.csv(metdata, "inflow_landuse.csv", row.names=FALSE, quote=FALSE) ##!! Edit
+write.csv(metdata, "met_hourly_climate.csv", row.names=FALSE, quote=FALSE) ##!! Edit
   #	this command so the file name matches your climate scenario met file name- this 
   # CSV file will now have the proper date/time formatting
 
-  #IMPORTANT note: any time you alter the meteorological input file, you will have 
+  # IMPORTANT note: any time you alter the meteorological input file, you will have 
   # to repeat this step to be able to read it into R and run the model in GLM.
 
 # 3) You now need to edit the glm2.nml file to change the name of the input 
@@ -299,7 +297,8 @@ plot_var(file=climate, "PHY_TCHLA") # Create a heatmap of chlorophyll-a. How
     # well as chlorophyll plots so that we can see how the lake responded to your 
     # land use change scenario.
 
-# Detailed directions for modifying your inflow file: 
+# As you did with the met file, here are detailed directions for modifying your 
+# inflow file: 
 
 ## SOMETHING THAT IS REALLY IMPORTANT! ##
 # Opening up the inflow.csv file in Microsoft Excel will inexplicably alter the 
@@ -330,9 +329,7 @@ plot_var(file=climate, "PHY_TCHLA") # Create a heatmap of chlorophyll-a. How
   # should change the format of the 'time'  column so that it reads: 
   # "2011-09-01 00:00:00" with exactly that spacing and punctuation. Save this 
   # new file under a different name that tells what scenario it represents, e.g., 
-  # "inflow_landuse.csv". Close the csv file, saving your changes. Now, do NOT 
-  # open the file in Excel again- otherwise, you will need to repeat this 
-  # formatting process before reading the altered inflow file into GLM.
+  # "inflow_landuse.csv". Close the csv file, saving your changes. 
 
   #!! Once again, run the following lines to ensure your time column is formatted 
   # for GLM. (This is especially important if you have an older version of Excel)
