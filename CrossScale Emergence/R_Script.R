@@ -332,12 +332,12 @@ plot_var(file=climate, "PHY_TCHLA") # Create a heatmap of chlorophyll-a. How
 
   #!! Once again, run the following lines to ensure your time column is formatted 
   # for GLM. (This is especially important if you have an older version of Excel)
-metdata <- read.csv("inflow_landuse.csv", header=TRUE) ##!! Edit the name of the
+flowdata <- read.csv("inflow_landuse.csv", header=TRUE) ##!! Edit the name of the
   #	CSV file so that it matches your new met file name for your climate scenario.
   # Then run the following command to convert the time column into the time/date 
   # structure that GLM uses
-metdata$time <-as.POSIXct(strptime(metdata$time, "%Y-%m-%d %H:%M:%S", tz="EST")) 
-write.csv(metdata, "inflow_landuse.csv", row.names=FALSE, quote=FALSE) ##!! Edit
+flowdata$time <-as.POSIXct(strptime(flowdata$time, "%Y-%m-%d %H:%M:%S", tz="EST")) 
+write.csv(flowdata, "inflow_landuse.csv", row.names=FALSE, quote=FALSE) ##!! Edit
   #	this command so the file name matches your climate scenario met file name- this 
   # CSV file will now have the proper date/time formatting
 
