@@ -9,7 +9,7 @@
  # This module consists of 6 objectives. Activity A consists of Objectives 1-2,
  # Activity B consists of Objectives 3-4, & Activity C consists of Objectives 5-6.
 
-# This script was modified last by KJF on 4 Dec. 2017.
+# This script was modified last by CCC on 4 Dec. 2017.
 
 ########## ACTIVITY A - OBJECTIVE 1 ############################################
 # Download R packages and GLM files successfully onto your computer.
@@ -64,7 +64,8 @@ sim_folder <- 'C:/Users/KFarrell/Desktop/cross_scale_emergence/LAKE'
 #  the path to the Desktop folder where you extracted your zipped files. Most 
 #  likely, you will need to change the part after Users/ to give  the name of 
 #  your computer (e.g., my computer name is KFarrell).
-#  Also modify LAKE to the lake you are modeling (e.g., Mendota or Sunapee)
+#  IMPORTANT! Modify "LAKE" in the path name to the lake you are modeling 
+#  (e.g., Mendota or Sunapee)
 
 setwd(sim_folder) ## This line of code is used to reset your working directory
 #  to the sim_folder. The point of this step is to make sure that any new files 
@@ -153,7 +154,7 @@ colnames(chla_output)[2] <- "Baseline_Chla" # Here we rename the chl-a column so
 #  scenario for the two lakes based on changes in air temperature. To complete 
 #  this activity, you will need to modify the input meterological data (the 
 #  met_hourly file) and rerun the model to examine the effects of your scenario 
-#  on lake thermal structure and phytoplankton. Remember that both teams should 
+#  on lake phytoplankton (as chl-a). Remember that both teams should 
 #  run the SAME climate change scenario on their separate lakes and compare output.
 
 # Here is an overview of the steps you will complete with your partner to accomplish 
@@ -165,13 +166,12 @@ colnames(chla_output)[2] <- "Baseline_Chla" # Here we rename the chl-a column so
 #  air temperature will change in your proposed scenario, in terms of when and 
 #  how much air temperature will change. 
 
-# 3) Run the GLM using your new met file and examine how it changes the physical 
-#  structure of the lake.  
+# 3) Run the GLM using your new met file and examine how it changes the chl-a 
+#  concentrations in the lake.  
 
-# 4) Create and save a few figures to highlight the results of your climate 
-#  scenario and present them to the rest of the class. It would be helpful to 
-#  present the meteorological input plot as well as temperature and chlorophyll 
-#  plots so that we can see how the lake responded to your climate forcing.
+# 4) Create and save a few figures to examine the results of your climate 
+#  scenario. It would be helpful to look at both the meteorological input plot 
+#  as well as chl-a so that we can see how the lake responded to your climate forcing.
 
 # Detailed directions for modifying your met file: 
 
@@ -258,13 +258,12 @@ chla_output["Climate_Chla"] <- `*tmp*`[2] # Here we attach the chl-a data from y
 
 ########## ACTIVITY B - OBJECTIVE 4 ############################################
 # Plot the output using the commands you learned above. 
-plot_temp(file=climate, fig_path=FALSE) # Create a heatmap of temperature. How 
-#  does this compare to your baseline?
+
 plot_var(file=climate, "PHY_TCHLA") # Create a heatmap of chlorophyll-a. How 
 #  does this compare to your baseline?
 
-# Do these plots from the climate scenario and the baseline model, support your 
-# hypotheses about climate change effects on chlorophyll-a? 
+# Do these plots from the climate scenario and the baseline support or contradict 
+# your hypotheses about climate change effects on chlorophyll-a? 
 
 ########## ACTIVITY C - OBJECTIVE 5 ############################################
 # Now, using your knowledge of potential land use effects on nutrients coming 
@@ -380,10 +379,9 @@ landuse <- file.path(sim_folder, 'output.nc') # This defines the output.nc file
 `*tmp*` <- get_var(file=landuse, "PHY_TCHLA", reference='surface', z_out=c(1)) 
 chla_output["LandUse_Chla"] <- `*tmp*`[2] # Here we attach the chl-a data from your land 
 #  use simulation to the same file that contains your baseline scenario and climate 
-#  change scenario chl-a concentrations
+#  change scenario chl-a concentrations.
 
 # Plot the output of your land use scenario using the commands you learned above. 
-plot_temp(file=landuse, fig_path=FALSE) # Heatmap of temperature
 plot_var(file=landuse, "PHY_TCHLA") # Heatmap of chla. How does your phytoplankton 
 #  heatmap look in comparison to the baseline? Be sure to check the scale of the 
 #  color gradient representing chl-a when comparing plots!
@@ -431,7 +429,6 @@ chla_output["Climate_LandUse_Chla"] <- `*tmp*`[2] # Here we attach the chl-a dat
 #  change, and land use scenario chl-a concentrations
 
 # Plot the output of your land use scenario using the commands you learned above. 
-plot_temp(file=climate_landuse, fig_path=FALSE) # Heatmap of temperature
 plot_var(file=climate_landuse, "PHY_TCHLA") # Heatmap of chlorophyll-a
 
 # Now that you've run four different scenarios (baseline, climate only, land use 
@@ -465,6 +462,6 @@ legend("topleft",c("Baseline", "Climate Only", "Land Use Only", "Combined C + LU
 # Bravo, you are done!! 
 
 # We welcome feedback on this module and encourage you to provide comments, 
-#  questions, and suggestions. Please visit the SERC website 
-#  (https://serc.carleton.edu/eddie/macrosystems/module2.html) to submit feedback 
+#  questions, and suggestions. Please visit our website 
+#  (http://MacrosystemsEDDIE.org) to submit feedback 
 #  to the module developers.
