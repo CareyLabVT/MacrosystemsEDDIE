@@ -9,7 +9,7 @@
  # This module consists of 6 objectives. Activity A consists of Objectives 1-2,
  # Activity B consists of Objectives 3-4, & Activity C consists of Objectives 5-6.
 
-# This script was modified last by KJF on 18 Oct 2017.
+# This script was modified last by KJF on 4 Dec. 2017.
 
 ########## ACTIVITY A - OBJECTIVE 1 ############################################
 # Download R packages and GLM files successfully onto your computer.
@@ -263,10 +263,8 @@ plot_temp(file=climate, fig_path=FALSE) # Create a heatmap of temperature. How
 plot_var(file=climate, "PHY_TCHLA") # Create a heatmap of chlorophyll-a. How 
 #  does this compare to your baseline?
 
-# Using these plots from your climate scenario, along with the the figures from 
-#  your baseline scenario and the other team's plots from their lake (climate 
-#  scenario and baseline plots), put together a brief presentation of your model 
-#  simulation and output to share with the rest of the class. 
+# Do these plots from the climate scenario and the baseline model, support your 
+# hypotheses about climate change effects on chlorophyll-a? 
 
 ########## ACTIVITY C - OBJECTIVE 5 ############################################
 # Now, using your knowledge of potential land use effects on nutrients coming 
