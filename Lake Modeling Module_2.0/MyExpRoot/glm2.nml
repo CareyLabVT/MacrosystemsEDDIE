@@ -112,8 +112,8 @@
 !-------------------------------------------------------------------------------
 &morphometry
    lake_name  = 'AwesomeLake'
-   latitude   = 32
-   longitude  = 35
+   latitude   = 32.82
+   longitude  = 35.59
    bsn_len    = 21000,
    bsn_wid    = 13000,
    bsn_vals   = 45
