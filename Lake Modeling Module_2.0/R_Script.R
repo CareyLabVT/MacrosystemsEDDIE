@@ -36,8 +36,7 @@ devtools::install_github("CareyLabVT/GLMr", force = TRUE) #download the GLMr
 #  software. This may take a few minutes. If downloaded successfully, you should 
 #  see "DONE (GLMr)" at the end of the output.
 
-install.packages('glmtools', repos=c('http://cran.rstudio.com', 
-                                     'http://owi.usgs.gov/R')) # This step 
+devtools::install_github("CareyLabVT/glmtools", force = TRUE) # This step 
 # downloads the R packages that allow you to work with GLM in R. 
 
 library(glmtools) # Load the two packages that you need to analyze GLM output
