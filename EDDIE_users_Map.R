@@ -1,0 +1,7 @@
+# install.packages('pacman')
+pacman::p_load(maps)
+
+map('world', xlim=c(-180,90), ylim=c(10,90), col = 'grey90', fill = T,border = 'grey50',lwd=0.3)
+map('state', col = 'grey90', fill = T,border = 'grey50',lwd=0.3, add=T)
+map('world', regions=c('Ireland'), add=T, col = 'dodgerblue', fill=T)
+map('state', regions=c('virginia','new york','connecticut','maine','illinois'), add=T, col = 'dodgerblue', fill=T)
