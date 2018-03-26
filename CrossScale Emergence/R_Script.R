@@ -96,10 +96,9 @@ run_glm(sim_folder, verbose=TRUE) # So simple and elegant... if this works, you
 
 # Now, go to the sim_folder on your computer (in RStudio, you can find this by 
 #  clicking on the 'Files' tab- if everything happened correctly, you should see 
-#  the addition of new files that were created during the simulation with a recent 
-#  date and time stamp, including 'output.nc', 'lake.csv', and 'overflow.csv'. 
-#  The most important these is the 'output.nc' file, which contains all of the 
-#  output data from your simulation.
+#  the addition a of new file that was created during the simulation with a recent 
+#  date and time stamp: 'output.nc'. This file contains all of the output data 
+#  from your simulation.
 
 # We need to know where the output.nc file is so that the glmtools package can
 #  plot and analyze the model output. We tell R where to find the output file 
@@ -126,7 +125,7 @@ plot_temp(file=baseline, fig_path=FALSE) # This plots your simulated water
 # This pair of commands can be used to list the variables that were output as part 
 #  of your GLM run.
 var_names <- sim_vars(baseline)
-print(var_names) # This will print a list of 91 variables that the model simulates.
+print(var_names) # This will print a list of variables that the model simulates.
 
 # We are particularly interested in the amount of total chlorophyll-a (chl-a), 
 #  because that is related to phytoplankton blooms. The variable name for chl-a 
