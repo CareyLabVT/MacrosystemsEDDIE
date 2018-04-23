@@ -190,7 +190,7 @@ num_outlet = 1
 flt_off_sw = .false.
 outl_elvs = 331
 outflow_fl = 'outflow.csv'
-outflow_factor = 1
+outflow_factor = 1.05
 seepage_rate = 0
 /
 &snowice
