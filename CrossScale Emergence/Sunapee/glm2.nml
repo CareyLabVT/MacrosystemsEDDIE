@@ -32,7 +32,7 @@ coef_mix_shear = 0.296
 coef_mix_turb = 0.526
 coef_mix_KH = 0.415
 coef_mix_hyp = 0.453
-deep_mixing = .true.
+!deep_mixing = .true.
 /
 !-------------------------------------------------------------------------------
 ! wq setup
