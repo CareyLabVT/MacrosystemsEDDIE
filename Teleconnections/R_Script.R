@@ -6,31 +6,30 @@
  # Module development was supported by NSF EF 1702506.
 
 # R code for students to work through the module activities A, B, and C.
- # This module consists of 6 objectives. Activity A consists of Objectives 1-2,
- # Activity B consists of Objectives 3-4, & Activity C consists of Objectives 5-6.
+ # This module consists of 5 objectives. Activity A consists of Objectives 1-2,
+ # Activity B consists of Objectives 3-4, & Activity C consists of Objective 5.
 
-# This script was modified last by KJF on 23 Apr. 2018.
+# This script was modified last by KJF on 4 June 2018.
 
 ########## ACTIVITY A - OBJECTIVE 1 ############################################
 # Download R packages and GLM files successfully onto your computer.
 
-install.packages('sp') # NOTE: depending on your computer, you may get output 
-#  that says, "There is a binary version available. Do you want to install from 
-#  sources that need compilation? y/n" If this pops up, type 'y' (without the 
-#  quotes) and hit enter. You may now be prompted to download the command line 
-#  developer tools in a pop-up window. Command line developer tools is a program 
-#  used to run modeling software. Click Install and then re-run the 
-#  install.packages(sp) once the install of the tools is finished. This should 
-#  now successfully load- when it's done, it should say 'DONE(sp)' if it worked.
+install.packages('sp') # NOTE: You may get output that says, "There is a binary 
+#  version available. Do you want to install from sources that need compilation? y/n" 
+#  If this pops up, type 'y' (without the quotes) and hit enter. You may now be 
+#  prompted to download the command line developer tools in a pop-up window. 
+#  Command line developer tools is a program used to run modeling software. Click 
+#  Install and then re-run the install.packages(sp) once the install of the tools 
+#  is finished. This should now successfully load- when it's done, it should say 'DONE(sp)'.
 
-install.packages('devtools') # this is another R package used to run modeling 
+install.packages('devtools') # This is another R package used to run modeling 
 #  software. If you get an error message that says, "package ‘devtools’ is not 
 #  available (for R version x.x.x)", be sure to check that your R software is up 
 #  to date to the most recent version.
 
 library(devtools) # load the package
 
-devtools::install_github("CareyLabVT/GLMr", force = TRUE) #download the GLMr 
+devtools::install_github("CareyLabVT/GLMr", force = TRUE) # Download the GLMr 
 #  software. This may take a few minutes. If downloaded successfully, you should 
 #  see "DONE (GLMr)" at the end of the output.
 
@@ -50,18 +49,18 @@ glm_version() # See what version of GLM you are running- should be v.2.x.x
 # Now, we will explore the files that come with your downloaded GLM files 
 
 # NOTE! Throughout the rest of the module, you may need to modify some of the 
-#  lines of code written below to run on your computer. If you do need to modify 
-#  a line of code, I marked that particular line with ##!! symbols at the 
-#  beginning of that line's annotation.  If you do not see those symbols, then 
-#  you do not need to edit that line of code (you can merely run it as normal).
+#  lines of code to run on your computer. If you do need to modify a line of code, 
+#  I put the symbols ##!! at the beginning of that line's annotation.  If you do 
+#  not see those symbols, you do not need to edit that line of code and can run 
+#  it as written.
 
 # When you downloaded this script, you unzipped the module folder to your Desktop. 
 #  We now need to tell R where these files are. We do that by setting...
 ComputerName <- 'KJF' ##!! Change to match your computer name
-LakeName <- 'Sunapee' ##!! Change to match the lake you and your partner selected
+LakeName <- 'Mendota' ##!! Change to match the lake you and your partner selected
 
-sim_folder <- paste('./Teleconnections/Lakes/', LakeName, sep='') # GitHub dev version
-#sim_folder <- paste('C:/Users/', ComputerName, '/Desktop/Teleconnections/Lakes', LakeName, sep='')
+sim_folder <- paste('C:/Users/',ComputerName,'/Desktop/R/MacrosystemsEDDIE/Teleconnections/Lakes/',LakeName, sep='')
+#sim_folder <- paste('C:/Users/',ComputerName,'/Desktop/Teleconnections/Lakes/',LakeName, sep='')
 # This command defines your sim_folder path to the Desktop folder where you 
   # extracted your zipped files.
 
@@ -111,11 +110,10 @@ plot_temp(file=baseline, fig_path=FALSE, col_lim = c(0,40)) # This plots your
 #  Plots tab. Then click "Copy to Clipboard", and click "Copy plot" in the preview 
 #  window. You can then paste your plot into Word, PowerPoint, etc. 
 
-# If you want to save your plot as an image file or pdf file instead of copying 
-#  it, click "Export" within the Plots tab, then choose "Save as Image" or "Save 
-#  as PDF". In the preview window, give your plot a descriptive file name (e.g., 
-#  "TemperatureHeatMap.pdf"), then press "Save". Your plot image and/or PDF file 
-#  will be saved in the sim_folder on your Desktop.
+# If you want to save your plot as an image file instead of copying it, click 
+#  "Export" within the Plots tab, then choose "Save as Image" . In the preview 
+#  window, give your plot a descriptive file name (e.g., "TemperatureHeatMap"), 
+#  then press "Save". Your plot image will be saved in the sim_folder.
 
 # This pair of commands can be used to list the variables that were output as part 
 #  of your GLM run.
@@ -123,22 +121,21 @@ var_names <- sim_vars(baseline)
 print(var_names) # This will print a list of variables that the model simulates.
 
 # We are particularly interested in the lake depth, as teleconnections could change
-#  the lake depth over time. We use the following command to pull the daily
-#  "surface height" out of the model output and plot it as a function of time.
-#  The unit of measurement for lake depth is meters (m).
+#  the lake depth over time through increased or decreased evaporation from the
+#  water surface. We use the following command to pull the daily "surface height" 
+#  out of the model output and plot it as a function of time. The unit of 
+#  measurement for lake depth is meters (m).
 lake_level1 <- get_surface_height(baseline)
 
 # Use the code below to create a plot of water level in the lake over time. 
 plot(surface_height ~ DateTime, data = lake_level1, type="l", col="black", 
-     ylab = "Lake depth (m)", xlab = "Date", ylim=c(33,35))
-# !! Note that the command ylim=c(24,26) tells R what you want the minimum and 
-#  maximum values on the y-axis to be (here, we're plotting from 22 to 24 meters). 
-#  Adjust this range to make sure all your data are shown in the plot.
+     ylab = "Lake depth (m)", xlab = "Date", ylim=c(24,26))
+# !! Note that the command ylim=c(min,max) tells R the minimum and maximum y-axis 
+#  values to plot. Adjust this range to make sure all your data are shown.
 
-# We also want to save the model output of the temperature and lake depth 
-#  in the lake during our baseline simulation, because we'll be comparing it to 
-#  our teleconnection scenario later.  To do this, we use the following 
-#  commands:
+# We also want to save the model output of the water temperature and lake depth 
+#  during our baseline simulation, because we'll be comparing it to our teleconnection 
+#  scenario later. To do this, we use the following  commands:
 
 temp_output <- get_temp(file=baseline, reference='surface', z_out=c(1)) # Extract
 #  the surface water temperature for each day and save it as "temp_output"
@@ -150,77 +147,98 @@ colnames(depth_output)[2] <- "Baseline_Lake_Depth" # Rename the depth column
 
 ########## ACTIVITY B - OBJECTIVE 3 ############################################
 # For Activity B, you will work with your partner to model your lake under a 
-#  teleconnections scenario-- an El Nino year. Using the XXX file, navigate to 
-#  your lake's tab, and use the data provided to estimate how much warmer or 
-#  cooler your lake's regional air temperature would likely be during an El Nino
-#  year. 
+#  teleconnections scenario-- a simulated El Nino year. To do this, we will use 
+#  observed, historical climate data to estimate how much warmer or cooler your 
+#  lake's local air temperature would likely be during an El Nino year. 
 
-#  To complete this activity, you will need to modify the input meterological 
-#  data (the met_hourly file) and rerun the model to examine the effects of your 
-#  teleconnections scenario on lake water temperature and lake level.
+install.packages('readxl') # Install this package to read Excel (.xlsx) files 
+#  directly into R
 
-### Detailed directions for modifying your met file: 
+library(readxl) # Now load the package you just installed
 
-## SOMETHING THAT IS REALLY IMPORTANT! ##
-  # Opening up the met_hourly.csv file in Microsoft Excel will inexplicably alter 
-  # the date/time formatting of the file so that GLM cannot read it. You will get 
-  # an error something like this: "Day 2451545 (2000-01-01) not found". To avoid 
-  # this error, carefully follow the THREE steps listed below to modify your met 
-  # file.
+# First, read in the observational data for your lake using the command below:
+####*********** HOLDING PLACE; CURRENTLY "TYPE" COLUMN SET BY EXTERNAL FILE ********
+elN <- c(1987,1993, 2015, 1983, 1997, 1957, 1972, 1982, 1992, 2002, 2011, 1965,
+         1991, 1998, 2016)
+neut <- c(1959,1960,1961,1984,1996,2001,2004,2013,2018,1952,1985,1963,1989,2000,1967,1968,2008,1953,1979,1981,1990,2012)
 
-# 1) Copy and paste an extra version of the met_hourly.csv file in your sim folder 
-  # so that you have a backup in case of any mistakes. Rename this file something 
-  # like "met_hourly_baseline.csv" and be sure not to open it.
+annual_temp <- read_excel(paste('C:/Users/',ComputerName,'/Desktop/R/MacrosystemsEDDIE/Teleconnections/Lake_Characteristics.xlsx', sep=''), 
+                          sheet = LakeName) %>%
+  mutate(Type = ifelse(Year %in% elN, "ElNino", 
+                       ifelse(Year %in% neut, "Neutral", NA)))
+####*********** HOLDING PLACE; CURRENTLY "TYPE" COLUMN SET BY EXTERNAL FILE ********
 
-# 2) Open the met_hourly.csv file in Excel.  Change the values in the AirTemp 
-  # column to represent your climate change scenario. 
+# Use the command below to take a look at the file:
+View(annual_temp)
 
-  # NOTE ABOUT COLUMN NAMES: the order of the columns in the met file does not 
-  # matter, but you can only have one of each variable and they must keep the 
-  # EXACT same header name (i.e., it must always be 'AirTemp', not 'AirTemp+3oC') 
+# The data we'll be using to estimate El Nino temperature offsets is "Air Temp Mean (°C)",
+#  or the annual average air temperature for your lake.
 
-  # When you are done editing the meteorological file, highlight all of the 'time' 
-  # column in Excel, by clicking the capital letter above the 'time' column. 
-  # Right click, then select 'Format Cells', and then 'Custom'. In the "Type" or 
-  # "Formatting" box, change the default to "YYYY-MM-DD hh:mm:ss" exactly (no 
-  # quotes). This is the only time/date format that GLM is able to read. When you 
-  # click ok, this should change the format of the 'time'  column so that it reads: 
-  # "2011-09-01 00:00:00" with exactly that spacing and punctuation. Save this 
-  # new file under a different name that tells what scenario it represents, e.g., 
-  # "met_hourly_climate.csv". Close the csv file, saving your changes. 
+# Let's look at how annual air temperature differs between El Nino years and 
+#  non-El Nino years for your lake. First, we'll subset the data into El Nino years
+#  and non-El Nino years. 
+ElNino_years <- subset(annual_temp, Type == "ElNino") # Define El Nino years
+Other_years <- subset(annual_temp, Type == "Neutral") # Define Neutral years
 
-## Run the following lines to ensure your time column is formatted for GLM. 
-  # (This is especially important if you have an older version of Excel)
-metdata <- read.csv(paste0(sim_folder,"/met_hourly_elnino.csv"), header=TRUE) 
-##!! Edit the name of the CSV file so that it matches your new met file name for 
-  # your El Nino teleconnections scenario. 
-# Then run the following command to convert the time column into the time/date 
-  # structure that GLM uses
-metdata$time <-as.POSIXct(strptime(metdata$time, "%Y-%m-%d %H:%M:%S", tz="EST")) 
-write.csv(metdata, paste0(sim_folder,"/met_hourly_elnino.csv"), 
-          row.names=FALSE, quote=FALSE) ##!! Edit this command so the file name 
-  # matches your teleconnections scenario met file name- this CSV file will now 
-  # have the proper date/time formatting
+# Visualize your lake's patterns in air temperature over time using the commands below:
+plot(`Air Temp Mean (°C)` ~ Year, data = annual_temp, pch = 16, col = 'gray70')
+points(`Air Temp Mean (°C)` ~ Year, data = ElNino_years, pch = 16, col = 'red')
+points(`Air Temp Mean (°C)` ~ Year, data = Other_years, pch = 16, col = 'blue')
 
-  # IMPORTANT note: any time you alter the meteorological input file, you will have 
-  # to repeat this step to be able to read it into R and run the model in GLM.
+# Now, we need to estimate how much warmer or colder an average El Nino year is 
+#  compared to a non-El Nino year. 
 
-# 3) You now need to edit the glm2.nml file to change the name of the input 
+# We'll do that by taking the average (mean) temperature over all El Nino years, 
+#  versus all neutral years
+mean_ElNino <- mean(ElNino_years$`Air Temp Mean (°C)`)
+mean_Other <- mean(Other_years$`Air Temp Mean (°C)`)
+
+# Now that we have calculated the means for each category, we can add a line 
+#  representing each to our plot: 
+abline(h = mean_ElNino, col= 'red', lty=2)
+abline(h = mean_Other, col = 'blue', lty=2)
+
+# Next, we calculate the estimated El Nino offset as the difference between 
+#  air temperatures in El Nino years vs. other years
+offset <- mean_ElNino - mean_Other # Save the offset as the "offset" object
+offset # Run this line to have R print out what your temperature offset is
+
+# Now, we need to create a new meteorological driver file for GLM that has air
+#  temperatures adjusted to reflect our lake's estimated El Nino temperature 
+#  difference.
+
+# We can do that all in R (no Excel needed!) 
+# First, we read in the original meteorological driver data for GLM using the 
+#  following commands: 
+baseline_met <- paste0(sim_folder,"/met_hourly.csv")
+met_data <- read_csv(baseline_met)
+
+# Use this command to look at the structure of your meterological driver data
+View(met_data)
+
+# Next, We create a new meteorological driver data file that has the modified 
+#  AirTemp that reflects our El Nino scenario. This step is complicated in Excel, 
+#  but one simple line of code in R!! 
+ElNino_met <- mutate(met_data, AirTemp = AirTemp + offset)
+
+# Finally, we'll write our new file to a .csv that we can use to drive GLM:
+write.csv(ElNino_met, paste0(sim_folder, "/met_hourly_elnino.csv"), 
+          row.names=FALSE, quote=FALSE)
+
+# You now need to edit the glm2.nml file to change the name of the input 
   # meteorological file so that it reads in the new, edited file for your 
-  # teleconnections scenario, not the default "met_hourly.csv".  Open the nml 
-  # file by clicking 'glm2.nml' in the Files tab of RStudio, then scroll 
+  # teleconnections scenario, not the default "met_hourly.csv".  
+
+# Open the nml file by clicking 'glm2.nml' in the Files tab of RStudio, then scroll 
   # down to the meteorology section, and change the 'meteo_fl' entry to the new 
-  # met file name (e.g., 'met_hourly_elnino.csv'). Save your modified glm2.nml 
-  # file. Note: check to make sure that your quotes ' and ' around the file name 
-  # are upright, and not slanted- sometimes the nml default alters the quotes so 
-  # that the file cannot be read in properly (super tricky!).
+  # met file name ('met_hourly_elnino.csv'). Save your modified glm2.nml file.
 
 # Once you have edited the nml file name, you can always check to make sure that 
   #  it is correct with the command:
 nml <- read_nml(nml_file)  # Read in your nml file from your new directory
-get_nml_value(nml, 'meteo_fl') # If you have done this correctly, you should get 
-  #  an output that lists the name of your NEW meteorological file altered for your 
-  #  teleconnections scenario. If it doesn't, repeat step 3 above.
+get_nml_value(nml, 'meteo_fl') # The printout here should list your NEW meteorological 
+#  file for your El Nino scenario. If it doesn't, make sure you pressed the Save 
+#  icon (the floppy disk) after you changed your glm2.nml file.
 
 # You can now run the model for your teleconnections scenario using the new edited 
   # nml file using the commands below. Exciting!
@@ -239,7 +257,7 @@ ElNino <- file.path(sim_folder, 'output.nc') # This defines the output.nc file
   # our baseline scenario. 
 
 #  Extract surface water temperature:
-`*tmp*` <- get_temp(file=ElNino, reference='surface', z_out=c(1))
+`*tmp*` <- get_temp(file= ElNino, reference= 'surface', z_out= c(1))
 temp_output["ElNino_Surface_Temp"] <- `*tmp*`[2] # Here we attach the water 
   # temperatures from the El Nino teleconnections simulation to the  same file 
   # that contains your baseline scenario temperatures. 
@@ -266,7 +284,7 @@ plot_temp(file=ElNino, fig_path=FALSE, col_lim = c(0,40)) # Create a heatmap
   # The command below plots DateTime vs. Observed baseline data in black: 
 attach(temp_output)
 plot(DateTime, Baseline_Surface_Temp, type="l", col="black", xlab="Date",
-     ylab="Surface water temperature (C)", ylim=c(0, 40))  
+     ylab="Surface water temperature (C)", ylim=c(0, 30))  
 lines(DateTime, ElNino_Surface_Temp, col="red") # this adds a red line of the 
   # output from the El Nino teleconnections scenario
 legend("topleft",c("Baseline", "El Nino"), lty=c(1,1), col=c("black","red")) 
@@ -282,13 +300,13 @@ legend("topleft",c("Baseline", "El Nino"), lty=c(1,1), col=c("black","red"))
   # clearly visualized and you can compare your two scenarios
 attach(depth_output)
 plot(DateTime, Baseline_Lake_Depth, type="l", col="black", xlab="Date",
-     ylab="Lake depth (m)", ylim=c(0, 40))  
+     ylab="Lake depth (m)", ylim=c(24, 26))  
 lines(DateTime, ElNino_Lake_Depth, col="red") # this adds a red line of the 
 # output from the El Nino teleconnections scenario
 legend("topleft",c("Baseline", "El Nino"), lty=c(1,1), col=c("black","red")) 
 # this adds a legend
 
-########## ACTIVITY C - OBJECTIVE 6 ############################################
+########## ACTIVITY C - OBJECTIVE 5 ############################################
 # Using the line plot you just created, and the other team's line plot from their 
 #  lake, put together a brief presentation of your model simulation and output to 
 #  share with the rest of the class. 
