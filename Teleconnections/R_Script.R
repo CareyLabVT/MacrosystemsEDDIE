@@ -48,18 +48,17 @@ glm_version() # See what version of GLM you are running- should be v.2.x.x
 
 # Now, we will explore the files that come with your downloaded GLM files 
 
-# NOTE! Throughout the rest of the module, you may need to modify some of the 
-#  lines of code to run on your computer. If you do need to modify a line of code, 
-#  I put the symbols ##!! at the beginning of that line's annotation.  If you do 
-#  not see those symbols, you do not need to edit that line of code and can run 
-#  it as written.
+# NOTE! Throughout the rest of the module, you will need to modify some of the 
+#  lines of code to run on your computer. If you need to modify a line, I put the 
+#  symbols ##!! at the beginning of that line's annotation.  If you do not see those 
+#  symbols, you do not need to edit that line of code and can run it as written.
 
 # When you downloaded this script, you unzipped the module folder to your Desktop. 
 #  We now need to tell R where these files are. We do that by setting...
 ComputerName <- 'KJF' ##!! Change to match your computer name
 LakeName <- 'Mendota' ##!! Change to match the lake you and your partner selected
 
-sim_folder <- paste('C:/Users/',ComputerName,'/Desktop/R/MacrosystemsEDDIE/Teleconnections/Lakes/',LakeName, sep='')
+sim_folder <- paste('C:/Users/',ComputerName,'/Desktop/R/MacrosystemsEDDIE/Teleconnections/Lakes/',LakeName, sep='') #KF dev placeholder
 #sim_folder <- paste('C:/Users/',ComputerName,'/Desktop/Teleconnections/Lakes/',LakeName, sep='')
 # This command defines your sim_folder path to the Desktop folder where you 
   # extracted your zipped files.
@@ -158,8 +157,7 @@ library(readxl) # Now load the package you just installed
 
 # First, read in the observational data for your lake using the command below:
 ####*********** HOLDING PLACE; CURRENTLY "TYPE" COLUMN SET BY EXTERNAL FILE ********
-elN <- c(1987,1993, 2015, 1983, 1997, 1957, 1972, 1982, 1992, 2002, 2011, 1965,
-         1991, 1998, 2016)
+elN <- c(1987,1993,2015,1983,1997,1957,1972,1982,1992,2002,2011,1965,1991,1998,2016)
 neut <- c(1959,1960,1961,1984,1996,2001,2004,2013,2018,1952,1985,1963,1989,2000,1967,1968,2008,1953,1979,1981,1990,2012)
 
 annual_temp <- read_excel(paste('C:/Users/',ComputerName,'/Desktop/R/MacrosystemsEDDIE/Teleconnections/Lake_Characteristics.xlsx', sep=''), 
