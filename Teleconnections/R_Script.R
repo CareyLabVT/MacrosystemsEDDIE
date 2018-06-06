@@ -157,7 +157,8 @@ library(readxl) # Now load the package you just installed
 
 # First, read in the observational data for your lake using the command below:
 annual_temp <- read_excel(paste('C:/Users/',ComputerName,'/Desktop/R/MacrosystemsEDDIE/Teleconnections/Lake_Characteristics.xlsx', sep=''), 
-                          sheet = LakeName)
+                          sheet = LakeName) %>%
+  filter(Year >= 1970)
 
 # Use the command below to take a look at the file:
 View(annual_temp)
@@ -169,30 +170,46 @@ View(annual_temp)
 #  non-El Nino years for your lake. First, we'll subset the data into El Nino years
 #  and non-El Nino years. 
 ElNino_years <- subset(annual_temp, Type == "ElNino") # Define El Nino years
-LaNina_years <- subset(annual_temp, Type == "LaNina") # Define La Nina years
-Other_years <- subset(annual_temp, Type == "Neutral") # Define Neutral years
+Neutral_years <- subset(annual_temp, Type == "Neutral") # Define Neutral years
 
 # Visualize your lake's patterns in air temperature over time using the commands below:
 plot(`Air Temp Mean (°C)` ~ Year, data = annual_temp, pch = 16, col = 'gray70')
 points(`Air Temp Mean (°C)` ~ Year, data = ElNino_years, pch = 16, col = 'red')
-points(`Air Temp Mean (°C)` ~ Year, data = LaNina_years, pch = 16, col = 'blue')
-points(`Air Temp Mean (°C)` ~ Year, data = Other_years, pch = 16, col = 'black')
+points(`Air Temp Mean (°C)` ~ Year, data = Neutral_years, pch = 16, col = 'black')
 # Now, we need to estimate how much warmer or colder an average El Nino year is 
-#  compared to a non-El Nino year. 
+#  compared to a neutral year. 
 
-# We'll do that by taking the average (mean) temperature over all El Nino years, 
-#  versus all neutral years
-mean_ElNino <- mean(ElNino_years$`Air Temp Mean (°C)`)
-mean_Other <- mean(Other_years$`Air Temp Mean (°C)`)
+# We'll do that by calculating the slope of the line between temperature ane year
+# for both El Nino years and neutral years
+
+# First, we estimate the slope and intercept of a line fit through the El Nino
+#  data points, using a simple linear model
+mod_ElNino <- lm(`Air Temp Mean (°C)` ~ Year, data = ElNino_years) 
+slope_ElNino = summary(mod_ElNino)$coeff[2]
+int_ElNino = summary(mod_ElNino)$coeff[1]
+
+# We plug in the slope and intercept to estimate the air temperature if 
+#  2017 (the last year of our model) was an El Nino year 
+ElNino_2017 <- (slope_ElNino * 2017) + int_ElNino
+
+# Next, we estimate the slope and intercept of a line fit through the Neutral
+#  data points, using a simple linear model
+mod_Neutral <- lm(`Air Temp Mean (°C)` ~ Year, data = Neutral_years) 
+slope_Neutral = summary(mod_Neutral)$coeff[2]
+int_Neutral = summary(mod_Neutral)$coeff[1]
+
+# As before, we plug in the slope and intercept to estimate the air temperature if 
+#  2017 (the last year of our model) was a neutral year 
+Neutral_2017 <- (slope_Neutral * 2017) + int_Neutral
 
 # Now that we have calculated the means for each category, we can add a line 
 #  representing each to our plot: 
-abline(h = mean_ElNino, col= 'red', lty=2)
-abline(h = mean_Other, col = 'blue', lty=2)
+abline(a = int_ElNino, b = slope_ElNino, col= 'red', lty=2)
+abline(a = int_Neutral, b = slope_Neutral, col = 'black', lty=2)
 
 # Next, we calculate the estimated El Nino offset as the difference between 
 #  air temperatures in El Nino years vs. other years
-offset <- mean_ElNino - mean_Other # Save the offset as the "offset" object
+offset <- ElNino_2017 - Neutral_2017 # Save the offset as the "offset" object
 offset # Run this line to have R print out what your temperature offset is
 
 # Now, we need to create a new meteorological driver file for GLM that has air
