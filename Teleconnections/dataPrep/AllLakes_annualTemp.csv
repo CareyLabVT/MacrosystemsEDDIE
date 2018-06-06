@@ -1,0 +1,1269 @@
+Lake,Year,MeanTemp,Type
+Barco,1954,20.8,LaNina
+Barco,1955,21,LaNina
+Barco,1956,20.8,LaNina
+Barco,1957,,ElNino
+Barco,1958,20.2,Neutral
+Barco,1959,21.4,Neutral
+Barco,1960,20.6,Neutral
+Barco,1961,20.9,Neutral
+Barco,1962,,LaNina
+Barco,1963,20.3,Neutral
+Barco,1964,21,LaNina
+Barco,1965,21.1,ElNino
+Barco,1966,20.4,Neutral
+Barco,1967,21.3,Neutral
+Barco,1968,20.4,Neutral
+Barco,1969,20.6,Neutral
+Barco,1970,20.8,LaNina
+Barco,1971,21.4,LaNina
+Barco,1972,21.7,ElNino
+Barco,1973,21.4,LaNina
+Barco,1974,21.7,LaNina
+Barco,1975,21.9,LaNina
+Barco,1976,20.5,Neutral
+Barco,1977,21.1,Neutral
+Barco,1978,20.9,Neutral
+Barco,1979,20.9,Neutral
+Barco,1980,20.8,Neutral
+Barco,1981,20.8,Neutral
+Barco,1982,22,ElNino
+Barco,1983,20.5,ElNino
+Barco,1984,20.4,Neutral
+Barco,1985,20.8,Neutral
+Barco,1986,21,Neutral
+Barco,1987,20.1,ElNino
+Barco,1988,19.8,LaNina
+Barco,1989,20.5,Neutral
+Barco,1990,21.4,Neutral
+Barco,1991,21,ElNino
+Barco,1992,19.9,ElNino
+Barco,1993,20,ElNino
+Barco,1994,20.8,Neutral
+Barco,1995,20.5,Neutral
+Barco,1996,20.1,Neutral
+Barco,1997,20.9,ElNino
+Barco,1998,21.7,ElNino
+Barco,1999,20.8,LaNina
+Barco,2000,20.1,Neutral
+Barco,2001,20.6,Neutral
+Barco,2002,20.6,ElNino
+Barco,2003,20.4,Neutral
+Barco,2004,20.6,Neutral
+Barco,2005,20.5,Neutral
+Barco,2006,20.6,Neutral
+Barco,2007,20.7,Neutral
+Barco,2008,20.3,Neutral
+Barco,2009,20.5,Neutral
+Barco,2010,19.8,LaNina
+Barco,2011,21.5,LaNina
+Barco,2012,21.5,Neutral
+Barco,2013,21.2,Neutral
+Barco,2014,20.1,Neutral
+Barco,2015,21.8,ElNino
+Barco,2016,21.4,ElNino
+Barco,2017,21.4,Neutral
+Crampton,1950,3.5,LaNina
+Crampton,1951,4.3,Neutral
+Crampton,1952,6.5,Neutral
+Crampton,1953,,Neutral
+Crampton,1954,5.2,LaNina
+Crampton,1955,,LaNina
+Crampton,1956,5.1,LaNina
+Crampton,1957,4.9,ElNino
+Crampton,1958,4.8,Neutral
+Crampton,1959,4.8,Neutral
+Crampton,1960,4.8,Neutral
+Crampton,1961,5.6,Neutral
+Crampton,1962,4.8,LaNina
+Crampton,1963,5.1,Neutral
+Crampton,1964,5.4,LaNina
+Crampton,1965,,ElNino
+Crampton,1966,4.6,Neutral
+Crampton,1967,4.3,Neutral
+Crampton,1968,5.5,Neutral
+Crampton,1969,5,Neutral
+Crampton,1970,5,LaNina
+Crampton,1971,,LaNina
+Crampton,1972,3.5,ElNino
+Crampton,1973,,LaNina
+Crampton,1974,3.6,LaNina
+Crampton,1975,4.4,LaNina
+Crampton,1976,3.4,Neutral
+Crampton,1977,4.4,Neutral
+Crampton,1978,3.6,Neutral
+Crampton,1979,2.7,Neutral
+Crampton,1980,,Neutral
+Crampton,1981,4.4,Neutral
+Crampton,1982,3.2,ElNino
+Crampton,1983,4.5,ElNino
+Crampton,1984,4.4,Neutral
+Crampton,1985,,Neutral
+Crampton,1986,4.9,Neutral
+Crampton,1987,6.6,ElNino
+Crampton,1988,,LaNina
+Crampton,1989,2.7,Neutral
+Crampton,1990,4.7,Neutral
+Crampton,1991,4.3,ElNino
+Crampton,1992,3.6,ElNino
+Crampton,1993,3.2,ElNino
+Crampton,1994,3.9,Neutral
+Crampton,1995,3.7,Neutral
+Crampton,1996,2.4,Neutral
+Crampton,1997,3.8,ElNino
+Crampton,1998,7,ElNino
+Crampton,1999,5.6,LaNina
+Crampton,2000,4.8,Neutral
+Crampton,2001,5.7,Neutral
+Crampton,2002,4.6,ElNino
+Crampton,2003,4,Neutral
+Crampton,2004,4.3,Neutral
+Crampton,2005,5.4,Neutral
+Crampton,2006,5.8,Neutral
+Crampton,2007,5.2,Neutral
+Crampton,2008,3.4,Neutral
+Crampton,2009,3.8,Neutral
+Crampton,2010,5.8,LaNina
+Crampton,2011,5,LaNina
+Crampton,2012,6.5,Neutral
+Crampton,2013,3.2,Neutral
+Crampton,2014,2.4,Neutral
+Crampton,2015,4.9,ElNino
+Crampton,2016,5.8,ElNino
+Crampton,2017,4.5,Neutral
+Mendota,1950,6.8,LaNina
+Mendota,1951,6.6,Neutral
+Mendota,1952,8.6,Neutral
+Mendota,1953,9.3,Neutral
+Mendota,1954,8.8,LaNina
+Mendota,1955,8.5,LaNina
+Mendota,1956,8.3,LaNina
+Mendota,1957,8,ElNino
+Mendota,1958,7.6,Neutral
+Mendota,1959,7.6,Neutral
+Mendota,1960,7,Neutral
+Mendota,1961,7.5,Neutral
+Mendota,1962,6.9,LaNina
+Mendota,1963,7,Neutral
+Mendota,1964,8.3,LaNina
+Mendota,1965,7,ElNino
+Mendota,1966,6.6,Neutral
+Mendota,1967,6.5,Neutral
+Mendota,1968,7.8,Neutral
+Mendota,1969,6.7,Neutral
+Mendota,1970,7.3,LaNina
+Mendota,1971,7.7,LaNina
+Mendota,1972,6.1,ElNino
+Mendota,1973,8.7,LaNina
+Mendota,1974,7.6,LaNina
+Mendota,1975,8.2,LaNina
+Mendota,1976,7.1,Neutral
+Mendota,1977,7.5,Neutral
+Mendota,1978,6.6,Neutral
+Mendota,1979,6.5,Neutral
+Mendota,1980,7,Neutral
+Mendota,1981,8,Neutral
+Mendota,1982,6.7,ElNino
+Mendota,1983,7.5,ElNino
+Mendota,1984,7.7,Neutral
+Mendota,1985,7,Neutral
+Mendota,1986,7.9,Neutral
+Mendota,1987,9.4,ElNino
+Mendota,1988,8.1,LaNina
+Mendota,1989,7.1,Neutral
+Mendota,1990,8.9,Neutral
+Mendota,1991,8.7,ElNino
+Mendota,1992,8,ElNino
+Mendota,1993,7.9,ElNino
+Mendota,1994,8.2,Neutral
+Mendota,1995,8.3,Neutral
+Mendota,1996,6.4,Neutral
+Mendota,1997,7.3,ElNino
+Mendota,1998,9.9,ElNino
+Mendota,1999,8.9,LaNina
+Mendota,2000,8.1,Neutral
+Mendota,2001,8.9,Neutral
+Mendota,2002,8.7,ElNino
+Mendota,2003,7.7,Neutral
+Mendota,2004,8.3,Neutral
+Mendota,2005,9,Neutral
+Mendota,2006,9.2,Neutral
+Mendota,2007,8.7,Neutral
+Mendota,2008,7.3,Neutral
+Mendota,2009,7.5,Neutral
+Mendota,2010,9,LaNina
+Mendota,2011,8.7,LaNina
+Mendota,2012,10.7,Neutral
+Mendota,2013,7.6,Neutral
+Mendota,2014,7.1,Neutral
+Mendota,2015,9,ElNino
+Mendota,2016,9.6,ElNino
+Mendota,2017,9.1,Neutral
+Falling Creek Reservoir,1950,13.3,LaNina
+Falling Creek Reservoir,1951,13.5,Neutral
+Falling Creek Reservoir,1952,14.1,Neutral
+Falling Creek Reservoir,1953,14.8,Neutral
+Falling Creek Reservoir,1954,14,LaNina
+Falling Creek Reservoir,1955,13.7,LaNina
+Falling Creek Reservoir,1956,14,LaNina
+Falling Creek Reservoir,1957,14,ElNino
+Falling Creek Reservoir,1958,12.9,Neutral
+Falling Creek Reservoir,1959,14.4,Neutral
+Falling Creek Reservoir,1960,13.1,Neutral
+Falling Creek Reservoir,1961,13.6,Neutral
+Falling Creek Reservoir,1962,13.1,LaNina
+Falling Creek Reservoir,1963,13,Neutral
+Falling Creek Reservoir,1964,13.7,LaNina
+Falling Creek Reservoir,1965,13.3,ElNino
+Falling Creek Reservoir,1966,12.5,Neutral
+Falling Creek Reservoir,1967,12.8,Neutral
+Falling Creek Reservoir,1968,13,Neutral
+Falling Creek Reservoir,1969,12.6,Neutral
+Falling Creek Reservoir,1970,13.4,LaNina
+Falling Creek Reservoir,1971,13.4,LaNina
+Falling Creek Reservoir,1972,12.9,ElNino
+Falling Creek Reservoir,1973,13.8,LaNina
+Falling Creek Reservoir,1974,13.6,LaNina
+Falling Creek Reservoir,1975,13.7,LaNina
+Falling Creek Reservoir,1976,12.6,Neutral
+Falling Creek Reservoir,1977,13.5,Neutral
+Falling Creek Reservoir,1978,12.9,Neutral
+Falling Creek Reservoir,1979,12.6,Neutral
+Falling Creek Reservoir,1980,13.3,Neutral
+Falling Creek Reservoir,1981,12.5,Neutral
+Falling Creek Reservoir,1982,12.8,ElNino
+Falling Creek Reservoir,1983,13,ElNino
+Falling Creek Reservoir,1984,13.8,Neutral
+Falling Creek Reservoir,1985,14.2,Neutral
+Falling Creek Reservoir,1986,13.8,Neutral
+Falling Creek Reservoir,1987,13.8,ElNino
+Falling Creek Reservoir,1988,12.9,LaNina
+Falling Creek Reservoir,1989,13.1,Neutral
+Falling Creek Reservoir,1990,15,Neutral
+Falling Creek Reservoir,1991,14.7,ElNino
+Falling Creek Reservoir,1992,13.2,ElNino
+Falling Creek Reservoir,1993,13.4,ElNino
+Falling Creek Reservoir,1994,13.8,Neutral
+Falling Creek Reservoir,1995,13.6,Neutral
+Falling Creek Reservoir,1996,12.8,Neutral
+Falling Creek Reservoir,1997,13,ElNino
+Falling Creek Reservoir,1998,14.8,ElNino
+Falling Creek Reservoir,1999,14.3,LaNina
+Falling Creek Reservoir,2000,13.4,Neutral
+Falling Creek Reservoir,2001,14.3,Neutral
+Falling Creek Reservoir,2002,14.4,ElNino
+Falling Creek Reservoir,2003,13.3,Neutral
+Falling Creek Reservoir,2004,14.3,Neutral
+Falling Creek Reservoir,2005,14.2,Neutral
+Falling Creek Reservoir,2006,14.6,Neutral
+Falling Creek Reservoir,2007,15.1,Neutral
+Falling Creek Reservoir,2008,14.2,Neutral
+Falling Creek Reservoir,2009,14.1,Neutral
+Falling Creek Reservoir,2010,14.2,LaNina
+Falling Creek Reservoir,2011,14.9,LaNina
+Falling Creek Reservoir,2012,15.3,Neutral
+Falling Creek Reservoir,2013,13.9,Neutral
+Falling Creek Reservoir,2014,13.2,Neutral
+Falling Creek Reservoir,2015,14.5,ElNino
+Falling Creek Reservoir,2016,14.9,ElNino
+Falling Creek Reservoir,2017,15.1,Neutral
+Little Rock,1950,3.1,LaNina
+Little Rock,1951,3.8,Neutral
+Little Rock,1952,5.4,Neutral
+Little Rock,1953,5.8,Neutral
+Little Rock,1954,,LaNina
+Little Rock,1955,5.3,LaNina
+Little Rock,1956,5.1,LaNina
+Little Rock,1957,,ElNino
+Little Rock,1958,4.9,Neutral
+Little Rock,1959,4.6,Neutral
+Little Rock,1960,4.2,Neutral
+Little Rock,1961,4.3,Neutral
+Little Rock,1962,4.6,LaNina
+Little Rock,1963,4.5,Neutral
+Little Rock,1964,4.5,LaNina
+Little Rock,1965,3.9,ElNino
+Little Rock,1966,4.5,Neutral
+Little Rock,1967,3.8,Neutral
+Little Rock,1968,4.5,Neutral
+Little Rock,1969,4.7,Neutral
+Little Rock,1970,5.3,LaNina
+Little Rock,1971,4.9,LaNina
+Little Rock,1972,,ElNino
+Little Rock,1973,4.8,LaNina
+Little Rock,1974,3,LaNina
+Little Rock,1975,4.4,LaNina
+Little Rock,1976,3.3,Neutral
+Little Rock,1977,4.6,Neutral
+Little Rock,1978,3.5,Neutral
+Little Rock,1979,3,Neutral
+Little Rock,1980,3.5,Neutral
+Little Rock,1981,4.9,Neutral
+Little Rock,1982,3.6,ElNino
+Little Rock,1983,4.8,ElNino
+Little Rock,1984,4.6,Neutral
+Little Rock,1985,3.4,Neutral
+Little Rock,1986,4.3,Neutral
+Little Rock,1987,5.8,ElNino
+Little Rock,1988,4.2,LaNina
+Little Rock,1989,2.8,Neutral
+Little Rock,1990,3.9,Neutral
+Little Rock,1991,4,ElNino
+Little Rock,1992,4,ElNino
+Little Rock,1993,,ElNino
+Little Rock,1994,,Neutral
+Little Rock,1995,2.9,Neutral
+Little Rock,1996,3.1,Neutral
+Little Rock,1997,3.9,ElNino
+Little Rock,1998,6.7,ElNino
+Little Rock,1999,5.6,LaNina
+Little Rock,2000,4.5,Neutral
+Little Rock,2001,5.2,Neutral
+Little Rock,2002,4,ElNino
+Little Rock,2003,3.1,Neutral
+Little Rock,2004,3.9,Neutral
+Little Rock,2005,5.8,Neutral
+Little Rock,2006,5.9,Neutral
+Little Rock,2007,,Neutral
+Little Rock,2008,2.7,Neutral
+Little Rock,2009,3.1,Neutral
+Little Rock,2010,5.3,LaNina
+Little Rock,2011,4.6,LaNina
+Little Rock,2012,6,Neutral
+Little Rock,2013,3,Neutral
+Little Rock,2014,2,Neutral
+Little Rock,2015,4.5,ElNino
+Little Rock,2016,5.5,ElNino
+Little Rock,2017,4.8,Neutral
+Prairie,1950,1.9,LaNina
+Prairie,1951,2.4,Neutral
+Prairie,1952,5,Neutral
+Prairie,1953,5.9,Neutral
+Prairie,1954,5.3,LaNina
+Prairie,1955,4.1,LaNina
+Prairie,1956,4.1,LaNina
+Prairie,1957,4.9,ElNino
+Prairie,1958,5.2,Neutral
+Prairie,1959,4.8,Neutral
+Prairie,1960,4.4,Neutral
+Prairie,1961,5.2,Neutral
+Prairie,1962,4.6,LaNina
+Prairie,1963,5.7,Neutral
+Prairie,1964,4.6,LaNina
+Prairie,1965,3.6,ElNino
+Prairie,1966,3.7,Neutral
+Prairie,1967,4.4,Neutral
+Prairie,1968,4.6,Neutral
+Prairie,1969,4.1,Neutral
+Prairie,1970,4.2,LaNina
+Prairie,1971,4.3,LaNina
+Prairie,1972,3.7,ElNino
+Prairie,1973,6.2,LaNina
+Prairie,1974,4.9,LaNina
+Prairie,1975,4.9,LaNina
+Prairie,1976,5.5,Neutral
+Prairie,1977,5.4,Neutral
+Prairie,1978,4.2,Neutral
+Prairie,1979,3.1,Neutral
+Prairie,1980,5.6,Neutral
+Prairie,1981,6.5,Neutral
+Prairie,1982,4.1,ElNino
+Prairie,1983,5.9,ElNino
+Prairie,1984,5.5,Neutral
+Prairie,1985,4.9,Neutral
+Prairie,1986,6.8,Neutral
+Prairie,1987,9,ElNino
+Prairie,1988,6.7,LaNina
+Prairie,1989,5,Neutral
+Prairie,1990,6.6,Neutral
+Prairie,1991,6.3,ElNino
+Prairie,1992,5.5,ElNino
+Prairie,1993,4.3,ElNino
+Prairie,1994,5.3,Neutral
+Prairie,1995,5.1,Neutral
+Prairie,1996,3.5,Neutral
+Prairie,1997,5.8,ElNino
+Prairie,1998,6.7,ElNino
+Prairie,1999,6.1,LaNina
+Prairie,2000,4.9,Neutral
+Prairie,2001,5.7,Neutral
+Prairie,2002,5.2,ElNino
+Prairie,2003,4.8,Neutral
+Prairie,2004,4.7,Neutral
+Prairie,2005,6,Neutral
+Prairie,2006,6.7,Neutral
+Prairie,2007,5.3,Neutral
+Prairie,2008,3.9,Neutral
+Prairie,2009,3.7,Neutral
+Prairie,2010,5.3,LaNina
+Prairie,2011,5.1,LaNina
+Prairie,2012,7.1,Neutral
+Prairie,2013,3.8,Neutral
+Prairie,2014,4.2,Neutral
+Prairie,2015,6.5,ElNino
+Prairie,2016,7.1,ElNino
+Prairie,2017,5.9,Neutral
+Prairie Pothole,1950,1.9,LaNina
+Prairie Pothole,1951,2.4,Neutral
+Prairie Pothole,1952,5,Neutral
+Prairie Pothole,1953,5.9,Neutral
+Prairie Pothole,1954,5.3,LaNina
+Prairie Pothole,1955,4.1,LaNina
+Prairie Pothole,1956,4.1,LaNina
+Prairie Pothole,1957,4.9,ElNino
+Prairie Pothole,1958,5.2,Neutral
+Prairie Pothole,1959,4.8,Neutral
+Prairie Pothole,1960,4.4,Neutral
+Prairie Pothole,1961,5.2,Neutral
+Prairie Pothole,1962,4.6,LaNina
+Prairie Pothole,1963,5.7,Neutral
+Prairie Pothole,1964,4.6,LaNina
+Prairie Pothole,1965,3.6,ElNino
+Prairie Pothole,1966,3.7,Neutral
+Prairie Pothole,1967,4.4,Neutral
+Prairie Pothole,1968,4.6,Neutral
+Prairie Pothole,1969,4.1,Neutral
+Prairie Pothole,1970,4.2,LaNina
+Prairie Pothole,1971,4.3,LaNina
+Prairie Pothole,1972,3.7,ElNino
+Prairie Pothole,1973,6.2,LaNina
+Prairie Pothole,1974,4.9,LaNina
+Prairie Pothole,1975,4.9,LaNina
+Prairie Pothole,1976,5.5,Neutral
+Prairie Pothole,1977,5.4,Neutral
+Prairie Pothole,1978,4.2,Neutral
+Prairie Pothole,1979,3.1,Neutral
+Prairie Pothole,1980,5.6,Neutral
+Prairie Pothole,1981,6.5,Neutral
+Prairie Pothole,1982,4.1,ElNino
+Prairie Pothole,1983,5.9,ElNino
+Prairie Pothole,1984,5.5,Neutral
+Prairie Pothole,1985,4.9,Neutral
+Prairie Pothole,1986,6.8,Neutral
+Prairie Pothole,1987,9,ElNino
+Prairie Pothole,1988,6.7,LaNina
+Prairie Pothole,1989,5,Neutral
+Prairie Pothole,1990,6.6,Neutral
+Prairie Pothole,1991,6.3,ElNino
+Prairie Pothole,1992,5.5,ElNino
+Prairie Pothole,1993,4.3,ElNino
+Prairie Pothole,1994,5.3,Neutral
+Prairie Pothole,1995,5.1,Neutral
+Prairie Pothole,1996,3.5,Neutral
+Prairie Pothole,1997,5.8,ElNino
+Prairie Pothole,1998,6.7,ElNino
+Prairie Pothole,1999,6.1,LaNina
+Prairie Pothole,2000,4.9,Neutral
+Prairie Pothole,2001,5.7,Neutral
+Prairie Pothole,2002,5.2,ElNino
+Prairie Pothole,2003,4.8,Neutral
+Prairie Pothole,2004,4.7,Neutral
+Prairie Pothole,2005,6,Neutral
+Prairie Pothole,2006,6.7,Neutral
+Prairie Pothole,2007,5.3,Neutral
+Prairie Pothole,2008,3.9,Neutral
+Prairie Pothole,2009,3.7,Neutral
+Prairie Pothole,2010,5.3,LaNina
+Prairie Pothole,2011,5.1,LaNina
+Prairie Pothole,2012,7.1,Neutral
+Prairie Pothole,2013,3.8,Neutral
+Prairie Pothole,2014,4.2,Neutral
+Prairie Pothole,2015,6.5,ElNino
+Prairie Pothole,2016,7.1,ElNino
+Prairie Pothole,2017,5.9,Neutral
+Suggs,1954,20.8,LaNina
+Suggs,1955,21,LaNina
+Suggs,1956,20.8,LaNina
+Suggs,1957,,ElNino
+Suggs,1958,20.2,Neutral
+Suggs,1959,21.4,Neutral
+Suggs,1960,20.6,Neutral
+Suggs,1961,20.9,Neutral
+Suggs,1962,,LaNina
+Suggs,1963,20.3,Neutral
+Suggs,1964,21,LaNina
+Suggs,1965,21.1,ElNino
+Suggs,1966,20.4,Neutral
+Suggs,1967,21.3,Neutral
+Suggs,1968,20.4,Neutral
+Suggs,1969,20.6,Neutral
+Suggs,1970,20.8,LaNina
+Suggs,1971,21.4,LaNina
+Suggs,1972,21.7,ElNino
+Suggs,1973,21.4,LaNina
+Suggs,1974,21.7,LaNina
+Suggs,1975,21.9,LaNina
+Suggs,1976,20.5,Neutral
+Suggs,1977,21.1,Neutral
+Suggs,1978,20.9,Neutral
+Suggs,1979,20.9,Neutral
+Suggs,1980,20.8,Neutral
+Suggs,1981,20.8,Neutral
+Suggs,1982,22,ElNino
+Suggs,1983,20.5,ElNino
+Suggs,1984,20.4,Neutral
+Suggs,1985,20.8,Neutral
+Suggs,1986,21,Neutral
+Suggs,1987,20.1,ElNino
+Suggs,1988,19.8,LaNina
+Suggs,1989,20.5,Neutral
+Suggs,1990,21.4,Neutral
+Suggs,1991,21,ElNino
+Suggs,1992,19.9,ElNino
+Suggs,1993,20,ElNino
+Suggs,1994,20.8,Neutral
+Suggs,1995,20.5,Neutral
+Suggs,1996,20.1,Neutral
+Suggs,1997,20.9,ElNino
+Suggs,1998,21.7,ElNino
+Suggs,1999,20.8,LaNina
+Suggs,2000,20.1,Neutral
+Suggs,2001,20.6,Neutral
+Suggs,2002,20.6,ElNino
+Suggs,2003,20.4,Neutral
+Suggs,2004,20.6,Neutral
+Suggs,2005,20.5,Neutral
+Suggs,2006,20.6,Neutral
+Suggs,2007,20.7,Neutral
+Suggs,2008,20.3,Neutral
+Suggs,2009,20.5,Neutral
+Suggs,2010,19.8,LaNina
+Suggs,2011,21.5,LaNina
+Suggs,2012,21.5,Neutral
+Suggs,2013,21.2,Neutral
+Suggs,2014,20.1,Neutral
+Suggs,2015,21.8,ElNino
+Suggs,2016,21.4,ElNino
+Suggs,2017,21.4,Neutral
+Sunapee,1950,,LaNina
+Sunapee,1951,6.7,Neutral
+Sunapee,1952,7.1,Neutral
+Sunapee,1953,7.7,Neutral
+Sunapee,1954,,LaNina
+Sunapee,1955,6.6,LaNina
+Sunapee,1956,5.7,LaNina
+Sunapee,1957,6.7,ElNino
+Sunapee,1958,5.5,Neutral
+Sunapee,1959,6.7,Neutral
+Sunapee,1960,6.4,Neutral
+Sunapee,1961,7,Neutral
+Sunapee,1962,5.8,LaNina
+Sunapee,1963,6.2,Neutral
+Sunapee,1964,6.5,LaNina
+Sunapee,1965,6.3,ElNino
+Sunapee,1966,6.5,Neutral
+Sunapee,1967,6.2,Neutral
+Sunapee,1968,6.4,Neutral
+Sunapee,1969,6.7,Neutral
+Sunapee,1970,6.5,LaNina
+Sunapee,1971,6.3,LaNina
+Sunapee,1972,5.9,ElNino
+Sunapee,1973,7.7,LaNina
+Sunapee,1974,6.8,LaNina
+Sunapee,1975,7.2,LaNina
+Sunapee,1976,6.3,Neutral
+Sunapee,1977,6.4,Neutral
+Sunapee,1978,5.3,Neutral
+Sunapee,1979,6.6,Neutral
+Sunapee,1980,5.8,Neutral
+Sunapee,1981,6.4,Neutral
+Sunapee,1982,5.9,ElNino
+Sunapee,1983,6.8,ElNino
+Sunapee,1984,6.5,Neutral
+Sunapee,1985,6.1,Neutral
+Sunapee,1986,6.1,Neutral
+Sunapee,1987,6.3,ElNino
+Sunapee,1988,6.1,LaNina
+Sunapee,1989,5.8,Neutral
+Sunapee,1990,7.2,Neutral
+Sunapee,1991,7.3,ElNino
+Sunapee,1992,5.7,ElNino
+Sunapee,1993,6,ElNino
+Sunapee,1994,5.9,Neutral
+Sunapee,1995,6.6,Neutral
+Sunapee,1996,6.5,Neutral
+Sunapee,1997,6,ElNino
+Sunapee,1998,8.2,ElNino
+Sunapee,1999,7.5,LaNina
+Sunapee,2000,6.4,Neutral
+Sunapee,2001,7.3,Neutral
+Sunapee,2002,7.3,ElNino
+Sunapee,2003,6,Neutral
+Sunapee,2004,6.5,Neutral
+Sunapee,2005,,Neutral
+Sunapee,2006,8.1,Neutral
+Sunapee,2007,6.6,Neutral
+Sunapee,2008,6.8,Neutral
+Sunapee,2009,6.4,Neutral
+Sunapee,2010,7.9,LaNina
+Sunapee,2011,7.4,LaNina
+Sunapee,2012,8.4,Neutral
+Sunapee,2013,7.4,Neutral
+Sunapee,2014,6.2,Neutral
+Sunapee,2015,6.6,ElNino
+Sunapee,2016,7.6,ElNino
+Sunapee,2017,7.3,Neutral
+Toolik,1988,-5.7,LaNina
+Toolik,1989,-8.3,Neutral
+Toolik,1990,-6.4,Neutral
+Toolik,1991,-4,ElNino
+Toolik,1992,-12.2,ElNino
+Toolik,1993,-2,ElNino
+Toolik,1994,-9.8,Neutral
+Toolik,1995,-7.8,Neutral
+Toolik,1996,-9.2,Neutral
+Toolik,1997,-8.5,ElNino
+Toolik,1998,-7,ElNino
+Toolik,1999,-10.6,LaNina
+Toolik,2000,-9,Neutral
+Toolik,2001,-7.9,Neutral
+Toolik,2002,-6.8,ElNino
+Toolik,2003,-7.9,Neutral
+Toolik,2004,-8,Neutral
+Toolik,2005,-8.6,Neutral
+Toolik,2006,-8.5,Neutral
+Toolik,2007,-7.5,Neutral
+Toolik,2008,-9.6,Neutral
+Toolik,2009,-7.7,Neutral
+Toolik,2010,-8.3,LaNina
+Toolik,2011,-8,LaNina
+Toolik,2012,-9.7,Neutral
+Toolik,2013,-8.8,Neutral
+Toolik,2014,-7.1,Neutral
+Toolik,2015,-7.1,ElNino
+Toolik,2016,-6.6,ElNino
+Toolik,2017,-6.7,Neutral
+Barco,1954,20.8,All
+Barco,1955,21,All
+Barco,1956,20.8,All
+Barco,1957,,All
+Barco,1958,20.2,All
+Barco,1959,21.4,All
+Barco,1960,20.6,All
+Barco,1961,20.9,All
+Barco,1962,,All
+Barco,1963,20.3,All
+Barco,1964,21,All
+Barco,1965,21.1,All
+Barco,1966,20.4,All
+Barco,1967,21.3,All
+Barco,1968,20.4,All
+Barco,1969,20.6,All
+Barco,1970,20.8,All
+Barco,1971,21.4,All
+Barco,1972,21.7,All
+Barco,1973,21.4,All
+Barco,1974,21.7,All
+Barco,1975,21.9,All
+Barco,1976,20.5,All
+Barco,1977,21.1,All
+Barco,1978,20.9,All
+Barco,1979,20.9,All
+Barco,1980,20.8,All
+Barco,1981,20.8,All
+Barco,1982,22,All
+Barco,1983,20.5,All
+Barco,1984,20.4,All
+Barco,1985,20.8,All
+Barco,1986,21,All
+Barco,1987,20.1,All
+Barco,1988,19.8,All
+Barco,1989,20.5,All
+Barco,1990,21.4,All
+Barco,1991,21,All
+Barco,1992,19.9,All
+Barco,1993,20,All
+Barco,1994,20.8,All
+Barco,1995,20.5,All
+Barco,1996,20.1,All
+Barco,1997,20.9,All
+Barco,1998,21.7,All
+Barco,1999,20.8,All
+Barco,2000,20.1,All
+Barco,2001,20.6,All
+Barco,2002,20.6,All
+Barco,2003,20.4,All
+Barco,2004,20.6,All
+Barco,2005,20.5,All
+Barco,2006,20.6,All
+Barco,2007,20.7,All
+Barco,2008,20.3,All
+Barco,2009,20.5,All
+Barco,2010,19.8,All
+Barco,2011,21.5,All
+Barco,2012,21.5,All
+Barco,2013,21.2,All
+Barco,2014,20.1,All
+Barco,2015,21.8,All
+Barco,2016,21.4,All
+Barco,2017,21.4,All
+Crampton,1950,3.5,All
+Crampton,1951,4.3,All
+Crampton,1952,6.5,All
+Crampton,1953,,All
+Crampton,1954,5.2,All
+Crampton,1955,,All
+Crampton,1956,5.1,All
+Crampton,1957,4.9,All
+Crampton,1958,4.8,All
+Crampton,1959,4.8,All
+Crampton,1960,4.8,All
+Crampton,1961,5.6,All
+Crampton,1962,4.8,All
+Crampton,1963,5.1,All
+Crampton,1964,5.4,All
+Crampton,1965,,All
+Crampton,1966,4.6,All
+Crampton,1967,4.3,All
+Crampton,1968,5.5,All
+Crampton,1969,5,All
+Crampton,1970,5,All
+Crampton,1971,,All
+Crampton,1972,3.5,All
+Crampton,1973,,All
+Crampton,1974,3.6,All
+Crampton,1975,4.4,All
+Crampton,1976,3.4,All
+Crampton,1977,4.4,All
+Crampton,1978,3.6,All
+Crampton,1979,2.7,All
+Crampton,1980,,All
+Crampton,1981,4.4,All
+Crampton,1982,3.2,All
+Crampton,1983,4.5,All
+Crampton,1984,4.4,All
+Crampton,1985,,All
+Crampton,1986,4.9,All
+Crampton,1987,6.6,All
+Crampton,1988,,All
+Crampton,1989,2.7,All
+Crampton,1990,4.7,All
+Crampton,1991,4.3,All
+Crampton,1992,3.6,All
+Crampton,1993,3.2,All
+Crampton,1994,3.9,All
+Crampton,1995,3.7,All
+Crampton,1996,2.4,All
+Crampton,1997,3.8,All
+Crampton,1998,7,All
+Crampton,1999,5.6,All
+Crampton,2000,4.8,All
+Crampton,2001,5.7,All
+Crampton,2002,4.6,All
+Crampton,2003,4,All
+Crampton,2004,4.3,All
+Crampton,2005,5.4,All
+Crampton,2006,5.8,All
+Crampton,2007,5.2,All
+Crampton,2008,3.4,All
+Crampton,2009,3.8,All
+Crampton,2010,5.8,All
+Crampton,2011,5,All
+Crampton,2012,6.5,All
+Crampton,2013,3.2,All
+Crampton,2014,2.4,All
+Crampton,2015,4.9,All
+Crampton,2016,5.8,All
+Crampton,2017,4.5,All
+Mendota,1950,6.8,All
+Mendota,1951,6.6,All
+Mendota,1952,8.6,All
+Mendota,1953,9.3,All
+Mendota,1954,8.8,All
+Mendota,1955,8.5,All
+Mendota,1956,8.3,All
+Mendota,1957,8,All
+Mendota,1958,7.6,All
+Mendota,1959,7.6,All
+Mendota,1960,7,All
+Mendota,1961,7.5,All
+Mendota,1962,6.9,All
+Mendota,1963,7,All
+Mendota,1964,8.3,All
+Mendota,1965,7,All
+Mendota,1966,6.6,All
+Mendota,1967,6.5,All
+Mendota,1968,7.8,All
+Mendota,1969,6.7,All
+Mendota,1970,7.3,All
+Mendota,1971,7.7,All
+Mendota,1972,6.1,All
+Mendota,1973,8.7,All
+Mendota,1974,7.6,All
+Mendota,1975,8.2,All
+Mendota,1976,7.1,All
+Mendota,1977,7.5,All
+Mendota,1978,6.6,All
+Mendota,1979,6.5,All
+Mendota,1980,7,All
+Mendota,1981,8,All
+Mendota,1982,6.7,All
+Mendota,1983,7.5,All
+Mendota,1984,7.7,All
+Mendota,1985,7,All
+Mendota,1986,7.9,All
+Mendota,1987,9.4,All
+Mendota,1988,8.1,All
+Mendota,1989,7.1,All
+Mendota,1990,8.9,All
+Mendota,1991,8.7,All
+Mendota,1992,8,All
+Mendota,1993,7.9,All
+Mendota,1994,8.2,All
+Mendota,1995,8.3,All
+Mendota,1996,6.4,All
+Mendota,1997,7.3,All
+Mendota,1998,9.9,All
+Mendota,1999,8.9,All
+Mendota,2000,8.1,All
+Mendota,2001,8.9,All
+Mendota,2002,8.7,All
+Mendota,2003,7.7,All
+Mendota,2004,8.3,All
+Mendota,2005,9,All
+Mendota,2006,9.2,All
+Mendota,2007,8.7,All
+Mendota,2008,7.3,All
+Mendota,2009,7.5,All
+Mendota,2010,9,All
+Mendota,2011,8.7,All
+Mendota,2012,10.7,All
+Mendota,2013,7.6,All
+Mendota,2014,7.1,All
+Mendota,2015,9,All
+Mendota,2016,9.6,All
+Mendota,2017,9.1,All
+Falling Creek Reservoir,1950,13.3,All
+Falling Creek Reservoir,1951,13.5,All
+Falling Creek Reservoir,1952,14.1,All
+Falling Creek Reservoir,1953,14.8,All
+Falling Creek Reservoir,1954,14,All
+Falling Creek Reservoir,1955,13.7,All
+Falling Creek Reservoir,1956,14,All
+Falling Creek Reservoir,1957,14,All
+Falling Creek Reservoir,1958,12.9,All
+Falling Creek Reservoir,1959,14.4,All
+Falling Creek Reservoir,1960,13.1,All
+Falling Creek Reservoir,1961,13.6,All
+Falling Creek Reservoir,1962,13.1,All
+Falling Creek Reservoir,1963,13,All
+Falling Creek Reservoir,1964,13.7,All
+Falling Creek Reservoir,1965,13.3,All
+Falling Creek Reservoir,1966,12.5,All
+Falling Creek Reservoir,1967,12.8,All
+Falling Creek Reservoir,1968,13,All
+Falling Creek Reservoir,1969,12.6,All
+Falling Creek Reservoir,1970,13.4,All
+Falling Creek Reservoir,1971,13.4,All
+Falling Creek Reservoir,1972,12.9,All
+Falling Creek Reservoir,1973,13.8,All
+Falling Creek Reservoir,1974,13.6,All
+Falling Creek Reservoir,1975,13.7,All
+Falling Creek Reservoir,1976,12.6,All
+Falling Creek Reservoir,1977,13.5,All
+Falling Creek Reservoir,1978,12.9,All
+Falling Creek Reservoir,1979,12.6,All
+Falling Creek Reservoir,1980,13.3,All
+Falling Creek Reservoir,1981,12.5,All
+Falling Creek Reservoir,1982,12.8,All
+Falling Creek Reservoir,1983,13,All
+Falling Creek Reservoir,1984,13.8,All
+Falling Creek Reservoir,1985,14.2,All
+Falling Creek Reservoir,1986,13.8,All
+Falling Creek Reservoir,1987,13.8,All
+Falling Creek Reservoir,1988,12.9,All
+Falling Creek Reservoir,1989,13.1,All
+Falling Creek Reservoir,1990,15,All
+Falling Creek Reservoir,1991,14.7,All
+Falling Creek Reservoir,1992,13.2,All
+Falling Creek Reservoir,1993,13.4,All
+Falling Creek Reservoir,1994,13.8,All
+Falling Creek Reservoir,1995,13.6,All
+Falling Creek Reservoir,1996,12.8,All
+Falling Creek Reservoir,1997,13,All
+Falling Creek Reservoir,1998,14.8,All
+Falling Creek Reservoir,1999,14.3,All
+Falling Creek Reservoir,2000,13.4,All
+Falling Creek Reservoir,2001,14.3,All
+Falling Creek Reservoir,2002,14.4,All
+Falling Creek Reservoir,2003,13.3,All
+Falling Creek Reservoir,2004,14.3,All
+Falling Creek Reservoir,2005,14.2,All
+Falling Creek Reservoir,2006,14.6,All
+Falling Creek Reservoir,2007,15.1,All
+Falling Creek Reservoir,2008,14.2,All
+Falling Creek Reservoir,2009,14.1,All
+Falling Creek Reservoir,2010,14.2,All
+Falling Creek Reservoir,2011,14.9,All
+Falling Creek Reservoir,2012,15.3,All
+Falling Creek Reservoir,2013,13.9,All
+Falling Creek Reservoir,2014,13.2,All
+Falling Creek Reservoir,2015,14.5,All
+Falling Creek Reservoir,2016,14.9,All
+Falling Creek Reservoir,2017,15.1,All
+Little Rock,1950,3.1,All
+Little Rock,1951,3.8,All
+Little Rock,1952,5.4,All
+Little Rock,1953,5.8,All
+Little Rock,1954,,All
+Little Rock,1955,5.3,All
+Little Rock,1956,5.1,All
+Little Rock,1957,,All
+Little Rock,1958,4.9,All
+Little Rock,1959,4.6,All
+Little Rock,1960,4.2,All
+Little Rock,1961,4.3,All
+Little Rock,1962,4.6,All
+Little Rock,1963,4.5,All
+Little Rock,1964,4.5,All
+Little Rock,1965,3.9,All
+Little Rock,1966,4.5,All
+Little Rock,1967,3.8,All
+Little Rock,1968,4.5,All
+Little Rock,1969,4.7,All
+Little Rock,1970,5.3,All
+Little Rock,1971,4.9,All
+Little Rock,1972,,All
+Little Rock,1973,4.8,All
+Little Rock,1974,3,All
+Little Rock,1975,4.4,All
+Little Rock,1976,3.3,All
+Little Rock,1977,4.6,All
+Little Rock,1978,3.5,All
+Little Rock,1979,3,All
+Little Rock,1980,3.5,All
+Little Rock,1981,4.9,All
+Little Rock,1982,3.6,All
+Little Rock,1983,4.8,All
+Little Rock,1984,4.6,All
+Little Rock,1985,3.4,All
+Little Rock,1986,4.3,All
+Little Rock,1987,5.8,All
+Little Rock,1988,4.2,All
+Little Rock,1989,2.8,All
+Little Rock,1990,3.9,All
+Little Rock,1991,4,All
+Little Rock,1992,4,All
+Little Rock,1993,,All
+Little Rock,1994,,All
+Little Rock,1995,2.9,All
+Little Rock,1996,3.1,All
+Little Rock,1997,3.9,All
+Little Rock,1998,6.7,All
+Little Rock,1999,5.6,All
+Little Rock,2000,4.5,All
+Little Rock,2001,5.2,All
+Little Rock,2002,4,All
+Little Rock,2003,3.1,All
+Little Rock,2004,3.9,All
+Little Rock,2005,5.8,All
+Little Rock,2006,5.9,All
+Little Rock,2007,,All
+Little Rock,2008,2.7,All
+Little Rock,2009,3.1,All
+Little Rock,2010,5.3,All
+Little Rock,2011,4.6,All
+Little Rock,2012,6,All
+Little Rock,2013,3,All
+Little Rock,2014,2,All
+Little Rock,2015,4.5,All
+Little Rock,2016,5.5,All
+Little Rock,2017,4.8,All
+Prairie,1950,1.9,All
+Prairie,1951,2.4,All
+Prairie,1952,5,All
+Prairie,1953,5.9,All
+Prairie,1954,5.3,All
+Prairie,1955,4.1,All
+Prairie,1956,4.1,All
+Prairie,1957,4.9,All
+Prairie,1958,5.2,All
+Prairie,1959,4.8,All
+Prairie,1960,4.4,All
+Prairie,1961,5.2,All
+Prairie,1962,4.6,All
+Prairie,1963,5.7,All
+Prairie,1964,4.6,All
+Prairie,1965,3.6,All
+Prairie,1966,3.7,All
+Prairie,1967,4.4,All
+Prairie,1968,4.6,All
+Prairie,1969,4.1,All
+Prairie,1970,4.2,All
+Prairie,1971,4.3,All
+Prairie,1972,3.7,All
+Prairie,1973,6.2,All
+Prairie,1974,4.9,All
+Prairie,1975,4.9,All
+Prairie,1976,5.5,All
+Prairie,1977,5.4,All
+Prairie,1978,4.2,All
+Prairie,1979,3.1,All
+Prairie,1980,5.6,All
+Prairie,1981,6.5,All
+Prairie,1982,4.1,All
+Prairie,1983,5.9,All
+Prairie,1984,5.5,All
+Prairie,1985,4.9,All
+Prairie,1986,6.8,All
+Prairie,1987,9,All
+Prairie,1988,6.7,All
+Prairie,1989,5,All
+Prairie,1990,6.6,All
+Prairie,1991,6.3,All
+Prairie,1992,5.5,All
+Prairie,1993,4.3,All
+Prairie,1994,5.3,All
+Prairie,1995,5.1,All
+Prairie,1996,3.5,All
+Prairie,1997,5.8,All
+Prairie,1998,6.7,All
+Prairie,1999,6.1,All
+Prairie,2000,4.9,All
+Prairie,2001,5.7,All
+Prairie,2002,5.2,All
+Prairie,2003,4.8,All
+Prairie,2004,4.7,All
+Prairie,2005,6,All
+Prairie,2006,6.7,All
+Prairie,2007,5.3,All
+Prairie,2008,3.9,All
+Prairie,2009,3.7,All
+Prairie,2010,5.3,All
+Prairie,2011,5.1,All
+Prairie,2012,7.1,All
+Prairie,2013,3.8,All
+Prairie,2014,4.2,All
+Prairie,2015,6.5,All
+Prairie,2016,7.1,All
+Prairie,2017,5.9,All
+Prairie Pothole,1950,1.9,All
+Prairie Pothole,1951,2.4,All
+Prairie Pothole,1952,5,All
+Prairie Pothole,1953,5.9,All
+Prairie Pothole,1954,5.3,All
+Prairie Pothole,1955,4.1,All
+Prairie Pothole,1956,4.1,All
+Prairie Pothole,1957,4.9,All
+Prairie Pothole,1958,5.2,All
+Prairie Pothole,1959,4.8,All
+Prairie Pothole,1960,4.4,All
+Prairie Pothole,1961,5.2,All
+Prairie Pothole,1962,4.6,All
+Prairie Pothole,1963,5.7,All
+Prairie Pothole,1964,4.6,All
+Prairie Pothole,1965,3.6,All
+Prairie Pothole,1966,3.7,All
+Prairie Pothole,1967,4.4,All
+Prairie Pothole,1968,4.6,All
+Prairie Pothole,1969,4.1,All
+Prairie Pothole,1970,4.2,All
+Prairie Pothole,1971,4.3,All
+Prairie Pothole,1972,3.7,All
+Prairie Pothole,1973,6.2,All
+Prairie Pothole,1974,4.9,All
+Prairie Pothole,1975,4.9,All
+Prairie Pothole,1976,5.5,All
+Prairie Pothole,1977,5.4,All
+Prairie Pothole,1978,4.2,All
+Prairie Pothole,1979,3.1,All
+Prairie Pothole,1980,5.6,All
+Prairie Pothole,1981,6.5,All
+Prairie Pothole,1982,4.1,All
+Prairie Pothole,1983,5.9,All
+Prairie Pothole,1984,5.5,All
+Prairie Pothole,1985,4.9,All
+Prairie Pothole,1986,6.8,All
+Prairie Pothole,1987,9,All
+Prairie Pothole,1988,6.7,All
+Prairie Pothole,1989,5,All
+Prairie Pothole,1990,6.6,All
+Prairie Pothole,1991,6.3,All
+Prairie Pothole,1992,5.5,All
+Prairie Pothole,1993,4.3,All
+Prairie Pothole,1994,5.3,All
+Prairie Pothole,1995,5.1,All
+Prairie Pothole,1996,3.5,All
+Prairie Pothole,1997,5.8,All
+Prairie Pothole,1998,6.7,All
+Prairie Pothole,1999,6.1,All
+Prairie Pothole,2000,4.9,All
+Prairie Pothole,2001,5.7,All
+Prairie Pothole,2002,5.2,All
+Prairie Pothole,2003,4.8,All
+Prairie Pothole,2004,4.7,All
+Prairie Pothole,2005,6,All
+Prairie Pothole,2006,6.7,All
+Prairie Pothole,2007,5.3,All
+Prairie Pothole,2008,3.9,All
+Prairie Pothole,2009,3.7,All
+Prairie Pothole,2010,5.3,All
+Prairie Pothole,2011,5.1,All
+Prairie Pothole,2012,7.1,All
+Prairie Pothole,2013,3.8,All
+Prairie Pothole,2014,4.2,All
+Prairie Pothole,2015,6.5,All
+Prairie Pothole,2016,7.1,All
+Prairie Pothole,2017,5.9,All
+Suggs,1954,20.8,All
+Suggs,1955,21,All
+Suggs,1956,20.8,All
+Suggs,1957,,All
+Suggs,1958,20.2,All
+Suggs,1959,21.4,All
+Suggs,1960,20.6,All
+Suggs,1961,20.9,All
+Suggs,1962,,All
+Suggs,1963,20.3,All
+Suggs,1964,21,All
+Suggs,1965,21.1,All
+Suggs,1966,20.4,All
+Suggs,1967,21.3,All
+Suggs,1968,20.4,All
+Suggs,1969,20.6,All
+Suggs,1970,20.8,All
+Suggs,1971,21.4,All
+Suggs,1972,21.7,All
+Suggs,1973,21.4,All
+Suggs,1974,21.7,All
+Suggs,1975,21.9,All
+Suggs,1976,20.5,All
+Suggs,1977,21.1,All
+Suggs,1978,20.9,All
+Suggs,1979,20.9,All
+Suggs,1980,20.8,All
+Suggs,1981,20.8,All
+Suggs,1982,22,All
+Suggs,1983,20.5,All
+Suggs,1984,20.4,All
+Suggs,1985,20.8,All
+Suggs,1986,21,All
+Suggs,1987,20.1,All
+Suggs,1988,19.8,All
+Suggs,1989,20.5,All
+Suggs,1990,21.4,All
+Suggs,1991,21,All
+Suggs,1992,19.9,All
+Suggs,1993,20,All
+Suggs,1994,20.8,All
+Suggs,1995,20.5,All
+Suggs,1996,20.1,All
+Suggs,1997,20.9,All
+Suggs,1998,21.7,All
+Suggs,1999,20.8,All
+Suggs,2000,20.1,All
+Suggs,2001,20.6,All
+Suggs,2002,20.6,All
+Suggs,2003,20.4,All
+Suggs,2004,20.6,All
+Suggs,2005,20.5,All
+Suggs,2006,20.6,All
+Suggs,2007,20.7,All
+Suggs,2008,20.3,All
+Suggs,2009,20.5,All
+Suggs,2010,19.8,All
+Suggs,2011,21.5,All
+Suggs,2012,21.5,All
+Suggs,2013,21.2,All
+Suggs,2014,20.1,All
+Suggs,2015,21.8,All
+Suggs,2016,21.4,All
+Suggs,2017,21.4,All
+Sunapee,1950,,All
+Sunapee,1951,6.7,All
+Sunapee,1952,7.1,All
+Sunapee,1953,7.7,All
+Sunapee,1954,,All
+Sunapee,1955,6.6,All
+Sunapee,1956,5.7,All
+Sunapee,1957,6.7,All
+Sunapee,1958,5.5,All
+Sunapee,1959,6.7,All
+Sunapee,1960,6.4,All
+Sunapee,1961,7,All
+Sunapee,1962,5.8,All
+Sunapee,1963,6.2,All
+Sunapee,1964,6.5,All
+Sunapee,1965,6.3,All
+Sunapee,1966,6.5,All
+Sunapee,1967,6.2,All
+Sunapee,1968,6.4,All
+Sunapee,1969,6.7,All
+Sunapee,1970,6.5,All
+Sunapee,1971,6.3,All
+Sunapee,1972,5.9,All
+Sunapee,1973,7.7,All
+Sunapee,1974,6.8,All
+Sunapee,1975,7.2,All
+Sunapee,1976,6.3,All
+Sunapee,1977,6.4,All
+Sunapee,1978,5.3,All
+Sunapee,1979,6.6,All
+Sunapee,1980,5.8,All
+Sunapee,1981,6.4,All
+Sunapee,1982,5.9,All
+Sunapee,1983,6.8,All
+Sunapee,1984,6.5,All
+Sunapee,1985,6.1,All
+Sunapee,1986,6.1,All
+Sunapee,1987,6.3,All
+Sunapee,1988,6.1,All
+Sunapee,1989,5.8,All
+Sunapee,1990,7.2,All
+Sunapee,1991,7.3,All
+Sunapee,1992,5.7,All
+Sunapee,1993,6,All
+Sunapee,1994,5.9,All
+Sunapee,1995,6.6,All
+Sunapee,1996,6.5,All
+Sunapee,1997,6,All
+Sunapee,1998,8.2,All
+Sunapee,1999,7.5,All
+Sunapee,2000,6.4,All
+Sunapee,2001,7.3,All
+Sunapee,2002,7.3,All
+Sunapee,2003,6,All
+Sunapee,2004,6.5,All
+Sunapee,2005,,All
+Sunapee,2006,8.1,All
+Sunapee,2007,6.6,All
+Sunapee,2008,6.8,All
+Sunapee,2009,6.4,All
+Sunapee,2010,7.9,All
+Sunapee,2011,7.4,All
+Sunapee,2012,8.4,All
+Sunapee,2013,7.4,All
+Sunapee,2014,6.2,All
+Sunapee,2015,6.6,All
+Sunapee,2016,7.6,All
+Sunapee,2017,7.3,All
+Toolik,1988,-5.7,All
+Toolik,1989,-8.3,All
+Toolik,1990,-6.4,All
+Toolik,1991,-4,All
+Toolik,1992,-12.2,All
+Toolik,1993,-2,All
+Toolik,1994,-9.8,All
+Toolik,1995,-7.8,All
+Toolik,1996,-9.2,All
+Toolik,1997,-8.5,All
+Toolik,1998,-7,All
+Toolik,1999,-10.6,All
+Toolik,2000,-9,All
+Toolik,2001,-7.9,All
+Toolik,2002,-6.8,All
+Toolik,2003,-7.9,All
+Toolik,2004,-8,All
+Toolik,2005,-8.6,All
+Toolik,2006,-8.5,All
+Toolik,2007,-7.5,All
+Toolik,2008,-9.6,All
+Toolik,2009,-7.7,All
+Toolik,2010,-8.3,All
+Toolik,2011,-8,All
+Toolik,2012,-9.7,All
+Toolik,2013,-8.8,All
+Toolik,2014,-7.1,All
+Toolik,2015,-7.1,All
+Toolik,2016,-6.6,All
+Toolik,2017,-6.7,All

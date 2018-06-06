@@ -1,28 +1,16 @@
-pacman::p_load(readxl, tidyverse, lubridate)
+pacman::p_load(writexl, readxl, tidyverse, lubridate)
 
-el_nino <- c(1900, 1903, 1906, 1915, 1919, 1926, 1931, 1941, 1942, 1958, 
-             1966, 1973, 1978, 1980, 1983, 1987, 1988, 1992, 1995, 1998, 
-             2003, 2007, 2010, 2015)
-la_nina <- c(1904, 1909, 1910, 1911, 1917, 1918, 1925, 1934, 1939, 1943,
-             1950, 1951, 1955, 1956, 1962, 1971, 1974, 1976, 1989, 1999, 
-             2000, 2008, 2011, 2012)
+ElNino_Years <- c(1957,1965,1972,1982,1983,1987,1991,1992,1993,1997,1998,2002,2015,2016)
+
+LaNina_Years <- c(1950,1954,1955,1956,1962,1964,1970,1971,1973,1974,1975,1988,1999,2010,2011)
+
+Neutral_Years <- c(1951,1952,1953,1958,1959,1960,1961,1963,1966,1967,1968,1969,1976,
+                   1977,1978,1979,1980,1981,1984,1985,1986,1989,1990,1994,1995,1996,
+                   2000,2001,2003,2004,2005,2006,2007,2008,2009,2012,2013,2014,2017)
 
 LakeName = 'Mendota'
 
 historical <- read_excel('./Teleconnections/Lake_Characteristics.xlsx', sheet = LakeName) %>%
-    mutate(Type = ifelse(Year %in% el_nino, "ElNino", 
-                         ifelse(Year %in% la_nina, "LaNina", "Neutral")))
-
-ggplot(historical, aes(x = Year, y = `Air Temp Mean (°C)`, group = type, col = type)) +
-  geom_point() + geom_line() + #geom_smooth(method = 'lm', se= F) + 
-  scale_y_continuous(limits = c(15,25))
-
-ggplot(historical, aes(x = Year, y = `Rain (mm)`, group = type, col = type)) +
-  geom_point() + #geom_smooth(method = 'lm', se= F)
-  geom_line()
-
-
-events <- read_excel('./Teleconnections/Lake_Characteristics.xlsx', sheet = "Events") %>%
-  select(-Rank) %>%
-  gather(Index, Year, DJF:NDJ) %>%
-  distinct(Year)
+    mutate(Type = ifelse(Year %in% ElNino_Years, "ElNino", 
+                         ifelse(Year %in% LaNina_Years, "LaNina", "Neutral"))) %>%
+  write_xlsx('./Teleconnections/dataPrep/Lake_Mendota.xlsx', col_names=TRUE)

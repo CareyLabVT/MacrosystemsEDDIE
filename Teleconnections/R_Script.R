@@ -156,15 +156,8 @@ install.packages('readxl') # Install this package to read Excel (.xlsx) files
 library(readxl) # Now load the package you just installed
 
 # First, read in the observational data for your lake using the command below:
-####*********** HOLDING PLACE; CURRENTLY "TYPE" COLUMN SET BY EXTERNAL FILE ********
-elN <- c(1987,1993,2015,1983,1997,1957,1972,1982,1992,2002,2011,1965,1991,1998,2016)
-neut <- c(1959,1960,1961,1984,1996,2001,2004,2013,2018,1952,1985,1963,1989,2000,1967,1968,2008,1953,1979,1981,1990,2012)
-
 annual_temp <- read_excel(paste('C:/Users/',ComputerName,'/Desktop/R/MacrosystemsEDDIE/Teleconnections/Lake_Characteristics.xlsx', sep=''), 
-                          sheet = LakeName) %>%
-  mutate(Type = ifelse(Year %in% elN, "ElNino", 
-                       ifelse(Year %in% neut, "Neutral", NA)))
-####*********** HOLDING PLACE; CURRENTLY "TYPE" COLUMN SET BY EXTERNAL FILE ********
+                          sheet = LakeName)
 
 # Use the command below to take a look at the file:
 View(annual_temp)
@@ -176,13 +169,14 @@ View(annual_temp)
 #  non-El Nino years for your lake. First, we'll subset the data into El Nino years
 #  and non-El Nino years. 
 ElNino_years <- subset(annual_temp, Type == "ElNino") # Define El Nino years
+LaNina_years <- subset(annual_temp, Type == "LaNina") # Define La Nina years
 Other_years <- subset(annual_temp, Type == "Neutral") # Define Neutral years
 
 # Visualize your lake's patterns in air temperature over time using the commands below:
 plot(`Air Temp Mean (°C)` ~ Year, data = annual_temp, pch = 16, col = 'gray70')
 points(`Air Temp Mean (°C)` ~ Year, data = ElNino_years, pch = 16, col = 'red')
-points(`Air Temp Mean (°C)` ~ Year, data = Other_years, pch = 16, col = 'blue')
-
+points(`Air Temp Mean (°C)` ~ Year, data = LaNina_years, pch = 16, col = 'blue')
+points(`Air Temp Mean (°C)` ~ Year, data = Other_years, pch = 16, col = 'black')
 # Now, we need to estimate how much warmer or colder an average El Nino year is 
 #  compared to a non-El Nino year. 
 
