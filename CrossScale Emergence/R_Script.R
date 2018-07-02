@@ -60,7 +60,7 @@ glm_version() # See what version of GLM you are running- should be v.2.x.x
 ComputerName <- 'KJF' ##!! Change to match your computer name
 LakeName <- 'Mendota' ##!! Change to match the lake you and your partner selected
 
-sim_folder <- paste('C:/Users/',ComputerName,'/Desktop/Teleconnections/Lakes/',LakeName, sep='')
+sim_folder <- paste('C:/Users/',ComputerName,'/Desktop/cross_scale_emergence/',LakeName, sep='')
 # This command defines your sim_folder path to the Desktop folder where you 
 # extracted your zipped files.
 
