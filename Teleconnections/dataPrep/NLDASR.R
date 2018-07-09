@@ -1,31 +1,24 @@
-###########################################################
-### Downloading NLDAS2 data for meteorological hourly forcing
+### Downloading NLDAS2 data for meteorological hourly forcing ####
 ### https://ldas.gsfc.nasa.gov/nldas/NLDAS2forcing.php
-### Author: Hilary Dugan hilarydugan@gmail.com
-### Date: 2017-01-20
-######################################################z #####
+### Author: Hilary Dugan hilarydugan@gmail.com; Date: 2017-01-20 
+
+# Initial Setup ####
 pacman::p_load(RCurl, lubridate, raster, ncdf4, rgdal, httr)
 
-setwd("./Teleconnections/dataPrep/NLDAS/") ### ENTER LAKE SUBFOLDER
-###########################################################
-### Enter password information
-###########################################################
-#https://urs.earthdata.nasa.gov/profile <-- GET A EARTHDATA LOGIN
-username = "farrellk"
-password = "" # ENTER PASSWORD
+setwd("./Teleconnections/dataPrep/NLDAS/Barco") ### Set lake subfolder
 
-###########################################################
-### Define lake extent
-###########################################################
+# Enter Earthdata login (https://urs.earthdata.nasa.gov/profile)
+username = "farrellk"
+password = "Faeries123" # ENTER PASSWORD
+
+# Define lake extent (lat/long bounding box) ####
 extent = c(-82.024262,	29.672799,	-82.004177,	29.692858) # Barco & Suggs
 #extent = c(-99.272051,	47.114457,	-99.229132,	47.142362) # Prairie Pothole
 #extent = c(-99.125881,	47.150278,	-99.101331,	47.16469) # Prairie Lake
 #extent = c(-89.479431,	46.205431, -89.468591,	46.212411) # Crampton
 
-###########################################################
-### Set timeframe
-###########################################################
-out = seq.POSIXt(as.POSIXct('2012-11-27 00:00',tz = 'GMT'),as.POSIXct('2014-12-31 23:00',tz='GMT'),by = 'hour')
+# Set timeframe ####
+out = seq.POSIXt(as.POSIXct('2012-11-27 00:00',tz = 'GMT'),as.POSIXct('2013-08-15 07:00',tz='GMT'),by = 'hour')
 vars = c('PEVAPsfc_110_SFC_acc1h', 'DLWRFsfc_110_SFC', 'DSWRFsfc_110_SFC', 'CAPE180_0mb_110_SPDY',
          'CONVfracsfc_110_SFC_acc1h', 'APCPsfc_110_SFC_acc1h', 'SPFH2m_110_HTGL',
          'VGRD10m_110_HTGL', 'UGRD10m_110_HTGL', 'TMP2m_110_HTGL', 'PRESsfc_110_SFC')
@@ -33,10 +26,8 @@ vars = c('PEVAPsfc_110_SFC_acc1h', 'DLWRFsfc_110_SFC', 'DSWRFsfc_110_SFC', 'CAPE
 # Create output list of tables
 output = list()
 
-###########################################################
-### Need to know how many cells your lake falls within
+### Need to know how many cells your lake falls within ####
 ### Can download one instance of data and see how many columns there are
-###########################################################
 cellNum =4 #How many output cells will there be? Need to check this beforehand
 for (l in 1:11){
   colClasses = c("POSIXct", rep("numeric",cellNum))
@@ -45,10 +36,7 @@ for (l in 1:11){
   attributes(output[[l]]$dateTime)$tzone = 'GMT'
 }
 
-
-###########################################################
-### Run hourly loop
-###########################################################
+### Run hourly loop ####
 # Start the clock!
 ptm <- proc.time()
 #
@@ -98,10 +86,10 @@ for (i in 1:length(out)) {
 }
 
 for (f in 1:11){
-  write.csv(output[[f]],paste('LakeName_',vars[f],'.csv',sep=''),row.names=F)
+  write.csv(output[[f]],paste('Barco_',vars[f],'.csv',sep=''),row.names=F)
 }
 
-
+###################################
 rm(list=ls())
 options(scipen=999)
 setwd("C:/Users/melofton/Documents/Ch_4/")

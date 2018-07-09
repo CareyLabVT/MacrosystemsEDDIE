@@ -56,7 +56,7 @@ glm_version() # See what version of GLM you are running- should be v.2.x.x
 # When you downloaded this script, you unzipped the module folder to your Desktop. 
 #  We now need to tell R where these files are. We do that by setting...
 ComputerName <- 'KJF' ##!! Change to match your computer name
-LakeName <- 'Mendota' ##!! Change to match the lake you and your partner selected
+LakeName <- 'Suggs' ##!! Change to match the lake you and your partner selected
 
 sim_folder <- paste('C:/Users/',ComputerName,'/Desktop/R/MacrosystemsEDDIE/Teleconnections/Lakes/',LakeName, sep='') #KF dev placeholder
 #sim_folder <- paste('C:/Users/',ComputerName,'/Desktop/Teleconnections/Lakes/',LakeName, sep='')
@@ -128,7 +128,7 @@ lake_level1 <- get_surface_height(baseline)
 
 # Use the code below to create a plot of water level in the lake over time. 
 plot(surface_height ~ DateTime, data = lake_level1, type="l", col="black", 
-     ylab = "Lake depth (m)", xlab = "Date", ylim=c(24,26))
+     ylab = "Lake depth (m)", xlab = "Date", ylim=c(4,6))
 # !! Note that the command ylim=c(min,max) tells R the minimum and maximum y-axis 
 #  values to plot. Adjust this range to make sure all your data are shown.
 
@@ -228,7 +228,9 @@ View(met_data)
 # Next, We create a new meteorological driver data file that has the modified 
 #  AirTemp that reflects our El Nino scenario. This step is complicated in Excel, 
 #  but one simple line of code in R!! 
-ElNino_met <- mutate(met_data, AirTemp = AirTemp + offset)
+offset_multiplier <- 1
+
+ElNino_met <- mutate(met_data, AirTemp = AirTemp + (offset * offset_multiplier))
 
 # Finally, we'll write our new file to a .csv that we can use to drive GLM:
 write.csv(ElNino_met, paste0(sim_folder, "/met_hourly_elnino.csv"), 
@@ -309,7 +311,7 @@ legend("topleft",c("Baseline", "El Nino"), lty=c(1,1), col=c("black","red"))
   # clearly visualized and you can compare your two scenarios
 attach(depth_output)
 plot(DateTime, Baseline_Lake_Depth, type="l", col="black", xlab="Date",
-     ylab="Lake depth (m)", ylim=c(24, 26))  
+     ylab="Lake depth (m)", ylim=c(0,10))  
 lines(DateTime, ElNino_Lake_Depth, col="red") # this adds a red line of the 
 # output from the El Nino teleconnections scenario
 legend("topleft",c("Baseline", "El Nino"), lty=c(1,1), col=c("black","red")) 
