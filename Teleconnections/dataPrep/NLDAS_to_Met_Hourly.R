@@ -2,8 +2,8 @@
 pacman::p_load(tidyverse, lubridate)
 options(scipen=999)
 
-LakeName = 'Prairie Pothole'
-source <- paste('./Teleconnections/dataPrep/NLDAS/',LakeName, '/',sep='')
+LakeName = 'Prairie Lake'
+source <- paste('C:/Users/KJF/Desktop/R/MacrosystemsEDDIE/Teleconnections/dataPrep/NLDAS/',LakeName, '/',sep='')
 glm_dir <- paste('./Teleconnections/Lakes/',LakeName, '/', sep='')
 
 # Pull files and select/rename columns for met_hourly ####
