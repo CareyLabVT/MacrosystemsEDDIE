@@ -4,7 +4,7 @@ options(scipen=999)
 
 LakeName = 'Prairie Lake'
 source <- paste('C:/Users/KJF/Desktop/R/MacrosystemsEDDIE/Teleconnections/dataPrep/NLDAS/',LakeName, '/',sep='')
-glm_dir <- paste('./Teleconnections/Lakes/',LakeName, '/', sep='')
+glm_dir <- paste('C:/Users/KJF/Desktop/R/MacrosystemsEDDIE/Teleconnections/Lakes/in_Progress/',LakeName, sep='')
 
 # Pull files and select/rename columns for met_hourly ####
 shortwave <- read_csv(paste(source,LakeName,"_DSWRFsfc_110_SFC.csv", sep="")) %>% #DSWRF = shortwave radiation flux downwards (surface) [W/m2]
@@ -53,5 +53,6 @@ met <- shortwave %>%
   left_join(windSpeed) %>%
   left_join(precip) %>%
   rename(time = dateTime) %>%
-  mutate(Snow = 0, time = lubridate::ymd_hms(time)) %>%
-  write.csv(file.path(glm_dir, "met_hourly.csv"), row.names = F)
+  mutate(Snow = 0, time = as.POSIXct(time, format= "%Y-%m-%d HH:MM:SS")) 
+
+write.csv(met, paste(glm_dir, "/met_hourly.csv", sep=''), row.names = F,quote=F)
