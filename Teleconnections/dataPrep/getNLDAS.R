@@ -5,23 +5,23 @@
 # Initial Setup ####
 pacman::p_load(httr, lubridate, ncdf4, raster, RCurl, rgdal, tidyverse)
 
-LakeName = 'Toolik'
+LakeName = 'Falling Creek'
 
 dir <- paste("./Teleconnections/dataPrep/NLDAS/",LakeName, sep="") # Lake subfolder
 setwd(dir)
 
 # Enter Earthdata login (https://urs.earthdata.nasa.gov/profile)
 username = "farrellk"
-password = "Faeries123" # ENTER PASSWORD
+password = "careyLab18" # ENTER PASSWORD
 
 # Define lake extent (lat/long bounding box) ####
 #extent = c(-82.024262,	29.672799,	-82.004177,	29.692858) # Barco & Suggs
 #extent = c(-99.272051,	47.114457,	-99.229132,	47.142362) # Prairie Pothole
 #extent = c(-99.125881,	47.150278,	-99.101331,	47.16469) # Prairie Lake
 #extent = c(-89.479431,	46.205431, -89.468591,	46.212411) # Crampton
-#extent = c(-79.83906,  37.30272, -79.83601,  37.30934) # Falling Creek
+extent = c(-79.83906,  37.30272, -79.83601,  37.30934) # Falling Creek
 #extent = c(-89.709131, 45.994028, -89.697382, 46.000829) # Little Rock, WI
-extent = c(-149.635382, 68.623171, -149.582511, 68.642684) # Toolik
+#extent = c(-149.635382, 68.623171, -149.582511, 68.642684) # Toolik
 
 # Set timeframe ####
 out = seq.POSIXt(as.POSIXct('2012-11-27 01:00',tz = 'GMT'),as.POSIXct('2013-12-31 23:00',tz='GMT'),by = 'hour')
