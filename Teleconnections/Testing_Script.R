@@ -2,7 +2,7 @@ pacman::p_load(glmtools, readxl, tidyverse)
 
 # Set up lake ####
 ComputerName <- 'KJF' ##!! Change to match your computer name
-LakeName <- 'Falling Creek' ##!! Change to match the lake you and your partner selected
+LakeName <- 'Prairie Pothole' ##!! Change to match the lake you and your partner selected
 
 sim_folder <- paste('C:/Users/',ComputerName,'/Desktop/R/MacrosystemsEDDIE/Teleconnections/Lakes/',LakeName, sep='') #KF dev placeholder
 setwd(sim_folder) 
@@ -63,20 +63,16 @@ offset <- ElNino_2013 - Neutral_2013 # Save the offset as the "offset" object
 offset # Run this line to have R print out what your temperature offset is
 
 
-#### SCENARIO 3: OFFSET BASED ON STRONGEST LOCAL EL NINO ####
-maxElNino_year <- ElNino_years$Year[which.max(ElNino_years$`Air Temp Mean (°C)`)] # pull out local highest El Nino temp
-maxElNino_year
-
+#### SCENARIO 3: OFFSET BASED ON STRONGEST LOCAL OFFSET ####
 maxOffsets <- ElNino_years %>% select(`Lake ID`, Type, Year, `Air Temp Mean (°C)`) %>%
   mutate(Neutral_Est = (slope_Neutral * .$Year) + int_Neutral,
-         Offset = Neutral_Est - `Air Temp Mean (°C)`)
+         Offset = `Air Temp Mean (°C)` - Neutral_Est)
   
 
-maxElNino <- max(ElNino_years$`Air Temp Mean (°C)`)  ##!! change year here in var name
+maxOffset_year <- maxOffsets$Year[which.max(maxOffsets$Offset)]
+maxOffset_degrees <- max(maxOffsets$Offset)  ##!! change year here in var name
 
-Neutral_maxyear <- (slope_Neutral * 1991) + int_Neutral
-offset2 <- maxElNino - Neutral_maxyear
-offset2
+
 
 #### PLOT ALL SCENARIOS ####
 attach(temp_output)
