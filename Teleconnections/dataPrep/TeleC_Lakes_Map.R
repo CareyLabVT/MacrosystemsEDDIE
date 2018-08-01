@@ -3,7 +3,8 @@
 # install.packages('pacman')
 pacman::p_load(maps, readxl)
 
-data <- read_excel('./Teleconnections/Lake_Characteristics.xlsx')
+data <- read_excel('./Teleconnections/Lake_Characteristics.xlsx') %>%
+  mutate(Offset = c(1.27, 2.81, 1.09, 1.91, 1.55, NA, NA, 3.79, 1.27, NA))
 
 # NEON + other lake sites on US map ####
 par(mar = c(0,0,0,0),mgp=c(0,0,0))
@@ -18,9 +19,11 @@ points(data$Longitude,data$Latitude,col='black', pch=16, cex=1,lwd=1)
 # Just Conterminous sites.
 par(mar = c(0,0,0,0),mgp=c(0,0,0))
 maps::map('usa', col='grey90',fill=T, border='grey50', wrap=T,lwd=0.3) # background USA map
-maps::map('state', region=c('florida', 'new hampshire','wisconsin','north dakota'), 
+maps::map('state', region=c('florida', 'new hampshire','wisconsin','north dakota', 'virginia'), 
           add = T, border='grey50',col='lightblue', fill=T, lwd=0.5) # States from conterminous US
-points(data$Longitude,data$Latitude,col='black', pch=16, cex=1,lwd=1)
+#points(data$Longitude,data$Latitude,col='black', pch=16, cex=1,lwd=1)
+text(data$Longitude, data$Latitude, data$Offset)
+
 
 # State-specific maps ####
 # Wisconsin
