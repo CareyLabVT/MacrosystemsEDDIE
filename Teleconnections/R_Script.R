@@ -61,8 +61,7 @@ LakeName <- 'Prairie Pothole' ##!! Change to match the lake you and your partner
 # The lake name options are: 'Barco', 'Crampton', 'Falling Creek', 'Mendota',
   # 'Prairie Pothole', 'Suggs', and 'Sunapee
 
-sim_folder <- paste('C:/Users/',ComputerName,'/Desktop/R/MacrosystemsEDDIE/Teleconnections/Lakes/',LakeName, sep='') #KF dev placeholder
-#sim_folder <- paste('C:/Users/',ComputerName,'/Desktop/Teleconnections/Lakes/',LakeName, sep='')
+sim_folder <- paste('C:/Users/',ComputerName,'/Desktop/Teleconnections/Lakes/',LakeName, sep='')
 # This command defines your sim_folder path to the Desktop folder where you 
   # extracted your zipped files.
 
