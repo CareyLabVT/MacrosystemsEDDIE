@@ -142,6 +142,7 @@ nsave = 24
    meteo_fl    = 'met_hourly.csv'
    subdaily    = .true.
    wind_factor = 1.0
+   sw_factor   = 1.0
    cd          = 0.0013
    ce          = 0.0013
    ch          = 0.0013

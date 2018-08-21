@@ -141,7 +141,8 @@ nsave = 24
    !-- BC file details
    meteo_fl    = 'met_hourly.csv'
    subdaily    = .true.
-   wind_factor = 1.0
+   wind_factor = 0.7
+   sw_factor   = 0.7
    cd          = 0.0013
    ce          = 0.0013
    ch          = 0.0013

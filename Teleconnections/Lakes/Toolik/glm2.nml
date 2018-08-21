@@ -159,7 +159,7 @@
 !
 !-------------------------------------------------------------------------------
 &init_profiles
-    lake_depth = 26
+    lake_depth = 25 ! Kling et al 2000; FWB
     num_depths = 8
     the_depths = 0.5,3,6,9,12,15,18,19.5
     ! GLM
@@ -207,7 +207,7 @@
    albedo_mode = 1
    cloud_mode  = 4
    !-- BC file details
-   meteo_fl   = 'met.csv'
+   meteo_fl   = 'met_hourly.csv'
    subdaily = .false.
    wind_factor = 1.0
    cd         = 0.0013
