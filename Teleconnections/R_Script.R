@@ -61,7 +61,7 @@ LakeName <- 'Prairie Pothole' ##!! Change to match the lake you and your partner
 # The lake name options are: 'Barco', 'Crampton', 'Falling Creek', 'Mendota',
   # 'Prairie Pothole', 'Suggs', and 'Sunapee
 
-sim_folder <- paste('C:/Users/',ComputerName,'/Desktop/Teleconnections/Lakes/',LakeName, sep='')
+sim_folder <- paste('C:/Users/',ComputerName,'/Desktop/teleconnections/Lakes/',LakeName, sep='')
 # This command defines your sim_folder path to the Desktop folder where you 
   # extracted your zipped files.
 
@@ -162,7 +162,7 @@ library(readxl) # Now load the packages you just installed
 library(tidyverse)
 
 # First, read in the observational data for your lake using the command below:
-annual_temp <- read_excel(paste('C:/Users/',ComputerName,'/Desktop/Teleconnections/Lake_Characteristics.xlsx', sep=''), 
+annual_temp <- read_excel(paste('C:/Users/',ComputerName,'/Desktop/teleconnections/Lake_Characteristics.xlsx', sep=''), 
                           sheet = LakeName) %>%
   filter(Year >= 1970)
 
