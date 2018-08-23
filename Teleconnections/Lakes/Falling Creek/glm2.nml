@@ -201,3 +201,8 @@
    snow_rho_max = 500
    snow_rho_min = 100
 /
+&sed_heat
+   sed_temp_mean = 10.6
+   sed_temp_amplitude = 5
+   sed_temp_peak_doy = 275
+/
