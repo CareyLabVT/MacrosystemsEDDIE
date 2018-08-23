@@ -2,7 +2,7 @@ pacman::p_load(glmtools, readxl, tidyverse)
 
 # Set up lake ####
 ComputerName <- 'KJF' ##!! Change to match your computer name
-LakeName <- 'Toolik' ##!! Change to match the lake you and your partner selected
+LakeName <- 'Prairie Pothole' ##!! Change to match the lake you and your partner selected
 
 sim_folder <- paste('C:/Users/',ComputerName,'/Desktop/R/MacrosystemsEDDIE/Teleconnections/Lakes/',LakeName, sep='') #KF dev placeholder
 setwd(sim_folder) 
@@ -17,15 +17,15 @@ baseline <- file.path(sim_folder, 'output.nc')
 lake_level1 <- get_surface_height(baseline)
 
 plot(surface_height ~ DateTime, data = lake_level1, type="l", col="black", 
-     ylab = "Lake depth (m)", xlab = "Date", ylim=c(22,27))
+     ylab = "Lake depth (m)", xlab = "Date", ylim=c((nml$init_profiles$lake_depth-(nml$init_profiles$lake_depth*.4)), (nml$init_profiles$lake_depth+(nml$init_profiles$lake_depth*.4))))
+
+plot_temp(baseline)
 
 temp_output <- get_temp(file=baseline, reference='surface', z_out=c(1)) 
 colnames(temp_output)[2] <- "Baseline_Surface_Temp"
 
 depth_output <- lake_level1
 colnames(depth_output)[2] <- "Baseline_Lake_Depth"
-
-plot_temp(baseline)
 
 ##### SCENARIO 2: "BASED ON AVERAGING" ####
 annual_temp <- read_excel(paste('C:/Users/',ComputerName,'/Desktop/R/MacrosystemsEDDIE/Teleconnections/Lake_Characteristics.xlsx', sep=''), 
