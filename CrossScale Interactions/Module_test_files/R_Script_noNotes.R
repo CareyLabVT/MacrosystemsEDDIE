@@ -139,13 +139,14 @@ write_csv(chla_output, path)
 #### PLOTS ####
 mendota <- read_csv('C:/Users/KJF/Desktop/R/MacrosystemsEDDIE/CrossScale Interactions/Module_test_files/allMendota.csv')
 
-attach(mendota)
-plot(DateTime, Baseline_Chla, type="l", col="black", ylim=c(0, 100),
+attach(sunapee)
+plot(DateTime, Baseline_Chla, type="l", col="black", ylim=c(0, 15),
      ylab="Chlorophyll-a (ug/L)", xlab="Date", lwd=2)  
-lines(DateTime, Climate_Chla, col="red") 
-lines(DateTime, LandUse_Chla, col="blue") 
-lines(DateTime, Climate_LandUse_Chla, col="green")
+lines(DateTime, Climate_Plus4_Chla, col="firebrick", lwd=2) 
+lines(DateTime, LandUse_4xP_Chla, col="dodgerblue", lwd=2) 
+lines(DateTime,Climate4_LandUse4_Chla, col="darkgreen", lwd=2)
 legend("topleft",c("Baseline", "Climate Only", "Land Use Only", "Combined C + LU"), 
-       lty=c(1,1,1,1), col=c("black","red","blue", "green")) 
+       lty=c(1,1,1,1), col=c("black","firebrick","dodgerblue", "darkgreen"),
+       lwd=c(2,2,2,2)) 
 
 sunapee <- read_csv('C:/Users/KJF/Desktop/R/MacrosystemsEDDIE/CrossScale Interactions/Module_test_files/allSunapee.csv')
