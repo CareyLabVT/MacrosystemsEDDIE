@@ -142,8 +142,8 @@ nsave = 24
    meteo_fl    = 'met_hourly.csv'
    subdaily    = .true.
    wind_factor = 1.0
-   lw_factor   = 1.0
-   sw_factor   = 0.3
+   lw_factor   = 0.80
+   sw_factor   = 0.70
    cd          = 0.0013
    ce          = 0.0013
    ch          = 0.0013
@@ -184,7 +184,11 @@ nsave = 24
 &outflow
    num_outlet   = 0
   seepage_rate   = 0.0
-
+/
+&snowice
+   snow_albedo_factor = 1
+   snow_rho_max = 500
+   snow_rho_min = 100
 /
 &sed_heat
    sed_temp_mean = 25.6
