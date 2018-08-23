@@ -1,6 +1,6 @@
-# Cross-Scale Emergence Module ####
+# Cross-Scale Interactions Module ####
  # This module was initially developed by Carey, C.C. and K.J. Farrell. 13 Aug. 2017.
- # Macrosystems EDDIE: Cross-Scale Emergence. Macrosystems EDDIE Module 2, Version 1. 
+ # Macrosystems EDDIE: Cross-Scale Interactions. Macrosystems EDDIE Module 2, Version 1. 
  # www.MacrosystemsEDDIE.org/module2
  # Module development was supported by NSF EF 1702506.
 
@@ -8,7 +8,7 @@
  # This module consists of 6 objectives. Activity A consists of Objectives 1-2,
  # Activity B consists of Objectives 3-4, & Activity C consists of Objectives 5-6.
 
- # This script was last modified by KJF on 2 July 2018.
+ # This script was last modified by KJF on 23 August 2018.
 
 ########## ACTIVITY A - OBJECTIVE 1 ############################################
 # Download R packages and GLM files onto your computer.
@@ -60,7 +60,7 @@ glm_version() # See what version of GLM you are running- should be v.2.x.x
 ComputerName <- 'KJF' ##!! Change to match your computer name
 LakeName <- 'Mendota' ##!! Change to match the lake you and your partner selected
 
-sim_folder <- paste('C:/Users/',ComputerName,'/Desktop/cross_scale_emergence/',LakeName, sep='')
+sim_folder <- paste('C:/Users/',ComputerName,'/Desktop/cross_scale_interactions/',LakeName, sep='')
 # This command defines your sim_folder path to the Desktop folder where you 
 # extracted your zipped files.
 
