@@ -4,7 +4,7 @@ library(glmtools)
 glm_version() 
 
 ComputerName <- 'KJF' 
-LakeName <- 'Mendota' 
+LakeName <- 'Sunapee' 
 
 sim_folder <- paste('C:/Users/',ComputerName,'/Desktop/R/MacrosystemsEDDIE/CrossScale Interactions/',LakeName, sep='')
 setwd(sim_folder) 
@@ -132,14 +132,20 @@ climate_landuse <- file.path(sim_folder, 'output.nc')
 `*tmp*` <- get_var(file=climate_landuse, "PHY_TCHLA", reference='surface', z_out=c(1)) 
 chla_output["Climate4_LandUse4S_Chla"] <- `*tmp*`[2] 
 
-write_csv(chla_output, 'C:/Users/KJF/Desktop/R/MacrosystemsEDDIE/CrossScale Interactions/Module_test_files/allMendota.csv')
+#### Save all chla outputs to file ####
+path <- paste('C:/Users/',ComputerName,'/Desktop/R/MacrosystemsEDDIE/CrossScale Interactions/Module_test_files/all',LakeName,'.csv', sep='')
+write_csv(chla_output, path)
 
 #### PLOTS ####
-attach(chla_output)
+mendota <- read_csv('C:/Users/KJF/Desktop/R/MacrosystemsEDDIE/CrossScale Interactions/Module_test_files/allMendota.csv')
+
+attach(mendota)
 plot(DateTime, Baseline_Chla, type="l", col="black", ylim=c(0, 100),
-     ylab="Chlorophyll-a (ug/L)", xlab="Date")  
+     ylab="Chlorophyll-a (ug/L)", xlab="Date", lwd=2)  
 lines(DateTime, Climate_Chla, col="red") 
 lines(DateTime, LandUse_Chla, col="blue") 
 lines(DateTime, Climate_LandUse_Chla, col="green")
 legend("topleft",c("Baseline", "Climate Only", "Land Use Only", "Combined C + LU"), 
        lty=c(1,1,1,1), col=c("black","red","blue", "green")) 
+
+sunapee <- read_csv('C:/Users/KJF/Desktop/R/MacrosystemsEDDIE/CrossScale Interactions/Module_test_files/allSunapee.csv')
