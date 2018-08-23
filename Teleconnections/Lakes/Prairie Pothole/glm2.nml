@@ -18,15 +18,15 @@
 !-------------------------------------------------------------------------------
 &glm_setup
    sim_name = 'Prairie Pothole'
-   max_layers = 500
-   min_layer_vol = 0.5
-   min_layer_thick = 0.15
-   max_layer_thick = 0.5
+   max_layers = 500 
+   min_layer_vol = 0.025
+   min_layer_thick = 0.050 
+   max_layer_thick = 0.75
    !-- Light Parameters
-   Kw = 0.33
+   Kw = 0.3
    !-- Mixing Parameters
-   coef_mix_conv = 0.2
-   coef_wind_stir = 0.3
+   coef_mix_conv = 0.1
+   coef_wind_stir = 0.23 !0.4
    coef_mix_shear = 0.2
    coef_mix_turb = 0.51
    coef_mix_KH = 0.3
@@ -104,7 +104,7 @@ nsave = 24
     lake_depth  = 3
     num_depths  = 6
     the_depths  = 0.5,1,1.5,2,2.5,3
-    the_temps   = 3.6,3.5,3.5,3.4,3.4,3.6
+    the_temps   = 3.6,3.5,3.5,3.4,3.4,3.2
     the_sals    = 0,0,0,0,0,0
 /
 !-------------------------------------------------------------------------------
@@ -135,14 +135,15 @@ nsave = 24
    rain_sw     = .false.
    atm_stab    = .false.
    catchrain   = .false.
-   rad_mode    = 1
+   rad_mode    = 2
    albedo_mode = 1
    cloud_mode  = 4
    !-- BC file details
    meteo_fl    = 'met_hourly.csv'
    subdaily    = .true.
-   wind_factor = 1.0
-   sw_factor   = 1.0
+   wind_factor = 0.32
+   lw_factor   = 1
+   sw_factor   = 0.95
    cd          = 0.0013
    ce          = 0.0013
    ch          = 0.0013
@@ -183,10 +184,14 @@ nsave = 24
 &outflow
    num_outlet   = 0
   seepage_rate   = 0.0
-
+/
+&snowice
+   snow_albedo_factor = 1
+   snow_rho_max = 500
+   snow_rho_min = 100
 /
 &sed_heat
-   sed_temp_mean = 6
+   sed_temp_mean = 9
    sed_temp_amplitude = 4
    sed_temp_peak_doy = 242
 /
