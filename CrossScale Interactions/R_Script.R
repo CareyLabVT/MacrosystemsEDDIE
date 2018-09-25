@@ -8,8 +8,6 @@
  # This module consists of 6 objectives. Activity A consists of Objectives 1-2,
  # Activity B consists of Objectives 3-4, & Activity C consists of Objectives 5-6.
 
- # This script was last modified by KJF on 23 August 2018.
-
 ########## ACTIVITY A - OBJECTIVE 1 ############################################
 # Download R packages and GLM files onto your computer.
 
@@ -60,7 +58,7 @@ glm_version() # See what version of GLM you are running- should be v.2.x.x
 ComputerName <- 'KJF' ##!! Change to match your computer name
 LakeName <- 'Mendota' ##!! Change to match the lake you and your partner selected
 
-sim_folder <- paste('C:/Users/',ComputerName,'/Desktop/cross_scale_interactions/',LakeName, sep='')
+sim_folder <- paste('/Users/',ComputerName,'/Desktop/cross_scale_interactions/',LakeName, sep='')
 # This command defines your sim_folder path to the Desktop folder where you 
 # extracted your zipped files.
 
@@ -97,9 +95,9 @@ run_glm(sim_folder, verbose=TRUE) # So simple and elegant... if this works, you
 #  date and time stamp: 'output.nc'. This file contains all of the output data 
 #  from your simulation.
 
-# We need to know where the output.nc file is so that the glmtools package can
-#  plot and analyze the model output. We tell R where to find the output file 
-#  using the line below:
+# We need to know where the output data (the output.nc file) is so that the glmtools 
+#  package can plot and analyze the model output. We tell R where to find the output 
+#  file using the line below:
 
 baseline <- file.path(sim_folder, 'output.nc') # This says that the output.nc 
 #  file is in the sim_folder.  
@@ -145,72 +143,20 @@ colnames(chla_output)[2] <- "Baseline_Chla" # Here we rename the chl-a column so
 
 ########## ACTIVITY B - OBJECTIVE 3 ############################################
 # For Activity B, you will work with your partner to model your lake, plus another 
-#  team that is modeling another lake. Using your knowledge of potential climate 
-#  change, work with your partner and another team to develop a climate change 
-#  scenario for the two lakes based on changes in air temperature, or use one of 
-#  the pre-made climate scenarios. Remember that both teams should run the SAME 
-#  climate scenario on their separate lakes and compare the output.
+#  team that is modeling another lake. With your partner and another team, select
+#  one of the pre-made climate scenarios. Remember that both teams should run the 
+#  SAME climate scenario on their separate lakes and compare the output.
 
-# If you are designing your own scenario, you will need to modify the input driver 
-#  data (met_hourly.csv) using the steps below. If you are using a pre-made scenario,
-#  you can skip to line 204.
-
-# Detailed directions for modifying your met_hourly file: 
-
-## SOMETHING THAT IS REALLY IMPORTANT! ##
-# Opening the met_hourly.csv file in Excel will inexplicably alter the date/time 
-  # formatting so that GLM cannot read it. You will get an error something like 
-  # this: "Day 2451545 (2000-01-01) not found". To avoidthis error, carefully 
-  # follow the FIVE steps listed below:
-
-# 1) Copy and paste an extra version of the met_hourly.csv file in your sim folder 
-  # so that you have a backup in case of any mistakes. Rename this file something 
-  # like "met_hourly_baseline.csv" and be sure not to open it.
-
-# 2) Open the met_hourly.csv file in Excel.  Change the values in the AirTemp 
-  # column to represent your climate change scenario. 
-
-  # NOTE ABOUT COLUMN NAMES: the order of the columns in the met file does not 
-  # matter, but you can only have one of each variable and they must keep the 
-  # EXACT same header name (i.e., it must always be 'AirTemp', not 'AirTemp+3oC') 
-
-# 3) When you are done editing the meteorological file, highlight all of the 'time' 
-  # column in Excel, by clicking the capital letter above the 'time' column. 
-  # Right click, then select 'Format Cells', and then 'Custom'. In the "Type" or 
-  # "Formatting" box, change the default to "YYYY-MM-DD hh:mm:ss" exactly (no 
-  # quotes). This is the only time/date format that GLM is able to read. When you 
-  # click ok, this should change the format of the 'time'  column so that it reads: 
-  # "2013-01-30 00:00:00" with exactly that spacing and punctuation. 
-
-# 4) Save this new file under a different name that tells what scenario it represents, 
-  # e.g.,"met_hourly_climate.csv". Close the csv file, saving your changes. 
-
-# 5) Run the following lines to ensure your time column is formatted for GLM:
-metdata <- read.csv("met_hourly_climate.csv", header=TRUE) ##!! Edit the name of the
-  #	CSV file so that it matches the file name of your climate scenario met file.
-
-# Run the following command to convert the time column into the time/date 
-  # structure that GLM uses:
-metdata$time <- as.POSIXct(strptime(metdata$time, "%Y-%m-%d %H:%M:%S", tz="EST")) 
-
-write.csv(metdata, "met_hourly_climate.csv", row.names=FALSE, quote=FALSE) ##!! Edit 
-  # the name of the CSV file so that it matches the file name of your climate 
-  # scenario met file- this CSV file will now have the proper date/time formatting
-
-# Once you have completed these five steps, do NOT open the file in Excel again- 
-  # otherwise, you will need to repeat this formatting process before reading the 
-  # altered met file into GLM.
-
-# You now need to edit the glm2.nml file to change the name of the input met file 
-  # so that it reads in the new, edited file for your climate scenario, not the 
-  # default "met_hourly.csv".  
+# Once you have selected your climate scenario, you need to edit the glm2.nml file 
+#  to change the name of the input met file so that it reads in the met data for 
+#  your climate scenario, not the default 'met_hourly.csv'.  
 
 # Open the .nml file by clicking 'glm2.nml' in the Files tab of RStudio, then scroll 
-  # down to the meteorology section, and change the 'meteo_fl' entry to the new 
-  # met file name (e.g., 'met_hourly_climate.csv'). Save your modified glm2.nml file.
+#  down to the meteorology section, and change the 'meteo_fl' entry to the new 
+#  met file name (e.g., from 'met_hourly.csv' to 'met_hourly_plus2.csv'). 
+#  SAVE your modified glm2.nml file.
 
-# Once you have edited the nml file name, you can always check to make sure that 
-  # it is correct with the command:
+# Once you have edited the nml file name, read in the updated file with the command:
 nml <- read_nml(nml_file)  # Read in your nml file from your new directory
 get_nml_value(nml, 'meteo_fl') # The printout here should list your NEW meteorological 
   # file for your climate scenario. If it doesn't, make sure you pressed the Save 
@@ -232,8 +178,8 @@ climate <- file.path(sim_folder, 'output.nc') # This defines the output.nc file
 #  concentrations in the lake during our climate change simulation, to compare to 
 #  our baseline and land use scenarios later. 
 #  Extract surface chl-a:
-`*tmp*` <- get_var(file=climate, "PHY_TCHLA", reference='surface', z_out=c(1)) 
-chla_output["Climate_Chla"] <- `*tmp*`[2] # Here we attach the chl-a data from your 
+climate_chla <- get_var(file=climate, "PHY_TCHLA", reference='surface', z_out=c(1)) 
+chla_output["Climate_Chla"] <- climate_chla[2] # Here we attach the chl-a data from your 
 #  climate simulation to the same file that contains your baseline scenario chl-a 
 #  concentrations. You can now compare your climate scenario to your baseline- 
 #  well done!
@@ -250,88 +196,31 @@ plot_var(file=climate, "PHY_TCHLA") # Create a heatmap of chlorophyll-a. How
 # your hypotheses about climate change effects on chlorophyll-a? 
 
 ########## ACTIVITY C - OBJECTIVE 5 ############################################
-# Now, using your knowledge of potential land use effects on nutrients coming 
-#  into a lake, work with your partner and the other team to develop a land use 
-#  change scenario for your two model lakes based on changes in phosphorus 
-#  concentrations in the inflow file, or use one of the pre-made scenarios. 
+# Now, with your partner and another team, select one of the pre-made land use 
+#  scenarios based on changes in phosphorus concentrations in the inflow file. 
 #  Remember that both teams should run the SAME land use scenario on their separate 
 #  lakes and compare the output.
 
-# If you are designing your own scenario, you will need to modify the input driver 
-#  data (inflow.csv) using the steps below. If you are using a pre-made scenario,
-#  you can skip to line 314.
-
-# Detailed directions for modifying your inflow file:
-
-## SOMETHING THAT IS REALLY IMPORTANT! ##
-# Opening up the inflow.csv file in Excel will inexplicably alter the date/time 
-# formatting so that GLM cannot read it. You will get an error something like 
-# this: "Day 2451545 (2000-01-01) not found". To avoidthis error, carefully 
-# follow the FIVE steps listed below:
-
-# 1) Copy and paste an extra version of the inflow.csv file in your sim folder 
-  # so that you have a backup in case of any mistakes. Rename this file something 
-  # like "inflow_baseline.csv" and be sure not to open it.
-
-# 2) Open the inflow.csv file in Excel. Change the values in the PHS_frp column 
-  # to represent how your land use change scenario alters the amount of phosphorus 
-  # flowing into your lake. PHS_frp is an abbreviation for the filterable reactive 
-  # phosphorus fraction, or the fraction of phosphorus that phytoplankton need 
-  # the most for their growth and division.
-
-  # NOTE ABOUT COLUMN NAMES: As with the met_hourly file, you can only have one 
-  # column for each variable and they must keep the EXACT same header name 
-  # (it must always be 'PHS_frp') 
-
-# 3) When you are done editing the inflow file, highlight all of the 'time' column 
-  # in Excel by clicking the capital letter above the 'time' column. Right click, 
-  # then select 'Format Cells', and then 'Custom'. In the "Type" or "Formatting" 
-  # box, change the default to "YYYY-MM-DD hh:mm:ss" exactly (no quotes). This is 
-  # the only time/date format that GLM is able to read. When you click ok, this 
-  # should change the format of the 'time'  column so that it reads: 
-  # "2013-01-30 00:00:00" with exactly that spacing and punctuation. 
-
-# 4) Save this new file under a different name that tells what scenario it represents, 
-  # e.g., "inflow_landuse.csv". Close the csv file, saving your changes. 
-
-# 5) Once again, run the following lines to ensure your time column is formatted 
-  # for GLM:
-flowdata <- read.csv("inflow_landuse.csv", header=TRUE) ##!! Edit the name of the
-  #	CSV file so that it matches the file name of your land use scenario inflow file.
-
-# Run the following command to convert the time column into the time/date 
-  # structure that GLM uses
-flowdata$time <-as.POSIXct(strptime(flowdata$time, "%Y-%m-%d %H:%M:%S", tz="EST")) 
-
-write.csv(flowdata, "inflow_landuse.csv", row.names=FALSE, quote=FALSE) ##!! Edit
-  #	the name of the CSV file so that it matches the file name of your land use 
-  # scenario inflow file name- this CSV file will now have the proper date/time formatting
-
-# Once you have completed these five steps, do NOT open the inflow file in Excel 
-  # again- otherwise, you will need to repeat this formatting process before 
-  # reading the altered met file into GLM.
-
-# You now need to edit the glm2.nml file to change the name of the inflow file 
-  # so that it reads in the new, edited inflow file for your land use scenario, 
-  # not the default "inflow.csv".  
+# Once you have selected your land use scenario, you need to edit the glm2.nml 
+#  file to change the name of the inflow file so that it reads in the inflow file 
+#  for your land use scenario, not the default "inflow.csv".  
 
 # Open the glm2.nml file, scroll down to the inflows section, and change the 
-  # 'inflow_fl' entry to the new file name (e.g., 'inflow_landuse.csv'). 
+#  inflow_fl entry to the new file name (e.g., from 'inflow.csv' to 'inflow_fourP.csv'). 
 
 # IMPORTANT: Be sure to ALSO change your met file name in the glm2.nml BACK to 
   #  the original (baseline) met file (e.g., in the meteorology section, make sure 
   # your 'meteo_fl' entry is 'met_hourly.csv'. This is because we want 
-  # to examine the effects of your land use scenario separate from the climate
+  # to examine the effects of your land use scenario SEPARATE from the climate
   # scenario you developed earlier. Save your modified glm2.nml file that has 
   # baseline meteorology and altered land use.
 
-# Once you have edited the nml file names, you can always check to make sure that 
-  # they is correct with the commands:
+# Once you have edited the nml file name, read in the updated file with the command:
 nml <- read_nml(nml_file)  # Read in your nml file from your new directory
 get_nml_value(nml, 'inflow_fl') # If you have done this correctly, you should get 
   # an output that lists the name of your ALTERED inflow file.
 get_nml_value(nml, 'meteo_fl') # If you have done this correctly, you should get 
-  # an output that lists the name of your BASELINE meteorological file.
+  # an output that lists the name of your BASELINE meteorological file ('met_hourly.csv').
 
 # You can now run the model for your land use scenario using the new edited 
 #  nml file using the commands below. Exciting!
@@ -350,8 +239,8 @@ landuse <- file.path(sim_folder, 'output.nc') # This defines the output.nc file
 #  concentrations in the lake during our land use change simulation, to compare 
 #  to our baseline and climate scenarios later. 
 # Extract surface chl-a:
-`*tmp*` <- get_var(file=landuse, "PHY_TCHLA", reference='surface', z_out=c(1)) 
-chla_output["LandUse_Chla"] <- `*tmp*`[2] # Here we attach the chl-a data from your land 
+landuse_chla <- get_var(file=landuse, "PHY_TCHLA", reference='surface', z_out=c(1)) 
+chla_output["LandUse_Chla"] <- landuse_chla[2] # Here we attach the chl-a data from your land 
 #  use simulation to the same file that contains your baseline scenario and climate 
 #  change scenario chl-a concentrations.
 
@@ -361,7 +250,7 @@ plot_var(file=landuse, "PHY_TCHLA") # Heatmap of chla. How does your phytoplankt
 #  color gradient representing chl-a when comparing plots!
 
 # Finally, we want to see what happens when land use and climate interact! 
-#  Luckily, testing the simultaneous effects of your land use and climate change 
+#  Luckily, testing the combined effects of your land use and climate change 
 #  scenarios will be pretty easy! Since we already have modified met data 
 #  (climate scenario) and inflow data (land use scenario), we just have GLM read 
 #  them both at once. We can do this by changing the glm2.nml file to include our 
@@ -370,10 +259,10 @@ plot_var(file=landuse, "PHY_TCHLA") # Heatmap of chla. How does your phytoplankt
 # In the glm2.nml file, make the following TWO changes:
 
 # 1) In the meteorology section, change the 'meteo_fl' entry to the met file that 
-  # represents your climate change scenario (e.g., 'met_hourly_climate.csv')
+  # represents your climate change scenario (e.g., 'met_hourly_plus2.csv')
 
 # 2) In the inflow section, check that the 'inflow_fl' file represents your land 
-  # use change scenario (e.g., 'inflow_landuse.csv')
+  # use change scenario (e.g., 'inflow_fourP.csv')
 
 # Save your glm2.nml file, then run the following commands to check that the 
 #  changes were made correctly.
@@ -397,8 +286,8 @@ climate_landuse <- file.path(sim_folder, 'output.nc') # This defines the output.
 #  concentrations in the lake, to compare to our baseline, climate, and land use 
 #  scenarios. 
 # Extract surface chl-a:
-`*tmp*` <- get_var(file=climate_landuse, "PHY_TCHLA", reference='surface', z_out=c(1)) 
-chla_output["Climate_LandUse_Chla"] <- `*tmp*`[2] # Here we attach the chl-a data from 
+combined_chla <- get_var(file=climate_landuse, "PHY_TCHLA", reference='surface', z_out=c(1)) 
+chla_output["Climate_LandUse_Chla"] <- combined_chla[2] # Here we attach the chl-a data from 
 #  your combined simulation to the same file that contains your baseline, climate 
 #  change, and land use scenario chl-a concentrations
 
@@ -413,14 +302,12 @@ attach(chla_output)
 # The command below plots DateTime vs. Observed data in black: 
 plot(DateTime, Baseline_Chla, type="l", col="black", ylim=c(0, 100),
      ylab="Chlorophyll-a (ug/L)", xlab="Date")  
-lines(DateTime, Climate_Chla, col="red") # this adds a red line of the climate 
-#  change scenario
-lines(DateTime, LandUse_Chla, col="blue") # this adds a blue line of the land use 
-#  scenario
-lines(DateTime, Climate_LandUse_Chla, col="green") # this adds a green line of 
-#  simultaneous climate and land use scenario
+lines(DateTime, Climate_Chla, col="red") # add a red line of the climate change scenario
+lines(DateTime, LandUse_Chla, col="blue") # add a blue line of the land use scenario
+lines(DateTime, Climate_LandUse_Chla, col="green") # add a green line of the climate + land use scenario
 legend("topleft",c("Baseline", "Climate Only", "Land Use Only", "Combined C + LU"), 
-       lty=c(1,1,1,1), col=c("black","red","blue", "green")) # this adds a legend
+       lty=c(1,1,1,1), col=c("black","red","blue", "green")) # add a legend
+
 # !! Note that the command ylim=c(0, 100) tells R what you want the minimum and 
 #  maximum values on the y-axis to be (here, we're plotting from 0 to 100 ug/L). 
 #  You may need to adjust this range to make sure all your data are shown in the 
