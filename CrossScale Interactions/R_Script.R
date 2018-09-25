@@ -89,15 +89,9 @@ run_glm(sim_folder, verbose=TRUE) # So simple and elegant... if this works, you
 #  time steps.  At the end, it should say "Run complete" if everything worked 
 #  ok. This may take a few minutes.
 
-# Now, go to the sim_folder on your computer (in RStudio, you can find this by 
-#  clicking on the 'Files' tab- if everything happened correctly, you should see 
-#  the addition a of new file that was created during the simulation with a recent 
-#  date and time stamp: 'output.nc'. This file contains all of the output data 
-#  from your simulation.
-
-# We need to know where the output data (the output.nc file) is so that the glmtools 
-#  package can plot and analyze the model output. We tell R where to find the output 
-#  file using the line below:
+# We need to know where the output data from your simulation (the output.nc file) 
+#  is so that the glmtools package can plot and analyze the model output. We tell 
+#  R where to find the output file using the line below:
 
 baseline <- file.path(sim_folder, 'output.nc') # This says that the output.nc 
 #  file is in the sim_folder.  
