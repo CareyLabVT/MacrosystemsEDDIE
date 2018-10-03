@@ -55,7 +55,14 @@ glm_version() # See what version of GLM you are running- should be v.2.x.x
 
 # When you downloaded this script, you unzipped the module folder to your Desktop. 
 #  We now need to tell R where these files are. We do that by setting...
+
 ComputerName <- 'KJF' ##!! Change to match your computer name
+# When I right click on the 'cross_scale_interactions' folder on my Desktop and select
+ # Properties (Windows) or Get Info (Mac), look under Location (Windows) or Where (Mac) 
+ # and find your computer name after Users (example below):
+ # Windows: C:/Users/KJF/Desktop/cross_scale_interactions --> computer name is KJF
+ # Mac: Macintosh HDD -> Users -> careyalb -> Desktop --> computer name is careylab 
+
 LakeName <- 'Mendota' ##!! Change to match the lake you and your partner selected
 
 sim_folder <- paste('/Users/',ComputerName,'/Desktop/cross_scale_interactions/',LakeName, sep='')
@@ -110,6 +117,8 @@ plot_temp(file=baseline, fig_path=FALSE) # This plots your simulated water
 #  as PDF". In the preview window, give your plot a descriptive file name (e.g., 
 #  "TemperatureHeatMap.pdf"), then press "Save". Your plot image and/or PDF file 
 #  will be saved in the sim_folder on your Desktop.
+
+# Note that if you want to save plots, you should copy and paste them as you go!
 
 # This pair of commands can be used to list the variables that were output as part 
 #  of your GLM run.
@@ -182,9 +191,14 @@ chla_output["Climate_Chla"] <- climate_chla[2] # Here we attach the chl-a data f
 # Plot the output using the commands you learned above. 
 plot_temp(file=climate, fig_path=FALSE) # Create a heatmap of the water temperature
 # How does this compare to your baseline?
+# Note: If you want to control the maximum value of the color scale on your heatmaps, 
+ # add the following (without quotes) after fig_path=FALSE: 'col_lim= c(0,35)'
+ # This tells R that you want your maximum value to be 35, and your min. to be 0
 
 plot_var(file=climate, "PHY_TCHLA") # Create a heatmap of chlorophyll-a. How 
 #  does this compare to your baseline?
+# You can add the 'col_lim' command to this plot, too! Look at the Note from the 
+ # plot_temp() command to learn how.
 
 # Do these plots from the climate scenario and the baseline support or contradict 
 # your hypotheses about climate change effects on chlorophyll-a? 
@@ -294,13 +308,14 @@ plot_var(file=climate_landuse, "PHY_TCHLA") # Heatmap of chlorophyll-a
 attach(chla_output)
 
 # The command below plots DateTime vs. Observed data in black: 
-plot(DateTime, Baseline_Chla, type="l", col="black", ylim=c(0, 100),
+plot(DateTime, Baseline_Chla, type="l", lwd=1.5, col="black", ylim=c(0, 100),
      ylab="Chlorophyll-a (ug/L)", xlab="Date")  
-lines(DateTime, Climate_Chla, col="red") # add a red line of the climate change scenario
-lines(DateTime, LandUse_Chla, col="blue") # add a blue line of the land use scenario
-lines(DateTime, Climate_LandUse_Chla, col="green") # add a green line of the climate + land use scenario
-legend("topleft",c("Baseline", "Climate Only", "Land Use Only", "Combined C + LU"), 
-       lty=c(1,1,1,1), col=c("black","red","blue", "green")) # add a legend
+lines(DateTime, Climate_Chla, lwd=1.5, col="firebrick") # add a red line of the climate change scenario
+lines(DateTime, LandUse_Chla, lwd=1.5, col="deepskyblue") # add a blue line of the land use scenario
+lines(DateTime, Climate_LandUse_Chla, lwd=1.5, col="darkgreen") # add a green line of the climate + land use scenario
+legend("topleft",c("Baseline", "Climate Only", "Land Use Only", "Combined C + LU"),  # add a legend
+       lty=c(1,1,1,1), lwd=c(1.5,1.5,1.5,1.5), 
+       col=c("black","firebrick","deepskyblue", "darkgreen"))
 
 # !! Note that the command ylim=c(0, 100) tells R what you want the minimum and 
 #  maximum values on the y-axis to be (here, we're plotting from 0 to 100 ug/L). 
@@ -310,7 +325,7 @@ legend("topleft",c("Baseline", "Climate Only", "Land Use Only", "Combined C + LU
 ########## ACTIVITY C - OBJECTIVE 6 ############################################
 # Using the line plot you just created, and the other team's line plot from their 
 #  lake, put together a brief presentation of your model simulation and output to 
-#  share with the rest of the class. 
+#  share with the rest of the class (you'll present as a group of 4!)
 
 # Make sure your presentation answers the questions listed in your handout.
 
