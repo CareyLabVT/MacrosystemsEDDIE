@@ -2,7 +2,5 @@
 .Rhistory
 .RData
 .Ruserdata
-*.nc
-*.DS_Store
-.DS_store
+.nc
 .DS_Store
