@@ -57,9 +57,9 @@ ComputerName <- 'KJF' ##!! Change to match your computer name
   # Windows: C:/Users/KJF/Desktop/cross_scale_interactions --> computer name is KJF
   # Mac: Macintosh HDD -> Users -> careyalb -> Desktop --> computer name is careylab 
 
-LakeName <- 'Prairie Pothole' ##!! Change to match the lake you and your partner selected
+LakeName <- 'Barco' ##!! Change to match the lake you and your partner selected
 # The lake name options are: 'Barco', 'Crampton', 'Falling Creek', 'Mendota',
-  # 'Prairie Pothole', 'Suggs', and 'Sunapee
+  # 'Prairie Pothole', 'Suggs', 'Sunapee', and 'Toolik'
 
 sim_folder <- paste('/Users/',ComputerName,'/Desktop/teleconnections/Lakes/',LakeName, sep='')
 # This command defines your sim_folder path to the Desktop folder where you 
@@ -130,10 +130,10 @@ lake_level1 <- get_surface_height(baseline)
 
 # Use the code below to create a plot of water level in the lake over time. 
 plot(surface_height ~ DateTime, data = lake_level1, type="l", col="black", 
-     ylab = "Lake depth (m)", xlab = "Date", ylim=c(0,4))
+     ylab = "Lake depth (m)", xlab = "Date", ylim=c(6.5,7.5))
 # !! Note that the command ylim=c(min,max) tells R the minimum and maximum y-axis 
-    #  values to plot. You will need to adjust this range to make sure all your data 
-    #  are shown.
+    #  values to plot. You will need to adjust the minimum and maximum values 
+    #  to make sure all your data are shown.
 
 # We also want to save the model output of the water temperature and lake depth 
   #  during our baseline simulation, because we'll be comparing it to our teleconnection 
@@ -174,9 +174,9 @@ View(annual_temp)
 
 # Let's look at how annual air temperature differs between El Nino years and 
   #  non-El Nino years for your lake. First, we'll subset the data into El Nino years
-  #  and non-El Nino years. 
-ElNino_years <- subset(annual_temp, Type == "ElNino") # Define El Nino years
+  #  and neutral (neither El Nino nor La Nina) years. 
 Neutral_years <- subset(annual_temp, Type == "Neutral") # Define Neutral years
+ElNino_years <- subset(annual_temp, Type == "ElNino") # Define El Nino years
 
 # Visualize your lake's patterns in air temperature over time using the commands below:
 plot(`Air Temp Mean (°C)` ~ Year, data = annual_temp, pch = 16, col = 'gray70')
@@ -186,34 +186,36 @@ legend("topleft",c("All Years", "El Nino", "Neutral"), pch=16, col=c("gray70", "
 # Now, we need to estimate how much warmer or colder a typical El Nino year is 
   #  compared to a neutral year. 
 
-# We'll do that by calculating the slope of the line between temperature ane year
-  # for both El Nino years and neutral years
+# We'll do that by calculating the slope of the line between temperature and year
+  # separately for both neutral years and El Nino years
 
-# First, we estimate the slope and intercept of a line fit through the El Nino
+# First, we estimate the slope and intercept of a line fit through the Neutral
+  #  data points, using a simple linear model
+mod_Neutral <- lm(`Air Temp Mean (°C)` ~ Year, data = Neutral_years) 
+slope_Neutral = summary(mod_Neutral)$coeff[2] # Save the model slope
+int_Neutral = summary(mod_Neutral)$coeff[1] # Save the model intercept
+
+# As before, we plug in the slope and intercept to estimate the air temperature in 
+  #  2013 (the year of our model), which was a neutral year 
+Neutral_2013 <- (slope_Neutral * 2013) + int_Neutral
+print(Neutral_2013) # Run this line to have R print out the value you just calculated
+
+# Next, we estimate the slope and intercept of a line fit through the El Nino
   #  data points, using a simple linear model
 mod_ElNino <- lm(`Air Temp Mean (°C)` ~ Year, data = ElNino_years) 
-slope_ElNino = summary(mod_ElNino)$coeff[2]
-int_ElNino = summary(mod_ElNino)$coeff[1]
+slope_ElNino = summary(mod_ElNino)$coeff[2] # Save the model slope
+int_ElNino = summary(mod_ElNino)$coeff[1] # Save the model intercept
 
-# We plug in the slope and intercept to estimate the air temperature if 
-  #  2013 (the year of our model) was a typical El Nino year 
+# We plug in the slope and intercept to estimate what the air temperature 
+  # would likely be if 2013 (the year of our model) was a typical El Nino year
+  # (i.e., "typical" being based on the overall linear regression)
 ElNino_2013 <- (slope_ElNino * 2013) + int_ElNino
 print(ElNino_2013) # Run this line to have R print out the value you just calculated
 
-# Next, we estimate the slope and intercept of a line fit through the Neutral
-  #  data points, using a simple linear model
-mod_Neutral <- lm(`Air Temp Mean (°C)` ~ Year, data = Neutral_years) 
-slope_Neutral = summary(mod_Neutral)$coeff[2]
-int_Neutral = summary(mod_Neutral)$coeff[1]
-
-# As before, we plug in the slope and intercept to estimate the air temperature if 
-  #  2013 (the year of our model) was a neutral year 
-Neutral_2013 <- (slope_Neutral * 2013) + int_Neutral
-
 # Now that we have calculated the means for each category, we can add a line 
   #  representing each to our plot: 
-abline(a = int_ElNino, b = slope_ElNino, col= 'red', lty=2)
 abline(a = int_Neutral, b = slope_Neutral, col = 'black', lty=2)
+abline(a = int_ElNino, b = slope_ElNino, col= 'red', lty=2)
 
 # Next, we calculate the estimated El Nino offset as the difference between 
   #  air temperatures in typical El Nino years vs. other years
@@ -281,6 +283,7 @@ temp_output["Typical_ElNino_Surface_Temp"] <- scenario2_temp[2] # Here we attach
   # temperatures from the El Nino teleconnections simulation to the  same file 
   # that contains your baseline scenario temperatures. 
 
+# Extract lake level:
 scenario2_depth <- get_surface_height(Typical_ElNino) # Extract the daily water depth 
 depth_output["Typical_ElNino_Lake_Depth"] <- scenario2_depth[2] # Rename the depth column
 
@@ -293,9 +296,11 @@ depth_output["Typical_ElNino_Lake_Depth"] <- scenario2_depth[2] # Rename the dep
 plot_temp(file=Typical_ElNino, fig_path=FALSE) # Create a heatmap 
   # of water temperature. How does this compare to your baseline?
 
-# Do these plots from the El Nino teleconnections scenario and the baseline 
-  # support or contradict your hypotheses about teleconnection effects on 
-  # water temperatures for your lake? 
+# Use the code below to create a plot of water level in the lake over time. 
+plot(surface_height ~ DateTime, data = lake_level1, type="l", col="black", 
+     ylab = "Lake depth (m)", xlab = "Date", ylim=c(0,4))
+# !! Remember that the command ylim=c(min,max) tells R the minimum and maximum y-axis 
+#  values to plot. Adjust this range to make sure all your data are shown.
 
 ########## ACTIVITY B - OBJECTIVE 4 ############################################
 # We just simulated a typical El Nino, but now we want to see how the lake 
