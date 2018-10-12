@@ -130,7 +130,7 @@ lake_level1 <- get_surface_height(baseline)
 
 # Use the code below to create a plot of water level in the lake over time. 
 plot(surface_height ~ DateTime, data = lake_level1, type="l", col="black", 
-     ylab = "Lake depth (m)", xlab = "Date", ylim=c(6.5,7.5))
+     ylab = "Lake depth (m)", xlab = "Date", ylim=c(0,4))
 # !! Note that the command ylim=c(min,max) tells R the minimum and maximum y-axis 
     #  values to plot. You will need to adjust the minimum and maximum values 
     #  to make sure all your data are shown.
@@ -223,8 +223,8 @@ offset <- ElNino_2013 - Neutral_2013 # Save the offset as the "offset" object
 print(offset) # Run this line to have R print out what your temperature offset is
 
 # Now, we need to create a new meteorological driver file for GLM that has air
-  #  temperatures adjusted to reflect our lake's estimated El Nino temperature 
-  #  difference.
+  #  temperatures adjusted to reflect our lake's estimated temperature difference
+  #  for a typical El Nino year.
 
 # We can do that all in R (no Excel needed!!) 
   # First, we read in the original meteorological driver data for GLM using the 
@@ -297,7 +297,7 @@ plot_temp(file=Typical_ElNino, fig_path=FALSE) # Create a heatmap
   # of water temperature. How does this compare to your baseline?
 
 # Use the code below to create a plot of water level in the lake over time. 
-plot(surface_height ~ DateTime, data = lake_level1, type="l", col="black", 
+plot(surface_height ~ DateTime, data = scenario2_depth, type="l", col="black", 
      ylab = "Lake depth (m)", xlab = "Date", ylim=c(0,4))
 # !! Remember that the command ylim=c(min,max) tells R the minimum and maximum y-axis 
 #  values to plot. Adjust this range to make sure all your data are shown.
@@ -321,15 +321,16 @@ abline(a = int_Neutral, b = slope_Neutral, col = 'black', lty=2)
   # compared to the neutral years?
 
 # Run the following line of code to create a new data table that contains the 
-  # observed mean annual air temperature for your lake from El Nino years 
+  # observed mean annual air temperature for your lake for each El Nino year 
 maxOffsets <- ElNino_years %>% select(`Lake ID`, Type, Year, `Air Temp Mean (°C)`) 
 
 View(maxOffsets) # Take a look at the data sheet by running this line
 
-# Run the following lines to calculate an estimate of what each of those El Nino
-  # years' air temperature would have been if it had been a neutral year. The final
-  # command calculates each years' offset temperature, between the El Nino observed
-  # data and the estimated non-El Nino year temperature
+# Run the following lines to calculate an estimate of what the air temperature 
+  # would have likely been in each of those El Nino years IF it had been a 
+  # neutral year. The final command calculates each years' offset temperature, 
+  # as the difference between the El Nino observed temperature and the estimated 
+  # neutral temperature
 maxOffsets <- maxOffsets %>%
   mutate(Neutral_Est = (slope_Neutral * .$Year) + int_Neutral,
          Offset = `Air Temp Mean (°C)` - Neutral_Est)
@@ -403,47 +404,53 @@ depth_output["Max_ElNino_Lake_Depth"] <- scenario3_depth[2] # Rename the depth c
 # How does it compare to the baseline? To your typical El Nino?
 plot_temp(file=Max_ElNino, fig_path=FALSE)
 
+# Plot the water level in the lake during the maximum El Nino scenario. 
+plot(surface_height ~ DateTime, data = scenario2_depth, type="l", col="black", 
+     ylab = "Lake depth (m)", xlab = "Date", ylim=c(0,4))
+# !! Don't forget to adjust your ylim values so all your data are shown.
+
 ########## ACTIVITY C - OBJECTIVE 5 ############################################
 # You've run three different scenarios for your lake. That's awesome! 
 
 # Now, we want to compare our baseline scenario to our two El Nino scenarios 
   # (typical, and highest offset)
 
-# If we focus on the water surface only, we can directly compare the baselind 
-  # and El Nino teleconnections scenario with a line plot.
-  # The command below plots DateTime vs. Observed baseline data in black: 
+# Let's compare the water surface temperatures from the baseline and El Nino 
+  # teleconnection scenarios with a line plot.
+  # The command below plots DateTime vs. Observed data from the baseline model in black: 
 attach(temp_output)
 plot(DateTime, Baseline_Surface_Temp, type="l", col="black", xlab="Date",
-     ylab="Surface water temperature (C)", lwd=1.5, ylim=c(5,25))  
-lines(DateTime, Typical_ElNino_Surface_Temp, lwd=1.5, col="orange1") # this adds an orange line 
-  # of the output from the typical El Nino teleconnections scenario
-lines(DateTime, Max_ElNino_Surface_Temp, lwd=1.5, col="red") # this adds a red line of the 
-  # output from the maximum El Nino teleconnections scenario
+     ylab="Surface water temperature (C)", lwd=2, ylim=c(0,40))  
+lines(DateTime, Typical_ElNino_Surface_Temp, lwd=2, col="orange2") # this adds an orange line 
+  # of the output from the typical El Nino scenario
+lines(DateTime, Max_ElNino_Surface_Temp, lwd=2, col="red2") # this adds a red line of the 
+  # output from the maximum El Nino scenario
 # Now add a legend!
 legend("topleft",c("Baseline", "Typical El Nino", "Max. El Nino"), lty=c(1,1,1), 
-       lwd=c(1.5,1.5,1.5), col=c("black","orange", "red")) 
+       lwd=c(2,2,2), col=c("black","orange2", "red2")) 
 
 # !! Note that the command ylim=c(0, 40) tells R what you want the minimum and 
 #  maximum values on the y-axis to be (here, we're plotting from 0 to 40 degrees C). 
 #  Adjust this range and rerun the plotting commands to make sure your data are 
 #  clearly visualized in the plot.
 
-# We can make similar plots for our lake depth data.
+# We can make a similar plot for our lake level (depth) data.
 ##!! Modify the ylim() command below to adjust the y-axis limits so your data are
-  # clearly visualized and you can compare your two scenarios
+  # clearly visualized and you can compare your three scenarios. You may need to
+  # try plotting a few different minimum and maximum values to get a plot that 
+  # makes it possible to visualize the differences. 
 attach(depth_output)
 plot(DateTime, Baseline_Lake_Depth, type="l", col="black", xlab="Date",
-     ylab="Lake depth (m)", lwd=1.5, ylim=c(0,4))  
-lines(DateTime, Typical_ElNino_Lake_Depth, lwd=1.5, col="orange1") # this adds an orange line 
+     ylab="Lake depth (m)", lwd=2, ylim=c(0,4))  
+lines(DateTime, Typical_ElNino_Lake_Depth, lwd=2, col="orange1") # this adds an orange line 
 # of the output from the typical El Nino teleconnections scenario
-lines(DateTime, Max_ElNino_Lake_Depth, lwd=1.5, col="orange1") # this adds a red line of the 
+lines(DateTime, Max_ElNino_Lake_Depth, lwd=2, col="red2") # this adds a red line of the 
 # output from the maximum El Nino teleconnections scenario
 legend("topleft",c("Baseline", "Typical El Nino", "Max. El Nino"), lty=c(1,1,1), 
-       lwd=c(1.5,1.5,1.5), col=c("black","orange", "red")) 
+       lwd=c(2,2,2), col=c("black","orange2", "red2")) 
 
-# Using the line plots you just created, and the other team's line plots from their 
-#  lakes, put together a brief presentation of your model simulation and output to 
-#  share with the rest of the class. 
+# Using the line plots you just created, put together a brief presentation of 
+  # your El Nino scenarios and model outputs to share with the rest of the class. 
 
 # Make sure your presentation answers the questions listed in your handout.
 
