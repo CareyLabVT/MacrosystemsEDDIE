@@ -137,10 +137,10 @@ legend("topleft",c("Baseline", "Average El Nino", "Max. El Nino"), lty=c(1,1,1),
 ##### PLOTS FOR ASSESSMENTS #####
 mytheme <- theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
                  panel.background = element_blank(), axis.line.x = element_line(colour = "black"),
-                 axis.line.y = element_line(colour = "black"), axis.text.x=element_text(size=16, colour='black'),
-                 axis.text.y=element_text(size=16, colour='black'), axis.title.x=element_text(size=16),
-                 axis.title.y=element_text(size=16), legend.title=element_text(size=16), 
-                 legend.text=element_text(size=14))
+                 axis.line.y = element_line(colour = "black"), axis.text.x=element_text(size=18, colour='black'),
+                 axis.text.y=element_text(size=18, colour='black'), axis.title.x=element_text(size=18),
+                 axis.title.y=element_text(size=18), legend.title=element_text(size=20), 
+                 legend.text=element_text(size=18))
 
 temps <- temp_output %>% gather(Scenario, Temp, Baseline_Surface_Temp:Max_ElNino_Surface_Temp) %>%
   mutate(Scenario = factor(Scenario, 
@@ -149,9 +149,9 @@ temps <- temp_output %>% gather(Scenario, Temp, Baseline_Surface_Temp:Max_ElNino
                               labels= c('Baseline','Average El Niño', 'Maximum El Niño')))
 
 ggplot(temps, aes(x = DateTime, y = Temp, col = Scenario)) + mytheme + 
-  geom_line(lwd=1.25) + 
+  geom_line(lwd=1.5) + 
   theme(legend.position=c(0.01,1), legend.justification = c(0,1),
-        axis.text.x = element_text(angle = 30, hjust = 1)) +
-  scale_color_manual("Scenario", values =c('black','dodgerblue','red')) +
+        axis.text.x = element_text(angle = 30, hjust = 1), legend.key=element_blank()) +
+  scale_color_manual("Scenario", values =c('black','royalblue1','red')) +
   scale_x_datetime(date_breaks = '2 months', date_labels = "%b-%Y") +
   labs(y = expression(Surface~water~temperature~~(degree*C)), x = "Date")
