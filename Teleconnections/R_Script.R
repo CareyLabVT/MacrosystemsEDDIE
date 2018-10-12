@@ -183,7 +183,7 @@ plot(`Air Temp Mean (°C)` ~ Year, data = annual_temp, pch = 16, col = 'gray70')
 points(`Air Temp Mean (°C)` ~ Year, data = ElNino_years, pch = 16, col = 'red')
 points(`Air Temp Mean (°C)` ~ Year, data = Neutral_years, pch = 16, col = 'black')
 legend("topleft",c("All Years", "El Nino", "Neutral"), pch=16, col=c("gray70", "red", "black")) 
-# Now, we need to estimate how much warmer or colder an average El Nino year is 
+# Now, we need to estimate how much warmer or colder a typical El Nino year is 
   #  compared to a neutral year. 
 
 # We'll do that by calculating the slope of the line between temperature ane year
@@ -196,7 +196,7 @@ slope_ElNino = summary(mod_ElNino)$coeff[2]
 int_ElNino = summary(mod_ElNino)$coeff[1]
 
 # We plug in the slope and intercept to estimate the air temperature if 
-  #  2013 (the year of our model) was an average El Nino year 
+  #  2013 (the year of our model) was a typical El Nino year 
 ElNino_2013 <- (slope_ElNino * 2013) + int_ElNino
 print(ElNino_2013) # Run this line to have R print out the value you just calculated
 
@@ -216,12 +216,12 @@ abline(a = int_ElNino, b = slope_ElNino, col= 'red', lty=2)
 abline(a = int_Neutral, b = slope_Neutral, col = 'black', lty=2)
 
 # Next, we calculate the estimated El Nino offset as the difference between 
-  #  air temperatures in average El Nino years vs. other years
+  #  air temperatures in typical El Nino years vs. other years
 offset <- ElNino_2013 - Neutral_2013 # Save the offset as the "offset" object
 print(offset) # Run this line to have R print out what your temperature offset is
 
 # Now, we need to create a new meteorological driver file for GLM that has air
-  #  temperatures adjusted to reflect our lake's estimated average El Nino temperature 
+  #  temperatures adjusted to reflect our lake's estimated El Nino temperature 
   #  difference.
 
 # We can do that all in R (no Excel needed!!) 
@@ -234,12 +234,12 @@ met_data <- read_csv(baseline_met)
 View(met_data)
 
 # Next, We create a new meteorological driver data file that has the modified 
-  #  AirTemp that reflects our average El Nino scenario. This step is complicated in Excel, 
+  #  AirTemp that reflects our typical El Nino scenario. This step is complicated in Excel, 
   #  but one simple line of code in R!! 
-Average_ElNino_met <- mutate(met_data, AirTemp = AirTemp + (offset))
+Typical_ElNino_met <- mutate(met_data, AirTemp = AirTemp + (offset))
 
 # Finally, we'll write our new file to a .csv that we can use to drive GLM:
-write.csv(Average_ElNino_met, paste0(sim_folder, "/met_hourly_scenario2.csv"), 
+write.csv(Typical_ElNino_met, paste0(sim_folder, "/met_hourly_scenario2.csv"), 
           row.names=FALSE, quote=FALSE)
 
 ## !!!!!! You now need to edit the glm2.nml file to change the name of the input 
@@ -267,7 +267,7 @@ run_glm(sim_folder, verbose=TRUE) # Run your GLM model for your El Nino scenario
 # Again, we need to tell R where the output.nc file is so that the glmtools package 
   # can plot and analyze the model output. We tell R where to find the output file 
   # using the line below:
-Average_ElNino <- file.path(sim_folder, 'output.nc') # This defines the output.nc file 
+Typical_ElNino <- file.path(sim_folder, 'output.nc') # This defines the output.nc file 
   #  as being within the sim_folder. Note that we've called this output "ElNino" 
   #  since it is the output from our El Nino teleconnections simulation.
 
@@ -276,13 +276,13 @@ Average_ElNino <- file.path(sim_folder, 'output.nc') # This defines the output.n
   # our baseline scenario. 
 
 #  Extract surface water temperature:
-scenario2_temp <- get_temp(file= Average_ElNino, reference= 'surface', z_out= c(1))
-temp_output["Average_ElNino_Surface_Temp"] <- scenario2_temp[2] # Here we attach the water 
+scenario2_temp <- get_temp(file= Typical_ElNino, reference= 'surface', z_out= c(1))
+temp_output["Typical_ElNino_Surface_Temp"] <- scenario2_temp[2] # Here we attach the water 
   # temperatures from the El Nino teleconnections simulation to the  same file 
   # that contains your baseline scenario temperatures. 
 
-scenario2_depth <- get_surface_height(Average_ElNino) # Extract the daily water depth 
-depth_output["Average_ElNino_Lake_Depth"] <- scenario2_depth[2] # Rename the depth column
+scenario2_depth <- get_surface_height(Typical_ElNino) # Extract the daily water depth 
+depth_output["Typical_ElNino_Lake_Depth"] <- scenario2_depth[2] # Rename the depth column
 
 # You can now compare your El Nino scenario to your baseline for both water 
   # temperatures and lake depth- well done!! 
@@ -290,7 +290,7 @@ depth_output["Average_ElNino_Lake_Depth"] <- scenario2_depth[2] # Rename the dep
 # Plot the water temperature heatmap for the El Nino scenario using the commands 
 # you learned above. 
 
-plot_temp(file=Average_ElNino, fig_path=FALSE) # Create a heatmap 
+plot_temp(file=Typical_ElNino, fig_path=FALSE) # Create a heatmap 
   # of water temperature. How does this compare to your baseline?
 
 # Do these plots from the El Nino teleconnections scenario and the baseline 
@@ -298,7 +298,7 @@ plot_temp(file=Average_ElNino, fig_path=FALSE) # Create a heatmap
   # water temperatures for your lake? 
 
 ########## ACTIVITY B - OBJECTIVE 4 ############################################
-# We just simulated an "average" El Nino, but now we want to see how the lake 
+# We just simulated a typical El Nino, but now we want to see how the lake 
 # responds to a larger perturbation
 
 # We'll do this by creating our El Nino offset based on the largest offset our 
@@ -357,8 +357,8 @@ write.csv(Max_ElNino_met, paste0(sim_folder, "/met_hourly_scenario3.csv"),
 
 ## !! Once again, you need to edit the glm2.nml file to change the name of the input 
 # meteorological file so that it reads in the new, edited file for your 
-# teleconnections scenario, not the default "met_hourly.csv" or the average El Nino
-# scenario "met_hourly_scenario2.csv".  
+# teleconnections scenario, not the default "met_hourly.csv" or the file from our
+# typical El Nino scenario "met_hourly_scenario2.csv".  
 
 ## !! Open the nml file by clicking 'glm2.nml' in the Files tab of RStudio, then scroll 
 # down to the meteorology section, and change the 'meteo_fl' entry to the new 
@@ -383,7 +383,7 @@ Max_ElNino <- file.path(sim_folder, 'output.nc') # This defines the output.nc fi
 
 # As before, we want to save the model output of the daily surface water temperature 
 # and lake depth during our maximum El Nino teleconnections simulation, to compare to 
-# our baseline scenario and average El Nino scenario. 
+# our baseline scenario and typical El Nino scenario. 
 
 #  Extract surface water temperature:
 scenario3_temp <- get_temp(file= Max_ElNino, reference= 'surface', z_out= c(1))
@@ -395,14 +395,14 @@ scenario3_depth <- get_surface_height(Max_ElNino) # Extract the daily water dept
 depth_output["Max_ElNino_Lake_Depth"] <- scenario3_depth[2] # Rename the depth column
 
 # Plot the heatmap of water temperatures for your maximum El Nino scenario. 
-# How does it compare to the baseline? To your average El Nino?
+# How does it compare to the baseline? To your typical El Nino?
 plot_temp(file=Max_ElNino, fig_path=FALSE)
 
 ########## ACTIVITY C - OBJECTIVE 5 ############################################
 # You've run three different scenarios for your lake. That's awesome! 
 
 # Now, we want to compare our baseline scenario to our two El Nino scenarios 
-  # (average, and highest offset)
+  # (typical, and highest offset)
 
 # If we focus on the water surface only, we can directly compare the baselind 
   # and El Nino teleconnections scenario with a line plot.
@@ -410,12 +410,12 @@ plot_temp(file=Max_ElNino, fig_path=FALSE)
 attach(temp_output)
 plot(DateTime, Baseline_Surface_Temp, type="l", col="black", xlab="Date",
      ylab="Surface water temperature (C)", lwd=1.5, ylim=c(5,25))  
-lines(DateTime, Average_ElNino_Surface_Temp, lwd=1.5, col="orange1") # this adds an orange line 
-  # of the output from the average El Nino teleconnections scenario
+lines(DateTime, Typical_ElNino_Surface_Temp, lwd=1.5, col="orange1") # this adds an orange line 
+  # of the output from the typical El Nino teleconnections scenario
 lines(DateTime, Max_ElNino_Surface_Temp, lwd=1.5, col="red") # this adds a red line of the 
   # output from the maximum El Nino teleconnections scenario
 # Now add a legend!
-legend("topleft",c("Baseline", "Average El Nino", "Max. El Nino"), lty=c(1,1,1), 
+legend("topleft",c("Baseline", "Typical El Nino", "Max. El Nino"), lty=c(1,1,1), 
        lwd=c(1.5,1.5,1.5), col=c("black","orange", "red")) 
 
 # !! Note that the command ylim=c(0, 40) tells R what you want the minimum and 
@@ -429,11 +429,11 @@ legend("topleft",c("Baseline", "Average El Nino", "Max. El Nino"), lty=c(1,1,1),
 attach(depth_output)
 plot(DateTime, Baseline_Lake_Depth, type="l", col="black", xlab="Date",
      ylab="Lake depth (m)", lwd=1.5, ylim=c(0,4))  
-lines(DateTime, Average_ElNino_Lake_Depth, lwd=1.5, col="orange1") # this adds an orange line 
-# of the output from the average El Nino teleconnections scenario
+lines(DateTime, Typical_ElNino_Lake_Depth, lwd=1.5, col="orange1") # this adds an orange line 
+# of the output from the typical El Nino teleconnections scenario
 lines(DateTime, Max_ElNino_Lake_Depth, lwd=1.5, col="orange1") # this adds a red line of the 
 # output from the maximum El Nino teleconnections scenario
-legend("topleft",c("Baseline", "Average El Nino", "Max. El Nino"), lty=c(1,1,1), 
+legend("topleft",c("Baseline", "Typical El Nino", "Max. El Nino"), lty=c(1,1,1), 
        lwd=c(1.5,1.5,1.5), col=c("black","orange", "red")) 
 
 # Using the line plots you just created, and the other team's line plots from their 
