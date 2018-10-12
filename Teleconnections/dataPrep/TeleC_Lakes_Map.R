@@ -4,8 +4,7 @@
 pacman::p_load(maps, readxl, dplyr)
 
 data <- read_excel('./Teleconnections/Lake_Characteristics.xlsx') %>%
-  mutate(Offset = c(1.27, 2.81, 1.09, 1.91, 1.55, NA, NA, 3.79, 1.27, NA)) %>%
-  filter(`Lake Name` != "Prairie Lake")
+  mutate(Offset = c(1.27, 2.81, 1.09, 1.91, 1.55, 3.79, 1.27, 6.33)) 
 
 # NEON + other lake sites on US map ####
 par(mar = c(0,0,0,0),mgp=c(0,0,0))
@@ -27,7 +26,8 @@ maps::map('state', region=c('florida', 'new hampshire','wisconsin','north dakota
 points(data$Longitude,data$Latitude,col='black', pch=16, cex=1,lwd=1)
 #text(data$Longitude, data$Latitude, data$Offset)
 text(data$Longitude, data$Latitude, data$`Lake Name`, cex=1, font=2,
-     pos=c(3,1,1,1,1,4,3,4,1))
+     pos=c(4,1,1,1,1,3,3,4,1))
+# pos values 1 = below, 2 = left, 3 = above, 4 = right
 
 # State-specific maps ####
 # Wisconsin
