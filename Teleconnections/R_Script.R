@@ -51,11 +51,11 @@ glm_version() # See what version of GLM you are running- should be v.2.x.x
 # When you downloaded this script, you unzipped the module folder to your Desktop. 
   #  We now need to tell R where these files are. We do that by setting...
 ComputerName <- 'KJF' ##!! Change to match your computer name
-  # When I right click on the 'teleconnections' folder on my Desktop and select
-  # Properties (Windows) or Get Info (Mac), look under Location (Windows) or Where (Mac) 
-  # and find your computer name after Users (example below):
+  # Right click on the 'teleconnections' folder on your Desktop and select
+  # Properties (Windows) or Get Info (Mac), then look under Location (Windows) 
+  # or Where (Mac) to find your computer name after Users (example below):
   # Windows: C:/Users/KJF/Desktop/cross_scale_interactions --> computer name is KJF
-  # Mac: Macintosh HDD -> Users -> careyalb -> Desktop --> computer name is careylab 
+  # Mac: Macintosh HDD -> Users -> careylab -> Desktop --> computer name is careylab 
 
 LakeName <- 'Barco' ##!! Change to match the lake you and your partner selected
 # The lake name options are: 'Barco', 'Crampton', 'Falling Creek', 'Mendota',
