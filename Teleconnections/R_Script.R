@@ -29,9 +29,13 @@ devtools::install_github("CareyLabVT/GLMr", force = TRUE) # Download the GLMr
   #  software. This may take a few minutes. If downloaded successfully, you should 
   #  see "DONE (GLMr)" at the end of the output.
 
-devtools::install_github("CareyLabVT/glmtools", force = TRUE) # This step 
-  # downloads the R packages that allow you to work with GLM in R. If downloaded 
-  # successfully, you should see "DONE (glmtools)" at the end of the output.
+install.packages('glmtools', repos=c('http://cran.rstudio.com', 'http://owi.usgs.gov/R')) # This step 
+# downloads the R packages that allow you to work with GLM in R through the USGS 
+# website. Note: if you are on	a slow internet connection, this may take a few minutes.
+
+#devtools::install_github("CareyLabVT/glmtools") # This step downloads the R packages 
+  # that allow you to work with GLM in R. If downloaded successfully, you should 
+  # see "DONE (glmtools)" at the end of the output.
 
 library(glmtools) # Load the two packages that you need to analyze GLM output
 #  NOTE: you may get lots of output messages in red at this step- if this worked 
@@ -162,7 +166,7 @@ library(readxl) # Now load the packages you just installed
 library(tidyverse)
 
 # First, read in the observational data for your lake using the command below:
-annual_temp <- read_excel(paste('C:/Users/',ComputerName,'/Desktop/teleconnections/Lake_Characteristics.xlsx', sep=''), 
+annual_temp <- read_excel(paste('/Users/',ComputerName,'/Desktop/teleconnections/Lake_Characteristics.xlsx', sep=''), 
                           sheet = LakeName) %>%
   filter(Year >= 1970)
 
