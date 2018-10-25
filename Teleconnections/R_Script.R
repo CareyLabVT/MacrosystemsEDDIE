@@ -15,7 +15,7 @@ install.packages('sp') # NOTE: You may get output that says, "There is a binary
   #  If this pops up, type 'y' (without the quotes) and hit enter. You may now be 
   #  prompted to download the command line developer tools in a pop-up window. 
   #  Command line developer tools is a program used to run modeling software. Click 
-  #  Install and then re-run the install.packages(sp) once the install of the tools 
+  #  Install and then re-run the install.packages('sp') once the install of the tools 
   #  is finished. This should now successfully load- when it's done, it should say 'DONE(sp)'.
 
 install.packages('devtools') # This is another R package used to run modeling 
@@ -32,10 +32,6 @@ devtools::install_github("CareyLabVT/GLMr", force = TRUE) # Download the GLMr
 install.packages('glmtools', repos=c('http://cran.rstudio.com', 'http://owi.usgs.gov/R')) # This step 
 # downloads the R packages that allow you to work with GLM in R through the USGS 
 # website. Note: if you are on	a slow internet connection, this may take a few minutes.
-
-#devtools::install_github("CareyLabVT/glmtools") # This step downloads the R packages 
-  # that allow you to work with GLM in R. If downloaded successfully, you should 
-  # see "DONE (glmtools)" at the end of the output.
 
 library(glmtools) # Load the two packages that you need to analyze GLM output
 #  NOTE: you may get lots of output messages in red at this step- if this worked 
@@ -167,8 +163,7 @@ library(tidyverse)
 
 # First, read in the observational data for your lake using the command below:
 annual_temp <- read_excel(paste('/Users/',ComputerName,'/Desktop/teleconnections/Lake_Characteristics.xlsx', sep=''), 
-                          sheet = LakeName) %>%
-  filter(Year >= 1970)
+                          sheet = LakeName) %>% filter(Year >= 1970)
 
 # Use the command below to take a look at the file:
 View(annual_temp)
