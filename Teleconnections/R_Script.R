@@ -57,7 +57,7 @@ ComputerName <- 'KJF' ##!! Change to match your computer name
   # Windows: C:/Users/KJF/Desktop/cross_scale_interactions --> computer name is KJF
   # Mac: Macintosh HDD -> Users -> careylab -> Desktop --> computer name is careylab 
 
-LakeName <- 'Barco' ##!! Change to match the lake you and your partner selected
+LakeName <- 'Name' ##!! Change 'Name' to match the lake you and your partner selected
 # The lake name options are: 'Barco', 'Crampton', 'Falling Creek', 'Mendota',
   # 'Prairie Pothole', 'Suggs', 'Sunapee', and 'Toolik'
 
@@ -134,7 +134,7 @@ min(lake_level1$surface_height) # Minimum
 
 # Use the code below to create a plot of water level in the lake over time. 
 plot(surface_height ~ DateTime, data = lake_level1, type="l", col="black", 
-     ylab = "Lake depth (m)", xlab = "Date", ylim=c(6.7,7.2))
+     ylab = "Lake depth (m)", xlab = "Date", ylim=c(0,4))
 ##!! Note that the command ylim=c(min,max) tells R the minimum and maximum y-axis 
   #  values to plot. You will need to adjust the minimum and maximum values 
   #  to make sure all your data are shown. A range slightly higher than what you
@@ -183,9 +183,9 @@ Neutral_years <- subset(annual_temp, Type == "Neutral") # Define Neutral years
 ElNino_years <- subset(annual_temp, Type == "ElNino") # Define El Nino years
 
 # Visualize your lake's patterns in air temperature over time using the commands below:
-plot(`Air Temp Mean (°C)` ~ Year, data = annual_temp, pch = 16, col = 'gray70')
-points(`Air Temp Mean (°C)` ~ Year, data = ElNino_years, pch = 16, col = 'red')
-points(`Air Temp Mean (°C)` ~ Year, data = Neutral_years, pch = 16, col = 'black')
+plot(AirTemp_Mean_C ~ Year, data = annual_temp, pch = 16, col = 'gray70')
+points(AirTemp_Mean_C ~ Year, data = ElNino_years, pch = 16, col = 'red')
+points(AirTemp_Mean_C ~ Year, data = Neutral_years, pch = 16, col = 'black')
 legend("topleft",c("All Years", "El Nino", "Neutral"), pch=16, col=c("gray70", "red", "black")) 
 # Now, we need to estimate how much warmer or colder a typical El Nino year is 
   #  compared to a neutral year. 
@@ -195,7 +195,7 @@ legend("topleft",c("All Years", "El Nino", "Neutral"), pch=16, col=c("gray70", "
 
 # First, we estimate the slope and intercept of a line fit through the Neutral
   #  data points, using a simple linear model
-mod_Neutral <- lm(`Air Temp Mean (°C)` ~ Year, data = Neutral_years) 
+mod_Neutral <- lm(AirTemp_Mean_C ~ Year, data = Neutral_years) 
 slope_Neutral = summary(mod_Neutral)$coeff[2] # Save the model slope
 int_Neutral = summary(mod_Neutral)$coeff[1] # Save the model intercept
 
@@ -206,7 +206,7 @@ print(Neutral_2013) # Run this line to have R print out the value you just calcu
 
 # Next, we estimate the slope and intercept of a line fit through the El Nino
   #  data points, using a simple linear model
-mod_ElNino <- lm(`Air Temp Mean (°C)` ~ Year, data = ElNino_years) 
+mod_ElNino <- lm(AirTemp_Mean_C ~ Year, data = ElNino_years) 
 slope_ElNino = summary(mod_ElNino)$coeff[2] # Save the model slope
 int_ElNino = summary(mod_ElNino)$coeff[1] # Save the model intercept
 
@@ -314,9 +314,9 @@ plot(surface_height ~ DateTime, data = scenario2_depth, type="l", col="black",
 # lake has experienced during an El Nino year since 1970
 
 # First, let's re-plot our observed annual temperature data
-plot(`Air Temp Mean (°C)` ~ Year, data = annual_temp, pch = 16, col = 'gray70')
-points(`Air Temp Mean (°C)` ~ Year, data = ElNino_years, pch = 16, col = 'red')
-points(`Air Temp Mean (°C)` ~ Year, data = Neutral_years, pch = 16, col = 'black')
+plot(AirTemp_Mean_C ~ Year, data = annual_temp, pch = 16, col = 'gray70')
+points(AirTemp_Mean_C ~ Year, data = ElNino_years, pch = 16, col = 'red')
+points(AirTemp_Mean_C ~ Year, data = Neutral_years, pch = 16, col = 'black')
 legend("topleft",c("All Years", "El Nino", "Neutral"), pch=16, col=c("gray70", "red", "black")) 
 abline(a = int_ElNino, b = slope_ElNino, col= 'red', lty=2)
 abline(a = int_Neutral, b = slope_Neutral, col = 'black', lty=2)
@@ -326,7 +326,7 @@ abline(a = int_Neutral, b = slope_Neutral, col = 'black', lty=2)
 
 # Run the following line of code to create a new data table that contains the 
   # observed mean annual air temperature for your lake for each El Nino year 
-maxOffsets <- ElNino_years %>% select(`Lake ID`, Type, Year, `Air Temp Mean (°C)`) 
+maxOffsets <- ElNino_years %>% select(`Lake ID`, Type, Year, AirTemp_Mean_C) 
 
 View(maxOffsets) # Take a look at the data sheet by running this line
 
@@ -337,7 +337,7 @@ View(maxOffsets) # Take a look at the data sheet by running this line
   # neutral temperature
 maxOffsets <- maxOffsets %>%
   mutate(Neutral_Est = (slope_Neutral * .$Year) + int_Neutral,
-         Offset = `Air Temp Mean (°C)` - Neutral_Est)
+         Offset = AirTemp_Mean_C - Neutral_Est)
 
 View(maxOffsets)
 
