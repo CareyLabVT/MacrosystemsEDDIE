@@ -128,12 +128,17 @@ print(var_names) # This will print a list of variables that the model simulates.
   #  measurement for lake depth is meters (m).
 lake_level1 <- get_surface_height(baseline)
 
+# Calculate the maximum and minimum depth of your lake
+max(lake_level1$surface_height) # Maximum
+min(lake_level1$surface_height) # Minimum
+
 # Use the code below to create a plot of water level in the lake over time. 
 plot(surface_height ~ DateTime, data = lake_level1, type="l", col="black", 
-     ylab = "Lake depth (m)", xlab = "Date", ylim=c(0,4))
-# !! Note that the command ylim=c(min,max) tells R the minimum and maximum y-axis 
-    #  values to plot. You will need to adjust the minimum and maximum values 
-    #  to make sure all your data are shown.
+     ylab = "Lake depth (m)", xlab = "Date", ylim=c(6.7,7.2))
+##!! Note that the command ylim=c(min,max) tells R the minimum and maximum y-axis 
+  #  values to plot. You will need to adjust the minimum and maximum values 
+  #  to make sure all your data are shown. A range slightly higher than what you
+  #  just calculated for the max. and min. above would probably work well!
 
 # We also want to save the model output of the water temperature and lake depth 
   #  during our baseline simulation, because we'll be comparing it to our teleconnection 
