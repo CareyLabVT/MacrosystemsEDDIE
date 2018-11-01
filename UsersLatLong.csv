@@ -1,22 +1,22 @@
-Year,Semester,Module,School,Longitude,Latitude
-2017,Fall,1,Arrupe,-87.628088,41.89715
-2017,Fall,1,SUNY-New Paltz,-74.084908,41.738461
-2017,Fall,1,Miami OH,-84.731445,39.510517
-2017,Fall,1,Virginia Tech,-80.425219,37.228957
-2017,Fall,2,Virginia Tech,-80.425219,37.228957
-2018,Spring,1,Colby,-69.663505,44.563907
-2018,Spring,2,Dundalk,-6.406,53.9979
-2018,Spring,2,Fairfield,-73.264731,41.149916
-2018,Spring,2,Georgetown,-77.073707,38.908588
-2018,Spring,2,Longwood,-78.396862,37.297137
-2018,Spring,2,Michigan State,-84.482762,42.701052
-2018,Spring,1,WashState,-119.263831,46.33084
-2018,Fall,2,Virginia Tech,-80.425219,37.228957
-2018,Fall,3,Virginia Tech,-80.425219,37.228957
-2018,Fall,2,WashState,-119.263831,46.33084
-2018,Fall,2,Longwood,-78.396862,37.297137
-2018,Fall,2,Wellesley,-71.306139,42.293396
-2018,Fall,2,Maine-Farmington,-70.148286,44.667882
-2018,Fall,2,St. Norbert, -88.066357,44.444806
-2018,Fall,2,Miami OH,-84.731445,39.510517
-2018,Spring,3,Iowa State,-93.644856,42.026124
+Year,Semester,Module,School,State,Longitude,Latitude
+2017,Fall,1,Arrupe,Illinois,-87.628088,41.89715
+2017,Fall,1,SUNY-New Paltz,New York,-74.084908,41.738461
+2017,Fall,1,Miami OH,Ohio,-84.731445,39.510517
+2017,Fall,1,Virginia Tech,Virginia,-80.425219,37.228957
+2017,Fall,2,Virginia Tech,Virginia,-80.425219,37.228957
+2018,Spring,1,Colby,Maine,-69.663505,44.563907
+2018,Spring,2,Dundalk,Ireland,-6.406,53.9979
+2018,Spring,2,Fairfield,Connecticut,-73.264731,41.149916
+2018,Spring,2,Georgetown,Washington DC,-77.073707,38.908588
+2018,Spring,2,Longwood,Virginia,-78.396862,37.297137
+2018,Spring,2,Michigan State,Michigan,-84.482762,42.701052
+2018,Spring,1,WashState,Washington,-119.263831,46.33084
+2018,Fall,2,Virginia Tech,Virginia,-80.425219,37.228957
+2018,Fall,3,Virginia Tech,Virginia,-80.425219,37.228957
+2018,Fall,2,WashState,Washington,-119.263831,46.33084
+2018,Fall,2,Longwood,Virginia,-78.396862,37.297137
+2018,Fall,2,Wellesley,Massachusetts,-71.306139,42.293396
+2018,Fall,2,Maine-Farmington,Maine,-70.148286,44.667882
+2018,Fall,2,St. Norbert,Wisconsin, -88.066357,44.444806
+2018,Fall,2,Miami OH,Ohio,-84.731445,39.510517
+2018,Spring,3,Iowa State,Iowa,-93.644856,42.026124
