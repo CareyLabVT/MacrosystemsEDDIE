@@ -23,7 +23,8 @@ install.packages('devtools') # This is another R package used to run modeling
   #  available (for R version x.x.x)", be sure to check that your R software is up 
   #  to date to the most recent version.
 
-library(devtools) # load the package
+library(sp) # load the packages you just downloaded
+library(devtools) 
 
 devtools::install_github("CareyLabVT/GLMr", force = TRUE) # Download the GLMr 
   #  software. This may take a few minutes. If downloaded successfully, you should 
@@ -409,7 +410,7 @@ depth_output["Max_ElNino_Lake_Depth"] <- scenario3_depth[2] # Rename the depth c
 plot_temp(file=Max_ElNino, fig_path=FALSE)
 
 # Plot the water level in the lake during the maximum El Nino scenario. 
-plot(surface_height ~ DateTime, data = scenario2_depth, type="l", col="black", 
+plot(surface_height ~ DateTime, data = scenario3_depth, type="l", col="black", 
      ylab = "Lake depth (m)", xlab = "Date", ylim=c(0,4))
 # !! Don't forget to adjust your ylim values so all your data are shown.
 
