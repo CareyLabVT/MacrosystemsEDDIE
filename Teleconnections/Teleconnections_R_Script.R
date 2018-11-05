@@ -107,7 +107,7 @@ baseline <- file.path(sim_folder, 'output.nc') # This says that the output.nc
   #  file is in the sim_folder  
 
 plot_temp(file=baseline, fig_path=FALSE) # This plots your 
-  #  simulated water temperatures in a heat map, where time is displayed on the 
+  #  simulated lake temperatures in a heat map, where time is displayed on the 
   #  x-axis, lake depth is displayed on the y-axis, and the different colors 
   #  represent different water temperatures. 
 
@@ -129,7 +129,7 @@ var_names <- sim_vars(baseline)
 print(var_names) # This will print a list of variables that the model simulates.
 
 # We are particularly interested in the water level (depth), as teleconnections could change
-  #  the lake water level over time through increased or decreased evaporation from the
+  #  the water level over time through increased or decreased evaporation from the
   #  water surface. We use the following command to pull the daily "surface height" 
   #  out of the model output and plot it as a function of time. The unit of 
   #  measurement for water level is meters (m).
@@ -162,6 +162,11 @@ colnames(lakeTemp_output)[2:3] <- c("Baseline_Surface_Temp", "Baseline_Bottom_Te
 waterLevel_output <- water_level1 # This command extracts the daily water level and saves it as "waterLevel_output"
 colnames(waterLevel_output)[2] <- "Baseline_Water_Level" # This command renames the water level column
 
+# Finally, we'll extract and save model output for ice cover on the lake during our 
+  # baseline scenario. We do this by running the following lines of code: 
+ice <- get_var(baseline, "hice") # Extract ice cover data
+colnames(ice)[2] <- "Baseline" # Rename column so we know it's from the Baseline scenario
+
 ########## ACTIVITY B - OBJECTIVE 3 ############################################
 # For Activity B, you will work with your partner to model your lake under two 
   #  teleconnections scenarios of simulated El Nino conditions. To do this, we will use 
@@ -171,10 +176,12 @@ colnames(waterLevel_output)[2] <- "Baseline_Water_Level" # This command renames 
 install.packages('readxl') # Install this package to read Excel (.xlsx) files 
   #  directly into R
 
-install.packages('dplyr') # Install this package to make manipulating data easy
+install.packages('dplyr') # Install these packages to make manipulating data easy
+install.packages('tidyr')
 
 library(readxl) # Now load the packages you just installed
 library(dplyr)
+library(tidyr)
 
 # First, read in the observational data for your lake using the command below:
 annual_temp <- read_excel(paste(sim_folder,'/Lake_Characteristics.xlsx', sep=''), 
@@ -233,8 +240,8 @@ abline(a = int_ElNino, b = slope_ElNino, col= 'red', lty=2)
 
 # Next, we calculate the estimated El Nino offset as the difference between 
   #  air temperatures in typical El Nino years vs. other years
-offset <- ElNino_2013 - Neutral_2013 # Save the offset as the "offset" object
-print(offset) # Run this line to have R print out what your temperature offset is
+typicalOffset_degrees <- ElNino_2013 - Neutral_2013 # Save the offset as the "offset" object
+print(typicalOffset_degrees) # Run this line to have R print out what your temperature offset is
 
 # Now, we need to create a new meteorological driver file for GLM that has air
   #  temperatures adjusted to reflect our lake's estimated temperature difference
@@ -252,7 +259,7 @@ View(met_data)
 # Next, We create a new meteorological driver data file that has the modified 
   #  AirTemp that reflects our typical El Nino scenario. This step is complicated in Excel, 
   #  but one simple line of code in R!! 
-Typical_ElNino_met <- mutate(met_data, AirTemp = AirTemp + (offset))
+Typical_ElNino_met <- mutate(met_data, AirTemp = AirTemp + (typicalOffset_degrees))
 
 # Finally, we'll write our new file to a .csv that we can use to drive GLM:
 write.csv(Typical_ElNino_met, paste0(sim_folder, "/met_hourly_scenario2.csv"), 
@@ -303,6 +310,10 @@ lakeTemp_output["Typical_ElNino_Bottom_Temp"]  <- scenario2_temp[3]
 scenario2_level <- get_surface_height(Typical_ElNino) # Extract the daily water level 
 waterLevel_output["Typical_ElNino_Water_Level"] <- scenario2_level[2] # Rename the water level column
 
+# Extract ice: 
+scenario2_ice <- get_var(baseline, "hice") # Extract ice cover data
+ice["Typical"] <- scenario2_ice[2]  # Rename the ice column 
+
 # You can now compare your El Nino scenario to your baseline for both lake 
   # temperatures and water level- well done!! 
 
@@ -314,7 +325,7 @@ plot_temp(file=Typical_ElNino, fig_path=FALSE) # Create a heatmap of water tempe
 
 # Use the code below to create a plot of water level in the lake over time. 
 plot(surface_height ~ DateTime, data = scenario2_level, type="l", col="black", 
-     ylab = "Water Level (m)", xlab = "Date", ylim=c(0,4))
+     ylab = "Water Level (m)", xlab = "Date", ylim=c(15.5,17.5))
 # !! Remember that the command ylim=c(min,max) tells R the minimum and maximum y-axis 
 #  values to plot. Adjust this range to make sure all your data are shown.
 
@@ -409,7 +420,7 @@ run_glm(sim_folder, verbose=TRUE) # Run your GLM model for your El Nino scenario
 
 # Once more, we need to tell R where the output.nc file is. 
 # We tell R where to find the output file using the line below:
-Max_ElNino <- file.path(sim_folder, 'output.nc') # This defines the output.nc file 
+Strong_ElNino <- file.path(sim_folder, 'output.nc') # This defines the output.nc file 
 #  as being within the sim_folder.
 
 # As before, we want to save the model output of the daily surface lake temperature 
@@ -417,17 +428,21 @@ Max_ElNino <- file.path(sim_folder, 'output.nc') # This defines the output.nc fi
 # our baseline scenario and "typical" El Nino scenario. 
 
 #  Extract surface water temperature:
-scenario3_temp <- get_temp(file= Max_ElNino, reference= 'surface', z_out= c(0, nml$init_profiles$lake_depth-2))
-lakeTemp_output["Max_ElNino_Surface_Temp"] <- scenario3_temp[2] 
-lakeTemp_output["Max_ElNino_Bottom_Temp"]  <- scenario2_temp[3] # Here we attach the water 
+scenario3_temp <- get_temp(file= Strong_ElNino, reference= 'surface', z_out= c(0, nml$init_profiles$lake_depth-2))
+lakeTemp_output["Strong_ElNino_Surface_Temp"] <- scenario3_temp[2] 
+lakeTemp_output["Strong_ElNino_Bottom_Temp"]  <- scenario2_temp[3] # Here we attach the water 
 # temperatures from the strong El Nino simulation to you water temperature file 
 
-scenario3_level <- get_surface_height(Max_ElNino) # Extract the daily water water level
-waterLevel_output["Max_ElNino_Water_Level"] <- scenario3_level[2] # Rename the water level column
+scenario3_level <- get_surface_height(Strong_ElNino) # Extract the daily water water level
+waterLevel_output["Strong_ElNino_Water_Level"] <- scenario3_level[2] # Rename the water level column
+
+# Extract ice: 
+scenario3_ice <- get_var(baseline, "hice") # Extract ice cover data
+ice["Strong"] <- scenario3_ice[2]  # Rename the ice column 
 
 # Plot the heatmap of water temperatures for your maximum El Nino scenario. 
 # How does it compare to the baseline? To your typical El Nino?
-plot_temp(file=Max_ElNino, fig_path=FALSE)
+plot_temp(file=Strong_ElNino, fig_path=FALSE)
 
 # Plot the water level in the lake during the maximum El Nino scenario. 
 plot(surface_height ~ DateTime, data = scenario3_level, type="l", col="black", 
@@ -445,16 +460,16 @@ plot(surface_height ~ DateTime, data = scenario3_level, type="l", col="black",
   # The command below plots DateTime vs. Observed data from the baseline model in black: 
 attach(lakeTemp_output)
 plot(DateTime, Baseline_Surface_Temp, type="l", col="black", xlab="Date",
-     ylab="Surface water temperature (C)", lwd=2, ylim=c(3,22))  
+     ylab="Surface water temperature (C)", lwd=2, ylim=c(0,20))  
 lines(DateTime, Typical_ElNino_Surface_Temp, lwd=2, col="orange2") # this adds an orange line 
   # of the output from the typical El Nino scenario
-lines(DateTime, Max_ElNino_Surface_Temp, lwd=2, col="red2") # this adds a red line of the 
+lines(DateTime, Strong_ElNino_Surface_Temp, lwd=2, col="red2") # this adds a red line of the 
   # output from the maximum El Nino scenario
 
 # We also want to plot the bottom-water temperature from each scenario. We do that with:
 lines(DateTime, Baseline_Bottom_Temp, lwd=2, lty=2, col="black")
 lines(DateTime, Typical_ElNino_Bottom_Temp, lwd=2, lty=2, col="orange2")
-lines(DateTime, Max_ElNino_Bottom_Temp, lwd=2, lty=2, col="red2")
+lines(DateTime, Strong_ElNino_Bottom_Temp, lwd=2, lty=2, col="red2")
 
 # Now add a legend!
 legend("topleft",c("Baseline", "Typical El Nino", "Strong El Nino"), lty=c(1,1,1), 
@@ -472,19 +487,31 @@ legend("topright", c("Surface", "Bottom"), lty=c(1,2), lwd=c(2,2))
   # try plotting a few different minimum and maximum values to get a plot that 
   # makes it possible to visualize the differences. 
 attach(waterLevel_output)
-plot(DateTime, Baseline_Lake_Level, type="l", col="black", xlab="Date",
-     ylab="Lake depth (m)", lwd=2, ylim=c(0,4))  
-lines(DateTime, Typical_ElNino_Lake_Depth, lwd=2, col="orange1") # this adds an orange line 
+plot(DateTime, Baseline_Water_Level, type="l", col="black", xlab="Date",
+     ylab="Lake depth (m)", lwd=2, ylim=c(15.5,17.5))  
+lines(DateTime, Typical_ElNino_Water_Level, lwd=2, col="orange1") # this adds an orange line 
 # of the output from the typical El Nino teleconnections scenario
-lines(DateTime, Max_ElNino_Lake_Depth, lwd=2, col="red2") # this adds a red line of the 
+lines(DateTime, Strong_ElNino_Water_Level, lwd=2, col="red2") # this adds a red line of the 
 # output from the maximum El Nino teleconnections scenario
 legend("topleft",c("Baseline", "Typical El Nino", "Strong El Nino"), lty=c(1,1,1), 
        lwd=c(2,2,2), col=c("black","orange2", "red2")) 
 
+###### ICE TEST 
+iceDuration <- ice %>% gather(Scenario, Ice, Baseline:Strong) %>%
+                  filter(Ice > 0) %>%
+                  group_by(Scenario) %>%
+                  summarise(days = n()) %>%
+  mutate(Offset = c(0, maxOffset_degrees, typicalOffset_degrees)) %>%
+  arrange(Offset)
+
+attach(iceDuration)
+plot(Offset, days, type="p", pch=16, col=c("black", "orange1", "red2"), cex=2,
+     xlab= "Temperature offset (C)", ylab= "Ice cover duration (days)")
+
 # Using the line plots you just created, put together a brief presentation of 
   # your El Nino scenarios and model outputs to share with the rest of the class. 
 
-# Make sure your presentation answers the questions listed in your handout.
+# Also make sure you've answered the questions listed in your handout.
 
 # Bravo, you are done!! 
 
