@@ -65,7 +65,7 @@ LakeName <- 'Name' ##!! Change 'Name' to match the lake you and your partner sel
   # Windows: C:/Users/KJF/Desktop/cross_scale_interactions
   # Mac: Macintosh HDD -> Users -> careylab -> Desktop
 
-sim_folder <- '/Users/KJF/Desktop/R/MacrosystemsEDDIE/Teleconnections/Lakes/Crampton'
+sim_folder <- '/Users/KJF/Desktop/R/MacrosystemsEDDIE/Teleconnections/Lakes/Toolik'
 #sim_folder <- '/Users/cayelan/Desktop/teleconnections/Lakes/LakeName' ##!! Edit this line 
   #  to define the sim_folder location for your model lake. You will need to change 
   #  the part after Users/ to give the name of your computer (e.g., my computer name 
@@ -141,7 +141,7 @@ min(water_level1$surface_height) # Minimum
 
 # Use the code below to create a plot of water level in the lake over time. 
 plot(surface_height ~ DateTime, data = water_level1, type="l", col="black", 
-     ylab = "Water level (m)", xlab = "Date", ylim=c(15.5,17.5))
+     ylab = "Water level (m)", xlab = "Date", ylim=c(0,4))
 ##!! Note that the command ylim=c(min,max) tells R the minimum and maximum y-axis 
   #  values to plot. You will need to adjust the minimum and maximum values 
   #  to make sure all your data are shown. A range slightly higher than what you
@@ -152,7 +152,7 @@ plot(surface_height ~ DateTime, data = water_level1, type="l", col="black",
   #  scenario later. To do this, we use the following  commands:
 
 lakeTemp_output <- get_temp(file=baseline, reference='surface', 
-                        z_out=c(0, nml$init_profiles$lake_depth-2)) # This command 
+                        z_out=c(0, min(water_level1$surface_height))) # This command 
   #  extracts the water temperature at the surface and 2 meters above the lake bottom
   #  for each day and saves the temperatures as "lakeTemp_output"
 
@@ -299,7 +299,7 @@ Typical_ElNino <- file.path(sim_folder, 'output.nc') # This defines the output.n
   # our baseline scenario. 
 
 #  Use this command to extract surface and bottom water temperatures:
-scenario2_temp <- get_temp(file= Typical_ElNino, reference= 'surface', z_out= c(0, nml$init_profiles$lake_depth-2))
+scenario2_temp <- get_temp(file= Typical_ElNino, reference= 'surface', z_out= c(0, min(water_level1$surface_height)))
 
 # The next two commands attach the water temperatures from the "typical" El Nino 
   #  simulation to the same file that contains your baseline scenario temperatures. 
@@ -428,7 +428,7 @@ Strong_ElNino <- file.path(sim_folder, 'output.nc') # This defines the output.nc
 # our baseline scenario and "typical" El Nino scenario. 
 
 #  Extract surface water temperature:
-scenario3_temp <- get_temp(file= Strong_ElNino, reference= 'surface', z_out= c(0, nml$init_profiles$lake_depth-2))
+scenario3_temp <- get_temp(file= Strong_ElNino, reference= 'surface', z_out= c(0, min(water_level1$surface_height)))
 lakeTemp_output["Strong_ElNino_Surface_Temp"] <- scenario3_temp[2] 
 lakeTemp_output["Strong_ElNino_Bottom_Temp"]  <- scenario2_temp[3] # Here we attach the water 
 # temperatures from the strong El Nino simulation to you water temperature file 
