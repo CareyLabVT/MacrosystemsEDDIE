@@ -65,7 +65,9 @@ LakeName <- 'Name' ##!! Change 'Name' to match the lake you and your partner sel
   # Windows: C:/Users/KJF/Desktop/cross_scale_interactions
   # Mac: Macintosh HDD -> Users -> careylab -> Desktop
 
-sim_folder <- '/Users/KJF/Desktop/R/MacrosystemsEDDIE/Teleconnections/Lakes/Toolik'
+# KJF testing placeholder
+sim_folder <- paste('C:/Users/KJF/Desktop/R/MacrosystemsEDDIE/Teleconnections/Lakes/',LakeName, sep='') #KF dev placeholder
+
 #sim_folder <- '/Users/cayelan/Desktop/teleconnections/Lakes/LakeName' ##!! Edit this line 
   #  to define the sim_folder location for your model lake. You will need to change 
   #  the part after Users/ to give the name of your computer (e.g., my computer name 
@@ -278,9 +280,10 @@ write.csv(Typical_ElNino_met, paste0(sim_folder, "/met_hourly_scenario2.csv"),
 # Once you have edited the nml file name, you can always check to make sure that 
   #  it is correct with the command:
 nml <- read_nml(nml_file)  # Read in your nml file from your new directory
-get_nml_value(nml, 'meteo_fl') # The printout here should list your NEW meteorological 
-  #  file for your El Nino scenario. If it doesn't, make sure you pressed the Save 
-  #  icon (the floppy disk) after you changed your glm2.nml file.
+get_nml_value(nml, 'meteo_fl') 
+##!! The printout here should list your NEW meteorological file for your El Nino 
+  #  scenario. If it doesn't, make sure you pressed the Save icon (the floppy disk) 
+  #  after you changed your glm2.nml file.
 
 # You can now run the model for your first teleconnections scenario using the 
   # new edited nml file using the commands below. Exciting!
@@ -325,7 +328,7 @@ plot_temp(file=Typical_ElNino, fig_path=FALSE) # Create a heatmap of water tempe
 
 # Use the code below to create a plot of water level in the lake over time. 
 plot(surface_height ~ DateTime, data = scenario2_level, type="l", col="black", 
-     ylab = "Water Level (m)", xlab = "Date", ylim=c(15.5,17.5))
+     ylab = "Water Level (m)", xlab = "Date", ylim=c(0,4))
 # !! Remember that the command ylim=c(min,max) tells R the minimum and maximum y-axis 
 #  values to plot. Adjust this range to make sure all your data are shown.
 
@@ -460,7 +463,8 @@ plot(surface_height ~ DateTime, data = scenario3_level, type="l", col="black",
   # The command below plots DateTime vs. Observed data from the baseline model in black: 
 attach(lakeTemp_output)
 plot(DateTime, Baseline_Surface_Temp, type="l", col="black", xlab="Date",
-     ylab="Surface water temperature (C)", lwd=2, ylim=c(0,20))  
+     ylab="Surface water temperature (C)", lwd=2, ylim=c(0,40))  ##!! Change ylim() values 
+  # to show your data clearly!
 lines(DateTime, Typical_ElNino_Surface_Temp, lwd=2, col="orange2") # this adds an orange line 
   # of the output from the typical El Nino scenario
 lines(DateTime, Strong_ElNino_Surface_Temp, lwd=2, col="red2") # this adds a red line of the 
@@ -488,7 +492,7 @@ legend("topright", c("Surface", "Bottom"), lty=c(1,2), lwd=c(2,2))
   # makes it possible to visualize the differences. 
 attach(waterLevel_output)
 plot(DateTime, Baseline_Water_Level, type="l", col="black", xlab="Date",
-     ylab="Lake depth (m)", lwd=2, ylim=c(15.5,17.5))  
+     ylab="Water level (m)", lwd=2, ylim=c(0,4))
 lines(DateTime, Typical_ElNino_Water_Level, lwd=2, col="orange1") # this adds an orange line 
 # of the output from the typical El Nino teleconnections scenario
 lines(DateTime, Strong_ElNino_Water_Level, lwd=2, col="red2") # this adds a red line of the 
@@ -496,17 +500,32 @@ lines(DateTime, Strong_ElNino_Water_Level, lwd=2, col="red2") # this adds a red 
 legend("topleft",c("Baseline", "Typical El Nino", "Strong El Nino"), lty=c(1,1,1), 
        lwd=c(2,2,2), col=c("black","orange2", "red2")) 
 
-###### ICE TEST 
+# We can also look at how the duration of ice cover changed between the three scenarios.
+  # To do this, we'll use the following string of commands to calculate the number of 
+  # days with ice in each scenario, based on the ice data we saved already
 iceDuration <- ice %>% gather(Scenario, Ice, Baseline:Strong) %>%
-                  filter(Ice > 0) %>%
-                  group_by(Scenario) %>%
-                  summarise(days = n()) %>%
+  mutate(IceStatus = ifelse(Ice > 0, "Y", "N")) %>%
+  group_by(Scenario) %>%
+  summarize(iceDays = length(IceStatus[IceStatus=="Y"]))
+
+# Since we want to compare ice duration to temperature offset, we'll paste on our 
+  # temperature offsets from each scenario using hte command below: 
+iceDuration <- iceDuration %>% 
   mutate(Offset = c(0, maxOffset_degrees, typicalOffset_degrees)) %>%
   arrange(Offset)
 
+# Now we can plot the number of days with ice cover as a function of our lakes' 
+  # temperature offset:
 attach(iceDuration)
-plot(Offset, days, type="p", pch=16, col=c("black", "orange1", "red2"), cex=2,
-     xlab= "Temperature offset (C)", ylab= "Ice cover duration (days)")
+plot(Offset, iceDays, type="b", pch=16, col=c("black", "orange1", "red2"), cex=2,
+     xlab= "Temperature offset (C)", ylab= "Ice cover duration (days)",
+     ylim=c(0,365))
+##!! Note that you should adjust the ylim values to effectively show the trend
+# for your lake! 
+
+# And as before, add a legend to your plot using the command below:
+legend("topleft",c("Baseline", "Typical El Nino", "Strong El Nino"), pch=16, 
+       col=c("black","orange2", "red2")) 
 
 # Using the line plots you just created, put together a brief presentation of 
   # your El Nino scenarios and model outputs to share with the rest of the class. 
