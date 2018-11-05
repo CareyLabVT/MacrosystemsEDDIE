@@ -49,22 +49,27 @@ glm_version() # See what version of GLM you are running- should be v.2.x.x
   #  symbols ##!! at the beginning of that line's annotation.  If you do not see those 
   #  symbols, you do not need to edit that line of code and can run it as written.
 
-# When you downloaded this script, you unzipped the module folder to your Desktop. 
-  #  We now need to tell R where these files are. We do that by setting...
-ComputerName <- 'KJF' ##!! Change to match your computer name
-  # Right click on the 'teleconnections' folder on your Desktop and select
-  # Properties (Windows) or Get Info (Mac), then look under Location (Windows) 
-  # or Where (Mac) to find your computer name after Users (example below):
-  # Windows: C:/Users/KJF/Desktop/cross_scale_interactions --> computer name is KJF
-  # Mac: Macintosh HDD -> Users -> careylab -> Desktop --> computer name is careylab 
-
 LakeName <- 'Name' ##!! Change 'Name' to match the lake you and your partner selected
 # The lake name options are: 'Barco', 'Crampton', 'Falling Creek', 'Mendota',
   # 'Prairie Pothole', 'Suggs', 'Sunapee', and 'Toolik'
 
-sim_folder <- paste('/Users/',ComputerName,'/Desktop/teleconnections/Lakes/',LakeName, sep='')
-# This command defines your sim_folder path to the Desktop folder where you 
-  # extracted your zipped files.
+  # Be careful to check that you use the exact same capitalization & spacing as 
+  # in your lake's folder name!!
+
+# When working in R, we set the sim_folder to tell R where your files, scripts, 
+  #  and model output are stored.  
+# To find your folder path, navigate to the 'teleconnections' folder on your Desktop,
+  # then open the Lakes folder. Right click on the folder that matches your model lake, 
+  # then select Properties (Windows) or Get Info (Mac). Look under Location (Windows) 
+  # or Where (Mac) to find your folder path (examples below):
+  # Windows: C:/Users/KJF/Desktop/cross_scale_interactions
+  # Mac: Macintosh HDD -> Users -> careylab -> Desktop
+
+sim_folder <- '/Users/cayelan/Desktop/teleconnections/Lakes/LakeName' ##!! Edit this line 
+  #  to define the sim_folder location for your model lake. You will need to change 
+  #  the part after Users/ to give the name of your computer (e.g., my computer name 
+  #  is cayelan, but yours will be different!) AND change the LakeName part to be 
+  #  the name of your model lake.
 
 setwd(sim_folder) ## This line of code is used to reset your working directory
   #  to the sim_folder. The point of this step is to make sure that any new files 
