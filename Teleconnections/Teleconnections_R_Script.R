@@ -343,31 +343,31 @@ abline(a = int_ElNino, b = slope_ElNino, col= 'red', lty=2)
 abline(a = int_Neutral, b = slope_Neutral, col = 'black', lty=2)
 
 ##!! Based on this plot, which El Nino year had the highest temperature offset,
-  # compared to the neutral years?
+  # compared to the neutral years' regression line?
 
 # Run the following line of code to create a new data table that contains the 
   # observed mean annual air temperature for your lake for each El Nino year 
-maxOffsets <- ElNino_years %>% select(`Lake ID`, Type, Year, AirTemp_Mean_C) 
+offsets <- ElNino_years %>% select(`Lake ID`, Type, Year, AirTemp_Mean_C) 
 
-View(maxOffsets) # Take a look at the data sheet by running this line
+View(offsets) # Take a look at the data sheet by running this line
 
 # Run the following lines to calculate an estimate of what the air temperature 
   # would have likely been in each of those El Nino years IF it had been a 
   # neutral year. The final command calculates each years' offset temperature, 
   # as the difference between the El Nino observed temperature and the estimated 
   # neutral temperature
-maxOffsets <- maxOffsets %>%
+offsets <- offsets %>%
   mutate(Neutral_Est = (slope_Neutral * .$Year) + int_Neutral,
          Offset = AirTemp_Mean_C - Neutral_Est)
 
-View(maxOffsets)
+View(offsets)
 
 # Here, we can use R to tell us which year had the maximum offset
-maxOffset_year <- maxOffsets$Year[which.max(maxOffsets$Offset)]
+maxOffset_year <- offsets$Year[which.max(offsets$Offset)]
 maxOffset_year
 
 # The command below selects the maximum offset, and saves it for us
-maxOffset_degrees <- max(maxOffsets$Offset)  
+maxOffset_degrees <- max(offsets$Offset)  
 maxOffset_degrees
 
 # Now that we know the offset for our final scenario, we need to modify the meteorological
@@ -380,10 +380,10 @@ met_data <- read_csv(baseline_met)
 
 # Next, We create a new meteorological driver data file that has the modified 
 #  AirTemp that reflects our maximum El Nino scenario:
-Max_ElNino_met <- mutate(met_data, AirTemp = AirTemp + (maxOffset_degrees))
+Strong_ElNino_met <- mutate(met_data, AirTemp = AirTemp + (maxOffset_degrees))
 
 # Then, we write our new file to a .csv that we can use to drive GLM:
-write.csv(Max_ElNino_met, paste0(sim_folder, "/met_hourly_scenario3.csv"), 
+write.csv(Strong_ElNino_met, paste0(sim_folder, "/met_hourly_scenario3.csv"), 
           row.names=FALSE, quote=FALSE)
 
 ##!! Once again, you need to edit the glm2.nml file to change the name of the input 
@@ -457,7 +457,7 @@ lines(DateTime, Typical_ElNino_Bottom_Temp, lwd=2, lty=2, col="orange2")
 lines(DateTime, Max_ElNino_Bottom_Temp, lwd=2, lty=2, col="red2")
 
 # Now add a legend!
-legend("topleft",c("Baseline", "Typical El Nino", "Max. El Nino"), lty=c(1,1,1), 
+legend("topleft",c("Baseline", "Typical El Nino", "Strong El Nino"), lty=c(1,1,1), 
        lwd=c(2,2,2), col=c("black","orange2", "red2")) 
 legend("topright", c("Surface", "Bottom"), lty=c(1,2), lwd=c(2,2))
 
@@ -478,7 +478,7 @@ lines(DateTime, Typical_ElNino_Lake_Depth, lwd=2, col="orange1") # this adds an 
 # of the output from the typical El Nino teleconnections scenario
 lines(DateTime, Max_ElNino_Lake_Depth, lwd=2, col="red2") # this adds a red line of the 
 # output from the maximum El Nino teleconnections scenario
-legend("topleft",c("Baseline", "Typical El Nino", "Max. El Nino"), lty=c(1,1,1), 
+legend("topleft",c("Baseline", "Typical El Nino", "Strong El Nino"), lty=c(1,1,1), 
        lwd=c(2,2,2), col=c("black","orange2", "red2")) 
 
 # Using the line plots you just created, put together a brief presentation of 
