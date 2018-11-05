@@ -65,7 +65,8 @@ LakeName <- 'Name' ##!! Change 'Name' to match the lake you and your partner sel
   # Windows: C:/Users/KJF/Desktop/cross_scale_interactions
   # Mac: Macintosh HDD -> Users -> careylab -> Desktop
 
-sim_folder <- '/Users/cayelan/Desktop/teleconnections/Lakes/LakeName' ##!! Edit this line 
+sim_folder <- '/Users/KJF/Desktop/R/MacrosystemsEDDIE/Teleconnections/Lakes/Barco'
+#sim_folder <- '/Users/cayelan/Desktop/teleconnections/Lakes/LakeName' ##!! Edit this line 
   #  to define the sim_folder location for your model lake. You will need to change 
   #  the part after Users/ to give the name of your computer (e.g., my computer name 
   #  is cayelan, but yours will be different!) AND change the LakeName part to be 
@@ -150,13 +151,16 @@ plot(surface_height ~ DateTime, data = lake_level1, type="l", col="black",
   #  during our baseline simulation, because we'll be comparing it to our teleconnection 
   #  scenario later. To do this, we use the following  commands:
 
-temp_output <- get_temp(file=baseline, reference='surface', z_out=c(1)) # Extract
-  #  the surface water temperature for each day and save it as "temp_output"
-colnames(temp_output)[2] <- "Baseline_Surface_Temp" # Rename the temperature
-  #  column so we remember it is from the Baseline scenario
+temp_output <- get_temp(file=baseline, reference='surface', 
+                        z_out=c(0, nml$init_profiles$lake_depth-2)) # This command 
+  #  extracts the water temperature at the surface and 2 meters above the lake bottom
+  #  for each day and saves the temperatures as "temp_output"
 
-depth_output <- lake_level1 # Extract daily water depth and save it as "depth_output"
-colnames(depth_output)[2] <- "Baseline_Lake_Depth" # Rename the depth column
+colnames(temp_output)[2:3] <- c("Baseline_Surface_Temp", "Baseline_Bottom_Temp") # This command
+  #  renames the two temperature columns so we remember they are from the Baseline scenario
+
+depth_output <- lake_level1 # This command extracts the daily water depth and save it as "depth_output"
+colnames(depth_output)[2] <- "Baseline_Lake_Depth" # This command renames the depth column
 
 ########## ACTIVITY B - OBJECTIVE 3 ############################################
 # For Activity B, you will work with your partner to model your lake under two 
@@ -167,13 +171,13 @@ colnames(depth_output)[2] <- "Baseline_Lake_Depth" # Rename the depth column
 install.packages('readxl') # Install this package to read Excel (.xlsx) files 
   #  directly into R
 
-install.packages('tidyverse') # Install this package to make manipulating data easy
+install.packages('dplyr') # Install this package to make manipulating data easy
 
 library(readxl) # Now load the packages you just installed
-library(tidyverse)
+library(dplyr)
 
 # First, read in the observational data for your lake using the command below:
-annual_temp <- read_excel(paste('/Users/',ComputerName,'/Desktop/teleconnections/Lake_Characteristics.xlsx', sep=''), 
+annual_temp <- read_excel(paste(sim_folder,'/Lake_Characteristics.xlsx', sep=''), 
                           sheet = LakeName) %>% filter(Year >= 1970)
 
 # Use the command below to take a look at the file:
@@ -254,15 +258,15 @@ Typical_ElNino_met <- mutate(met_data, AirTemp = AirTemp + (offset))
 write.csv(Typical_ElNino_met, paste0(sim_folder, "/met_hourly_scenario2.csv"), 
           row.names=FALSE, quote=FALSE)
 
-## !!!!!! You now need to edit the glm2.nml file to change the name of the input 
+##!!!!!! You now need to edit the glm2.nml file to change the name of the input 
   # meteorological file so that it reads in the new, edited file for your 
   # teleconnections scenario, not the default "met_hourly.csv".  
 
-## !!!!!! Open the nml file by clicking 'glm2.nml' in the Files tab of RStudio, 
+##!!!!!! Open the nml file by clicking 'glm2.nml' in the Files tab of RStudio, 
   # then scroll down to the meteorology section, and change the 'meteo_fl' entry 
   # to the new met file name ('met_hourly_scenario2.csv'). 
 
-## !!!!!! Save your modified glm2.nml file.
+##!!!!!! Save your modified glm2.nml file.
 
 # Once you have edited the nml file name, you can always check to make sure that 
   #  it is correct with the command:
@@ -287,11 +291,13 @@ Typical_ElNino <- file.path(sim_folder, 'output.nc') # This defines the output.n
   # and lake depth during our El Nino teleconnections simulation, to compare to 
   # our baseline scenario. 
 
-#  Extract surface water temperature:
-scenario2_temp <- get_temp(file= Typical_ElNino, reference= 'surface', z_out= c(1))
-temp_output["Typical_ElNino_Surface_Temp"] <- scenario2_temp[2] # Here we attach the water 
-  # temperatures from the El Nino teleconnections simulation to the  same file 
-  # that contains your baseline scenario temperatures. 
+#  Use this command to extract surface and bottom water temperatures:
+scenario2_temp <- get_temp(file= Typical_ElNino, reference= 'surface', z_out= c(0, nml$init_profiles$lake_depth-2))
+
+# The next two commands attach the water temperatures from the "typical" El Nino 
+  #  simulation to the same file that contains your baseline scenario temperatures. 
+temp_output["Typical_ElNino_Surface_Temp"] <- scenario2_temp[2]
+temp_output["Typical_ElNino_Bottom_Temp"]  <- scenario2_temp[3] 
 
 # Extract lake level:
 scenario2_depth <- get_surface_height(Typical_ElNino) # Extract the daily water depth 
@@ -303,14 +309,23 @@ depth_output["Typical_ElNino_Lake_Depth"] <- scenario2_depth[2] # Rename the dep
 # Plot the water temperature heatmap for the El Nino scenario using the commands 
 # you learned above. 
 
-plot_temp(file=Typical_ElNino, fig_path=FALSE) # Create a heatmap 
-  # of water temperature. How does this compare to your baseline?
+plot_temp(file=Typical_ElNino, fig_path=FALSE) # Create a heatmap of water temperature. 
+  # How does this compare to your baseline?
 
 # Use the code below to create a plot of water level in the lake over time. 
 plot(surface_height ~ DateTime, data = scenario2_depth, type="l", col="black", 
      ylab = "Lake depth (m)", xlab = "Date", ylim=c(0,4))
 # !! Remember that the command ylim=c(min,max) tells R the minimum and maximum y-axis 
 #  values to plot. Adjust this range to make sure all your data are shown.
+
+# Note that it might be difficult to see subtle changes between scenarios using these
+  # figures. In Activity C, we will make different plots that make it easier to see 
+  # differences between scenarios.
+
+##!! To check that your El Nino scenario ran correctly, run the command below, and
+  # compare the water temperatures between your baseline and typical El Nino scenario.
+  # They'll likely be similar, but if they're exactly the same, something might have 
+  # gone wrong in setting up your El Nino scneario (likely with changing the glm2.nml file!)
 
 ########## ACTIVITY B - OBJECTIVE 4 ############################################
 # We just simulated a typical El Nino, but now we want to see how the lake 
@@ -327,7 +342,7 @@ legend("topleft",c("All Years", "El Nino", "Neutral"), pch=16, col=c("gray70", "
 abline(a = int_ElNino, b = slope_ElNino, col= 'red', lty=2)
 abline(a = int_Neutral, b = slope_Neutral, col = 'black', lty=2)
 
-## !! Based on this plot, which El Nino year had the highest temperature offset,
+##!! Based on this plot, which El Nino year had the highest temperature offset,
   # compared to the neutral years?
 
 # Run the following line of code to create a new data table that contains the 
@@ -371,12 +386,12 @@ Max_ElNino_met <- mutate(met_data, AirTemp = AirTemp + (maxOffset_degrees))
 write.csv(Max_ElNino_met, paste0(sim_folder, "/met_hourly_scenario3.csv"), 
           row.names=FALSE, quote=FALSE)
 
-## !! Once again, you need to edit the glm2.nml file to change the name of the input 
+##!! Once again, you need to edit the glm2.nml file to change the name of the input 
 # meteorological file so that it reads in the new, edited file for your 
 # teleconnections scenario, not the default "met_hourly.csv" or the file from our
 # typical El Nino scenario "met_hourly_scenario2.csv".  
 
-## !! Open the nml file by clicking 'glm2.nml' in the Files tab of RStudio, then scroll 
+##!! Open the nml file by clicking 'glm2.nml' in the Files tab of RStudio, then scroll 
 # down to the meteorology section, and change the 'meteo_fl' entry to the new 
 # met file name ('met_hourly_scenario3.csv'). Save your modified glm2.nml file.
 
@@ -402,10 +417,10 @@ Max_ElNino <- file.path(sim_folder, 'output.nc') # This defines the output.nc fi
 # our baseline scenario and typical El Nino scenario. 
 
 #  Extract surface water temperature:
-scenario3_temp <- get_temp(file= Max_ElNino, reference= 'surface', z_out= c(1))
-temp_output["Max_ElNino_Surface_Temp"] <- scenario3_temp[2] # Here we attach the water 
-# temperatures from the El Nino teleconnections simulation to the  same file 
-# that contains your baseline scenario temperatures. 
+scenario3_temp <- get_temp(file= Max_ElNino, reference= 'surface', z_out= c(0, nml$init_profiles$lake_depth-2))
+temp_output["Max_ElNino_Surface_Temp"] <- scenario3_temp[2] 
+temp_output["Max_ElNino_Bottom_Temp"]  <- scenario2_temp[3] # Here we attach the water 
+# temperatures from the strong El Nino simulation to you water temperature file 
 
 scenario3_depth <- get_surface_height(Max_ElNino) # Extract the daily water depth 
 depth_output["Max_ElNino_Lake_Depth"] <- scenario3_depth[2] # Rename the depth column
@@ -430,14 +445,21 @@ plot(surface_height ~ DateTime, data = scenario3_depth, type="l", col="black",
   # The command below plots DateTime vs. Observed data from the baseline model in black: 
 attach(temp_output)
 plot(DateTime, Baseline_Surface_Temp, type="l", col="black", xlab="Date",
-     ylab="Surface water temperature (C)", lwd=2, ylim=c(0,40))  
+     ylab="Surface water temperature (C)", lwd=2, ylim=c(3,22))  
 lines(DateTime, Typical_ElNino_Surface_Temp, lwd=2, col="orange2") # this adds an orange line 
   # of the output from the typical El Nino scenario
 lines(DateTime, Max_ElNino_Surface_Temp, lwd=2, col="red2") # this adds a red line of the 
   # output from the maximum El Nino scenario
+
+# We also want to plot the bottom-water temperature from each scenario. We do that with:
+lines(DateTime, Baseline_Bottom_Temp, lwd=2, lty=2, col="black")
+lines(DateTime, Typical_ElNino_Bottom_Temp, lwd=2, lty=2, col="orange2")
+lines(DateTime, Max_ElNino_Bottom_Temp, lwd=2, lty=2, col="red2")
+
 # Now add a legend!
 legend("topleft",c("Baseline", "Typical El Nino", "Max. El Nino"), lty=c(1,1,1), 
        lwd=c(2,2,2), col=c("black","orange2", "red2")) 
+legend("topright", c("Surface", "Bottom"), lty=c(1,2), lwd=c(2,2))
 
 # !! Note that the command ylim=c(0, 40) tells R what you want the minimum and 
 #  maximum values on the y-axis to be (here, we're plotting from 0 to 40 degrees C). 
