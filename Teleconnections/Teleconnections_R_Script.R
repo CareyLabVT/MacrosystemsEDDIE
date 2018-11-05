@@ -65,7 +65,7 @@ LakeName <- 'Name' ##!! Change 'Name' to match the lake you and your partner sel
   # Windows: C:/Users/KJF/Desktop/cross_scale_interactions
   # Mac: Macintosh HDD -> Users -> careylab -> Desktop
 
-sim_folder <- '/Users/KJF/Desktop/R/MacrosystemsEDDIE/Teleconnections/Lakes/Barco'
+sim_folder <- '/Users/KJF/Desktop/R/MacrosystemsEDDIE/Teleconnections/Lakes/Crampton'
 #sim_folder <- '/Users/cayelan/Desktop/teleconnections/Lakes/LakeName' ##!! Edit this line 
   #  to define the sim_folder location for your model lake. You will need to change 
   #  the part after Users/ to give the name of your computer (e.g., my computer name 
@@ -128,39 +128,39 @@ plot_temp(file=baseline, fig_path=FALSE) # This plots your
 var_names <- sim_vars(baseline)
 print(var_names) # This will print a list of variables that the model simulates.
 
-# We are particularly interested in the lake depth, as teleconnections could change
-  #  the lake depth over time through increased or decreased evaporation from the
+# We are particularly interested in the water level (depth), as teleconnections could change
+  #  the lake water level over time through increased or decreased evaporation from the
   #  water surface. We use the following command to pull the daily "surface height" 
   #  out of the model output and plot it as a function of time. The unit of 
-  #  measurement for lake depth is meters (m).
-lake_level1 <- get_surface_height(baseline)
+  #  measurement for water level is meters (m).
+water_level1 <- get_surface_height(baseline)
 
-# Calculate the maximum and minimum depth of your lake
-max(lake_level1$surface_height) # Maximum
-min(lake_level1$surface_height) # Minimum
+# Calculate the maximum and minimum water level of your lake
+max(water_level1$surface_height) # Maximum
+min(water_level1$surface_height) # Minimum
 
 # Use the code below to create a plot of water level in the lake over time. 
-plot(surface_height ~ DateTime, data = lake_level1, type="l", col="black", 
-     ylab = "Lake depth (m)", xlab = "Date", ylim=c(0,4))
+plot(surface_height ~ DateTime, data = water_level1, type="l", col="black", 
+     ylab = "Water level (m)", xlab = "Date", ylim=c(15.5,17.5))
 ##!! Note that the command ylim=c(min,max) tells R the minimum and maximum y-axis 
   #  values to plot. You will need to adjust the minimum and maximum values 
   #  to make sure all your data are shown. A range slightly higher than what you
   #  just calculated for the max. and min. above would probably work well!
 
-# We also want to save the model output of the water temperature and lake depth 
+# We also want to save the model output of the lake temperature and water level 
   #  during our baseline simulation, because we'll be comparing it to our teleconnection 
   #  scenario later. To do this, we use the following  commands:
 
-temp_output <- get_temp(file=baseline, reference='surface', 
+lakeTemp_output <- get_temp(file=baseline, reference='surface', 
                         z_out=c(0, nml$init_profiles$lake_depth-2)) # This command 
   #  extracts the water temperature at the surface and 2 meters above the lake bottom
-  #  for each day and saves the temperatures as "temp_output"
+  #  for each day and saves the temperatures as "lakeTemp_output"
 
-colnames(temp_output)[2:3] <- c("Baseline_Surface_Temp", "Baseline_Bottom_Temp") # This command
+colnames(lakeTemp_output)[2:3] <- c("Baseline_Surface_Temp", "Baseline_Bottom_Temp") # This command
   #  renames the two temperature columns so we remember they are from the Baseline scenario
 
-depth_output <- lake_level1 # This command extracts the daily water depth and save it as "depth_output"
-colnames(depth_output)[2] <- "Baseline_Lake_Depth" # This command renames the depth column
+waterLevel_output <- water_level1 # This command extracts the daily water level and saves it as "waterLevel_output"
+colnames(waterLevel_output)[2] <- "Baseline_Water_Level" # This command renames the water level column
 
 ########## ACTIVITY B - OBJECTIVE 3 ############################################
 # For Activity B, you will work with your partner to model your lake under two 
@@ -244,7 +244,7 @@ print(offset) # Run this line to have R print out what your temperature offset i
   # First, we read in the original meteorological driver data for GLM using the 
   #  following commands: 
 baseline_met <- paste0(sim_folder,"/met_hourly.csv")
-met_data <- read_csv(baseline_met)
+met_data <- read.csv(baseline_met)
 
 # Use this command to look at the structure of your meterological driver data
 View(met_data)
@@ -287,8 +287,8 @@ Typical_ElNino <- file.path(sim_folder, 'output.nc') # This defines the output.n
   #  as being within the sim_folder. Note that we've called this output "ElNino" 
   #  since it is the output from our El Nino teleconnections simulation.
 
-# As before, we want to save the model output of the daily surface water temperature 
-  # and lake depth during our El Nino teleconnections simulation, to compare to 
+# As before, we want to save the model output of the daily surface lake temperature 
+  # and water level during our El Nino teleconnections simulation, to compare to 
   # our baseline scenario. 
 
 #  Use this command to extract surface and bottom water temperatures:
@@ -296,15 +296,15 @@ scenario2_temp <- get_temp(file= Typical_ElNino, reference= 'surface', z_out= c(
 
 # The next two commands attach the water temperatures from the "typical" El Nino 
   #  simulation to the same file that contains your baseline scenario temperatures. 
-temp_output["Typical_ElNino_Surface_Temp"] <- scenario2_temp[2]
-temp_output["Typical_ElNino_Bottom_Temp"]  <- scenario2_temp[3] 
+lakeTemp_output["Typical_ElNino_Surface_Temp"] <- scenario2_temp[2]
+lakeTemp_output["Typical_ElNino_Bottom_Temp"]  <- scenario2_temp[3] 
 
 # Extract lake level:
-scenario2_depth <- get_surface_height(Typical_ElNino) # Extract the daily water depth 
-depth_output["Typical_ElNino_Lake_Depth"] <- scenario2_depth[2] # Rename the depth column
+scenario2_level <- get_surface_height(Typical_ElNino) # Extract the daily water level 
+waterLevel_output["Typical_ElNino_Water_Level"] <- scenario2_level[2] # Rename the water level column
 
-# You can now compare your El Nino scenario to your baseline for both water 
-  # temperatures and lake depth- well done!! 
+# You can now compare your El Nino scenario to your baseline for both lake 
+  # temperatures and water level- well done!! 
 
 # Plot the water temperature heatmap for the El Nino scenario using the commands 
 # you learned above. 
@@ -313,8 +313,8 @@ plot_temp(file=Typical_ElNino, fig_path=FALSE) # Create a heatmap of water tempe
   # How does this compare to your baseline?
 
 # Use the code below to create a plot of water level in the lake over time. 
-plot(surface_height ~ DateTime, data = scenario2_depth, type="l", col="black", 
-     ylab = "Lake depth (m)", xlab = "Date", ylim=c(0,4))
+plot(surface_height ~ DateTime, data = scenario2_level, type="l", col="black", 
+     ylab = "Water Level (m)", xlab = "Date", ylim=c(0,4))
 # !! Remember that the command ylim=c(min,max) tells R the minimum and maximum y-axis 
 #  values to plot. Adjust this range to make sure all your data are shown.
 
@@ -376,7 +376,7 @@ maxOffset_degrees
 
 # Read in the baseline met_hourly data once more:
 baseline_met <- paste0(sim_folder,"/met_hourly.csv")
-met_data <- read_csv(baseline_met)
+met_data <- read.csv(baseline_met)
 
 # Next, We create a new meteorological driver data file that has the modified 
 #  AirTemp that reflects our maximum El Nino scenario:
@@ -412,26 +412,26 @@ run_glm(sim_folder, verbose=TRUE) # Run your GLM model for your El Nino scenario
 Max_ElNino <- file.path(sim_folder, 'output.nc') # This defines the output.nc file 
 #  as being within the sim_folder.
 
-# As before, we want to save the model output of the daily surface water temperature 
-# and lake depth during our maximum El Nino teleconnections simulation, to compare to 
-# our baseline scenario and typical El Nino scenario. 
+# As before, we want to save the model output of the daily surface lake temperature 
+# and water level during our "strong" El Nino teleconnections simulation, to compare to 
+# our baseline scenario and "typical" El Nino scenario. 
 
 #  Extract surface water temperature:
 scenario3_temp <- get_temp(file= Max_ElNino, reference= 'surface', z_out= c(0, nml$init_profiles$lake_depth-2))
-temp_output["Max_ElNino_Surface_Temp"] <- scenario3_temp[2] 
-temp_output["Max_ElNino_Bottom_Temp"]  <- scenario2_temp[3] # Here we attach the water 
+lakeTemp_output["Max_ElNino_Surface_Temp"] <- scenario3_temp[2] 
+lakeTemp_output["Max_ElNino_Bottom_Temp"]  <- scenario2_temp[3] # Here we attach the water 
 # temperatures from the strong El Nino simulation to you water temperature file 
 
-scenario3_depth <- get_surface_height(Max_ElNino) # Extract the daily water depth 
-depth_output["Max_ElNino_Lake_Depth"] <- scenario3_depth[2] # Rename the depth column
+scenario3_level <- get_surface_height(Max_ElNino) # Extract the daily water water level
+waterLevel_output["Max_ElNino_Water_Level"] <- scenario3_level[2] # Rename the water level column
 
 # Plot the heatmap of water temperatures for your maximum El Nino scenario. 
 # How does it compare to the baseline? To your typical El Nino?
 plot_temp(file=Max_ElNino, fig_path=FALSE)
 
 # Plot the water level in the lake during the maximum El Nino scenario. 
-plot(surface_height ~ DateTime, data = scenario3_depth, type="l", col="black", 
-     ylab = "Lake depth (m)", xlab = "Date", ylim=c(0,4))
+plot(surface_height ~ DateTime, data = scenario3_level, type="l", col="black", 
+     ylab = "Water Level (m)", xlab = "Date", ylim=c(0,4))
 # !! Don't forget to adjust your ylim values so all your data are shown.
 
 ########## ACTIVITY C - OBJECTIVE 5 ############################################
@@ -443,7 +443,7 @@ plot(surface_height ~ DateTime, data = scenario3_depth, type="l", col="black",
 # Let's compare the water surface temperatures from the baseline and El Nino 
   # teleconnection scenarios with a line plot.
   # The command below plots DateTime vs. Observed data from the baseline model in black: 
-attach(temp_output)
+attach(lakeTemp_output)
 plot(DateTime, Baseline_Surface_Temp, type="l", col="black", xlab="Date",
      ylab="Surface water temperature (C)", lwd=2, ylim=c(3,22))  
 lines(DateTime, Typical_ElNino_Surface_Temp, lwd=2, col="orange2") # this adds an orange line 
@@ -466,13 +466,13 @@ legend("topright", c("Surface", "Bottom"), lty=c(1,2), lwd=c(2,2))
 #  Adjust this range and rerun the plotting commands to make sure your data are 
 #  clearly visualized in the plot.
 
-# We can make a similar plot for our lake level (depth) data.
+# We can make a similar plot for our water level data.
 ##!! Modify the ylim() command below to adjust the y-axis limits so your data are
   # clearly visualized and you can compare your three scenarios. You may need to
   # try plotting a few different minimum and maximum values to get a plot that 
   # makes it possible to visualize the differences. 
-attach(depth_output)
-plot(DateTime, Baseline_Lake_Depth, type="l", col="black", xlab="Date",
+attach(waterLevel_output)
+plot(DateTime, Baseline_Lake_Level, type="l", col="black", xlab="Date",
      ylab="Lake depth (m)", lwd=2, ylim=c(0,4))  
 lines(DateTime, Typical_ElNino_Lake_Depth, lwd=2, col="orange1") # this adds an orange line 
 # of the output from the typical El Nino teleconnections scenario
