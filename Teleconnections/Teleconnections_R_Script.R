@@ -514,11 +514,11 @@ iceDuration <- iceDuration %>%
   mutate(Offset = c(0, maxOffset_degrees, typicalOffset_degrees)) %>%
   arrange(Offset)
 
-# Now we can plot the number of days with ice cover as a function of our lakes' 
+# Now we can plot the number of days with any ice cover as a function of our lakes' 
   # temperature offset:
 attach(iceDuration)
 plot(Offset, iceDays, type="b", pch=16, col=c("black", "orange1", "red2"), cex=2,
-     xlab= "Temperature offset (C)", ylab= "Ice cover duration (days)",
+     xlab= "Temperature offset (C)", ylab= "Days with surface ice",
      ylim=c(0,365))
 ##!! Note that you should adjust the ylim values to effectively show the trend
 # for your lake! 
