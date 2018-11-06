@@ -431,30 +431,31 @@ plot(x = ice$DateTime, y = ice$Strong, type = 'l',  xlab = "Date", ylab = "Ice t
 # You've run three different scenarios for your lake. That's awesome! 
 
 # Now, we want to compare our baseline scenario to our two El Nino scenarios 
-  # (typical, and highest offset)
+  # ("typical" and "strong")
 
-# Let's compare the water surface temperatures from the baseline and El Nino 
-  # teleconnection scenarios with a line plot.
+# Let's first compare the water temperatures across the three scenarios with a line plot.
   # The command below plots DateTime vs. Observed data from the baseline model in black: 
-
 attach(lakeTemp_output)
-plot(DateTime, Baseline_Surface_Temp, type="l", col="black", xlab="Date",
+plot(x = DateTime, y = Baseline_Surface_Temp, type="l", col="black", xlab="Date",
      ylab="Surface water temperature (C)", lwd=2, ylim=c(0,40))  
 # !! Note that the command ylim=c(0, 40) tells R what you want the minimum and 
   #  maximum values on the y-axis to be (here, we're plotting from 0 to 40 degrees C). 
   #  Adjust this range and rerun the plotting commands to make sure your data are 
   #  clearly visualized in the plot.
-lines(DateTime, Typical_ElNino_Surface_Temp, lwd=2, col="orange2") # this adds an orange line 
-  # of the output from the typical El Nino scenario
-lines(DateTime, Strong_ElNino_Surface_Temp, lwd=2, col="red2") # this adds a red line of the 
-  # output from the maximum El Nino scenario
 
-# We also want to plot the bottom-water temperature from each scenario. We do that with:
-lines(DateTime, Baseline_Bottom_Temp, lwd=1.5, lty=2, col="black")
-lines(DateTime, Typical_ElNino_Bottom_Temp, lwd=1.5, lty=2, col="orange2")
-lines(DateTime, Strong_ElNino_Bottom_Temp, lwd=1.5, lty=2, col="red2")
+lines(x = DateTime, y = Typical_ElNino_Surface_Temp, lwd=2, col="orange2") # this command adds an orange line 
+  # of the surface temperature output from the typical El Nino scenario
+lines(x = DateTime, y = Strong_ElNino_Surface_Temp, lwd=2, col="red2") # this command adds a red line of the 
+  # surface temperature output from the strong El Nino scenario
 
-# Now add a legend!
+# We also want to plot the bottom-water temperatures from each scenario. 
+  # We'll show these using the same colors as above, but with dashed lines. 
+  # We do this by running:
+lines(x = DateTime, y = Baseline_Bottom_Temp, lwd=1.5, lty=2, col="black")
+lines(x = DateTime, y = Typical_ElNino_Bottom_Temp, lwd=1.5, lty=2, col="orange2")
+lines(x = DateTime, y = Strong_ElNino_Bottom_Temp, lwd=1.5, lty=2, col="red2")
+
+# Don't forget to add a legend, using the commands below!
 legend("topleft",c("Baseline", "Typical El Nino", "Strong El Nino"), lty=c(1,1,1), 
        lwd=c(2,2,2), col=c("black","orange2", "red2")) 
 legend("topright", c("Surface", "Bottom"), lty=c(1,2), lwd=c(2,2))
@@ -468,19 +469,19 @@ iceDuration <- ice %>% gather(Scenario, Ice, Baseline:Strong) %>%
   summarize(iceDays = length(IceStatus[IceStatus=="Y"]))
 
 # Since we want to compare ice duration to temperature offset, we'll paste on our 
-  # temperature offsets from each scenario using hte command below: 
+  # temperature offsets from each scenario using the command below: 
 iceDuration <- iceDuration %>% 
   mutate(Offset = c(0, maxOffset_degrees, typicalOffset_degrees)) %>%
   arrange(Offset)
 
-# Now we can plot the number of days with any ice cover as a function of our lakes' 
+# Now we can plot the number of days with ice cover as a function of our lakes' 
   # temperature offset:
 attach(iceDuration)
-plot(Offset, iceDays, type="b", pch=16, col=c("black", "orange1", "red2"), cex=2,
+plot(x = Offset, y = iceDays, type="b", pch=16, col=c("black", "orange1", "red2"), cex=2,
      xlab= "Temperature offset (C)", ylab= "Days with surface ice",
      ylim=c(0,365))
 ##!! Note that you should adjust the ylim values to effectively show the trend
-# for your lake! 
+  # for your lake! 
 
 # And as before, add a legend to your plot using the command below:
 legend("topleft",c("Baseline", "Typical El Nino", "Strong El Nino"), pch=16, 
