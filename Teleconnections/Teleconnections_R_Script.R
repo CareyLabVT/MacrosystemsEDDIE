@@ -65,23 +65,20 @@ LakeName <- 'Name' ##!! Change 'Name' to match the lake you and your partner sel
   # Windows: C:/Users/KJF/Desktop/cross_scale_interactions
   # Mac: Macintosh HDD -> Users -> careylab -> Desktop
 
-# KJF testing placeholder
-sim_folder <- paste('C:/Users/KJF/Desktop/R/MacrosystemsEDDIE/Teleconnections/Lakes/',LakeName, sep='') #KF dev placeholder
-
-#sim_folder <- '/Users/cayelan/Desktop/teleconnections/Lakes/LakeName' ##!! Edit this line 
+sim_folder <- '/Users/cayelan/Desktop/teleconnections/Lakes/LakeName' ##!! Edit this line 
   #  to define the sim_folder location for your model lake. You will need to change 
   #  the part after Users/ to give the name of your computer (e.g., my computer name 
   #  is cayelan, but yours will be different!) AND change the LakeName part to be 
   #  the name of your model lake.
 
-setwd(sim_folder) ## This line of code is used to reset your working directory
-  #  to the sim_folder. The point of this step is to make sure that any new files 
-  #  you create (e.g., figures of output) end up together in this folder.
+setwd(sim_folder) # This line of code resets your working directory to the sim_folder.   
+  #  The point of this step is to make sure that any new files you create (e.g., 
+  #  plots of model output) end up together in this folder.
 
 nml_file <- paste0(sim_folder,"/glm2.nml") # This step sets the nml_file for your 
   #  simulation to be in the new sim_folder location.
 
-nml <- read_nml(nml_file) # Read in your nml file from your new directory
+nml <- read_nml(nml_file) # Run this line to read in your nml file 
 
 print(nml) # This shows you what is in your nml file.  This is the 'master script' 
   #  of the GLM simulation; the nml file tells the GLM model all of the initial 
@@ -97,61 +94,65 @@ plot_meteo(nml_file) # This command plots the meterological input data for the
 # Now, the fun part- we get to run the model and look at output!
 
 run_glm(sim_folder, verbose=TRUE) # So simple and elegant... if this works, you 
-  #  should see output that says "Simulation begins.." and then shows all the 
-  #  time steps.  At the end, it should say "Run complete" if everything worked 
-  #  ok. This may take a few minutes.
+  #  should see output that says "Simulation begins.." and then (quickly!) shows 
+  #  all the time steps.  At the end, it will say "Run complete".
 
-# We need to know where the output data from your simulation (the output.nc file) 
-  #  is so that the glmtools package can plot and analyze the model output. We tell 
-  #  R where to find the output file using the line below:
-
+# We need to tell R where the model output (the output.nc file) is stored so that 
+  #  we can use the glmtools package to plot and analyze it. We do this using the line below:
 baseline <- file.path(sim_folder, 'output.nc') # This says that the output.nc 
-  #  file is in the sim_folder  
+  #  file is in the sim_folder we defined earlier 
 
-plot_temp(file=baseline, fig_path=FALSE) # This plots your 
-  #  simulated lake temperatures in a heat map, where time is displayed on the 
-  #  x-axis, lake depth is displayed on the y-axis, and the different colors 
-  #  represent different water temperatures. 
-
-# To copy your plot (e.g., onto a PowerPoint slide), click "Export" within the 
-  #  Plots tab. Then click "Copy to Clipboard", and click "Copy plot" in the preview 
-  #  window. You can then paste your plot into Word, PowerPoint, etc. 
-
-# If you want to save your plot as an image file or pdf file instead of copying 
-  #  it, click "Export" within the Plots tab, then choose "Save as Image" or "Save 
-  #  as PDF". In the preview window, give your plot a descriptive file name (e.g., 
-  #  "TemperatureHeatMap.pdf"), then press "Save". Your plot image and/or PDF file 
-  #  will be saved in the sim_folder on your Desktop.
-
-# Note that if you want to save plots, you should copy and paste them as you go!
-
-# This pair of commands can be used to list the variables that were output as part 
-  #  of your GLM run.
+# The following pair of commands can be used to list the variables that were 
+  #  output as part of your GLM run.
 var_names <- sim_vars(baseline)
 print(var_names) # This will print a list of variables that the model simulates.
+  # In this list, "hice" is the output variable of ice thickness on the lake surface
 
-# We are particularly interested in how surface and hypolimnion water temperatures
-  #  could change due to teleconnections. To estimate the hypolimnion depth, we use 
-  #  the following extract the water level (depth) from the model output. The unit of 
-  #  measurement for water level is meters (m).
-water_level1 <- get_surface_height(baseline)
+# We are interested in how water temperatures at the surface and in the hypolimnion 
+  #  could be affected by El Nino teleconnections. To estimate the hypolimnion depth, we use 
+  #  the following command to extract the lake depth (meters) from the model output. 
+lakeDepth <- get_surface_height(baseline)
+mean(lakeDepth$surface_height) # Print the average depth of your lake
 
-# We also want to save the model output of the lake temperature and ice cover 
-  #  during our baseline simulation, because we'll be comparing it to our teleconnection 
-  #  scenario later. To do this, we use the following  commands:
-
+# We want to save the model output of the lake temperature from our baseline simulation, 
+  #  because we'll be comparing these temperautres to our teleconnection scenarios later. 
+  #  To do this, we use the following  command:
 lakeTemp_output <- get_temp(file=baseline, reference='surface', 
-                        z_out=c(0, min(water_level1$surface_height))) # This command 
+                        z_out=c(0, mean(lakeDepth$surface_height))) # This command 
   #  extracts the water temperature at the surface and hypolimnion for each day 
   #  and saves the temperatures as "lakeTemp_output"
 
 colnames(lakeTemp_output)[2:3] <- c("Baseline_Surface_Temp", "Baseline_Bottom_Temp") # This command
-  #  renames the two temperature columns so we remember they are from the Baseline scenario
+  #  renames the two temperature columns so we remember they are from the Baseline scenario!
 
 # We'll also extract and save model output for ice cover on the lake during our 
   # baseline scenario. We do this by running the following lines of code: 
 ice <- get_var(baseline, "hice") # Extract ice cover data
 colnames(ice)[2] <- "Baseline" # Rename column so we know it's from the Baseline scenario
+
+# Now, let's take a look at what the temperature outputs look like:
+
+plot_temp(file=baseline, fig_path=FALSE) # This plots your 
+#  simulated lake temperatures in a heat map, where time is displayed on the 
+#  x-axis, lake depth is displayed on the y-axis, and the different colors 
+#  represent different water temperatures. 
+
+# To copy your plot (e.g., onto a PowerPoint slide), click "Export" within the 
+#  Plots tab. Then click "Copy to Clipboard", and click "Copy plot" in the preview 
+#  window. You can then paste your plot into Word, PowerPoint, etc. 
+
+# If you want to save your plot as an image file or pdf file instead of copying 
+#  it, click "Export" within the Plots tab, then choose "Save as Image" or "Save 
+#  as PDF". In the preview window, give your plot a descriptive file name (e.g., 
+#  "TemperatureHeatMap.pdf"), then press "Save". Your plot image and/or PDF file 
+#  will be saved in the sim_folder on your Desktop.
+
+# Note that if you want to save plots, you should copy and paste them as you go!
+
+# To see how surface ice changed on your lake over the year, run this command:
+plot(x = ice$DateTime, y = ice$Baseline, type = 'l', 
+     xlab = "Date", ylab = "Ice thickness (m)")
+# Note that depending on its location, your lake may not experience any days with ice! 
 
 ########## ACTIVITY B - OBJECTIVE 3 ############################################
 # For Activity B, you will work with your partner to model your lake under two 
@@ -286,7 +287,7 @@ Typical_ElNino <- file.path(sim_folder, 'output.nc') # This defines the output.n
   # our baseline scenario. 
 
 #  Use this command to extract surface and bottom water temperatures:
-scenario2_temp <- get_temp(file= Typical_ElNino, reference= 'surface', z_out= c(0, min(water_level1$surface_height)))
+scenario2_temp <- get_temp(file= Typical_ElNino, reference= 'surface', z_out= c(0, mean(lakeDepth$surface_height)))
 
 # The next two commands attach the water temperatures from the "typical" El Nino 
   #  simulation to the same file that contains your baseline scenario temperatures. 
@@ -405,7 +406,7 @@ Strong_ElNino <- file.path(sim_folder, 'output.nc') # This defines the output.nc
 # our baseline scenario and "typical" El Nino scenario. 
 
 #  Extract surface water temperature:
-scenario3_temp <- get_temp(file= Strong_ElNino, reference= 'surface', z_out= c(0, min(water_level1$surface_height)))
+scenario3_temp <- get_temp(file= Strong_ElNino, reference= 'surface', z_out= c(0, mean(lakeDepth$surface_height)))
 lakeTemp_output["Strong_ElNino_Surface_Temp"] <- scenario3_temp[2] 
 lakeTemp_output["Strong_ElNino_Bottom_Temp"]  <- scenario2_temp[3] # Here we attach the water 
 # temperatures from the strong El Nino simulation to you water temperature file 
