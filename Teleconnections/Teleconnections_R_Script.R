@@ -130,41 +130,25 @@ plot_temp(file=baseline, fig_path=FALSE) # This plots your
 var_names <- sim_vars(baseline)
 print(var_names) # This will print a list of variables that the model simulates.
 
-# We are particularly interested in the water level (depth), as teleconnections could change
-  #  the water level over time through increased or decreased evaporation from the
-  #  water surface. We use the following command to pull the daily "surface height" 
-  #  out of the model output and plot it as a function of time. The unit of 
+# We are particularly interested in how surface and hypolimnion water temperatures
+  #  could change due to teleconnections. To estimate the hypolimnion depth, we use 
+  #  the following extract the water level (depth) from the model output. The unit of 
   #  measurement for water level is meters (m).
 water_level1 <- get_surface_height(baseline)
 
-# Calculate the maximum and minimum water level of your lake
-max(water_level1$surface_height) # Maximum
-min(water_level1$surface_height) # Minimum
-
-# Use the code below to create a plot of water level in the lake over time. 
-plot(surface_height ~ DateTime, data = water_level1, type="l", col="black", 
-     ylab = "Water level (m)", xlab = "Date", ylim=c(0,4))
-##!! Note that the command ylim=c(min,max) tells R the minimum and maximum y-axis 
-  #  values to plot. You will need to adjust the minimum and maximum values 
-  #  to make sure all your data are shown. A range slightly higher than what you
-  #  just calculated for the max. and min. above would probably work well!
-
-# We also want to save the model output of the lake temperature and water level 
+# We also want to save the model output of the lake temperature and ice cover 
   #  during our baseline simulation, because we'll be comparing it to our teleconnection 
   #  scenario later. To do this, we use the following  commands:
 
 lakeTemp_output <- get_temp(file=baseline, reference='surface', 
                         z_out=c(0, min(water_level1$surface_height))) # This command 
-  #  extracts the water temperature at the surface and 2 meters above the lake bottom
-  #  for each day and saves the temperatures as "lakeTemp_output"
+  #  extracts the water temperature at the surface and hypolimnion for each day 
+  #  and saves the temperatures as "lakeTemp_output"
 
 colnames(lakeTemp_output)[2:3] <- c("Baseline_Surface_Temp", "Baseline_Bottom_Temp") # This command
   #  renames the two temperature columns so we remember they are from the Baseline scenario
 
-waterLevel_output <- water_level1 # This command extracts the daily water level and saves it as "waterLevel_output"
-colnames(waterLevel_output)[2] <- "Baseline_Water_Level" # This command renames the water level column
-
-# Finally, we'll extract and save model output for ice cover on the lake during our 
+# We'll also extract and save model output for ice cover on the lake during our 
   # baseline scenario. We do this by running the following lines of code: 
 ice <- get_var(baseline, "hice") # Extract ice cover data
 colnames(ice)[2] <- "Baseline" # Rename column so we know it's from the Baseline scenario
@@ -298,7 +282,7 @@ Typical_ElNino <- file.path(sim_folder, 'output.nc') # This defines the output.n
   #  since it is the output from our El Nino teleconnections simulation.
 
 # As before, we want to save the model output of the daily surface lake temperature 
-  # and water level during our El Nino teleconnections simulation, to compare to 
+  # and ice cover during our El Nino teleconnections simulation, to compare to 
   # our baseline scenario. 
 
 #  Use this command to extract surface and bottom water temperatures:
@@ -309,28 +293,18 @@ scenario2_temp <- get_temp(file= Typical_ElNino, reference= 'surface', z_out= c(
 lakeTemp_output["Typical_ElNino_Surface_Temp"] <- scenario2_temp[2]
 lakeTemp_output["Typical_ElNino_Bottom_Temp"]  <- scenario2_temp[3] 
 
-# Extract lake level:
-scenario2_level <- get_surface_height(Typical_ElNino) # Extract the daily water level 
-waterLevel_output["Typical_ElNino_Water_Level"] <- scenario2_level[2] # Rename the water level column
-
 # Extract ice: 
 scenario2_ice <- get_var(baseline, "hice") # Extract ice cover data
 ice["Typical"] <- scenario2_ice[2]  # Rename the ice column 
 
 # You can now compare your El Nino scenario to your baseline for both lake 
-  # temperatures and water level- well done!! 
+  # temperatures and ice cover- well done!! 
 
 # Plot the water temperature heatmap for the El Nino scenario using the commands 
 # you learned above. 
 
 plot_temp(file=Typical_ElNino, fig_path=FALSE) # Create a heatmap of water temperature. 
   # How does this compare to your baseline?
-
-# Use the code below to create a plot of water level in the lake over time. 
-plot(surface_height ~ DateTime, data = scenario2_level, type="l", col="black", 
-     ylab = "Water Level (m)", xlab = "Date", ylim=c(0,4))
-# !! Remember that the command ylim=c(min,max) tells R the minimum and maximum y-axis 
-#  values to plot. Adjust this range to make sure all your data are shown.
 
 # Note that it might be difficult to see subtle changes between scenarios using these
   # figures. In Activity C, we will make different plots that make it easier to see 
@@ -427,7 +401,7 @@ Strong_ElNino <- file.path(sim_folder, 'output.nc') # This defines the output.nc
 #  as being within the sim_folder.
 
 # As before, we want to save the model output of the daily surface lake temperature 
-# and water level during our "strong" El Nino teleconnections simulation, to compare to 
+# and ice cover during our "strong" El Nino teleconnections simulation, to compare to 
 # our baseline scenario and "typical" El Nino scenario. 
 
 #  Extract surface water temperature:
@@ -436,9 +410,6 @@ lakeTemp_output["Strong_ElNino_Surface_Temp"] <- scenario3_temp[2]
 lakeTemp_output["Strong_ElNino_Bottom_Temp"]  <- scenario2_temp[3] # Here we attach the water 
 # temperatures from the strong El Nino simulation to you water temperature file 
 
-scenario3_level <- get_surface_height(Strong_ElNino) # Extract the daily water water level
-waterLevel_output["Strong_ElNino_Water_Level"] <- scenario3_level[2] # Rename the water level column
-
 # Extract ice: 
 scenario3_ice <- get_var(baseline, "hice") # Extract ice cover data
 ice["Strong"] <- scenario3_ice[2]  # Rename the ice column 
@@ -446,11 +417,6 @@ ice["Strong"] <- scenario3_ice[2]  # Rename the ice column
 # Plot the heatmap of water temperatures for your maximum El Nino scenario. 
 # How does it compare to the baseline? To your typical El Nino?
 plot_temp(file=Strong_ElNino, fig_path=FALSE)
-
-# Plot the water level in the lake during the maximum El Nino scenario. 
-plot(surface_height ~ DateTime, data = scenario3_level, type="l", col="black", 
-     ylab = "Water Level (m)", xlab = "Date", ylim=c(0,4))
-# !! Don't forget to adjust your ylim values so all your data are shown.
 
 ########## ACTIVITY C - OBJECTIVE 5 ############################################
 # You've run three different scenarios for your lake. That's awesome! 
@@ -461,44 +427,28 @@ plot(surface_height ~ DateTime, data = scenario3_level, type="l", col="black",
 # Let's compare the water surface temperatures from the baseline and El Nino 
   # teleconnection scenarios with a line plot.
   # The command below plots DateTime vs. Observed data from the baseline model in black: 
+
 attach(lakeTemp_output)
 plot(DateTime, Baseline_Surface_Temp, type="l", col="black", xlab="Date",
-     ylab="Surface water temperature (C)", lwd=2, ylim=c(0,40))  ##!! Change ylim() values 
-  # to show your data clearly!
+     ylab="Surface water temperature (C)", lwd=2, ylim=c(0,40))  
+# !! Note that the command ylim=c(0, 40) tells R what you want the minimum and 
+  #  maximum values on the y-axis to be (here, we're plotting from 0 to 40 degrees C). 
+  #  Adjust this range and rerun the plotting commands to make sure your data are 
+  #  clearly visualized in the plot.
 lines(DateTime, Typical_ElNino_Surface_Temp, lwd=2, col="orange2") # this adds an orange line 
   # of the output from the typical El Nino scenario
 lines(DateTime, Strong_ElNino_Surface_Temp, lwd=2, col="red2") # this adds a red line of the 
   # output from the maximum El Nino scenario
 
 # We also want to plot the bottom-water temperature from each scenario. We do that with:
-lines(DateTime, Baseline_Bottom_Temp, lwd=2, lty=2, col="black")
-lines(DateTime, Typical_ElNino_Bottom_Temp, lwd=2, lty=2, col="orange2")
-lines(DateTime, Strong_ElNino_Bottom_Temp, lwd=2, lty=2, col="red2")
+lines(DateTime, Baseline_Bottom_Temp, lwd=1.5, lty=2, col="black")
+lines(DateTime, Typical_ElNino_Bottom_Temp, lwd=1.5, lty=2, col="orange2")
+lines(DateTime, Strong_ElNino_Bottom_Temp, lwd=1.5, lty=2, col="red2")
 
 # Now add a legend!
 legend("topleft",c("Baseline", "Typical El Nino", "Strong El Nino"), lty=c(1,1,1), 
        lwd=c(2,2,2), col=c("black","orange2", "red2")) 
 legend("topright", c("Surface", "Bottom"), lty=c(1,2), lwd=c(2,2))
-
-# !! Note that the command ylim=c(0, 40) tells R what you want the minimum and 
-#  maximum values on the y-axis to be (here, we're plotting from 0 to 40 degrees C). 
-#  Adjust this range and rerun the plotting commands to make sure your data are 
-#  clearly visualized in the plot.
-
-# We can make a similar plot for our water level data.
-##!! Modify the ylim() command below to adjust the y-axis limits so your data are
-  # clearly visualized and you can compare your three scenarios. You may need to
-  # try plotting a few different minimum and maximum values to get a plot that 
-  # makes it possible to visualize the differences. 
-attach(waterLevel_output)
-plot(DateTime, Baseline_Water_Level, type="l", col="black", xlab="Date",
-     ylab="Water level (m)", lwd=2, ylim=c(0,4))
-lines(DateTime, Typical_ElNino_Water_Level, lwd=2, col="orange1") # this adds an orange line 
-# of the output from the typical El Nino teleconnections scenario
-lines(DateTime, Strong_ElNino_Water_Level, lwd=2, col="red2") # this adds a red line of the 
-# output from the maximum El Nino teleconnections scenario
-legend("topleft",c("Baseline", "Typical El Nino", "Strong El Nino"), lty=c(1,1,1), 
-       lwd=c(2,2,2), col=c("black","orange2", "red2")) 
 
 # We can also look at how the duration of ice cover changed between the three scenarios.
   # To do this, we'll use the following string of commands to calculate the number of 
