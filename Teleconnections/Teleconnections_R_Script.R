@@ -174,7 +174,7 @@ library(tidyr)
 annual_temp <- read_excel(paste(sim_folder,'/Lake_Characteristics.xlsx', sep=''), 
                           sheet = LakeName) %>% filter(Year >= 1970)
 
-# Use the command below to take a look at the file:
+# Now use the command below to take a look at the file you just loaded:
 View(annual_temp)
 
 # The data we'll be using to estimate El Nino temperature offsets is "Air Temp Mean (°C)",
@@ -183,8 +183,8 @@ View(annual_temp)
 # Let's look at how annual air temperature differs between El Nino years and 
   #  non-El Nino years for your lake. First, we'll subset the data into El Nino years
   #  and neutral (neither El Nino nor La Nina) years. 
-Neutral_years <- subset(annual_temp, Type == "Neutral") # Define Neutral years
-ElNino_years <- subset(annual_temp, Type == "ElNino") # Define El Nino years
+Neutral_years <- subset(annual_temp, Type == "Neutral") # Here we define Neutral years
+ElNino_years <- subset(annual_temp, Type == "ElNino") # Here we define El Nino years
 
 # Visualize your lake's patterns in air temperature over time using the commands below:
 plot(AirTemp_Mean_C ~ Year, data = annual_temp, pch = 16, col = 'gray70')
@@ -192,10 +192,10 @@ points(AirTemp_Mean_C ~ Year, data = ElNino_years, pch = 16, col = 'red')
 points(AirTemp_Mean_C ~ Year, data = Neutral_years, pch = 16, col = 'black')
 legend("topleft",c("All Years", "El Nino", "Neutral"), pch=16, col=c("gray70", "red", "black")) 
 # Now, we need to estimate how much warmer or colder a typical El Nino year is 
-  #  compared to a neutral year. 
+  #  compared to a typical neutral year. 
 
-# We'll do that by calculating the slope of the line between temperature and year
-  # separately for both neutral years and El Nino years
+# We'll do that by using linear regressions between temperature and year that are fit
+  # separately for neutral years and El Nino years
 
 # First, we estimate the slope and intercept of a line fit through the Neutral
   #  data points, using a simple linear model
@@ -203,40 +203,39 @@ mod_Neutral <- lm(AirTemp_Mean_C ~ Year, data = Neutral_years)
 slope_Neutral = summary(mod_Neutral)$coeff[2] # Save the model slope
 int_Neutral = summary(mod_Neutral)$coeff[1] # Save the model intercept
 
-# As before, we plug in the slope and intercept to estimate the air temperature in 
-  #  2013 (the year of our model), which was a neutral year 
-Neutral_2013 <- (slope_Neutral * 2013) + int_Neutral
+# To estimate the air temperature in 2013 (the year of our model, which was a neutral year), 
+  # we use the equation for a straight line (y = m*x + b), where x = 2013, 
+  #  m is the slope_Neutral, and b is the int_Neutral. We're solving for y!
+Neutral_2013 = (slope_Neutral * 2013) + int_Neutral # Notice this form is y = (m*x) + b
 print(Neutral_2013) # Run this line to have R print out the value you just calculated
 
 # Next, we estimate the slope and intercept of a line fit through the El Nino
-  #  data points, using a simple linear model
+  #  data points, also using a simple linear model
 mod_ElNino <- lm(AirTemp_Mean_C ~ Year, data = ElNino_years) 
 slope_ElNino = summary(mod_ElNino)$coeff[2] # Save the model slope
 int_ElNino = summary(mod_ElNino)$coeff[1] # Save the model intercept
 
-# We plug in the slope and intercept to estimate what the air temperature 
-  # would likely be if 2013 (the year of our model) was a typical El Nino year
-  # (i.e., "typical" being based on the overall linear regression)
+# Now, we plug in the slope and intercept from the El Nino regression line to 
+  #  estimate what the air temperature would likely have been if 2013 (the year of our model) 
+  #  was a typical El Nino year ("typical" meaning  that it fell on the El Nino
+  #  regression line we just fit)
 ElNino_2013 <- (slope_ElNino * 2013) + int_ElNino
 print(ElNino_2013) # Run this line to have R print out the value you just calculated
 
-# Now that we have calculated the means for each category, we can add a line 
-  #  representing each to our plot: 
+# Now, use the commands below to add the Neutral and El Nino regression lines to your plot: 
 abline(a = int_Neutral, b = slope_Neutral, col = 'black', lty=2)
 abline(a = int_ElNino, b = slope_ElNino, col= 'red', lty=2)
 
-# Next, we calculate the estimated El Nino offset as the difference between 
-  #  air temperatures in typical El Nino years vs. other years
-typicalOffset_degrees <- ElNino_2013 - Neutral_2013 # Save the offset as the "offset" object
-print(typicalOffset_degrees) # Run this line to have R print out what your temperature offset is
+# Next, we will calculate the estimated El Nino offset as the difference between 
+  #  the "neutral" and "typical El Nino" 2013 air temperatures
+typicalOffset_degrees <- ElNino_2013 - Neutral_2013 # This line estimates the typical El Nino offset
+print(typicalOffset_degrees) # Run this line to have R print out your temperature offset
 
 # Now, we need to create a new meteorological driver file for GLM that has air
-  #  temperatures adjusted to reflect our lake's estimated temperature difference
-  #  for a typical El Nino year.
+  #  temperatures adjusted to reflect our lake's estimated offset for a typical El Nino year
 
-# We can do that all in R (no Excel needed!!) 
-  # First, we read in the original meteorological driver data for GLM using the 
-  #  following commands: 
+# We can do that all in R (no Excel needed, whoo!!). First, we read in the original 
+  #  meteorological driver data for GLM using the following commands: 
 baseline_met <- paste0(sim_folder,"/met_hourly.csv")
 met_data <- read.csv(baseline_met)
 
@@ -244,11 +243,12 @@ met_data <- read.csv(baseline_met)
 View(met_data)
 
 # Next, We create a new meteorological driver data file that has the modified 
-  #  AirTemp that reflects our typical El Nino scenario. This step is complicated in Excel, 
-  #  but one simple line of code in R!! 
+  #  AirTemp that reflects our typical El Nino offset. 
+  #  This step is complicated in Excel, but one simple line of code in R!! 
 Typical_ElNino_met <- mutate(met_data, AirTemp = AirTemp + (typicalOffset_degrees))
 
-# Finally, we'll write our new file to a .csv that we can use to drive GLM:
+# Finally, we write our new file to a .csv (named met_hourly_scenario2.csv) that 
+  #  we will use to drive GLM for our "typical" El Nino scenario:
 write.csv(Typical_ElNino_met, paste0(sim_folder, "/met_hourly_scenario2.csv"), 
           row.names=FALSE, quote=FALSE)
 
@@ -262,50 +262,52 @@ write.csv(Typical_ElNino_met, paste0(sim_folder, "/met_hourly_scenario2.csv"),
 
 ##!!!!!! Save your modified glm2.nml file.
 
-# Once you have edited the nml file name, you can always check to make sure that 
-  #  it is correct with the command:
+# Once you have edited the nml file name, you should check to make sure that 
+  #  it is correct with the following command:
 nml <- read_nml(nml_file)  # Read in your nml file from your new directory
 get_nml_value(nml, 'meteo_fl') 
-##!! The printout here should list your NEW meteorological file for your El Nino 
+##!! The printout here should list your NEW meteorological file name for your El Nino 
   #  scenario. If it doesn't, make sure you pressed the Save icon (the floppy disk) 
   #  after you changed your glm2.nml file.
 
 # You can now run the model for your first teleconnections scenario using the 
   # new edited nml file using the commands below. Exciting!
 
-run_glm(sim_folder, verbose=TRUE) # Run your GLM model for your El Nino scenario. 
+run_glm(sim_folder, verbose=TRUE) # Run your GLM model for your "typical" El Nino scenario 
 
 # Again, we need to tell R where the output.nc file is so that the glmtools package 
   # can plot and analyze the model output. We tell R where to find the output file 
-  # using the line below:
+  # using the command below:
 Typical_ElNino <- file.path(sim_folder, 'output.nc') # This defines the output.nc file 
-  #  as being within the sim_folder. Note that we've called this output "ElNino" 
-  #  since it is the output from our El Nino teleconnections simulation.
+  #  as being within the sim_folder. Note that we've called this output "Typical_ElNino" 
+  #  since it is the output from our "typical" El Nino teleconnections simulation.
 
-# As before, we want to save the model output of the daily surface lake temperature 
-  # and ice cover during our El Nino teleconnections simulation, to compare to 
-  # our baseline scenario. 
+# As before, we want to save the model output of the daily water temperatures from the 
+  #  surface and hypolimnion, and the ice cover during our El Nino teleconnections 
+  #  simulation, to compare to our baseline scenario. 
 
-#  Use this command to extract surface and bottom water temperatures:
+#  Use this command to extract the surface and bottom water temperatures:
 scenario2_temp <- get_temp(file= Typical_ElNino, reference= 'surface', z_out= c(0, mean(lakeDepth$surface_height)))
 
 # The next two commands attach the water temperatures from the "typical" El Nino 
-  #  simulation to the same file that contains your baseline scenario temperatures. 
+  #  simulation to the lakeTemp_output file that contains the water temperatures 
+  #  from your baseline scenario: 
 lakeTemp_output["Typical_ElNino_Surface_Temp"] <- scenario2_temp[2]
 lakeTemp_output["Typical_ElNino_Bottom_Temp"]  <- scenario2_temp[3] 
 
-# Extract ice: 
+# Extract ice thickness data from the typical El Nino scenario: 
 scenario2_ice <- get_var(baseline, "hice") # Extract ice cover data
 ice["Typical"] <- scenario2_ice[2]  # Rename the ice column 
 
-# You can now compare your El Nino scenario to your baseline for both lake 
-  # temperatures and ice cover- well done!! 
-
-# Plot the water temperature heatmap for the El Nino scenario using the commands 
-# you learned above. 
+# Now we'll plot the water temperature heatmap for the El Nino scenario using the 
+  #  commands you learned above: 
 
 plot_temp(file=Typical_ElNino, fig_path=FALSE) # Create a heatmap of water temperature. 
   # How does this compare to your baseline?
+
+# To plot surface ice during your model year, run this command:
+plot(x = ice$DateTime, y = ice$Typical, type = 'l',  xlab = "Date", ylab = "Ice thickness (m)")
+
 
 # Note that it might be difficult to see subtle changes between scenarios using these
   # figures. In Activity C, we will make different plots that make it easier to see 
@@ -315,6 +317,7 @@ plot_temp(file=Typical_ElNino, fig_path=FALSE) # Create a heatmap of water tempe
   # compare the water temperatures between your baseline and typical El Nino scenario.
   # They'll likely be similar, but if they're exactly the same, something might have 
   # gone wrong in setting up your El Nino scneario (likely with changing the glm2.nml file!)
+View(lakeTemp_output)
 
 ########## ACTIVITY B - OBJECTIVE 4 ############################################
 # We just simulated a typical El Nino, but now we want to see how the lake 
