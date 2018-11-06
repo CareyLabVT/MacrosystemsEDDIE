@@ -112,13 +112,13 @@ print(var_names) # This will print a list of variables that the model simulates.
   #  could be affected by El Nino teleconnections. To estimate the hypolimnion depth, we use 
   #  the following command to extract the lake depth (meters) from the model output. 
 lakeDepth <- get_surface_height(baseline)
-mean(lakeDepth$surface_height) # Print the average depth of your lake
+min(lakeDepth$surface_height) # Print the minimum depth of your lake during the model run
 
 # We want to save the model output of the lake temperature from our baseline simulation, 
   #  because we'll be comparing these temperautres to our teleconnection scenarios later. 
   #  To do this, we use the following  command:
 lakeTemp_output <- get_temp(file=baseline, reference='surface', 
-                        z_out=c(0, mean(lakeDepth$surface_height))) # This command 
+                        z_out=c(0, min(lakeDepth$surface_height))) # This command 
   #  extracts the water temperature at the surface and hypolimnion for each day 
   #  and saves the temperatures as "lakeTemp_output"
 
@@ -282,12 +282,18 @@ Typical_ElNino <- file.path(sim_folder, 'output.nc') # This defines the output.n
   #  as being within the sim_folder. Note that we've called this output "Typical_ElNino" 
   #  since it is the output from our "typical" El Nino teleconnections simulation.
 
+##!! To check that your El Nino scenario ran correctly, run the command below, and
+  # compare the water temperatures between your baseline and typical El Nino scenario.
+  # They'll likely be similar, but if they're exactly the same, something might have 
+  # gone wrong in setting up your El Nino scneario (likely with changing the glm2.nml file!)
+View(lakeTemp_output)
+
 # As before, we want to save the model output of the daily water temperatures from the 
-  #  surface and hypolimnion, and the ice cover during our El Nino teleconnections 
+  #  surface and hypolimnion, and the daily ice cover during our typical El Nino 
   #  simulation, to compare to our baseline scenario. 
 
 #  Use this command to extract the surface and bottom water temperatures:
-scenario2_temp <- get_temp(file= Typical_ElNino, reference= 'surface', z_out= c(0, mean(lakeDepth$surface_height)))
+scenario2_temp <- get_temp(file= Typical_ElNino, reference= 'surface', z_out= c(0, min(lakeDepth$surface_height)))
 
 # The next two commands attach the water temperatures from the "typical" El Nino 
   #  simulation to the lakeTemp_output file that contains the water temperatures 
@@ -308,19 +314,12 @@ plot_temp(file=Typical_ElNino, fig_path=FALSE) # Create a heatmap of water tempe
 # To plot surface ice during your model year, run this command:
 plot(x = ice$DateTime, y = ice$Typical, type = 'l',  xlab = "Date", ylab = "Ice thickness (m)")
 
-
 # Note that it might be difficult to see subtle changes between scenarios using these
   # figures. In Activity C, we will make different plots that make it easier to see 
   # differences between scenarios.
 
-##!! To check that your El Nino scenario ran correctly, run the command below, and
-  # compare the water temperatures between your baseline and typical El Nino scenario.
-  # They'll likely be similar, but if they're exactly the same, something might have 
-  # gone wrong in setting up your El Nino scneario (likely with changing the glm2.nml file!)
-View(lakeTemp_output)
-
 ########## ACTIVITY B - OBJECTIVE 4 ############################################
-# We just simulated a typical El Nino, but now we want to see how the lake 
+# We just simulated a "typical" El Nino, but now we want to see how the lake 
 # responds to a larger perturbation
 
 # We'll do this by creating our El Nino offset based on the largest offset our 
@@ -354,7 +353,8 @@ offsets <- offsets %>%
 
 View(offsets)
 
-# Here, we can use R to tell us which year had the maximum offset
+# Here, we can use R to tell us which year had the largest offset (i.e., which year 
+  #  was the strongest El Nino year)
 maxOffset_year <- offsets$Year[which.max(offsets$Offset)]
 maxOffset_year
 
@@ -362,65 +362,70 @@ maxOffset_year
 maxOffset_degrees <- max(offsets$Offset)  
 maxOffset_degrees
 
-# Now that we know the offset for our final scenario, we need to modify the meteorological
-  # driver file once more. We'll repeat the same steps we used when creating our first 
-  # El Nino scenario.
+# Now that we know the offset for our "strong" El Nino scenario, we need to modify 
+  #  the meteorological driver file once more. We'll repeat the same steps we used 
+  #  when creating our "typical" El Nino scenario.
 
 # Read in the baseline met_hourly data once more:
 baseline_met <- paste0(sim_folder,"/met_hourly.csv")
 met_data <- read.csv(baseline_met)
 
-# Next, We create a new meteorological driver data file that has the modified 
-#  AirTemp that reflects our maximum El Nino scenario:
+# Next, we create a new meteorological driver data file that has the modified 
+  #  AirTemp that reflects our "strong" El Nino scenario:
 Strong_ElNino_met <- mutate(met_data, AirTemp = AirTemp + (maxOffset_degrees))
 
-# Then, we write our new file to a .csv that we can use to drive GLM:
+# Then, we write our new file to a .csv so we can use it to drive GLM:
 write.csv(Strong_ElNino_met, paste0(sim_folder, "/met_hourly_scenario3.csv"), 
           row.names=FALSE, quote=FALSE)
 
 ##!! Once again, you need to edit the glm2.nml file to change the name of the input 
-# meteorological file so that it reads in the new, edited file for your 
-# teleconnections scenario, not the default "met_hourly.csv" or the file from our
-# typical El Nino scenario "met_hourly_scenario2.csv".  
+  # meteorological file so that it reads in the new, edited file for your "strong"
+  # El Nino scenario, not the default "met_hourly.csv" or the file from our
+  # "typical" El Nino scenario "met_hourly_scenario2.csv".  
 
 ##!! Open the nml file by clicking 'glm2.nml' in the Files tab of RStudio, then scroll 
-# down to the meteorology section, and change the 'meteo_fl' entry to the new 
-# met file name ('met_hourly_scenario3.csv'). Save your modified glm2.nml file.
+  # down to the meteorology section, and change the 'meteo_fl' entry to the new 
+  # met file name ('met_hourly_scenario3.csv'). Save your modified glm2.nml file.
 
 # Once you have edited the nml file name, check to make sure that it is correct 
-# with the commands:
-nml <- read_nml(nml_file)  # Read in your nml file from your new directory
+  # with the commands:
+nml <- read_nml(nml_file)  # Read in your updated nml file 
 get_nml_value(nml, 'meteo_fl') # The printout here should list your NEW meteorological 
-#  file for your El Nino scenario. If it doesn't, make sure you pressed the Save 
-#  icon (the floppy disk) after you changed your glm2.nml file.
+  #  file for your "strong" El Nino scenario. If it doesn't, make sure you pressed 
+  #  the Save icon (the floppy disk) after you changed your glm2.nml file.
 
-# You can now run the model for your next teleconnections scenario using the 
-# new edited nml file using the commands below. Exciting!
+# You can now run the model for your "strong" El Nino scenario using the updated nml 
+  #  file using the commands below. Exciting!
 
-run_glm(sim_folder, verbose=TRUE) # Run your GLM model for your El Nino scenario. 
+run_glm(sim_folder, verbose=TRUE) # Run your GLM model for your "strong" El Nino scenario 
 
-# Once more, we need to tell R where the output.nc file is. 
-# We tell R where to find the output file using the line below:
-Strong_ElNino <- file.path(sim_folder, 'output.nc') # This defines the output.nc file 
-#  as being within the sim_folder.
+# Once more, we need to tell R where the output.nc file is, using the command below:
+Strong_ElNino <- file.path(sim_folder, 'output.nc') 
 
-# As before, we want to save the model output of the daily surface lake temperature 
-# and ice cover during our "strong" El Nino teleconnections simulation, to compare to 
-# our baseline scenario and "typical" El Nino scenario. 
+# As before, we want to save the model output of the daily surface  and hypolimnion 
+  # lake temperature, and daily ice cover during our "strong" El Nino  scenario, 
+  # so we can compare to our baseline scenario and "typical" El Nino scenario. 
 
 #  Extract surface water temperature:
-scenario3_temp <- get_temp(file= Strong_ElNino, reference= 'surface', z_out= c(0, mean(lakeDepth$surface_height)))
+scenario3_temp <- get_temp(file= Strong_ElNino, reference= 'surface', z_out= c(0, min(lakeDepth$surface_height)))
 lakeTemp_output["Strong_ElNino_Surface_Temp"] <- scenario3_temp[2] 
 lakeTemp_output["Strong_ElNino_Bottom_Temp"]  <- scenario2_temp[3] # Here we attach the water 
-# temperatures from the strong El Nino simulation to you water temperature file 
+  # temperatures from the "strong" El Nino simulation to your existing water temperature file 
 
 # Extract ice: 
 scenario3_ice <- get_var(baseline, "hice") # Extract ice cover data
 ice["Strong"] <- scenario3_ice[2]  # Rename the ice column 
 
-# Plot the heatmap of water temperatures for your maximum El Nino scenario. 
-# How does it compare to the baseline? To your typical El Nino?
+# Plot the heatmap of water temperatures for your "strong" El Nino scenario. 
+  # How does it compare to the baseline? To your "typical" El Nino heatmap?
 plot_temp(file=Strong_ElNino, fig_path=FALSE)
+
+# Next, plot surface ice during your model year, run this command:
+plot(x = ice$DateTime, y = ice$Strong, type = 'l',  xlab = "Date", ylab = "Ice thickness (m)")
+
+# Note that as before, it might be difficult to see subtle changes between scenarios 
+  #  using these figures. In Activity C below, we will make different plots that 
+  # make it easier to visualize these differences
 
 ########## ACTIVITY C - OBJECTIVE 5 ############################################
 # You've run three different scenarios for your lake. That's awesome! 
