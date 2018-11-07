@@ -62,8 +62,8 @@ LakeName <- 'Name' ##!! Change 'Name' to match the lake you and your partner sel
   # then open the Lakes folder. Right click on the folder that matches your model lake, 
   # then select Properties (Windows) or Get Info (Mac). Look under Location (Windows) 
   # or Where (Mac) to find your folder path (examples below):
-  # Windows: C:/Users/KJF/Desktop/cross_scale_interactions
-  # Mac: Macintosh HDD -> Users -> careylab -> Desktop
+  # Windows: C:/Users/KJF/Desktop/teleconnections/Lakes/LakeName
+  # Mac: Macintosh HDD -> Users -> careylab -> Desktop -> teleconnections -> Lakes -> LakeName
 
 sim_folder <- '/Users/cayelan/Desktop/teleconnections/Lakes/LakeName' ##!! Edit this line 
   #  to define the sim_folder location for your model lake. You will need to change 
