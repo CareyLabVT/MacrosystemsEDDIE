@@ -1,7 +1,7 @@
 # install.packages('pacman')
-pacman::p_load(maps, ggmap, mapproj, tidyverse)
+pacman::p_load(maps, tidyverse)
 
-sites <- read_csv('./UsersLatLong.csv') %>% filter(School != 'Wellesley')
+sites <- read_csv('./UsersLatLong.csv')
 
 # Ugly world slice to include Ireland ####
 par(mar = c(0,0,0,0),mgp=c(0,0,0))
