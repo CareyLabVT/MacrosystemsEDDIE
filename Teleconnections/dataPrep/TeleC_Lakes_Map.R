@@ -4,7 +4,8 @@
 pacman::p_load(maps, readxl, dplyr)
 
 data <- read_excel('./Teleconnections/Lake_Characteristics.xlsx') %>%
-  mutate(Offset = c(1.27, 2.81, 1.09, 1.91, 1.55, 3.79, 1.27, 6.33)) 
+  mutate(Offset = c(1.27, 2.81, 1.09, 1.91, 1.55, 3.79, 1.27, 6.33)) %>%
+  mutate(Year = c(1982, 1998, 1991, 1998, 1998, 1987, 1982, 1993))
 
 # NEON + other lake sites on US map ####
 par(mar = c(0,0,0,0),mgp=c(0,0,0))
@@ -24,9 +25,15 @@ maps::map('usa', col='grey90',fill=T, border='grey50', wrap=T,lwd=0.3) # backgro
 maps::map('state', region=c('florida', 'new hampshire','wisconsin','north dakota', 'virginia'), 
           add = T, border='grey50',col='lightblue', fill=T, lwd=0.5) # States from conterminous US
 points(data$Longitude,data$Latitude,col='black', pch=16, cex=1,lwd=1)
-#text(data$Longitude, data$Latitude, data$Offset)
-text(data$Longitude, data$Latitude, data$`Lake Name`, cex=1, font=2,
-     pos=c(4,1,1,1,1,3,3,4,1))
+text(data$Longitude, data$Latitude, data$Offset, 
+cex=1, font=2, pos=c(4,1,1,1,1,3,3,4,1))
+
+#text(data$Longitude, data$Latitude, data$`Lake Name`, cex=1, font=2,
+#     pos=c(4,1,1,1,1,3,3,4,1))
+
+# Change in ice days text
+text(data$Longitude, data$Latitude, c('-0', '-6','-10','-11','-14','-3','-0','-25'), 
+     cex=1, font=2, pos=c(4,1,1,1,1,3,3,4,1))
 # pos values 1 = below, 2 = left, 3 = above, 4 = right
 
 # State-specific maps ####
