@@ -1,17 +1,13 @@
 #  Climate Change Effects on Lake Temperatures ####
 #  Macrosystems EDDIE Module 1, Version 1.		 
-#  http://www.macrosystemseddie.org/module1. 		
+#  http://module1.macrosystemseddie.org 		
 #  Some parts of this module were developed by Carey, C.C., S. Aditya, K. Subratie, 		
 #  and R. Figueiredo as part of the Project EDDIE module, "Modeling Climate 
 #  Change Effects on Lakes Using Distributed Computing Module" and were 
 #  subsequently revised by Carey, C.C. and K.J. Farrell on 21 July 2017 as part 
 #  of the Macrosystems EDDIE project. 
 
-#  R code for students to work through the module activities A, B, and C.		  
-#  This module consists of 8 objectives. Activity A consists of Objectives 1-4,		  
-#  Activity B consists of Objective 5-6, and Activity C consists of Objective 7-8.		 
-
-# This script was last modified by KJF on 14 November 2017.
+# R code for students to work through the module activities A, B, and C.	 
 
 ########## ACTIVITY A - OBJECTIVE 1 ############################################
 # Download R packages and GLM files successfully onto your computer.
@@ -30,7 +26,8 @@ install.packages('devtools') # this is another R package used to run modeling
 #  available (for R version x.x.x)", be sure to check that your R software is up 
 #  to date to the most recent version.
 
-library(devtools) # load the package
+library(sp) # load the packages you just downloaded
+library(devtools) 
 
 devtools::install_github("CareyLabVT/GLMr", force = TRUE) #download the GLMr 
 #  software. This may take a few minutes. If downloaded successfully, you should 
@@ -53,30 +50,33 @@ glm_version() # See what version of GLM you are running- should be at least v.2.
 ########## ACTIVITY A - OBJECTIVE 2 ############################################
 # Now, we will explore the files that you downloaded with GLM 
 
-# NOTE! Throughout the rest of the module, you may need to modify some of the 
-#  lines of code written below to run on your computer. If you do need to modify 
-#  a line of code, I marked that particular line with ##!! symbols at the 
-#  beginning of that line's annotation.  If you do not see those symbols, then 
-#  you do not need to edit that line of code (you can run it as normal).
+# NOTE! Throughout the rest of the module, you will need to modify some of the 
+#  lines of code to run on your computer. If you need to modify a line, I put the 
+#  symbols ##!! at the beginning of that line's annotation.  If you do not see those 
+#  symbols, you do not need to edit that line of code and can run it as written.
 
-# When you downloaded this script, you unzipped the lake_climate_change folder 
-#  to your Desktop. We now need to tell R where these files are. We do that by...
+# When working in R, we set the sim_folder to tell R where your files, scripts, 
+  #  and model output are stored.  
+# To find your folder path, navigate to the 'lake_climate_change' folder on your Desktop,
+  # then open the Lakes folder. Right click on the folder that matches your model lake, 
+  # then select Properties (Windows) or Get Info (Mac). Look under Location (Windows) 
+  # or Where (Mac) to find your folder path (examples below):
+  # Windows: C:/Users/KJF/Desktop/lake_climate_change
+  # Mac: Users -> careylab -> Desktop -> lake_climate_change
 
 sim_folder <- '/Users/cayelan/Desktop/lake_climate_change' ##!! Edit this line 
-#  to define your sim_folder location. This should be replaced with the 
-#  path to the Desktop folder where you extracted your zipped files. Most likely, 
-#  you will need to change the part after Users/ to give the name of your computer 
-#  (e.g., my computer name is cayelan, but yours will be different!) Look in the 
-#  Files tab on RStudio to see your file path. 
+#  to define the sim_folder location for your model lake. You will need to change 
+#  the part after Users/ to give the name of your computer (e.g., my computer name 
+#  is cayelan, but yours will be different!)
 
-setwd(sim_folder) ## This line of code is used to reset your working directory
-#  to the sim_folder. The point of this step is to make sure that any new files 
-#  you create (e.g., figures of output) end up together in this folder.
+setwd(sim_folder) # This line of code resets your working directory to the sim_folder.   
+#  The point of this step is to make sure that any new files you create (e.g., 
+#  plots of model output) end up together in this folder.
 
 nml_file <- paste0(sim_folder,"/glm2.nml") # This step sets the nml_file for your 
 #  simulation to be in the new sim_folder location.
 
-nml <- read_nml(nml_file) # Read in your nml file from your new directory
+nml <- read_nml(nml_file) # Run this line to read in your nml file 
 
 print(nml) # This shows you what is in your nml file.  This is the 'master script' 
 #  of the GLM simulation; the nml file tells the GLM model all of the initial 
