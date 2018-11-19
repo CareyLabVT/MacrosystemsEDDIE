@@ -25,7 +25,8 @@ install.packages('devtools') # this is another R package used to run modeling
 #  available (for R version x.x.x)", be sure to check that your R software is up 
 #  to date to the most recent version.
 
-library(devtools) # load the devtools package
+library(sp) # load the packages you just downloaded
+library(devtools)
 
 devtools::install_github("CareyLabVT/GLMr", force = TRUE) # Download the GLMr 
 #  software. This may take a few minutes. If downloaded successfully, you should 
@@ -39,35 +40,32 @@ library(glmtools) # Load the two packages that you need to analyze GLM output
 #  successfully, you should read a lot of text that starts with: "This 
 #  information is preliminary or provisional..." 
 
-library(GLMr) # If this worked, GLMr should load without error messages. Hurray!
+library(GLMr) # If this worked, GLMr should load without error messages. Hooray!
 
 glm_version() # See what version of GLM you are running- should be v.2.x.x
 
 # CONGRATS! You've now succesfully loaded GLM onto your computer! 
+  # Now, we will explore the files that come with your downloaded GLM files 
 
-# Now, we will explore the files that come with your downloaded GLM files 
+# NOTE! Throughout the rest of the module, you will need to modify some of the 
+  #  lines of code to run on your computer. If you need to modify a line, I put the 
+  #  symbols ##!! at the beginning of that line's annotation.  If you do not see those 
+  #  symbols, you do not need to edit that line of code and can run it as written.
 
-# NOTE! Throughout the rest of the module, you may need to modify some of the 
-#  lines of code written below to run on your computer. If you do need to modify 
-#  a line of code, I marked that line with ##!! symbols at the beginning of that 
-#  line's annotation.  If you do not see those symbols, then you do not need to 
-#  edit that line of code (you can merely run it as normal).
+# When working in R, we set the sim_folder to tell R where your files, scripts, 
+  #  and model output are stored.  
+# To find your folder path, navigate to the 'cross_scale_interactions' folder on 
+  # your Desktop. Right click on the folder that matches your model lake (Mendota or Sunapee), 
+  # then select Properties (Windows) or Get Info (Mac). Look under Location (Windows) 
+  # or Where (Mac) to find your folder path (examples below):
+  # Windows: C:/Users/KJF/Desktop/cross_scale_interactions/LakeName
+  # Mac: Users -> careylab -> Desktop -> cross_scale_interactions -> LakeName
 
-# When you downloaded this script, you unzipped the module folder to your Desktop. 
-#  We now need to tell R where these files are. We do that by setting...
-
-ComputerName <- 'KJF' ##!! Change to match your computer name
-# When I right click on the 'cross_scale_interactions' folder on my Desktop and select
- # Properties (Windows) or Get Info (Mac), look under Location (Windows) or Where (Mac) 
- # and find your computer name after Users (example below):
- # Windows: C:/Users/KJF/Desktop/cross_scale_interactions --> computer name is KJF
- # Mac: Macintosh HDD -> Users -> careyalb -> Desktop --> computer name is careylab 
-
-LakeName <- 'Mendota' ##!! Change to match the lake you and your partner selected
-
-sim_folder <- paste('/Users/',ComputerName,'/Desktop/cross_scale_interactions/',LakeName, sep='')
-# This command defines your sim_folder path to the Desktop folder where you 
-# extracted your zipped files.
+sim_folder <- '/Users/cayelan/Desktop/cross_scale_interactions/LakeName' ##!! Edit this line 
+#  to define the sim_folder location for your model lake. You will need to change 
+#  the part after Users/ to give the name of your computer (e.g., my computer name 
+#  is cayelan, but yours will be different!) AND change the word LakeName to be 
+#  the name of your model lake (Mendota or Sunapee).
 
 setwd(sim_folder) ## This line of code is used to reset your working directory
 #  to the sim_folder. The point of this step is to make sure that any new files 
