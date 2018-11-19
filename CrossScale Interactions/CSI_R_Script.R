@@ -1,7 +1,7 @@
 # Cross-Scale Interactions Module ####
  # This module was initially developed by Carey, C.C. and K.J. Farrell. 13 Aug. 2017.
  # Macrosystems EDDIE: Cross-Scale Interactions. Macrosystems EDDIE Module 2, Version 1. 
- # www.MacrosystemsEDDIE.org/module2
+ # module2.macrosystemseddie.org
  # Module development was supported by NSF EF 1702506.
 
 # R code for students to work through the module activities A, B, and C.
