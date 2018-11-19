@@ -2,7 +2,7 @@
 # This module was developed by Farrell, K.J. and C.C. Carey. 18 May 2018.
  # Macrosystems EDDIE: Teleconnections. 
  # Macrosystems EDDIE Module 3, Version 1. 
- # https://serc.carleton.edu/eddie/macrosystems/module3
+ # http://module3.macrosystemseddie.org
  # Module development was supported by NSF EF 1702506.
 
 # R code for students to work through the module activities A, B, and C.
