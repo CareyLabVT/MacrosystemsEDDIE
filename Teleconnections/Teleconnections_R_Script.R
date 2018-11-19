@@ -282,12 +282,6 @@ Typical_ElNino <- file.path(sim_folder, 'output.nc') # This defines the output.n
   #  as being within the sim_folder. Note that we've called this output "Typical_ElNino" 
   #  since it is the output from our "typical" El Nino teleconnections simulation.
 
-##!! To check that your El Nino scenario ran correctly, run the command below, and
-  # compare the water temperatures between your baseline and typical El Nino scenario.
-  # They'll likely be similar, but if they're exactly the same, something might have 
-  # gone wrong in setting up your El Nino scneario (likely with changing the glm2.nml file!)
-View(lakeTemp_output)
-
 # As before, we want to save the model output of the daily water temperatures from the 
   #  surface and hypolimnion, and the daily ice cover during our typical El Nino 
   #  simulation, to compare to our baseline scenario. 
@@ -300,6 +294,12 @@ scenario2_temp <- get_temp(file= Typical_ElNino, reference= 'surface', z_out= c(
   #  from your baseline scenario: 
 lakeTemp_output["Typical_ElNino_Surface_Temp"] <- scenario2_temp[2]
 lakeTemp_output["Typical_ElNino_Bottom_Temp"]  <- scenario2_temp[3] 
+
+##!! To check that your El Nino scenario ran correctly, run the command below, and
+  # compare the water temperatures between your baseline and typical El Nino scenario.
+  # They'll likely be similar, but if they're exactly the same, something might have 
+  # gone wrong in setting up your El Nino scenario (likely with changing the glm2.nml file!)
+View(lakeTemp_output)
 
 # Extract ice thickness data from the typical El Nino scenario: 
 scenario2_ice <- get_var(baseline, "hice") # Extract ice cover data
