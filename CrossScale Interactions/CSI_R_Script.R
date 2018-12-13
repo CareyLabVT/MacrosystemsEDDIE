@@ -319,11 +319,11 @@ attach(chla_output)
 # The command below plots DateTime vs. Observed data in black: 
 plot(DateTime, Baseline_Chla, type="l", lwd=2, col="black", ylim=c(0, 100),
      ylab="Chlorophyll-a (ug/L)", xlab="Date")  
-lines(DateTime, Climate_Chla, lwd=2, col="firebrick") # add a red line of the climate change scenario
+lines(DateTime, Climate_Chla, lwd=2, col="darkorange") # add an orange line of the climate change scenario
 lines(DateTime, LandUse_Chla, lwd=2, col="deepskyblue") # add a blue line of the land use scenario
-lines(DateTime, Climate_LandUse_Chla, lwd=2, col="darkgreen") # add a green line of the climate + land use scenario
+lines(DateTime, Climate_LandUse_Chla, lwd=2, col="springgreen4") # add a green line of the climate + land use scenario
 legend("topleft",c("Baseline", "Climate Only", "Land Use Only", "Combined C + LU"),  # add a legend
-       lty=1, lwd=2, col=c("black","firebrick","deepskyblue", "darkgreen"))
+       lty=1, lwd=2, col=c("black","darkorange","deepskyblue", "springgreen4"))
 
 ##!! Note that the command ylim=c(0, 100) tells R what you want the minimum and 
   #  maximum values on the y-axis to be (here, we're plotting from 0 to 100 ug/L). 
