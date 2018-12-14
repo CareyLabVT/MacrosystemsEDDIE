@@ -421,9 +421,9 @@ list.files(MyExpRootDir) # Double-check that the necessary files are in your
 # From the line of code above, your file structure within your sim_folder MUST 
 #  include these files:	
 #  (your sim_folder from activity A)  /MyExpRoot/met_hourly.csv		
-#                                     /glm2.nml		
-#                                     /job_desc.json		
-#                                    /MyResults  (this folder is empty for now)		
+#                                     /MyExpRoot/glm2.nml		
+#                                     /MyExpRoot/job_desc.json		
+#                                     /MyResults  (this folder is empty for now)		
 		
 # In Objective 5 above, you designed a climate scenario for one lake and modified 
 #  the meteorological	input data and nml file manually. But what if you want to 
