@@ -217,7 +217,7 @@ legend("topleft",c("Observed", "Modeled"),lty=c(1,1), col=c("blue", "red"))
 
 #  To complete this activity, you will need to modify the input meterological 
 #  data and then run the model to examine the effects of your scenario on the 
-#  thermal structure of the lake.
+#  thermal structure of the lake. 
 
 # Here is an overview of the steps you will complete with your partner to 
 #  accomplish this:
@@ -238,6 +238,8 @@ legend("topleft",c("Observed", "Modeled"),lty=c(1,1), col=c("blue", "red"))
 #  so that we can see how the lake responded to your climate forcing.
 
 ## Detailed directions for modifying your met file: ##
+#  [Note: if your instructor has asked your to use one of the pre-made climate scenarios, 
+#  skip to line 294]
 
 # SOMETHING THAT IS REALLY REALLY IMPORTANT! 
 #  Opening up the met_hourly.csv file in Microsoft Excel will alter the date/time 
@@ -295,7 +297,8 @@ write.csv(metdata, "met_hourly_climate.csv", row.names=FALSE, quote=FALSE) ##!! 
     # clicking on the glm2.nml file in the Files tab of RStudio, or open the file
     # from the Desktop folder using a text editor (on Windows, try Notepad; 
     # on Mac, try TextEdit) scroll down to the meteorology section, and change 
-    # the 'meteo_fl' entry to the new met file name (e.g., 'met_hourly_SUMMERSTORMS.csv')
+    # the 'meteo_fl' entry to the new met file name (e.g., from 'met_hourly.csv' 
+    # to 'met_hourly_SUMMERSTORMS.csv')
 
     # Note to Mac users- double check to make sure that your quotes ' and ' around 
     # the file name are upright, and not slanted- sometimes the nml default alters 
@@ -322,8 +325,8 @@ climate <- file.path(sim_folder, 'output.nc') # This defines the output.nc file
 # As before, we want to save the model output of the daily surface temperature in 
 #  the lake during our climate change simulation, to compare to our baseline scenario 
 #  Extract surface temperature:
-`*tmp*` <- get_var(file=baseline, "temp", reference='surface', z_out=c(1))
-surf_temp["Climate_Temp"] <- `*tmp*`[2] # Here we attach the temperature data from 
+climate_temp <- get_var(file=baseline, "temp", reference='surface', z_out=c(1))
+surf_temp["Climate_Temp"] <- climate_temp[2] # Here we attach the temperature data from 
 #  your climate simulation to the same file that contains your baseline scenario 
 #  surface temepratures. You can now compare your climate scenario to your baseline- 
 #  well done! 
@@ -335,7 +338,7 @@ surf_temp["Climate_Temp"] <- `*tmp*`[2] # Here we attach the temperature data fr
 # You can plot the climate scenario output using the same commands you learned above: 
 plot_temp(file=climate, fig_path=FALSE) # Create a heatmap of temperature.
 
-plot_temp_compare(baseline, field_file) # Plot your climate change simulation model 
+plot_temp_compare(climate, field_file) # Plot your climate change simulation model 
 #  output against the observed data.
 
 # You can also plot how surface water temperature differed between the baseline
@@ -673,6 +676,5 @@ for (n in 1:101) {
 # Bravo, you are done!! 
 
 # We welcome feedback on this module and encourage you to provide comments, 
-#  questions, and suggestions. Please visit the SERC website 
-#  (https://serc.carleton.edu/eddie/macrosystems/module1.html) to submit feedback 
-#  to the module developers. 
+#  questions, and suggestions. Please visit the website (MacrosystemsEDDIE.org) 
+#  to submit feedback to the module developers. 
