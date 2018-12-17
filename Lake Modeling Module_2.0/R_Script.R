@@ -256,8 +256,7 @@ legend("topleft",c("Observed", "Modeled"),lty=c(1,1), col=c("blue", "red"))
     # NOTE ABOUT UNITS: In the met_hourly file, the units for rain are in meters 
     # per day. You will likely think about the amount of rain your change in the 
     # met_hourly file by millimeters per day instead-- to convert from mm/d to m/d, 
-    # simply multiply by 0.001. Other units are more intuitive-- open up the 
-    # Variable_Name_Metadata.csv file from the module folder for more details.
+    # simply multiply by 0.001.
 
     # NOTE ABOUT COLUMN NAMES: the order of the columns in the met file does not 
     # matter- but you can only have one of each variable and they must keep the 
