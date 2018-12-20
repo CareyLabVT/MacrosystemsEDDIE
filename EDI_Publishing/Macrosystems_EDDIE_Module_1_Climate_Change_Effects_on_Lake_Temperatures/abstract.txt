@@ -1,0 +1,7 @@
+﻿Climate change is modifying the thermal structure of lakes around the globe. Because it is difficult to predict how lakes will respond to the many different aspects of climate change (e.g., altered temperature, precipitation, wind, etc.), many researchers are using models to manipulate climate scenarios and simulate lake responses. Lake simulation models provide a powerful tool for exploring the sensitivity of lake thermal structure characteristics to weather.
+
+In this module, students will learn how to set up a lake model (General Lake Model; GLM) and "force" the model with climate scenarios of their own design to test hypotheses about how lakes may change in the future. Once students have mastered running one climate scenario for their lake, they will learn how to use distributed computing tools to scale up and run hundreds of different climate scenarios for their lakes.
+
+The overarching goal of this module is for students to explore new modeling and computing tools while learning fundamental concepts about how climate change will affect lakes. The A-B-C structure of this module makes it flexible and adaptable to a range of student levels and course structures.
+
+This dataset contains instructional materials and the files necessary to run the complete module. Readers are referred to the GLM science manual (Hipsey et al. 2014) for further details on model configuration. 

@@ -1,0 +1,10 @@
+givenName	middleInitial	surName	organizationName	electronicMailAddress	userId	role	projectTitle	fundingAgency	fundingNumber
+Cayelan	C.	Carey	Virginia Tech	Cayelan@vt.edu	0000-0001-8835-4476	creator			
+Cayelan	C.	Carey	Virginia Tech	Cayelan@vt.edu	0000-0001-8835-4476	contact			
+Cayelan	C.	Carey	Virginia Tech	Cayelan@vt.edu	0000-0001-8835-4476	PI	"A macrosystems science training program: developing undergraduates' simulation modeling, distributed computing, and collaborative skills"	National Science Foundation	EF 1702506
+Cayelan	C.	Carey	Virginia Tech	Cayelan@vt.edu	0000-0001-8835-4476	PI	The use of high-frequency data to engage students in quantitative reasoning and scientific discourse	National Science Foundation	TUES 1245707
+Cayelan	C.	Carey	Virginia Tech	Cayelan@vt.edu	0000-0001-8835-4476	PI	SAVI: PRAGMA - Enabling Scientific Expeditions and Infrastructure Experimentation for Pacific Rim Institutions and Researchers	National Science Foundation	ACI 1234983
+Saumitra		Aditya	University of Florida	saumitraaditya@acis.ufl.edu		creator			
+Kensworth		Subratie	University of Florida	kcratie@acis.ufl.edu		creator			
+Renato	J.	Figueiredo	University of Florida	renato@acis.ufl.edu	0000-0001-9841-6060	creator			
+Kaitlin	J.	Farrell	Virginia Tech	farrellk@vt.edu	0000-0002-4709-7749	creator			
