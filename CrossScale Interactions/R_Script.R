@@ -97,23 +97,23 @@ plot_meteo(nml_file)
 ########## ACTIVITY A - OBJECTIVE 2 ############################################
 # Now, the fun part- we get to run the model and look at output!
 
-run_glm(sim_folder, verbose=TRUE) # So simple and elegant... if this works, you 
-#  should see output that says "Simulation begins.." and then shows all the 
-#  time steps.  At the end, it should say "Run complete" if everything worked 
-#  ok. This may take a few minutes.
+run_glm(sim_folder, verbose=TRUE) 
+# So simple and elegant... if this works, you should see output that says 
+# "Simulation begins..". At the end, it will say "Run complete" if everything 
+# worked ok. This may take a few minutes.
 
 # We need to know where the output data from your simulation (the output.nc file) 
 #  is so that the glmtools package can plot and analyze the model output. We tell 
 #  R where to find the output file using the line below:
 
-baseline <- file.path(sim_folder, 'output.nc') # This says that the output.nc 
-#  file is in the sim_folder.  
+# This says that the output.nc file is in the sim_folder.  
+baseline <- file.path(sim_folder, 'output.nc') 
 
-plot_temp(file=baseline, fig_path=FALSE) # This plots your simulated water 
-#  temperatures in a heat map, where time is displayed on the x-axis, lake depth 
-#  is displayed on the y-axis, and the different colors represent different 
-#  temperatures. 
-
+# This plots your simulated water temperatures in a heat map, where time is 
+# displayed on the x-axis, lake depth is displayed on the y-axis, and the different 
+# colors represent different temperatures:
+plot_temp(file=baseline, fig_path=FALSE) 
+ 
 # To copy your plot (e.g., onto a PowerPoint slide), click "Export" within the 
 #  Plots tab. Then click "Copy to Clipboard", and click "Copy plot" in the preview 
 #  window. You can then paste your plot into Word, PowerPoint, etc. 
@@ -126,10 +126,10 @@ plot_temp(file=baseline, fig_path=FALSE) # This plots your simulated water
 
 # Note that if you want to save plots, you should copy and paste them as you go!
 
-# This pair of commands can be used to list the variables that were output as part 
-#  of your GLM run.
+# This pair of commands can be used to list the variables that were output as 
+# part of your GLM run:
 var_names <- sim_vars(baseline)
-print(var_names) # This will print a list of variables that the model simulates.
+print(var_names) 
 
 # We are particularly interested in the amount of total chlorophyll-a (chl-a), 
 #  because that is related to phytoplankton blooms. The variable name for chl-a 
@@ -137,8 +137,8 @@ print(var_names) # This will print a list of variables that the model simulates.
 #  (ug/L). Search through the list of variables to find PHY_TCHLA.
 
 # Use the code below to create a heatmap of chl-a in the lake over time. 
-plot_var(file = baseline, "PHY_TCHLA") # What do you notice about seasonal 
-#  patterns in chl-a? 
+plot_var(file = baseline, "PHY_TCHLA") 
+# What do you notice about seasonal patterns in chl-a? 
 
 # We also want to save the model output of the daily chlorophyll-a concentrations 
 #  in the lake during our baseline simulation, because we'll be comparing it to 
@@ -147,8 +147,8 @@ plot_var(file = baseline, "PHY_TCHLA") # What do you notice about seasonal
 
 # Save the chl-a from the surface only:
 chla_output <- get_var(file=baseline, "PHY_TCHLA", reference='surface', z_out=c(1)) 
-colnames(chla_output)[2] <- "Baseline_Chla" # Here we rename the chl-a column so we 
-#  remember it is from the Baseline scenario
+colnames(chla_output)[2] <- "Baseline_Chla" 
+# Here we rename the chl-a column so we remember it is from the Baseline scenario
 
 ########## ACTIVITY B - OBJECTIVE 3 ############################################
 # For Activity B, you will work with your partner to model your lake, plus another 
