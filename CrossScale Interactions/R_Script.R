@@ -166,32 +166,34 @@ colnames(chla_output)[2] <- "Baseline_Chla"
 #  SAVE your modified glm2.nml file.
 
 # Once you have edited the nml file name, read in the updated file with the command:
-nml <- read_nml(nml_file)  # Read in your nml file from your new directory
-get_nml_value(nml, 'meteo_fl') # The printout here should list your NEW meteorological 
-  # file for your climate scenario. If it doesn't, make sure you pressed the Save 
-  # icon (the floppy disk) after you changed your glm2.nml file.
+nml <- read_nml(nml_file)  
+get_nml_value(nml, 'meteo_fl') 
+# The printout should list your NEW meteorological file for your climate scenario. 
+# If it doesn't, make sure you pressed the Save icon (the floppy disk) after you 
+# changed your glm2.nml file.
 
 # You can now run the model for your climate change scenario using the new edited 
   # nml file using the commands below. Exciting!
 
-run_glm(sim_folder, verbose=TRUE) # Run your GLM model for your lake climate scenario. 
+# Run your GLM model for your lake climate scenario.
+run_glm(sim_folder, verbose=TRUE)  
 
 # Again, we need to tell R where the output.nc file is so that the glmtools package 
 #  can plot and analyze the model output. We tell R where to find the output file 
 #  using the line below:
-climate <- file.path(sim_folder, 'output.nc') # This defines the output.nc file 
-#  as being within the sim_folder. Note that we've called this output "climate" 
-#  since it is the output from our climate change simulation.
+climate <- file.path(sim_folder, 'output.nc') 
+# This defines the output.nc file as being within the sim_folder. Note that we've 
+# called this output "climate" since it is output from our climate change simulation.
 
 # As before, we want to save the model output of the daily chlorophyll-a 
 #  concentrations in the lake during our climate change simulation, to compare to 
 #  our baseline and land use scenarios later. 
 #  Extract surface chl-a:
 climate_chla <- get_var(file=climate, "PHY_TCHLA", reference='surface', z_out=c(1)) 
-chla_output["Climate_Chla"] <- climate_chla[2] # Here we attach the chl-a data from your 
-#  climate simulation to the same file that contains your baseline scenario chl-a 
-#  concentrations. You can now compare your climate scenario to your baseline- 
-#  well done!
+chla_output["Climate_Chla"] <- climate_chla[2] 
+# Here we attach the chl-a data from your climate simulation to the same file that 
+# contains your baseline scenario chl-a concentrations. You can now compare your 
+# climate scenario to your baseline- well done!
 
 ########## ACTIVITY B - OBJECTIVE 4 ############################################
 # Plot the output using the commands you learned above. 
