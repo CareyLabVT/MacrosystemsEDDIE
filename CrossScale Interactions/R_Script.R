@@ -1,6 +1,6 @@
 # Cross-Scale Interactions Module ####
- # This module was initially developed by Carey, C.C. and K.J. Farrell. 13 Aug. 2017.
- # Macrosystems EDDIE: Cross-Scale Interactions. Macrosystems EDDIE Module 2, Version 1. 
+ # This module was initially developed by Carey, C.C. & K.J. Farrell. 13-Aug-2017
+ # Macrosystems EDDIE: Cross-Scale Interactions. Macrosystems EDDIE Module 2, V2. 
  # www.MacrosystemsEDDIE.org/module2
  # Module development was supported by NSF EF 1702506.
 
@@ -11,7 +11,8 @@
 ########## ACTIVITY A - OBJECTIVE 1 ############################################
 # Download R packages and GLM files onto your computer.
 
-install.packages('sp') # NOTE: depending on your computer, you may get output 
+install.packages('sp') 
+# NOTE: depending on your computer, you may get output 
 #  that says, "There is a binary version available. Do you want to install from 
 #  sources that need compilation? y/n" If this pops up, type 'y' (without the 
 #  quotes) and hit enter. You may now be prompted to download the command line 
@@ -20,71 +21,78 @@ install.packages('sp') # NOTE: depending on your computer, you may get output
 #  install.packages(sp) once the install of the tools is finished. This should 
 #  now successfully load- when it's done, it should say 'DONE(sp)' if it worked.
 
-install.packages('devtools') # this is another R package used to run modeling 
-#  software. If you get an error message that says, "package ‘devtools’ is not 
-#  available (for R version x.x.x)", be sure to check that your R software is up 
-#  to date to the most recent version.
+install.packages('devtools') 
+# This is another R package used to run modeling software. If you get an error 
+# message that says, "package ‘devtools’ is not available (for R version x.x.x)", 
+# be sure to check that you have the newest version of R software
 
-library(sp) # load the packages you just downloaded
+# Load the packages you just downloaded
+library(sp) 
 library(devtools)
 
-devtools::install_github("CareyLabVT/GLMr", force = TRUE) # Download the GLMr 
-#  software. This may take a few minutes. If downloaded successfully, you should 
-#  see "DONE (GLMr)" at the end of the output.
+# Download the GLMr software. This may take a few minutes.
+devtools::install_github("CareyLabVT/GLMr") 
+# If downloaded successfully, you willsee "DONE (GLMr)" at the end of the output
 
-devtools::install_github("CareyLabVT/glmtools", force = TRUE) # This step 
-# downloads the R packages that allow you to work with GLM in R. 
+devtools::install_github("CareyLabVT/glmtools") 
+# This step downloads the R packages that allow you to work with GLM in R 
 
-library(glmtools) # Load the two packages that you need to analyze GLM output
+# Load the two packages that you need to analyze GLM output
+library(glmtools) 
 #  NOTE: you may get lots of output messages in red at this step- if this worked 
 #  successfully, you should read a lot of text that starts with: "This 
 #  information is preliminary or provisional..." 
 
-library(GLMr) # If this worked, GLMr should load without error messages. Hooray!
+library(GLMr) 
+# If this worked, GLMr should load without error messages. Hooray!
 
-glm_version() # See what version of GLM you are running- should be v.2.x.x
+# See what version of GLM you are running- should be v.2.2.x
+glm_version() 
 
 # CONGRATS! You've now succesfully loaded GLM onto your computer! 
   # Now, we will explore the files that come with your downloaded GLM files 
 
 # NOTE! Throughout the rest of the module, you will need to modify some of the 
-  #  lines of code to run on your computer. If you need to modify a line, I put the 
-  #  symbols ##!! at the beginning of that line's annotation.  If you do not see those 
-  #  symbols, you do not need to edit that line of code and can run it as written.
+ # lines of code to run on your computer. If you need to modify a line, I put the 
+ # symbols ##!! at the beginning of that line's annotation.  If you do not see those 
+ # symbols, you do not need to edit that line of code and can run it as written.
 
 # When working in R, we set the sim_folder to tell R where your files, scripts, 
   #  and model output are stored.  
 # To find your folder path, navigate to the 'cross_scale_interactions' folder on 
-  # your Desktop. Right click on the folder that matches your model lake (Mendota or Sunapee), 
-  # then select Properties (Windows) or Get Info (Mac). Look under Location (Windows) 
-  # or Where (Mac) to find your folder path (examples below):
+  # your Desktop. Right click on the folder that matches your model lake 
+  # (Mendota or Sunapee), then select Properties (Windows) or Get Info (Mac). 
+  # Look under Location (Windows) or Where (Mac) to find your folder path (e.g.,):
   # Windows: C:/Users/KJF/Desktop/cross_scale_interactions/LakeName
   # Mac: Users -> careylab -> Desktop -> cross_scale_interactions -> LakeName
 
-sim_folder <- '/Users/cayelan/Desktop/cross_scale_interactions/LakeName' ##!! Edit this line 
-#  to define the sim_folder location for your model lake. You will need to change 
-#  the part after Users/ to give the name of your computer (e.g., my computer name 
-#  is cayelan, but yours will be different!) AND change the word LakeName to be 
-#  the name of your model lake (Mendota or Sunapee).
+##!! Edit this line to define the sim_folder location for your model lake. 
+sim_folder <- '/Users/cayelan/Desktop/cross_scale_interactions/LakeName' 
+# You will need to change the part after Users/ to give the name of your computer 
+# (e.g., my computer name is cayelan, but yours will be different!) AND change 
+# the word LakeName to be the name of your model lake (Mendota or Sunapee).
 
-setwd(sim_folder) ## This line of code is used to reset your working directory
-#  to the sim_folder. The point of this step is to make sure that any new files 
-#  you create (e.g., figures of output) end up together in this folder.
+## This line of code is used to reset your working directory to the sim_folder.
+setwd(sim_folder)  
+# The point of this step is to make sure that any new files  you create (e.g., 
+# figures of output) end up together in this folder.
 
-nml_file <- paste0(sim_folder,"/glm2.nml") # This step sets the nml_file for your 
-#  simulation to be in the new sim_folder location.
+nml_file <- paste0(sim_folder,"/glm2.nml") 
+# This step sets the nml_file for your simulation to be in the sim_folder location.
 
-nml <- read_nml(nml_file) # Read in your nml file from your new directory
+# Read in your nml file from your new directory
+nml <- read_nml(nml_file) 
 
-print(nml) # This shows you what is in your nml file.  This is the 'master script' 
+print(nml) 
+# This shows you what is in your nml file.  This is the 'master script' 
 #  of the GLM simulation; the nml file tells the GLM model all of the initial 
 #  conditions about your lake, how you are defining parameters, and more - this 
 #  is a really important file! There should be multiple sections, including 
 #  glm_setup, morphometry, meteorology, etc.
 
-plot_meteo(nml_file) # This command plots the meterological input data for the 
-#  simulation: short wave & long wave radiation, air temp, relative humidity, 
-#  etc. for the duration of the simulation. 
+plot_meteo(nml_file) 
+# This command plots the meterological input data for the simulation: short wave 
+# & long wave radiation, air temp, relative humidity, etc. 
  
 ########## ACTIVITY A - OBJECTIVE 2 ############################################
 # Now, the fun part- we get to run the model and look at output!
