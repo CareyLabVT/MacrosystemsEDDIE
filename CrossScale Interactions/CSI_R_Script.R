@@ -11,100 +11,110 @@
 ########## ACTIVITY A - OBJECTIVE 1 ############################################
 # Download R packages and GLM files onto your computer.
 
-install.packages('sp') # NOTE: depending on your computer, you may get output 
-  #  that says, "There is a binary version available. Do you want to install from 
-  #  sources that need compilation? y/n" If this pops up, type 'y' (without the 
-  #  quotes) and hit enter. You may now be prompted to download the command line 
-  #  developer tools in a pop-up window. Command line developer tools is a program 
-  #  used to run modeling software. Click Install and then re-run the 
-  #  install.packages(sp) once the install of the tools is finished. This should 
+install.packages('sp') 
+# NOTE: depending on your computer, you may get output  that says, "There is a 
+  #  binary version available. Do you want to install from sources that need 
+  #  compilation? y/n" If this pops up, type 'y' (without the quotes) and hit enter. 
+  #  You may now be prompted to download the command line developer tools in a 
+  #  pop-up window. Command line developer tools is a program used to run modeling 
+  #  software. Click Install and then re-run install.packages(sp). This should 
   #  now successfully load- when it's done, it should say 'DONE(sp)' if it worked.
 
-install.packages('devtools') # this is another R package used to run modeling 
-  #  software. If you get an error message that says, "package ‘devtools’ is not 
-  #  available (for R version x.x.x)", be sure to check that your R software is up 
-  #  to date to the most recent version.
+install.packages('devtools') 
+# This is another R package used to run modeling software. If you get an error 
+  #  message that says, "package ‘devtools’ is not available (for R version x.x.x)", 
+  #  be sure to check that you are running the latest version of R
 
-library(sp) # load the packages you just downloaded
+# Load the packages you just downloaded
+library(sp) 
 library(devtools)
 
-devtools::install_github("CareyLabVT/GLMr", force = TRUE) # Download the GLMr 
-  #  software. This may take a few minutes. If downloaded successfully, you should 
-  #  see "DONE (GLMr)" at the end of the output.
+# Download the GLMr package. This may take a few minutes. 
+devtools::install_github("CareyLabVT/GLMr") 
+# If successful you should  see "DONE (GLMr)" at the end of the output.
 
-devtools::install_github("CareyLabVT/glmtools", force = TRUE) # This step 
-  # downloads the R packages that allow you to work with GLM in R. 
+# This step downloads the R packages that allow you to work with GLM in R. 
+devtools::install_github("CareyLabVT/glmtools") 
 
-library(glmtools) # Load the two packages that you need to analyze GLM output
-  #  NOTE: you may get lots of output messages in red at this step- if this worked 
+# Load the two packages that you need to analyze GLM output
+library(glmtools) 
+  #  NOTE: you may get lots of output messages in red at this step- if it worked 
   #  successfully, you should read a lot of text that starts with: "This 
   #  information is preliminary or provisional..." 
 
-library(GLMr) # If this worked, GLMr should load without error messages. Hooray!
+library(GLMr) 
+# If this worked, GLMr should load without error messages. Hooray!
 
-glm_version() # See what version of GLM you are running- should be v.2.x.x
+# See what version of GLM you are running- should be v.2.x.x
+glm_version() 
 
 # CONGRATS! You've now succesfully loaded GLM onto your computer! 
   # Now, we will explore the files that come with your downloaded GLM files 
 
 # NOTE! Throughout the rest of the module, you will need to modify some of the 
-  #  lines of code to run on your computer. If you need to modify a line, I put the 
-  #  symbols ##!! at the beginning of that line's annotation.  If you do not see those 
-  #  symbols, you do not need to edit that line of code and can run it as written.
+  #  lines of code to run on your computer. If you need to modify a line, I put 
+  #  the symbols ##!! at the beginning of that line's annotation.  If you do not 
+  #  see those symbols, you do not need to edit that line of code and can run it 
+  #  as written.
 
 # When working in R, we set the sim_folder to tell R where your files, scripts, 
   #  and model output are stored.  
 # To find your folder path, navigate to the 'cross_scale_interactions' folder on 
-  # your Desktop. Right click on the folder that matches your model lake (Mendota or Sunapee), 
-  # then select Properties (Windows) or Get Info (Mac). Look under Location (Windows) 
-  # or Where (Mac) to find your folder path (examples below):
-  # Windows: C:/Users/KJF/Desktop/cross_scale_interactions/LakeName
-  # Mac: Users -> careylab -> Desktop -> cross_scale_interactions -> LakeName
+  # your Desktop. Right click on the folder that matches your model lake 
+  #  (Mendota or Sunapee), then select Properties (Windows) or Get Info (Mac). 
+  #  Look under Location (Windows) or Where (Mac) to find your folder path 
+  #  (examples below):
+  #  Windows: C:/Users/KJF/Desktop/cross_scale_interactions/LakeName
+  #  Mac: Users -> careylab -> Desktop -> cross_scale_interactions -> LakeName
 
-sim_folder <- '/Users/cayelan/Desktop/cross_scale_interactions/LakeName' ##!! Edit this line 
-  #  to define the sim_folder location for your model lake. You will need to change 
-  #  the part after Users/ to give the name of your computer (e.g., my computer name 
-  #  is cayelan, but yours will be different!) AND change the word LakeName to be 
-  #  the name of your model lake (Mendota or Sunapee).
+##!! Edit this line to define the sim_folder location for your model lake. 
+sim_folder <- '/Users/cayelan/Desktop/cross_scale_interactions/LakeName' 
+  #  You will need to change the part after Users/ to give the name of your 
+  #  computer (e.g., my computer name is cayelan, but yours will be different!) 
+  #  AND change the word LakeName to be the name of your model lake (Mendota or Sunapee).
 
-setwd(sim_folder) ## This line of code is used to reset your working directory
-  #  to the sim_folder. The point of this step is to make sure that any new files 
-  #  you create (e.g., figures of output) end up together in this folder.
+## This line of code is used to reset your working directory to the sim_folder. 
+setwd(sim_folder) 
+# The point of this step is to make sure that any new files you create (e.g., 
+# figures of output) end up together in this folder.
 
-nml_file <- paste0(sim_folder,"/glm2.nml") # This step sets the nml_file for your 
-  #  simulation to be in the new sim_folder location.
+# This step sets the nml_file for your simulation to be inside the sim_folder
+nml_file <- paste0(sim_folder,"/glm2.nml") 
 
-nml <- read_nml(nml_file) # Read in your nml file from your new directory
+# Read in your nml file from your new directory
+nml <- read_nml(nml_file) 
 
-print(nml) # This shows you what is in your nml file.  This is the 'master script' 
-  #  of the GLM simulation; the nml file tells the GLM model all of the initial 
-  #  conditions about your lake, how you are defining parameters, and more - this 
-  #  is a really important file! There should be multiple sections, including 
-  #  glm_setup, morphometry, meteorology, etc.
+# This shows you what is in your nml file.  
+print(nml) 
+#  This is the 'master script' of the GLM simulation; the nml file tells the GLM 
+  #  model all of the initial conditions about your lake, how you are defining 
+  #  parameters, and more - this is a really important file! There should be 
+  #  multiple sections, including glm_setup, morphometry, meteorology, etc.
 
-plot_meteo(nml_file) # This command plots the meterological input data for the 
-  #  simulation: short wave & long wave radiation, air temp, relative humidity, 
+# This command plots the meterological input data for the simulation:
+plot_meteo(nml_file)  
+# It includes short wave & long wave radiation, air temp, relative humidity, 
   #  etc. for the duration of the simulation. 
  
 ########## ACTIVITY A - OBJECTIVE 2 ############################################
 # Now, the fun part- we get to run the model and look at output!
 
-run_glm(sim_folder, verbose=TRUE) # So simple and elegant... if this works, you 
-  #  should see output that says "Simulation begins.." and then shows all the 
-  #  time steps.  At the end, it should say "Run complete" if everything worked 
-  #  ok. This may take a few minutes.
+run_glm(sim_folder, verbose=TRUE) 
+# So simple and elegant... if this works, you will see output that says 
+  #  "Simulation begins..". At the end, it should say "Run complete" if 
+  #  everything worked ok. This may take a few minutes.
 
 # We need to know where the output data from your simulation (the output.nc file) 
   #  is so that the glmtools package can plot and analyze the model output. We tell 
   #  R where to find the output file using the line below:
 
-baseline <- file.path(sim_folder, 'output.nc') # This says that the output.nc 
-  #  file is in the sim_folder.  
+# This says that the output.nc file is in the sim_folder.  
+baseline <- file.path(sim_folder, 'output.nc') 
 
-plot_temp(file=baseline, fig_path=FALSE) # This plots your simulated water 
-  #  temperatures in a heat map, where time is displayed on the x-axis, lake depth 
-  #  is displayed on the y-axis, and the different colors represent different 
-  #  temperatures. 
+# This plots your simulated water temperatures in a heat map, where time is 
+  #  displayed on the x-axis, lake depth is displayed on the y-axis, and the 
+  #  different colors represent different temperatures. 
+plot_temp(file=baseline, fig_path=FALSE) 
 
 # To copy your plot (e.g., onto a PowerPoint slide), click "Export" within the 
   #  Plots tab. Then click "Copy to Clipboard", and click "Copy plot" in the preview 
@@ -121,7 +131,7 @@ plot_temp(file=baseline, fig_path=FALSE) # This plots your simulated water
 # This pair of commands can be used to list the variables that were output as part 
   #  of your GLM run.
 var_names <- sim_vars(baseline)
-print(var_names) # This will print a list of variables that the model simulates.
+print(var_names) 
 
 # We are particularly interested in the amount of total chlorophyll-a (chl-a), 
   #  because that is related to phytoplankton blooms. The variable name for chl-a 
@@ -129,8 +139,8 @@ print(var_names) # This will print a list of variables that the model simulates.
   #  (ug/L). Search through the list of variables to find PHY_TCHLA.
 
 # Use the code below to create a heatmap of chl-a in the lake over time. 
-plot_var(file = baseline, "PHY_TCHLA") # What do you notice about seasonal 
-  #  patterns in chl-a? 
+plot_var(file = baseline, "PHY_TCHLA") 
+# What do you notice about seasonal patterns in chl-a? 
 
 # We also want to save the model output of the daily chlorophyll-a concentrations 
   #  in the lake during our baseline simulation, because we'll be comparing it to 
@@ -139,8 +149,8 @@ plot_var(file = baseline, "PHY_TCHLA") # What do you notice about seasonal
 
 # Save the chl-a from the surface only:
 chla_output <- get_var(file=baseline, "PHY_TCHLA", reference='surface', z_out=c(1)) 
-colnames(chla_output)[2] <- "Baseline_Chla" # Here we rename the chl-a column so we 
-  #  remember it is from the Baseline scenario
+colnames(chla_output)[2] <- "Baseline_Chla" 
+# Here we rename the chl-a column so we remember it is from the Baseline scenario
 
 ########## ACTIVITY B - OBJECTIVE 3 ############################################
 # For Activity B, you will work with your partner to model your lake, plus another 
@@ -148,19 +158,19 @@ colnames(chla_output)[2] <- "Baseline_Chla" # Here we rename the chl-a column so
   #  one of the pre-made climate scenarios. Remember that both teams should run the 
   #  SAME climate scenario on their separate lakes and compare the output.
 
-##!!!! Once you have selected your climate scenario, you need to edit the glm2.nml file 
-  #  to change the name of the input met file so that it reads in the met data for 
-  #  your climate scenario, not the default 'met_hourly.csv'.  
+##!!!! Once you have selected your climate scenario, you need to edit the glm2.nml 
+  #  file to change the name of the input met file so that it reads in the met 
+  #  data for your climate scenario, not the default 'met_hourly.csv'.  
 
-##!!!! Open the .nml file by clicking 'glm2.nml' in the Files tab of RStudio, then scroll 
-  #  down to the meteorology section, and change the 'meteo_fl' entry to the new 
-  #  met file name (e.g., from 'met_hourly.csv' to 'met_hourly_plus2.csv'). 
+##!!!! Open the .nml file by clicking 'glm2.nml' in the Files tab of RStudio, 
+  #  then scroll down to the meteorology section, and change the 'meteo_fl' entry 
+  #  to the new met file name (e.g., from 'met_hourly.csv' to 'met_hourly_plus2.csv'). 
 
 ##!!!! SAVE your modified glm2.nml file.
 
 # Once you have edited the nml file name, you should check to make sure that 
-  #  it is correct with the following command:
-nml <- read_nml(nml_file)  # Read in your updated nml file 
+  #  it is correct with the following commandS:
+nml <- read_nml(nml_file)   
 get_nml_value(nml, 'meteo_fl') 
 ##!! The printout here should list your NEW meteorological file for your climate 
   # scenario. If it doesn't, make sure you pressed the Save icon (the floppy disk)
@@ -169,14 +179,15 @@ get_nml_value(nml, 'meteo_fl')
 # You can now run the model for your climate change scenario using the new edited 
   # nml file using the commands below. Exciting!
 
-run_glm(sim_folder, verbose=TRUE) # Run your GLM model for your lake climate scenario. 
+# Run your GLM model for your lake climate scenario. 
+run_glm(sim_folder, verbose=TRUE) 
 
 # Again, we need to tell R where the output.nc file is so that the glmtools package 
   #  can plot and analyze the model output. We tell R where to find the output file 
   #  using the line below:
-climate <- file.path(sim_folder, 'output.nc') # This defines the output.nc file 
-  #  as being within the sim_folder. Note that we've called this output "climate" 
-  #  since it is the output from our climate change simulation.
+climate <- file.path(sim_folder, 'output.nc') 
+# This defines the output.nc file as being within the sim_folder. Note that we've 
+  #  called this output "climate" since it is output from our climate change simulation.
 
 # As before, we want to save the model output of the daily chlorophyll-a 
   #  concentrations in the lake during our climate change simulation, to compare to 
@@ -184,28 +195,30 @@ climate <- file.path(sim_folder, 'output.nc') # This defines the output.nc file
 
 #  Extract surface chl-a:
 climate_chla <- get_var(file=climate, "PHY_TCHLA", reference='surface', z_out=c(1)) 
-chla_output["Climate_Chla"] <- climate_chla[2] # Here we attach the chl-a data from your 
-  #  climate simulation to the same file that contains your baseline scenario chl-a 
-  #  concentrations. 
+chla_output["Climate_Chla"] <- climate_chla[2] 
+# Here we attach the chl-a data from your climate simulation to the same file that 
+  #  contains your baseline scenario chl-a concentrations. 
 
-##!! To check that your climate change scenario ran correctly, run the command below, and
-  # compare the chl-a data between your baseline and climate scenarios. They'll likely 
-  # be similar, but if they're EXACTLY the same after the first few rows, something might 
-  # have gone wrong in setting up your climate scenario (likely with changing the glm2.nml file!)
+##!! To check that your climate change scenario ran correctly, run the command 
+  #  below, and compare the chl-a data between your baseline and climate scenarios. 
+  #  They'll likely be similar, but if they're EXACTLY the same after the first 
+  #  few rows, something might have gone wrong in setting up your climate scenario 
+  #  (likely with changing the glm2.nml file!)
 View(chla_output)
 
 ########## ACTIVITY B - OBJECTIVE 4 ############################################
 # Plot the output using the commands you learned above. 
-plot_temp(file=climate, fig_path=FALSE) # Create a heatmap of the water temperature
+# Create a heatmap of the water temperature
+plot_temp(file=climate, fig_path=FALSE) 
   # How does this compare to your baseline?
 # Note: If you want to control the maximum value of the color scale on your heatmaps, 
   # add the following (without quotes) after fig_path=FALSE: 'col_lim= c(0,35)'
   # This tells R that you want your maximum value to be 35, and your min. to be 0
 
-plot_var(file=climate, "PHY_TCHLA") # Create a heatmap of chlorophyll-a. How 
-  #  does this compare to your baseline?
-# You can add the 'col_lim' command to this plot, too! Look at the Note from the 
-  # plot_temp() command to learn how.
+# Create a heatmap of chlorophyll-a. 
+plot_var(file=climate, "PHY_TCHLA") 
+# How does this compare to your baseline? You can add the 'col_lim' command to 
+  #  this plot, too! Look at the Note from the plot_temp() command to learn how.
 
 # Do these plots from the climate scenario and the baseline support or contradict 
   # your hypotheses about climate change effects on chlorophyll-a? 
@@ -229,42 +242,45 @@ plot_var(file=climate, "PHY_TCHLA") # Create a heatmap of chlorophyll-a. How
   # to examine the effects of your land use scenario SEPARATE from the climate
   # scenario you developed earlier. \\
 
-##!!!! Save your modified glm2.nml file that has baseline meteorology and altered land use.
+##!!!! Save your modified glm2.nml file that has baseline meteorology and altered 
+  #  land use.
 
 # Once you have edited the nml file name, check to make sure that it is correct 
   # with the commands:
-nml <- read_nml(nml_file)  # Read in your updated nml file 
-get_nml_value(nml, 'inflow_fl') # You should get an output that lists the name of 
-  # your ALTERED inflow file.
-get_nml_value(nml, 'meteo_fl') # You should get an output that lists the name of 
-  # your BASELINE meteorological file ('met_hourly.csv').
+nml <- read_nml(nml_file)  
+get_nml_value(nml, 'inflow_fl') 
+# You should get an output that lists the name of your ALTERED inflow file.
+get_nml_value(nml, 'meteo_fl') 
+# You should get an output that lists the name of your BASELINE meteorological 
+  #  file ('met_hourly.csv').
 
 # You can now run the model for your land use scenario using the new edited 
   #  nml file using the commands below. Exciting!
 
-run_glm(sim_folder, verbose=TRUE) # Run your GLM model for your lake land use scenario. 
+# Run your GLM model for your lake land use scenario. 
+run_glm(sim_folder, verbose=TRUE) 
   # At the end of the model run, it should say "Run complete" if everything worked.
 
 # Again, we need to tell R where the output.nc file is so that the glmtools package 
   #  can plot and analyze the model output. We tell R where to find the output file 
   #  using the line below:
-landuse <- file.path(sim_folder, 'output.nc') # This defines the output.nc file 
-  #  as being within the sim_folder. Note that we've called this output "landuse" 
-  #  since it is the output from our land use change simulation.
+landuse <- file.path(sim_folder, 'output.nc') 
+# This defines the output.nc file as being within the sim_folder. Note that we've 
+  #  called this output "landuse" since it is output from our land use change simulation.
 
 # As before, we want to save the model output of the daily chlorophyll-a 
   #  concentrations in the lake during our land use change simulation, to compare 
   #  to our baseline and climate scenarios later. 
 # Extract surface chl-a:
 landuse_chla <- get_var(file=landuse, "PHY_TCHLA", reference='surface', z_out=c(1)) 
-chla_output["LandUse_Chla"] <- landuse_chla[2] # Here we attach the chl-a data from your land 
-  #  use simulation to the same file that contains your baseline scenario and climate 
-  #  change scenario chl-a concentrations.
+chla_output["LandUse_Chla"] <- landuse_chla[2] 
+# Here we attach the chl-a data from your land  use simulation to the same file 
+  #  that contains your baseline and climate change scenario chl-a concentrations.
 
 # Plot the output of your land use scenario using the commands you learned above. 
-plot_var(file=landuse, "PHY_TCHLA") # Heatmap of chla. How does your phytoplankton 
-  #  heatmap look in comparison to the baseline? Be sure to check the scale of the 
-  #  color gradient representing chl-a when comparing plots!
+plot_var(file=landuse, "PHY_TCHLA") 
+# How does your phytoplankton heatmap look in comparison to the baseline? 
+# Be sure to check the scale of the color gradient for chl-a when comparing plots!
 
 # Finally, we want to see what happens when land use and climate interact! 
   #  Luckily, testing the combined effects of your land use and climate change 
@@ -275,54 +291,63 @@ plot_var(file=landuse, "PHY_TCHLA") # Heatmap of chla. How does your phytoplankt
 
 ##!!!! In the glm2.nml file, make the following TWO changes:
 
-##!!!! 1) In the meteorology section, change the 'meteo_fl' entry to the met file that 
-  # represents your climate change scenario (e.g., 'met_hourly_plus2.csv')
+##!!!! 1) In the meteorology section, change the 'meteo_fl' entry to the met file 
+  #  that represents your climate change scenario (e.g., 'met_hourly_plus2.csv')
 
-##!!!! 2) In the inflow section, check that the 'inflow_fl' file represents your land 
-  # use change scenario (e.g., 'inflow_fourP.csv')
+##!!!! 2) In the inflow section, check that the 'inflow_fl' file represents your 
+  #  land use change scenario (e.g., 'inflow_fourP.csv')
 
 ##!!!! Save your glm2.nml file, then run the following commands to check that the 
 #  changes were made correctly.
-nml <- read_nml(nml_file) # Read in your updated nml file 
-get_nml_value(nml, 'inflow_fl') # If you have done this correctly, you should get 
-  # an output that lists the name of your ALTERED inflow file.
-get_nml_value(nml, 'meteo_fl') # If you have done this correctly, you should get 
-  # an output that lists the name of your ALTERED meteorological file.
+# Read in your updated nml file 
+nml <- read_nml(nml_file) 
+get_nml_value(nml, 'inflow_fl') 
+# If you have done this correctly, your output should list the name of your 
+  #  ALTERED inflow file.
+get_nml_value(nml, 'meteo_fl') 
+# If you have done this correctly, your output should list the name of your 
+  #  ALTERED meteorological file.
 
-# Run GLM one more time!
-run_glm(sim_folder, verbose=TRUE) # Run your GLM model for your lake climate + land use 
-  #  scenario 
+# Run GLM one more time for your lake climate + land use scenario!
+run_glm(sim_folder, verbose=TRUE)
 
 # As above, we need to tell R where the output.nc file is:
-climate_landuse <- file.path(sim_folder, 'output.nc') # This defines the output.nc 
-  #  file as being within the sim_folder. Note that we've called this output 
-  #  "climate_landuse" since it is the output from our simultaneous climate AND 
-  #  land use change simulations.
+climate_landuse <- file.path(sim_folder, 'output.nc') 
+# This defines the output.nc file as being within the sim_folder. Note that we've 
+  #  called this output "climate_landuse" since it is the output from our 
+  #  simultaneous climate AND land use change simulations.
 
 # As before, we want to save the model output of the daily chlorophyll-a 
   #  concentrations in the lake, to compare to our baseline, climate, and land use 
   #  scenarios. 
 # Extract surface chl-a:
 combined_chla <- get_var(file=climate_landuse, "PHY_TCHLA", reference='surface', z_out=c(1)) 
-chla_output["Climate_LandUse_Chla"] <- combined_chla[2] # Here we attach the chl-a data from 
-  #  your combined simulation to the same file that contains your baseline, climate 
-  #  change, and land use scenario chl-a concentrations
+chla_output["Climate_LandUse_Chla"] <- combined_chla[2] 
+# Here we attach the chl-a data from  your combined simulation to the same file 
+  # that contains your baseline, climate change, & land use scenario chl-a concentrations
 
 # Plot the output of your land use scenario using the commands you learned above. 
-plot_var(file=climate_landuse, "PHY_TCHLA") # Heatmap of chlorophyll-a
+plot_var(file=climate_landuse, "PHY_TCHLA") 
 
 # Now that you've run four different scenarios (baseline, climate only, land use 
   #  only, and climate + land use), let's plot how the chl-a in the lakes responded 
   #  to the different scenarios. We can do this by:
-attach(chla_output)
 
 # The command below plots DateTime vs. Observed data in black: 
-plot(DateTime, Baseline_Chla, type="l", lwd=2, col="black", ylim=c(0, 100),
-     ylab="Chlorophyll-a (ug/L)", xlab="Date")  
-lines(DateTime, Climate_Chla, lwd=2, col="darkorange") # add an orange line of the climate change scenario
-lines(DateTime, LandUse_Chla, lwd=2, col="deepskyblue") # add a blue line of the land use scenario
-lines(DateTime, Climate_LandUse_Chla, lwd=2, col="springgreen4") # add a green line of the climate + land use scenario
-legend("topleft",c("Baseline", "Climate Only", "Land Use Only", "Combined C + LU"),  # add a legend
+plot(chla_output$DateTime, chla_output$Baseline_Chla, type="l", lwd=2, col="black", 
+     ylab="Chlorophyll-a (ug/L)", xlab="Date", ylim=c(0, 100))  
+
+# add an orange line of the climate change scenario
+lines(chla_output$DateTime, chla_output$Climate_Chla, lwd=2, col="darkorange")
+
+# add a blue line of the land use scenario
+lines(chla_output$DateTime, chla_output$LandUse_Chla, lwd=2, col="deepskyblue") 
+
+# add a green line of the climate + land use scenario
+lines(chla_output$DateTime, chla_output$Climate_LandUse_Chla, lwd=2, col="springgreen4") 
+
+# add a legend
+legend("topleft",c("Baseline", "Climate Only", "Land Use Only", "Combined C + LU"),  
        lty=1, lwd=2, col=c("black","darkorange","deepskyblue", "springgreen4"))
 
 ##!! Note that the command ylim=c(0, 100) tells R what you want the minimum and 
