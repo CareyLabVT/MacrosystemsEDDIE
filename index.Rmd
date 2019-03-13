@@ -2,8 +2,7 @@
 title: "Macrosystems EDDIE Project Management & Logistics"
 output: html_document
 ---
-# Macrosystems EDDIE Project Management Materials
-Useful guides for managing faculty tester logistics for [Macrosystems EDDIE](https://serc.carleton.edu/eddie/macrosystems/index.html)
+Guides for managing faculty tester logistics for [Macrosystems EDDIE](https://serc.carleton.edu/eddie/macrosystems/index.html)
 
 # Contents
 * [Tier 1 Tester Workflow Flowchart](https://github.com/CareyLabVT/MacrosystemsEDDIE/blob/master/Project%20Management/docs/MacroEDDIE%20tester%20workflow.pdf)
