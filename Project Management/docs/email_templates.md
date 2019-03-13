@@ -1,7 +1,7 @@
 ---
 title: "Tier 1 Tester Email Templates"
 output: 
-  html_document: 
+  html_document:
     toc: yes
 css: custom.css
 ---
