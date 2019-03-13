@@ -1,6 +1,8 @@
 ---
 title: "Tier 1 Tester Email Templates"
-output: html_document
+output: 
+  html_document: 
+    toc: yes
 css: custom.css
 ---
 
@@ -26,8 +28,8 @@ Recommended starter text for contacting Tier 1 testers for Macrosystems EDDIE
 > Cayelan and **HELPER** 
 
 ******
-## Communicating with confirmed Testers
-### "Macrosystems EDDIE faculty tester details" email
+## Emailing confirmed Testers
+### "Macrosystems EDDIE faculty tester details"
 * This email is sent soon after faculty have expressed interest in participating as a Tier 1 tester, to provide full details of what involvement entails
 * Email provides links for faculty to fill out the course information form
 * Note that you need to change **TESTER_NAME**, **MODULE NAME**, the "#" in the module web link, and **YOUR NAME** before sending.
@@ -95,4 +97,39 @@ Dear students-
 
 > Thank you for your enthusiasm during the Macrosystems EDDIE module. Please use the following link to access the post-module questionnaire (https://serc.carleton.edu/eddie/macrosystems/pilot/student_post-assess_mod2.html?cid=########). It is important that you complete this questionnaire within one week of today. If you have any feedback to improve the module, please feel free to include it in your questionnaire.
 
-> Thank you!   
+> Thank you!      
+
+******
+
+### "Macrosystems EDDIE post-module check-in"  
+* This email is used to re-share course-specific post-module assessment links with faculty testers **1-2 days** after they've taught the module. 
+* Note that you need to change **TESTER_NAME**, **MODULE NAME**, the **class-specific post-assessment links**, **closing date**, and **YOUR NAME** before sending.
+
+> Hi **TESTER NAME**-
+I hope the **MODULE NAME** module went smoothly with your class yesterday. 
+
+> I wanted to send a quick reminder that the student post-module student questionnaire (https://serc.carleton.edu/eddie/macrosystems/pilot/student_post-assess_mod2.html?cid=XXXXXXXX) will close **next Friday (Feb. 8)**. If you can remind your students to complete their questionnaires, that would be great! After the form closes, I will send you a list of students who completed the questionnaires for extra credit. 
+
+> Also, if you have not yet done so, please complete the faculty feedback form about your experience using the module. You feedback is really valuable to us and will help guide future modifications to module materials.
+
+> Once again, THANK YOU for testing the module in your class! Macrosystems EDDIE couldn’t do it without you! 
+
+> Best-    
+**YOUR NAME** & Cayelan    
+
+******
+
+### "Macrosystems EDDIE student participation list"  
+* This email is used to send faculty testers their student participation list (Excel file). 
+* This file is shared 2 weeks after the module was taught after the post-module assessment has closed, unless the instructor has requested a shorter post-module questionnaire open period. 
+* Note that you need to change **TESTER_NAME**, **MODULE NAME**, and **YOUR NAME** (+ attach the correct student_list Excel file!) before sending.
+
+> Hi **TESTER NAME**-
+Thanks for submitting your feedback about your experience using the **MODULE NAME** module!
+
+> I'm attaching the list of students who participated in the pre- and post-module assessments, since you indicated you'll be giving extra credit for their participation. 
+
+> Thanks again for testing and I hope your semester wraps up well.
+
+> Best-    
+**YOUR NAME**
