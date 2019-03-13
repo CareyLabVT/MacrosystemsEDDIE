@@ -1,6 +1,16 @@
 # Tier 1 Tester Generalized Workflow
 This document lays out the recommended workflow for setting up Tier 1 testers for Macrosystems EDDIE modules
 
+### Jump to:   
+**Tier 1 Tester Generalized Workflow**  
+-   Flowchart  
+
+**SERC Pages**  
+-   Tier 1 Course Setup Form  
+-   Testing & Data Collection
+
+
+
 # Important SERC links
 ### [Tier 1 Course Setup Form](https://serc.carleton.edu/eddie/macrosystems/pilot/course_setup.html)
 Use this form to submit new Tier 1 testers to SERC team so they can set up the course-specific consent page and pre/post links.

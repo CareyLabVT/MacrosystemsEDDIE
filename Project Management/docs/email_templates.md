@@ -1,11 +1,3 @@
----
-title: "Tier 1 Tester Email Templates"
-output: 
-  html_document:
-    toc: yes
-css: custom.css
----
-
 Recommended starter text for contacting Tier 1 testers for Macrosystems EDDIE
 
 ## Recruiting Tier 1 Testers
