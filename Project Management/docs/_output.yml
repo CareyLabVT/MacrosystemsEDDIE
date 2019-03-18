@@ -1,6 +1,0 @@
-html_document:
-    css: custom.css
-    toc: yes
-    toc_float:    
-        collapsed: true
-css: custom.css
