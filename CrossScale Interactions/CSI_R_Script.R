@@ -152,6 +152,9 @@ chla_output <- get_var(file=baseline, "PHY_TCHLA", reference='surface', z_out=c(
 colnames(chla_output)[2] <- "Baseline_Chla" 
 # Here we rename the chl-a column so we remember it is from the Baseline scenario
 
+# We'll also use the command below to save a copy of our output as a .csv file:
+write.csv(chla_output, './model_output.csv', quote=F, row.names = F)
+
 ########## ACTIVITY B - OBJECTIVE 3 ############################################
 # For Activity B, you will work with your partner to model your lake, plus another 
   #  team that is modeling another lake. With your partner and another team, select
@@ -198,6 +201,9 @@ climate_chla <- get_var(file=climate, "PHY_TCHLA", reference='surface', z_out=c(
 chla_output["Climate_Chla"] <- climate_chla[2] 
 # Here we attach the chl-a data from your climate simulation to the same file that 
   #  contains your baseline scenario chl-a concentrations. 
+
+# Again, we'll use the command below to save a copy of our output as a .csv file:
+write.csv(chla_output, './model_output.csv', quote=F, row.names = F)
 
 ##!! To check that your climate change scenario ran correctly, run the command 
   #  below, and compare the chl-a data between your baseline and climate scenarios. 
@@ -277,6 +283,9 @@ chla_output["LandUse_Chla"] <- landuse_chla[2]
 # Here we attach the chl-a data from your land  use simulation to the same file 
   #  that contains your baseline and climate change scenario chl-a concentrations.
 
+# Again, we'll use the command below to save a copy of our output as a .csv file:
+write.csv(chla_output, './model_output.csv', quote=F, row.names = F)
+
 # Plot the output of your land use scenario using the commands you learned above. 
 plot_var(file=landuse, "PHY_TCHLA") 
 # How does your phytoplankton heatmap look in comparison to the baseline? 
@@ -325,6 +334,9 @@ combined_chla <- get_var(file=climate_landuse, "PHY_TCHLA", reference='surface',
 chla_output["Climate_LandUse_Chla"] <- combined_chla[2] 
 # Here we attach the chl-a data from  your combined simulation to the same file 
   # that contains your baseline, climate change, & land use scenario chl-a concentrations
+
+# Once more, we'll use the command below to save a copy of our output as a .csv file:
+write.csv(chla_output, './model_output.csv', quote=F, row.names = F)
 
 # Plot the output of your land use scenario using the commands you learned above. 
 plot_var(file=climate_landuse, "PHY_TCHLA") 
