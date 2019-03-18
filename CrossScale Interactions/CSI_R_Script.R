@@ -337,6 +337,7 @@ chla_output["Climate_LandUse_Chla"] <- combined_chla[2]
 
 # Once more, we'll use the command below to save a copy of our output as a .csv file:
 write.csv(chla_output, './model_output.csv', quote=F, row.names = F)
+# Now there is a .csv file named "model_output.csv" saved in your lake's folder!
 
 # Plot the output of your land use scenario using the commands you learned above. 
 plot_var(file=climate_landuse, "PHY_TCHLA") 
