@@ -17,8 +17,8 @@ library(EMLassemblyline)
   # Save a copy of each instructional materials file as a PDF by the same name. 
   # These PDFs will end up getting zipped together in their own folder
 
-## Step 3: Create a README files in Word #### 
-  # Create a README files in Word for each of (a) instructional materials
+## Step 3: Create README files in Word #### 
+  # Create a README file in Word for each of (a) instructional materials
   # (e.g.,instructor_materials_README) and (b) files used to run the module 
   # (e.g., lake_climate_change_README). 
   # The README files describe the contents of each zip folder, and are based on 
