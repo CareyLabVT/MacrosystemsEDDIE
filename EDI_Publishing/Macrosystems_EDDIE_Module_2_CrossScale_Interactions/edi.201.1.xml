@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eml:eml xmlns:eml="eml://ecoinformatics.org/eml-2.1.1" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" packageId="edi.201.1" system="edi" xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.1  http://nis.lternet.edu/schemas/EML/eml-2.1.1/eml.xsd">
+  <access scope="document" order="allowFirst" authSystem="https://pasta.edirepository.org/authentication">
+    <allow>
+      <principal>uid=ccarey,o=EDI,dc=edirepository,dc=org</principal>
+      <permission>all</permission>
+    </allow>
+    <allow>
+      <principal>public</principal>
+      <permission>read</permission>
+    </allow>
+  </access>
+  <dataset>
+    <title>Macrosystems EDDIE Module 2: Cross-Scale Interactions</title>
+    <creator>
+      <individualName>
+        <givenName>Cayelan</givenName>
+        <givenName>C.</givenName>
+        <surName>Carey</surName>
+      </individualName>
+      <organizationName>Virginia Tech</organizationName>
+      <electronicMailAddress>Cayelan@vt.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0001-8835-4476</userId>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Kaitlin</givenName>
+        <givenName>J.</givenName>
+        <surName>Farrell</surName>
+      </individualName>
+      <organizationName>Virginia Tech</organizationName>
+      <electronicMailAddress>farrellk@vt.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0002-4709-7749</userId>
+    </creator>
+    <pubDate>2019-03-19</pubDate>
+    <abstract>
+      <para>
+  Environmental phenomena are often driven by multiple factors that
+  interact across space and over time. In freshwater lakes and
+  reservoirs worldwide, phytoplankton blooms are increasing in frequency
+  and severity due to interactions between local, regional, and
+  continental drivers, including land use (local) and climate change
+  (regional) drivers. Because it is difficult to predict how
+  phytoplankton blooms will respond to the different aspects of land use
+  and climate change simultaneously, many researchers are using lake
+  simulation models, which provide a powerful tool for exploring the
+  sensitivity of ecosystems to multiple factors.
+</para>
+      <para>
+  In this module, students will learn how to set up a lake simulation
+  model and "force" the model with climate and land use
+  scenarios to test hypotheses about how local and regional drivers
+  interact to promote or suppress phytoplankton blooms in different
+  lakes.
+</para>
+      <para>
+  The overarching goal of this module is for students to explore new
+  modeling and computing tools while learning fundamental concepts about
+  how non-linear macrosystem-level phenomena (e.g., lake phytoplankton
+  blooms) can occur through cross-scale interactions. The A-B-C
+  structure of this module makes it flexible and adaptable to a range of
+  student levels and course structures.
+</para>
+      <para>
+  This dataset contains instructional materials and the files necessary
+  to run the complete module. Readers are referred to the GLM science
+  manual (Hipsey et al. 2014) for further details on model
+  configuration.
+</para>
+    </abstract>
+    <keywordSet>
+      <keyword>Carey Lab</keyword>
+      <keyword>Virginia Tech</keyword>
+      <keyword>Stream Team</keyword>
+      <keyword>teaching</keyword>
+      <keyword>macrosystems</keyword>
+      <keyword>cross-scale interactions</keyword>
+      <keyword>GLEON</keyword>
+      <keyword>General Lake Model</keyword>
+      <keyword>GLM</keyword>
+      <keyword>Mendota</keyword>
+      <keyword>Sunapee</keyword>
+      <keywordThesaurus>carey lab controlled vocabulary</keywordThesaurus>
+    </keywordSet>
+    <keywordSet>
+      <keyword>Lake</keyword>
+      <keywordThesaurus>cuahsi controlled vocabulary</keywordThesaurus>
+    </keywordSet>
+    <keywordSet>
+      <keyword>lakes</keyword>
+      <keyword>modeling</keyword>
+      <keyword>models</keyword>
+      <keyword>water temperature</keyword>
+      <keyword>climate change</keyword>
+      <keyword>phytoplankton</keyword>
+      <keywordThesaurus>lter controlled vocabulary</keywordThesaurus>
+    </keywordSet>
+    <intellectualRights>
+      <para>
+  This information is released under the Creative Commons license -
+  Attribution - CC BY (https://creativecommons.org/licenses/by/4.0/).
+  The consumer of these data ("Data User" herein) is required
+  to cite it appropriately in any publication that results from its use.
+  The Data User should realize that these data may be actively used by
+  others for ongoing research and that coordination may be necessary to
+  prevent duplicate publication. The Data User is urged to contact the
+  authors of these data if any questions about methodology or results
+  occur. Where appropriate, the Data User is encouraged to consider
+  collaboration or co-authorship with the authors. The Data User should
+  realize that misinterpretation of data may occur if used out of
+  context of the original study. While substantial efforts are made to
+  ensure the accuracy of data and associated documentation, complete
+  accuracy of data sets cannot be guaranteed. All data are made
+  available "as is." The Data User should be aware, however,
+  that data are updated periodically and it is the responsibility of the
+  Data User to check for new versions of the data. The data authors and
+  the repository where these data were obtained shall not be liable for
+  damages resulting from any use or misinterpretation of the data. Thank
+  you.
+</para>
+    </intellectualRights>
+    <coverage>
+      <geographicCoverage>
+        <geographicDescription>The Department of Biological Sciences at Virginia Tech is located in Blacksburg, Virginia, USA</geographicDescription>
+        <boundingCoordinates>
+          <westBoundingCoordinate>-80.426228</westBoundingCoordinate>
+          <eastBoundingCoordinate>-80.424863</eastBoundingCoordinate>
+          <northBoundingCoordinate>37.229596</northBoundingCoordinate>
+          <southBoundingCoordinate>37.22854</southBoundingCoordinate>
+        </boundingCoordinates>
+      </geographicCoverage>
+      <temporalCoverage>
+        <rangeOfDates>
+          <beginDate>
+            <calendarDate>2017-08-13</calendarDate>
+          </beginDate>
+          <endDate>
+            <calendarDate>2019-03-19</calendarDate>
+          </endDate>
+        </rangeOfDates>
+      </temporalCoverage>
+    </coverage>
+    <maintenance>
+      <description>Completed</description>
+    </maintenance>
+    <contact>
+      <individualName>
+        <givenName>Cayelan</givenName>
+        <givenName>C.</givenName>
+        <surName>Carey</surName>
+      </individualName>
+      <organizationName>Virginia Tech</organizationName>
+      <electronicMailAddress>Cayelan@vt.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0001-8835-4476</userId>
+    </contact>
+    <methods>
+      <methodStep>
+        <description>
+          <para>
+  MODULE DEVELOPMENT AND TESTING Module teaching materials were
+  developed primarily by C.C. Carey and K.J. Farrell to provide
+  instructors of undergraduate ecology courses with a ready-to-use,
+  adaptable module that could be implemented in a 3-4 hour time period.
+</para>
+          <para>
+  As the second module within the suite of Macrosystems EDDIE
+  (www.macrosystemseddie.org) teaching materials, this module was
+  developed to teach students fundamental concepts about macrosystems
+  ecology, and how a macrosystems approach can be used to understand how
+  lakes are affected by drivers that operate on multiple, interconnected
+  temporal and spatial scales. As a secondary goal, Macrosystems EDDIE
+  modules introduce students to advanced computational tools as a way to
+  manage, analyze, visualize, and interpret high-frequency and long-term
+  ecological data sets.
+</para>
+          <para>
+  The specific student learning goals for this module are that by the
+  end of the module, students will be able to: - Understand the concepts
+  of macrosystems ecology and cross-scale interactions, and how
+  different ecological processes can interact at local, regional, and
+  continental scales. - Simulate phytoplankton blooms in multiple lakes
+  using ecosystem models of lake water quality set up with
+  publicly-available high-frequency sensor datasets (Activity A). - Test
+  the effects of a climate scenario on the different lake models, and
+  examine how the timing and intensity of phytoplankton blooms change
+  with climate warming (Activity B). - Examine the effects of both local
+  nutrient loading and regional climate forcing to determine how factors
+  acting at different scales interact to affect the intensity and timing
+  of phytoplankton blooms (Activity C). - Predict how lake phytoplankton
+  blooms may respond globally to changing climate and land use.
+</para>
+          <para>
+  The module was assessed by volunteer faculty testers during the
+  2017-2018 and 2018-2019 academic years. Faculty testers provided
+  feedback that was used to update and optimize teaching materials.
+  Carey and Farrell also used student pre- and post-module assessment
+  questions to gauge effectiveness of teaching materials for achieving
+  module learning goals. Pedagogical specialists with the Science
+  Education Resource Center at Carleton College assisted with assessment
+  development and implementation.
+</para>
+          <para>
+  UNDERLYING MODEL DATA The module uses the General Lake Model (GLM;
+  Hipsey et al. 2014), an open-source hydrodynamic simulation model, to
+  simulate lake temperatures and other physical limnology metrics over
+  the model time period. The GLM model is paired with the Aquatic
+  Ecodynamics library (AED; Hipsey et al. 2013) to simulate chemical and
+  biological dynamics in the lake. GLM-AED in this module (version
+  2.2.0rc5) uses the 'GLMr' and 'glmtools' packages (Read and Winslow
+  2016, Winslow and Read 2016), which allow the GLM model to be run and
+  output analyzed through the R statistical environment. The module
+  includes datasets for two lakes that are part of the Global Lakes
+  Ecological Observatory Network (GLEON; http://gleon.org/), Lake
+  Mendota (Wisconsin, USA) and Lake Sunapee (New Hampshire, USA). The
+  model representation of each lake has been simplified in multiple ways
+  for the purpose of teaching this module: for example, while both Lake
+  Mendota and Lake Sunapee have multiple surface inflows, they have been
+  simplified to one inflow in the model.
+</para>
+          <para>
+  Within the module, lake configuration files (glm2.nml, aed2.nml,
+  aed2_phyto_pars.nml, aed2_zoop_pars.nml) have been coarsely calibrated
+  for each lake. Meteorological driver data (met_hourly.csv) for each
+  lake were compiled at an hourly time step from the North American Land
+  Data Assimilation System (NLDAS-2; Cosgrove et al. 2003) and include
+  air temperature, short and long wave radiation, relative humidity,
+  wind speed, and precipitation (rain and snow). Variations of the
+  met_hourly.csv file were created to simulate different air temperature
+  warming scenarios; files appended with "_plus2",
+  "_plus4", and "_plus6" have air temperatures 2, 4,
+  or 6 degrees Celsius warmer, respectively, than the observed air
+  temperature for each hour included in met_hourly.csv. Simplified
+  surface water inflow files (inflow.csv) for each lake were based on
+  existing GLM model calibrations for Lake Mendota and Lake Sunapee, and
+  include discharge volume, water temperature, and nitrogen and
+  phosphorus concentrations at a daily timestep. Variations of the
+  inflow.csv file were created to simulate different land use change
+  scenarios, as represented by changes in the concentration of
+  filterable reactive phosphorus (PHS_frp); files appended with
+  "twoP", "fourP", and "sixP" and PHS_frp
+  concentrations that are 2, 4, or 6 times the concentration in the
+  baseline model. Each lake model also includes a surface outflow file
+  (outflow.csv) that is based on existing GLM model calibrations for
+  Lake Mendota and Lake Sunapee.
+</para>
+          <para>
+  For more information, we refer users to the website and publications
+  listed below.
+</para>
+          <para>
+  WEBSITE &amp; PUBLICATIONS Carey, C.C., and K.J. Farrell. 13 August
+  2017. Macrosystems EDDIE: Cross-Scale Interactions. Macrosystems EDDIE
+  Module 2, Version 2. http://module2.macrosystemseddie.org.
+</para>
+          <para>
+  Farrell, K.J., &amp; C.C. Carey. 2018. Power, pitfalls, and potential
+  for integrating computational literacy into undergraduate ecology
+  courses. Ecology and Evolution 8: 7744-7751. DOI: 10.1002/ece3.4363
+</para>
+          <para>
+  Carey, C. C. and Gougis, R. D. 2017. Simulation modeling of lakes in
+  undergraduate and graduate classrooms increases comprehension of
+  climate change concepts and interest in computational tools. Journal
+  of Science Education and Technology 26: 1-11. DOI:
+  10.1007/s10956-016-9644-2
+</para>
+          <para>
+  NOTES AND COMMENTS Cosgrove, B. A., Lohmann, D., Mitchell, K. E.,
+  Houser, P. R., Wood, E. F., Schaake, J. C., Robock A., Marshall, C.,
+  Sheffield, J., Duan, Q., Luo, L., Higgins, R. W., Pinker, R. T.,
+  Tarpley, J. D., &amp; Meng, J. (2003). Real-time and retrospective
+  forcing in the North American Land Data Assimilation System (NLDAS)
+  project. Journal of Geophysical Research: Atmospheres, 108(D22).
+</para>
+          <para>
+  Hipsey, M. R., L.C. Bruce, and D.P. Hamilton. 2013. Aquatic
+  Ecodynamics (AED) model library and science manual. Draft v4, The
+  University of Western Australia, Perth, Australia. 34 pp. Available:
+  http://aed.see.uwa.edu.au/research/models/aed/Download/AED_ScienceManual_v4_draft.pdf
+</para>
+          <para>
+  Hipsey, M. R., L.C. Bruce, and D.P. Hamilton. 2014. GLM- General Lake
+  Model: Model overview and user information. AED Report #26, The
+  University of Western Australia, Perth, Australia. 42 pp. Available:
+  http://aed.see.uwa.edu.au/research/models/GLM/
+</para>
+          <para>
+  Read, J.S., and L.A. Winslow. 2016. glmtools R package v.0.14.6.
+  Available: https://github.com/USGS-R/glmtools
+</para>
+          <para>
+  Winslow, L.A., and J.S. Read. 2016. GLMr R package v.3.1.15 and GLMr R
+  package default files. GLMr: A General Lake Model (GLM) base package.
+  DOI: 10.5281/zenodo.595574
+</para>
+        </description>
+      </methodStep>
+    </methods>
+    <project>
+      <title>A macrosystems science training program: developing undergraduates' simulation modeling, distributed computing, and collaborative skills</title>
+      <personnel>
+        <individualName>
+          <givenName>Cayelan</givenName>
+          <surName>Carey</surName>
+        </individualName>
+        <electronicMailAddress>Cayelan@vt.edu</electronicMailAddress>
+        <userId directory="https://orcid.org">https://orcid.org/0000-0001-8835-4476</userId>
+        <role>Principal Investigator</role>
+      </personnel>
+      <funding>National Science Foundation: EF 1702506</funding>
+    </project>
+    <otherEntity>
+      <entityName>This zip folder contains materials for instructors to teach the Macrosystems EDDIE 
+                                 module in their classroom. See README file for file types and descriptions</entityName>
+      <entityDescription>This zip folder contains materials for instructors to teach the Macrosystems EDDIE 
+                                 module in their classroom. See README file for file types and descriptions</entityDescription>
+      <physical>
+        <objectName>instructor_materials.zip</objectName>
+        <size unit="bytes">4557464</size>
+        <authentication method="MD5">3d2d5e99952cdc16fecf4befc3360517</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>zip directory</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+      </physical>
+      <entityType>zip directory</entityType>
+    </otherEntity>
+    <otherEntity>
+      <entityName>This zip folder contains materials for students to implement the Macrosystems EDDIE 
+                                 module in RStudio. See README file for file types and descriptions</entityName>
+      <entityDescription>This zip folder contains materials for students to implement the Macrosystems EDDIE 
+                                 module in RStudio. See README file for file types and descriptions</entityDescription>
+      <physical>
+        <objectName>cross_scale_interactions.zip</objectName>
+        <size unit="bytes">1150882</size>
+        <authentication method="MD5">a952d135bf2ed6b6396a52492cc0bb97</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>zip directory</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+      </physical>
+      <entityType>zip directory</entityType>
+    </otherEntity>
+  </dataset>
+</eml:eml>

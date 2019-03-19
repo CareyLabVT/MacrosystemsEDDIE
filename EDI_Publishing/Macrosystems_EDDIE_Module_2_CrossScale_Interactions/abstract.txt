@@ -1,0 +1,7 @@
+Environmental phenomena are often driven by multiple factors that interact across space and over time. In freshwater lakes and reservoirs worldwide, phytoplankton blooms are increasing in frequency and severity due to interactions between local, regional, and continental drivers, including land use (local) and climate change (regional) drivers. Because it is difficult to predict how phytoplankton blooms will respond to the different aspects of land use and climate change simultaneously, many researchers are using lake simulation models, which provide a powerful tool for exploring the sensitivity of ecosystems to multiple factors.
+
+In this module, students will learn how to set up a lake simulation model and "force" the model with climate and land use scenarios to test hypotheses about how local and regional drivers interact to promote or suppress phytoplankton blooms in different lakes. 
+
+The overarching goal of this module is for students to explore new modeling and computing tools while learning fundamental concepts about how non-linear macrosystem-level phenomena (e.g., lake phytoplankton blooms) can occur through cross-scale interactions. The A-B-C structure of this module makes it flexible and adaptable to a range of student levels and course structures.
+
+This dataset contains instructional materials and the files necessary to run the complete module. Readers are referred to the GLM science manual (Hipsey et al. 2014) for further details on model configuration. 
