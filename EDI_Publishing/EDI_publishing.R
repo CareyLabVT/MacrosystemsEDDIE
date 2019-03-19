@@ -30,12 +30,14 @@ library(EMLassemblyline)
   # Save each file in both Word and PDF format.
 
 ## Step 4: Zip all instructional materials #### 
-  # Zip all instructional materials (with instructor_materials_README) into
+  # Zip all instructional materials (with instructor_materials_README.pdf) into
   # one folder (instructor_materials.zip).
   # Add the module files README (e.g., lake_climate_change_README.pdf) to the 
   # zip folder of files used to run the module.
   # You should now have two zip folders; one called 'instructional_materials.zip' 
   # and the other is the name as used in the module (e.g., 'lake_climate_change.zip')
+  # Be mindful that Mac users will embed hidden .DS_store files into the zip folders,
+  # so good to check with PC users to see if a hidden file is in there.
 
 ## Step 5: Prepare metadata file templates ####
   # Prepare metadata file templates using the EMLassemblyline::import_templates() 
@@ -43,12 +45,16 @@ library(EMLassemblyline)
   # for data products that include table-based data files (e.g., .csv). To 
   # prepare module metadata files, manually copy the following metadata file 
   # templates from a previous module directory (e.g., the Module 1 EDI folder):
+    # - start with the metadata template word doc and then populate for all of the text files, which include:
     # - abstract.txt
     # - bounding_boxes.txt (for modules, use site of module development, not site 
-                          # of modeled lakes) PROBABLY DON'T NEED TO CHANGE THIS!
-    # - intellectual_rights.txt (we use CCBY)
+                          # of modeled lakes): keep this in Derring for all MS EDDIE modules
+    # - intellectual_rights.txt (we use CCBY); won't be altered
     # - keywords.txt (EDIT THIS FILE IN EXCEL; see LabKeywords.txt for Carey 
-                      # Lab-specific keywords)
+                      # Lab-specific keywords) and also http://vocab.lternet.edu/vocab/vocab/index.php
+                      # https://environmentaldatainitiative.org/resources/five-phases-of-data-publishing/phase-3/controlled-vocabularies/
+                      # if there is not a word in the existing vocabularies, make it:
+                      # "carey lab controlled vocabulary"
     # - methods.txt
     # - personnel.txt (EDIT THIS FILE IN EXCEL)
   # Edit each of these files for your current module upload, by copying and 
@@ -56,7 +62,7 @@ library(EMLassemblyline)
 
   # Before saving, check that the contents of each .txt file do not include any 
   # non-allowed characters by going to: https://pteo.paranoiaworks.mobi/diacriticsremover/, 
-  # pasting your text, and clicking remove diacritics.
+  # pasting your text, and clicking remove diacritics. copy and paste that text back into the .txt file.
 
   # After saving each file, make sure it is closed.
 
@@ -80,19 +86,19 @@ library(EMLassemblyline)
   # zip.dir: Change the name of the module files zip folder
   # temporal.coverage: Update the dates
   # package.id: enter the ID you obtained in Step 6
-make_eml(path = "/Users/KJF/Desktop/R/MacrosystemsEDDIE/EDI_Publishing/Macrosystems_EDDIE_Module_1_Climate_Change_Effects_on_Lake_Temperatures",
-         dataset.title = "Macrosystems EDDIE Module 1: Climate Change Effects on Lake Temperatures",
+make_eml(path = "/Users/cayelan/Dropbox/ComputerFiles/Macrosystems/Github/EDI_Publishing/Macrosystems_EDDIE_Module_2_CrossScale_Interactions",
+         dataset.title = "Macrosystems EDDIE Module 2: Cross-Scale Interactions",
          zip.dir = c("instructor_materials.zip",
-                     "lake_climate_change.zip"),
+                     "cross_scale_interactions.zip"),
          zip.dir.description = c("This zip folder contains materials for instructors to teach the Macrosystems EDDIE 
                                  module in their classroom. See README file for file types and descriptions",
                                  "This zip folder contains materials for students to implement the Macrosystems EDDIE 
                                  module in RStudio. See README file for file types and descriptions"),
-         temporal.coverage = c("2017-06-30", "2018-12-19"),
-         maintenance.description = "completed", 
+         temporal.coverage = c("2017-08-13", "2019-03-19"),
+         maintenance.description = "Completed", 
          user.id = "ccarey",
          affiliation = 'EDI',
-         package.id = "edi.270.1") # Put your package.id here, followed by .1 (for 1st version)
+         package.id = "edi.278.3") # Put your package.id here, followed by .1 (for 1st version)
 
 ## Step 8: Check your data product! ####
   # Return to the EDI staging environment (https://portal-s.edirepository.org/nis/home.jsp),
@@ -113,6 +119,7 @@ make_eml(path = "/Users/KJF/Desktop/R/MacrosystemsEDDIE/EDI_Publishing/Macrosyst
 
 ## Step 9: PUBLISH YOUR DATA! ####
   # Reserve a package.id for your error-free data package. 
+  # NEVER ASSIGN this identifier to a staging environment package.
   # Go to the EDI Production environment (https://portal.edirepository.org/nis/home.jsp)
   # and login using the ccarey (permanent) credentials. 
 
@@ -123,6 +130,11 @@ make_eml(path = "/Users/KJF/Desktop/R/MacrosystemsEDDIE/EDI_Publishing/Macrosyst
 
   # Rename your error-free xml file with your published package id. 
   # This id should end in .1 (e.g., edi.123.1)
+
+#NOTES!! from 3/19/19: KJF & CCC had a bunch of problems with this: and found that they needed
+#  to start in the non-staging "real" environment from scratch with a brand new identifier
+#  separate from the staging environment identifier. You need to edit both the metadata.xml file
+#  name and the package ID within the .xml file each time. Be forewarned!
 
   # Select Tools --> Evaluate/Upload Data Packages, then under "EML Metadata File", 
   # choose your metadata (.xml) file (e.g., edi.123.1.xml), check "I want to 
