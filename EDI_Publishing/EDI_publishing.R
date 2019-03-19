@@ -4,7 +4,7 @@
 # install.packages('devtools')
 # library(devtools)
 
-# install_github("EDIorg/EMLassemblyline")
+#install_github("EDIorg/EMLassemblyline")
 library(EMLassemblyline)
 
 ## Step 1: Make a new directory in this subfolder (EDI_Publishing) for module files ####
@@ -15,14 +15,18 @@ library(EMLassemblyline)
   # student module files (e.g., cross_scale_interactions.zip, which includes R 
   # script, csv files, nml files, etc.)
   # Save a copy of each instructional materials file as a PDF by the same name. 
-  # These PDFs will end up getting zipped together in their own folder
+  # These PDFs will end up getting zipped together in their own folder, called
+  # "Instructor_materials PDFs"
 
 ## Step 3: Create README files in Word #### 
-  # Create a README file in Word for each of (a) instructional materials
-  # (e.g.,instructor_materials_README) and (b) files used to run the module 
-  # (e.g., lake_climate_change_README). 
+  # Create one README file in Word each for (a) instructional materials
+  # (e.g., instructor_materials_README) and (b) files used to run the module 
+  # (e.g., lake_climate_change_README) [n=2 README.docx files total]. 
   # The README files describe the contents of each zip folder, and are based on 
-  # tables prepared as part of the EDI_metadata_template. 
+  # tables prepared as part of the EDI_metadata_template. Look at the previous
+  # modules for templates for each of these README files. You will need to add 
+  # "text/x-rsrc" as the entity for GLM nml files in the column, CSVs are known
+  # file entity types so those rows can be blank.
   # Save each file in both Word and PDF format.
 
 ## Step 4: Zip all instructional materials #### 
