@@ -1,7 +1,7 @@
-# Cross-Scale Interactions Module ####
- # This module was initially developed by Carey, C.C. and K.J. Farrell. 13 Aug. 2017.
- # Macrosystems EDDIE: Cross-Scale Interactions. Macrosystems EDDIE Module 2, Version 1. 
- # module2.macrosystemseddie.org
+# Macro-Scale Feedbacks Module ####
+ # This module was initially developed by Carey, C.C. and K.J. Farrell. 13 June 2019.
+ # Macrosystems EDDIE: Macro-Scale Feedbacks. Macrosystems EDDIE Module 4, Version 1. 
+ # module4.macrosystemseddie.org
  # Module development was supported by NSF EF 1702506.
 
 # R code for students to work through the module activities A, B, and C.
@@ -45,8 +45,10 @@ library(glmtools)
 library(GLMr) 
 # If this worked, GLMr should load without error messages. Hooray!
 
-# See what version of GLM you are running- should be v.2.x.x
 glm_version() 
+# See what version of GLM you are running- should be v.2.x.x. Note, for some 
+#   some computers, you may not get a message. As long as you don't get an error,
+#   you should be ok!
 
 # CONGRATS! You've now succesfully loaded GLM onto your computer! 
   # Now, we will explore the files that come with your downloaded GLM files 
@@ -59,19 +61,20 @@ glm_version()
 
 # When working in R, we set the sim_folder to tell R where your files, scripts, 
   #  and model output are stored.  
-# To find your folder path, navigate to the 'cross_scale_interactions' folder on 
+# To find your folder path, navigate to the 'macroscale_feedbacks' folder on 
   # your Desktop. Right click on the folder that matches your model lake 
   #  (Mendota or Sunapee), then select Properties (Windows) or Get Info (Mac). 
   #  Look under Location (Windows) or Where (Mac) to find your folder path 
   #  (examples below):
   #  Windows: C:/Users/KJF/Desktop/cross_scale_interactions/LakeName
-  #  Mac: Users -> careylab -> Desktop -> cross_scale_interactions -> LakeName
+  #  Mac: Users -> careylab -> Desktop -> macroscale_feedbacks -> LakeName
 
 ##!! Edit this line to define the sim_folder location for your model lake. 
-sim_folder <- '/Users/cayelan/Desktop/cross_scale_interactions/LakeName' 
+sim_folder <- '/Users/cayelan/Desktop/macroscale_feedbacks/LakeName' 
   #  You will need to change the part after Users/ to give the name of your 
   #  computer (e.g., my computer name is cayelan, but yours will be different!) 
-  #  AND change the word LakeName to be the name of your model lake (Mendota or Sunapee).
+  #  AND change the word LakeName to be the name of your model lake (Mendota, Sunapee,
+  #  or FallingCreek). Note that these computer addresses are case-sensitive.
 
 ## This line of code is used to reset your working directory to the sim_folder. 
 setwd(sim_folder) 
