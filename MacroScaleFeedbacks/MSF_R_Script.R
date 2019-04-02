@@ -136,27 +136,40 @@ plot_temp(file=baseline, fig_path=FALSE)
 var_names <- sim_vars(baseline)
 print(var_names) 
 
-# We are particularly interested in the amount of total chlorophyll-a (chl-a), 
-  #  because that is related to phytoplankton blooms. The variable name for chl-a 
-  #  is "PHY_TCHLA", and it is reported in units of micrograms per liter of water 
-  #  (ug/L). Search through the list of variables to find PHY_TCHLA.
+# We are particularly interested in the release of methane (CH4) and carbon dioxide 
+  #  from the water's surface to the atmosphere. The variable name for CH4 release 
+  #  is "CAR_atm_ch4_exch", and the variable name for CO2 release is "CAR_atm_co2_exch".
+  #  Both emissions are reported in units of millimoles/m2/day.
+  #  Search through the list of variables to find both CH4 and CO2 fluxes.
 
-# Use the code below to create a heatmap of chl-a in the lake over time. 
-plot_var(file = baseline, "PHY_TCHLA") 
-# What do you notice about seasonal patterns in chl-a? 
+# Use the code below to create a figure of CH4 emissions from the lake over time. 
+plot_var(file = baseline, "CAR_atm_ch4_exch") 
 
-# We also want to save the model output of the daily chlorophyll-a concentrations 
-  #  in the lake during our baseline simulation, because we'll be comparing it to 
-  #  our climate and land use scenarios later.  To do this, we use the following 
+# Now, compare that CH4 figure with a figure of CO2 emissions from the lake over time.
+plot_var(file = baseline, "CAR_atm_co2_exch") 
+# What do you notice about seasonal patterns in CH4 and CO2 release? When are the
+#   fluxes negative, and when are they positive? How might this be related to 
+#   seasonal trends in lake warming, ice cover, and fall mixing? How do the 
+#   patterns of CH4 and CO2 emissions compare over time?
+
+# We also want to save the model output of the daily emission rates for both CH4 
+  #  and CO2 in the lake during our baseline simulation, because we'll be comparing  
+  #  them to our climate scenarios later.  To do this, we use the following 
   #  commands:
 
-# Save the chl-a from the surface only:
-chla_output <- get_var(file=baseline, "PHY_TCHLA", reference='surface', z_out=c(1)) 
-colnames(chla_output)[2] <- "Baseline_Chla" 
-# Here we rename the chl-a column so we remember it is from the Baseline scenario
+# Save the CH4 release from the surface first:
+ch4_output <- get_var(file=baseline, "CAR_atm_ch4_exch") 
+colnames(ch4_output)[2] <- "Baseline_CH4" 
+# Here we rename the CH4 column so we remember it is from the Baseline scenario
+
+# Save the CO2 release from the surface first:
+co2_output <- get_var(file=baseline, "CAR_atm_co2_exch") 
+colnames(co2_output)[2] <- "Baseline_CO2" 
+# Here we rename the CO2 column so we remember it is from the Baseline scenario
 
 # We'll also use the command below to save a copy of our output as a .csv file:
-write.csv(chla_output, './model_output.csv', quote=F, row.names = F)
+write.csv(ch4_output, './ch4model_output.csv', quote=F, row.names = F)
+write.csv(co2_output, './co2model_output.csv', quote=F, row.names = F)
 
 ########## ACTIVITY B - OBJECTIVE 3 ############################################
 # For Activity B, you will work with your partner to model your lake, plus another 
@@ -195,25 +208,33 @@ climate <- file.path(sim_folder, 'output.nc')
 # This defines the output.nc file as being within the sim_folder. Note that we've 
   #  called this output "climate" since it is output from our climate change simulation.
 
-# As before, we want to save the model output of the daily chlorophyll-a 
-  #  concentrations in the lake during our climate change simulation, to compare to 
+# As before, we want to save the model output of the daily emission rates 
+  #  in the lake during our climate change simulation, to compare to 
   #  our baseline and land use scenarios later. 
 
-#  Extract surface chl-a:
-climate_chla <- get_var(file=climate, "PHY_TCHLA", reference='surface', z_out=c(1)) 
-chla_output["Climate_Chla"] <- climate_chla[2] 
-# Here we attach the chl-a data from your climate simulation to the same file that 
-  #  contains your baseline scenario chl-a concentrations. 
+#  Extract daily CH4 release rates:
+climate_ch4 <- get_var(file=baseline, "CAR_atm_ch4_exch") 
+ch4_output["Climate_CH4"] <- climate_ch4[2] 
+# Here we attach the CH4 data from your climate simulation to the same file that 
+  #  contains your baseline scenario emission rates. 
+
+#  Extract daily CO2 release rates:
+climate_co2 <- get_var(file=baseline, "CAR_atm_co2_exch") 
+co2_output["Climate_CO2"] <- climate_co2[2] 
+# Here we attach the CO2 data from your climate simulation to the same file that 
+#  contains your baseline scenario emission rates. 
 
 # Again, we'll use the command below to save a copy of our output as a .csv file:
-write.csv(chla_output, './model_output.csv', quote=F, row.names = F)
+write.csv(ch4_output, './ch4model_output.csv', quote=F, row.names = F)
+write.csv(co2_output, './co2model_output.csv', quote=F, row.names = F)
 
 ##!! To check that your climate change scenario ran correctly, run the command 
   #  below, and compare the chl-a data between your baseline and climate scenarios. 
   #  They'll likely be similar, but if they're EXACTLY the same after the first 
   #  few rows, something might have gone wrong in setting up your climate scenario 
   #  (likely with changing the glm2.nml file!)
-View(chla_output)
+View(ch4_output)
+View(co2_output)
 
 ########## ACTIVITY B - OBJECTIVE 4 ############################################
 # Plot the output using the commands you learned above. 
@@ -224,150 +245,34 @@ plot_temp(file=climate, fig_path=FALSE)
   # add the following (without quotes) after fig_path=FALSE: 'col_lim= c(0,35)'
   # This tells R that you want your maximum value to be 35, and your min. to be 0
 
-# Create a heatmap of chlorophyll-a. 
-plot_var(file=climate, "PHY_TCHLA") 
-# How does this compare to your baseline? You can add the 'col_lim' command to 
-  #  this plot, too! Look at the Note from the plot_temp() command to learn how.
+# Create a plot of CH4 and CO2 emissions. 
+plot_var(file = climate, "CAR_atm_ch4_exch") 
+plot_var(file = climate, "CAR_atm_co2_exch") 
+
+# How does this compare to your baseline? 
 
 # Do these plots from the climate scenario and the baseline support or contradict 
-  # your hypotheses about climate change effects on chlorophyll-a? 
+  # your hypotheses about climate change effects on CH4 and CO2 emissions? 
 
 ########## ACTIVITY C - OBJECTIVE 5 ############################################
-# Now, with your partner and the other team, select one of the pre-made land use 
-  #  scenarios based on changes in phosphorus concentrations in the inflow file. 
-  #  Remember that both teams should run the SAME land use scenario on their separate 
-  #  lakes and compare the output.
 
-##!!!! Once you have selected your land use scenario, you need to edit the glm2.nml 
-  #  file to change the name of the inflow file so that it reads in the inflow file 
-  #  for your land use scenario, not the default "inflow.csv".  
-
-##!!!! Open the glm2.nml file, scroll down to the inflows section, and change the 
-  #  inflow_fl entry to the new file name (e.g., from 'inflow.csv' to 'inflow_fourP.csv'). 
-
-##!!!! IMPORTANT: Be sure to ALSO change your met file name in the glm2.nml BACK to 
-  # the original (baseline) met file (e.g., in the meteorology section, make sure 
-  # your 'meteo_fl' entry is 'met_hourly.csv'. This is because we want 
-  # to examine the effects of your land use scenario SEPARATE from the climate
-  # scenario you developed earlier. \\
-
-##!!!! Save your modified glm2.nml file that has baseline meteorology and altered 
-  #  land use.
-
-# Once you have edited the nml file name, check to make sure that it is correct 
-  # with the commands:
-nml <- read_nml(nml_file)  
-get_nml_value(nml, 'inflow_fl') 
-# You should get an output that lists the name of your ALTERED inflow file.
-get_nml_value(nml, 'meteo_fl') 
-# You should get an output that lists the name of your BASELINE meteorological 
-  #  file ('met_hourly.csv').
-
-# You can now run the model for your land use scenario using the new edited 
-  #  nml file using the commands below. Exciting!
-
-# Run your GLM model for your lake land use scenario. 
-run_glm(sim_folder, verbose=TRUE) 
-  # At the end of the model run, it should say "Run complete" if everything worked.
-
-# Again, we need to tell R where the output.nc file is so that the glmtools package 
-  #  can plot and analyze the model output. We tell R where to find the output file 
-  #  using the line below:
-landuse <- file.path(sim_folder, 'output.nc') 
-# This defines the output.nc file as being within the sim_folder. Note that we've 
-  #  called this output "landuse" since it is output from our land use change simulation.
-
-# As before, we want to save the model output of the daily chlorophyll-a 
-  #  concentrations in the lake during our land use change simulation, to compare 
-  #  to our baseline and climate scenarios later. 
-# Extract surface chl-a:
-landuse_chla <- get_var(file=landuse, "PHY_TCHLA", reference='surface', z_out=c(1)) 
-chla_output["LandUse_Chla"] <- landuse_chla[2] 
-# Here we attach the chl-a data from your land  use simulation to the same file 
-  #  that contains your baseline and climate change scenario chl-a concentrations.
-
-# Again, we'll use the command below to save a copy of our output as a .csv file:
-write.csv(chla_output, './model_output.csv', quote=F, row.names = F)
-
-# Plot the output of your land use scenario using the commands you learned above. 
-plot_var(file=landuse, "PHY_TCHLA") 
-# How does your phytoplankton heatmap look in comparison to the baseline? 
-# Be sure to check the scale of the color gradient for chl-a when comparing plots!
-
-# Finally, we want to see what happens when land use and climate interact! 
-  #  Luckily, testing the combined effects of your land use and climate change 
-  #  scenarios will be pretty easy! Since we already have modified met data 
-  #  (climate scenario) and inflow data (land use scenario), we just have GLM read 
-  #  them both at once. We can do this by changing the glm2.nml file to include our 
-  #  modified files.
-
-##!!!! In the glm2.nml file, make the following TWO changes:
-
-##!!!! 1) In the meteorology section, change the 'meteo_fl' entry to the met file 
-  #  that represents your climate change scenario (e.g., 'met_hourly_plus2.csv')
-
-##!!!! 2) In the inflow section, check that the 'inflow_fl' file represents your 
-  #  land use change scenario (e.g., 'inflow_fourP.csv')
-
-##!!!! Save your glm2.nml file, then run the following commands to check that the 
-#  changes were made correctly.
-# Read in your updated nml file 
-nml <- read_nml(nml_file) 
-get_nml_value(nml, 'inflow_fl') 
-# If you have done this correctly, your output should list the name of your 
-  #  ALTERED inflow file.
-get_nml_value(nml, 'meteo_fl') 
-# If you have done this correctly, your output should list the name of your 
-  #  ALTERED meteorological file.
-
-# Run GLM one more time for your lake climate + land use scenario!
-run_glm(sim_folder, verbose=TRUE)
-
-# As above, we need to tell R where the output.nc file is:
-climate_landuse <- file.path(sim_folder, 'output.nc') 
-# This defines the output.nc file as being within the sim_folder. Note that we've 
-  #  called this output "climate_landuse" since it is the output from our 
-  #  simultaneous climate AND land use change simulations.
-
-# As before, we want to save the model output of the daily chlorophyll-a 
-  #  concentrations in the lake, to compare to our baseline, climate, and land use 
-  #  scenarios. 
-# Extract surface chl-a:
-combined_chla <- get_var(file=climate_landuse, "PHY_TCHLA", reference='surface', z_out=c(1)) 
-chla_output["Climate_LandUse_Chla"] <- combined_chla[2] 
-# Here we attach the chl-a data from  your combined simulation to the same file 
-  # that contains your baseline, climate change, & land use scenario chl-a concentrations
-
-# Once more, we'll use the command below to save a copy of our output as a .csv file:
-write.csv(chla_output, './model_output.csv', quote=F, row.names = F)
-# Now there is a .csv file named "model_output.csv" saved in your lake's folder!
-
-# Plot the output of your land use scenario using the commands you learned above. 
-plot_var(file=climate_landuse, "PHY_TCHLA") 
-
-# Now that you've run four different scenarios (baseline, climate only, land use 
-  #  only, and climate + land use), let's plot how the chl-a in the lakes responded 
+# Now that you've run two different scenarios (baseline and climate), let's plot 
+  #  how the CH4 and CO2 emissions in the lakes responded 
   #  to the different scenarios. We can do this by:
 
 # The command below plots DateTime vs. Observed data in black: 
-plot(chla_output$DateTime, chla_output$Baseline_Chla, type="l", lwd=2, col="black", 
-     ylab="Chlorophyll-a (ug/L)", xlab="Date", ylim=c(0, 100))  
+plot(ch4_output$DateTime, ch4_output$Baseline_CH4, type="l", lwd=2, col="black", 
+     ylab="CH4 emission rate (mmol/m2/d)", xlab="Date", ylim=c(0, 1))  
 
 # add an orange line of the climate change scenario
-lines(chla_output$DateTime, chla_output$Climate_Chla, lwd=2, col="darkorange")
-
-# add a blue line of the land use scenario
-lines(chla_output$DateTime, chla_output$LandUse_Chla, lwd=2, col="deepskyblue") 
-
-# add a green line of the climate + land use scenario
-lines(chla_output$DateTime, chla_output$Climate_LandUse_Chla, lwd=2, col="springgreen4") 
+lines(ch4_output$DateTime, ch4_output$Climate_CH4, lwd=2, col="red")
 
 # add a legend
-legend("topleft",c("Baseline", "Climate Only", "Land Use Only", "Combined C + LU"),  
-       lty=1, lwd=2, col=c("black","darkorange","deepskyblue", "springgreen4"))
+legend("topleft",c("Baseline", "Climate"),  
+       lty=1, lwd=2, col=c("black","red"))
 
-##!! Note that the command ylim=c(0, 100) tells R what you want the minimum and 
-  #  maximum values on the y-axis to be (here, we're plotting from 0 to 100 ug/L). 
+##!! Note that the command ylim=c(0,1) tells R what you want the minimum and 
+  #  maximum values on the y-axis to be (here, we're plotting from 0 to 1 mmol/m2/day). 
 ##!! You should adjust this range to make sure all your data are shown in the 
   #  plot.
 

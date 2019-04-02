@@ -135,7 +135,7 @@
    atmco2 = 400e-6
    ionic = 0.3
    !-- CH4 --
-   ch4_initial = 27
+   ch4_initial = 0.01
    Rch4ox = 0.1
    Kch4ox = 0.5
    vTch4ox = 1.07
