@@ -162,7 +162,7 @@ ch4_output <- get_var(file=baseline, "CAR_atm_ch4_exch")
 colnames(ch4_output)[2] <- "Baseline_CH4" 
 # Here we rename the CH4 column so we remember it is from the Baseline scenario
 
-# Save the CO2 release from the surface first:
+# Save the CO2 release from the surface second:
 co2_output <- get_var(file=baseline, "CAR_atm_co2_exch") 
 colnames(co2_output)[2] <- "Baseline_CO2" 
 # Here we rename the CO2 column so we remember it is from the Baseline scenario
@@ -238,7 +238,7 @@ View(co2_output)
 
 ########## ACTIVITY B - OBJECTIVE 4 ############################################
 # Plot the output using the commands you learned above. 
-# Create a heatmap of the water temperature
+# Create a heatmap of the water temperature in your climate scenario:
 plot_temp(file=climate, fig_path=FALSE) 
   # How does this compare to your baseline?
 # Note: If you want to control the maximum value of the color scale on your heatmaps, 
@@ -249,22 +249,18 @@ plot_temp(file=climate, fig_path=FALSE)
 plot_var(file = climate, "CAR_atm_ch4_exch") 
 plot_var(file = climate, "CAR_atm_co2_exch") 
 
-# How does this compare to your baseline? 
-
 # Do these plots from the climate scenario and the baseline support or contradict 
   # your hypotheses about climate change effects on CH4 and CO2 emissions? 
 
-########## ACTIVITY C - OBJECTIVE 5 ############################################
-
 # Now that you've run two different scenarios (baseline and climate), let's plot 
   #  how the CH4 and CO2 emissions in the lakes responded 
-  #  to the different scenarios. We can do this by:
+  #  to the different scenarios on the same figures. We can do this by:
 
-# The command below plots DateTime vs. Observed data in black: 
+# The command below plots DateTime vs. baseline CH4 emissions data in black: 
 plot(ch4_output$DateTime, ch4_output$Baseline_CH4, type="l", lwd=2, col="black", 
      ylab="CH4 emission rate (mmol/m2/d)", xlab="Date", ylim=c(0, 1))  
 
-# add an orange line of the climate change scenario
+# add a red line of the climate change scenario
 lines(ch4_output$DateTime, ch4_output$Climate_CH4, lwd=2, col="red")
 
 # add a legend
@@ -276,8 +272,68 @@ legend("topleft",c("Baseline", "Climate"),
 ##!! You should adjust this range to make sure all your data are shown in the 
   #  plot.
 
+# The command below plots DateTime vs. baseline CH4 emissions data in black: 
+plot(co2_output$DateTime, co2_output$Baseline_CO2, type="l", lwd=2, col="black", 
+     ylab="CO2 emission rate (mmol/m2/d)", xlab="Date", ylim=c(-0.3, 0.2))  
+
+# add a red line of the climate change scenario
+lines(co2_output$DateTime, co2_output$Climate_CO2, lwd=2, col="red")
+
+# add a legend
+legend("topleft",c("Baseline", "Climate"),  
+       lty=1, lwd=2, col=c("black","red"))
+
+
+########## ACTIVITY C - OBJECTIVE 5 ############################################
+# Now we are going to calculate global warming potentials (GWPs) to estimate how much
+#   the greenhouse gases emitted from your lake contribute to global climate 
+#   change. In particular, we are going to examine how the GWPs change under 
+#   different climate change scenarios, resulting in macro-scale feedbacks.
+
+# First, we need to calculate the mass of CO2 emitted from the lake over 
+#   the one-year simulation period in the baseline simulation. We need to take 
+#   the rate of CO2 and CH4 in mmol/m2 per day and multiply it by the m2 surface area
+#   of each lake to convert the rate into a mass.
+# Enter in the surface area of your focal lake before the ##!! in the line below.
+#   Falling Creek's surface area = 85000 m2, Mendota's surface area = 39400000 m2, 
+#   and Sunapee's surface area = 16740000 m2.
+
+lakearea <- ##!! 
+  #you need to enter one of the lake surface areas from the text above here.
+  
+BaselineCO2mass <- sum(co2_output$Baseline_CO2)*44.01*lakearea/1000000
+# This sums up all millimoles of CO2 released per m2 of your lake and converts 
+#   the rate to a mass in kg of how much CO2 was released over the year.
+
+BaselineCO2mass 
+# This value is the mass of CO2 in kg released by your lake over a year. Is it 
+#   negative or positive? If it is negative, why? 
+
+BaselineCH4mass <- sum(ch4_output$Baseline_CH4)*16.04*lakearea/1000000
+# This sums up all millimoles of CO2 released per m2 of your lake and converts 
+#   the rate to a mass in kg of how much CO2 was released over the year.
+
+BaselineCH4mass 
+# This value is the mass of CH4 in kg released by your lake over a year. Is it 
+#   negative or positive? If it is negative, why?
+
+# Second, now that the mass of CO2 and CH4 emissions are calculated, we 
+#   now need to calculate the GWPCO2 has a GWP of 1 but CH4 has a GWP of 86 
+#   over a 20-year time horizon (IPCC 2013).
+#   That means that for every kg of CH4 released, it has 86 times more of an 
+#   impact on how much heat a greenhouse gas traps in the atmosphere up to that 
+#   20-year time horizon, relative to 1 kg of CO2. 
+GWP_baseline <- BaselineCO2mass*1 + BaselineCH4mass*86
+
+GWP_baseline
+# This value is the baseline GWP for your lake. 
+
+# Third, let's do the same calculations for the climate change scenario to see
+#   how this compares with your baseline GWP.
+
+
 ########## ACTIVITY C - OBJECTIVE 6 ############################################
-# Using the line plot you just created, and the other team's line plot from their 
+# Using the figures you created, and the other team's plots from their 
   #  lake, put together a brief presentation of your model simulation and output to 
   #  share with the rest of the class (you'll present as a group of 4!)
 
