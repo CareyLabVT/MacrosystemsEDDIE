@@ -384,34 +384,44 @@ GWP_climate
 ########## ACTIVITY C - OBJECTIVE 6 ############################################
 # Now let's create some figures to show your results! 
 
-# Let's create a barplot that compares the baseline vs. climate CO2 and
-#   CH4 mass, and then ultimately the GWPs between the two scenarios.
+# To get all our calculated values together, we'll create an empty data matrix,
+  #  then fill it in with our calculated numbers:
+# Create the empty matrix, with 3 columns and 2 rows:
+data <- matrix(ncol=3, nrow=2) 
 
-data <- matrix(ncol=3,nrow=2)
-data[1,]<-c(BaselineCO2mass, BaselineCH4mass, GWP_baseline)
-data[2,]<-c(ClimateCO2mass, ClimateCH4mass, GWP_climate)
-row.names(data)<-c("Baseline", "Climate")
-colnames(data)<-c("CO2 mass", "CH4 mass", "GWP")
-#this creates a data matrix of all of the data you have calculated above.
+# In the first row, we'll fill in the baseline CO2 mass, CH4 mass, and GWP:
+data[1,] <- c(BaselineCO2mass, BaselineCH4mass, GWP_baseline)
 
-barplot(data, col=c("red","blue"), font.axis=2, beside=T, ylab="kg or GWP", font.lab=2)
-legend("topleft", legend=rownames(data), pch = 19, col=c("red","blue"))
-#these commands create a plot where red bars show the CO2 mass, CH4 mass, and GWPs
-#   baseline scenario and blue bars show the climate scenario.
+# In the second row, we'll fill in the climate scenario CO2 mass, CH4 mass, and GWP:
+data[2,] <- c(ClimateCO2mass, ClimateCH4mass, GWP_climate)
+
+# The two commands below allow us to provide names for the rows and columns:
+row.names(data) <- c("Baseline", "Climate")
+colnames(data) <- c("CO2 mass", "CH4 mass", "GWP")
+
+# Use this command to view your data matrix:
+View(data)
+
+
+# Now we'll create a barplot to compares the baseline vs. climate CO2 and CH4 masses, 
+  #  and the GWPs between the two scenarios.
+barplot(data, col=c("gray20","red3"), font.axis=2, beside=T, ylab="kg or GWP", font.lab=2)
+legend("topleft", legend=rownames(data), pch = 19, col=c("gray20","red3"))
+#  As in our earlier plots, the gray bars represent the baseline scenario and 
+  #  the red bars represent the climate scenario.
 
 # Do these data support or contradict your hypotheses about the relative importance
-#   of the contribution of CO2 and CH4 emissions to global warming? What is the
-#   effect of the lake on the atmosphere? How will this change under the climate
-#   change scenario?
+  #  of CO2 and CH4 emissions to global warming? What is the effect of the lake 
+  #  on the atmosphere? How might this change under the climate change scenario?
 
-#Using the figures you created, and the other team's plots from their 
-  #  lake, put together a brief presentation of your model simulation and output to 
-  #  share with the rest of the class (you'll present as a group of 4!)
+# Using the figures you created, and the other team's plots from their lake, put 
+  #  together a brief presentation of your model simulation and output to share 
+  #  with the rest of the class (you'll present as a group of 4!)
 
 # How do the greenhouse gas emissions of your two lakes compare under baseline and
-#   climate scenarios? Which lake responds more to the climate scenario, and how will 
-#   their altered CO2 and CH4 emissions feed back to either intensify or counteract
-#   climate change?
+  #  climate scenarios? Which lake responds more to the climate scenario, and how 
+  #  will their altered CO2 and CH4 emissions feed back to either intensify or 
+  #  counteract climate change?
 
 # Make sure your presentation answers the questions listed in your handout.
 
