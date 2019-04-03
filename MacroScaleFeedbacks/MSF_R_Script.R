@@ -63,7 +63,8 @@ glm_version()
   #  and model output are stored.  
 # To find your folder path, navigate to the 'macroscale_feedbacks' folder on 
   # your Desktop. Right click on the folder that matches your model lake 
-  #  (Mendota or Sunapee), then select Properties (Windows) or Get Info (Mac). 
+  #  (Mendota, Sunapee, or FallingCreek), then select Properties (Windows) or 
+  #  Get Info (Mac). 
   #  Look under Location (Windows) or Where (Mac) to find your folder path 
   #  (examples below):
   #  Windows: C:/Users/KJF/Desktop/macroscale_feedbacks/LakeName
@@ -74,17 +75,17 @@ sim_folder <- '/Users/cayelan/Desktop/macroscale_feedbacks/LakeName'
   #  You will need to change the part after Users/ to give the name of your 
   #  computer (e.g., my computer name is cayelan, but yours will be different!) 
   #  AND change the word LakeName to be the name of your model lake (Mendota, Sunapee,
-  #  or FallingCreek). Note that these computer addresses are case-sensitive.
+  #  or FallingCreek). Note that these computer file paths are case-sensitive.
 
-## This line of code is used to reset your working directory to the sim_folder. 
+# This line of code is sets your sim_folder as the working directory 
 setwd(sim_folder) 
 # The point of this step is to make sure that any new files you create (e.g., 
 # figures of output) end up together in this folder.
 
-# This step sets the nml_file for your simulation to be inside the sim_folder
+# This step tells R that the nml_file for your simulation is inside the sim_folder
 nml_file <- paste0(sim_folder,"/glm2.nml") 
 
-# Read in your nml file from your new directory
+# Read in your nml file from your working directory
 nml <- read_nml(nml_file) 
 
 # This shows you what is in your nml file.  
@@ -107,15 +108,15 @@ run_glm(sim_folder, verbose=TRUE)
   #  "Simulation begins..". At the end, it should say "Run complete" if 
   #  everything worked ok. This may take a few minutes.
 
-# We need to know where the output data from your simulation (the output.nc file) 
+# We need to specify where the output data from your simulation (the output.nc file) 
   #  is so that the glmtools package can plot and analyze the model output. We tell 
   #  R where to find the output file using the line below:
 
 # This says that the output.nc file is in the sim_folder.  
 baseline <- file.path(sim_folder, 'output.nc') 
 
-# This plots your simulated water temperatures in a heat map, where time is 
-  #  displayed on the x-axis, lake depth is displayed on the y-axis, and the 
+# This command plots your simulated water temperatures in a heat map, where time 
+  #  is displayed on the x-axis, lake depth is displayed on the y-axis, and the 
   #  different colors represent different temperatures. 
 plot_temp(file=baseline, fig_path=FALSE) 
 
