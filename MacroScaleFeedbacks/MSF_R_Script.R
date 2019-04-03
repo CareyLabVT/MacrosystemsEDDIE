@@ -330,65 +330,56 @@ print(lakearea)
 BaselineCO2mass <- sum(co2_output$Baseline_CO2) * lakearea * 44.01 / 1000000
 
 BaselineCO2mass 
-# This value is the mass of CO2 in kg released by your lake over a year. Is it 
-  #  negative or positive? If it is negative, why? 
+# This value is the yearly CO2 flux for your lake (in kg). Is it negative or positive? 
+  #  What does that mean?
 
-# We use the same steps to calculate CH4, checking to use the CH4 molecular weight!
-BaselineCH4mass <- sum(ch4_output$Baseline_CH4) *lakearea * 16.04 / 1000000
+# We use the same steps to calculate CH4, but using the CH4 molecular weight!
+BaselineCH4mass <- sum(ch4_output$Baseline_CH4) * lakearea * 16.04 / 1000000
 
 BaselineCH4mass 
-# This value is the mass of CH4 in kg released by your lake over a year. Is it 
-  #  negative or positive? If it is negative, why?
+# This value is the yearly CH4 flux for your lake (in kg). Is it negative or positive? 
+#  What does that mean?
 
-# Second, now that the mass of CO2 and CH4 emissions are calculated, we 
-#   now need to calculate the GWP of your lake in the baseline and climate scenarios.
-#   CO2 has a GWP of 1 but CH4 has a GWP of 86 over a 20-year time horizon (IPCC 2013).
-#   That means that for every kg of CH4 released, it has 86 times more of an 
-#   impact on heating of the atmosphere on a 20-year time horizon than 1 kg of CO2. 
-#   We convert the kg of CH4 to kg of CO2 so we can compare the impact of both gases 
-#   in the same units as GWPs. 
-GWP_baseline <- BaselineCO2mass*1 + BaselineCH4mass*86
+# Now that the mass of CO2 and CH4 emissions are calculated, we need to calculate 
+  #  the GWP of your lake in the baseline scenario. CO2 has a GWP of 1 but CH4 has 
+  #  a GWP of 86 over a 20-year time horizon (IPCC 2013). That means that CH4 has 
+  #  86 times the impact on atmospheric heating on a 20-year time horizon as CO2. 
+
+# We convert the kg of CH4 to CO2 equivalents (e.g., multiply by 86) so we can 
+  #  calculate the GWP impact of both gases using the same units:
+GWP_baseline <- (BaselineCO2mass * 1) + (BaselineCH4mass * 86)
 
 GWP_baseline
 # This value is the baseline GWP for your lake. Is it positive or negative? If it
-#   is positive then the value indicates how many kg of CO2 are released to the 
-#   atmosphere. If it is negative, then then value indicates how many kg of CO2 
-#   are taken up by your lake from the atmosphere.
+  #  is positive, the value corresponds to how many kg of CO2 are released to the 
+  #  atmosphere each year. If it is negative, the value corresponds to how many 
+  #  kg of CO2 are taken up by your lake from the atmosphere each year.
 
-# Third, let's do the same GWP calculations for the climate change scenario to see
-#   how this compares with your baseline GWP.
+# Let's do the same mass and GWP calculations for the climate change scenario to 
+  #  see how this compares with your baseline GWP.
 
-ClimateCO2mass <- sum(co2_output$Climate_CO2)*44.01*lakearea/1000000
-# This sums up all millimoles of CO2 released per m2 of your lake in the climate
-#   scenario and converts the rate to a mass in kg of how much CO2 was released 
-#   over the year.
+# Calculate the yearly CO2 flux for your lake under the climate change scenario:
+ClimateCO2mass <- sum(co2_output$Climate_CO2) * lakearea * 44.01 / 1000000
 
 ClimateCO2mass 
-# This value is the mass of CO2 in kg released by your lake over a year in the
-#   climate scenario. Is it negative or positive? If it is negative, why? How does
-#   it compare to the baseline scenario CO2 mass?
+# This value is the yearly CO2 flux for your lake (in kg) under the climate change
+  #  scenario. Is it negative or positive? What does that mean?
 
-ClimateCH4mass <- sum(ch4_output$Climate_CH4)*16.04*lakearea/1000000
-# This sums up all millimoles of CO2 released per m2 of your lake in the climate
-#   scenario and converts the rate to a mass in kg of how much CO2 was released 
-#   over the year.
+# Calculate the yearly CH4 flux for your lake under the climate change scenario:
+ClimateCH4mass <- sum(ch4_output$Climate_CH4) * lakearea * 16.04 / 1000000
 
 ClimateCH4mass 
-# This value is the mass of CH4 in kg released by your lake over a year. Is it 
-#   negative or positive? If it is negative, why? How does this value
-#   compare to the baseline scenario CH4 mass?
+# This value is the yearly CH4 flux for your lake (in kg) under the climate change
+  #  scenario. Is it negative or positive? What does that mean?
 
-# Fourth, now that the mass of CO2 and CH4 emissions are calculated for the climate
-#   scenario, we now need to calculate the GWPCO2 has a GWP of 1 but CH4 has a 
-#   GWP of 86 over a 20-year time horizon (IPCC 2013).
-#   That means that for every kg of CH4 released, it has 86 times more of an 
-#   impact on how much heat is trapped in the atmosphere on a
-#   20-year time horizon, relative to 1 kg of CO2. 
-GWP_climate <- ClimateCO2mass*1 + ClimateCH4mass*86
+# As above, we will estimate the GWP for our lake under the climate change scenario
+  #  by converting our CH4 mass into CO2 equivalents, since CH4 has 86 times the 
+  #  warming atmospheric warming impact on a 20-year time horizon as CO2. 
+GWP_climate <- (ClimateCO2mass * 1) + (ClimateCH4mass * 86)
 
 GWP_climate
 # How does this climate GWP value compare to the baseline GWP value? Is it positive
-#   or negative?
+  #  or negative? What does this mean?
 
 ########## ACTIVITY C - OBJECTIVE 6 ############################################
 # Now let's create some figures to show your results! 
