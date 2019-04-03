@@ -219,16 +219,16 @@ climate <- file.path(sim_folder, 'output.nc')
 
 # As before, we want to save the model output of the daily emission rates 
   #  in the lake during our climate change simulation, to compare to 
-  #  our baseline and land use scenarios later. 
+  #  our baseline scenario. 
 
 #  Extract daily CH4 release rates:
-climate_ch4 <- get_var(file=baseline, "CAR_atm_ch4_exch") 
+climate_ch4 <- get_var(file=climate, "CAR_atm_ch4_exch") 
 ch4_output["Climate_CH4"] <- climate_ch4[2] 
 # Here we attach the CH4 data from your climate simulation to the same file that 
   #  contains your baseline scenario emission rates. 
 
 #  Extract daily CO2 release rates:
-climate_co2 <- get_var(file=baseline, "CAR_atm_co2_exch") 
+climate_co2 <- get_var(file=climate, "CAR_atm_co2_exch") 
 co2_output["Climate_CO2"] <- climate_co2[2] 
 # Here we attach the CO2 data from your climate simulation to the same file that 
 #  contains your baseline scenario emission rates. 
