@@ -303,38 +303,42 @@ legend("topleft", c("Baseline", "Climate"), lty=1, lwd=2, col=c("gray20","red3")
   #  your hypotheses about climate change effects on CH4 and CO2 emissions? How?
 
 ########## ACTIVITY C - OBJECTIVE 5 ############################################
-# Now we are going to calculate global warming potentials (GWPs) to estimate how much
-#   the greenhouse gases emitted from your lake contribute to global climate 
-#   change. In particular, we are going to examine how the GWPs change under 
-#   different climate change scenarios, resulting in macro-scale feedbacks.
+# Now we are going to calculate global warming potentials (GWPs) to estimate how 
+  #  much the greenhouse gases emitted from your lake contribute to global climate 
+  #  change. Specifically, we are going to examine how the GWPs change under 
+  #  different climate change scenarios, resulting in macro-scale feedbacks.
 
-# First, we need to calculate the mass of CO2 emitted from the lake over 
-#   the one-year simulation period in the baseline simulation. We need to take 
-#   the rate of CO2 and CH4 in mmol/m2 per day and multiply it by the m2 surface area
-#   of each lake to convert the rate into a mass.
+# We need to calculate the masses of CO2 and CH4 emitted from the lake over the 
+  #  one-year simulation period in the baseline simulation. 
+  #  To do this, we do a number of mathematical manipulations:
 
-# Enter in the surface area of your focal lake before the ##!! in the line below.
-#   Falling Creek's surface area = 85000 m2, Mendota's surface area = 39400000 m2, 
-#   and Sunapee's surface area = 16740000 m2.
+# FIRST, we sum the daily masses of CO2 and CH4 (mmol/d) across the simulation 
+  # to estimate the yearly flux of CO2 or CH4 (in mmol/m2)
 
-lakearea <- ##!! 
-  #you need to enter one of the lake surface areas from the text above here.
-  
-BaselineCO2mass <- sum(co2_output$Baseline_CO2)*44.01*lakearea/1000000
-# This sums up all millimoles of CO2 released per m2 of your lake and converts 
-#   the rate from moles to mass in kg of how much CO2 was released over the year.
+# SECOND, we multiply the yearly CO2 and CH4 flux (mmol/m2) by the lake 
+  #  surface area (m2) to convert the rate into a yearly mass (mmol).
+
+# Lake area is defined as part of the nml file when setting up the GLM model.
+#  You can find your lake surface area using the command below:
+lakearea <- max(nml$morphometry$A)
+print(lakearea)
+
+# THIRD, we convert mmol to kilograms by multiplying by molecular weight 
+  #  (44.01 for CO2, 16.04 for CH4) and dividing by 1000000
+
+# The net result of these steps is: 
+BaselineCO2mass <- sum(co2_output$Baseline_CO2) * lakearea * 44.01 / 1000000
 
 BaselineCO2mass 
 # This value is the mass of CO2 in kg released by your lake over a year. Is it 
-#   negative or positive? If it is negative, why? 
+  #  negative or positive? If it is negative, why? 
 
-BaselineCH4mass <- sum(ch4_output$Baseline_CH4)*16.04*lakearea/1000000
-# This sums up all millimoles of CO2 released per m2 of your lake and converts 
-#   the rate from moles to mass in kg of how much CO2 was released over the year.
+# We use the same steps to calculate CH4, checking to use the CH4 molecular weight!
+BaselineCH4mass <- sum(ch4_output$Baseline_CH4) *lakearea * 16.04 / 1000000
 
 BaselineCH4mass 
 # This value is the mass of CH4 in kg released by your lake over a year. Is it 
-#   negative or positive? If it is negative, why?
+  #  negative or positive? If it is negative, why?
 
 # Second, now that the mass of CO2 and CH4 emissions are calculated, we 
 #   now need to calculate the GWP of your lake in the baseline and climate scenarios.
@@ -385,7 +389,6 @@ GWP_climate <- ClimateCO2mass*1 + ClimateCH4mass*86
 GWP_climate
 # How does this climate GWP value compare to the baseline GWP value? Is it positive
 #   or negative?
-
 
 ########## ACTIVITY C - OBJECTIVE 6 ############################################
 # Now let's create some figures to show your results! 
