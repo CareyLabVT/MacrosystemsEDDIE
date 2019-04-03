@@ -221,7 +221,7 @@ nsave = 24
    albedo_mode = 1
    cloud_mode  = 4
 !-- BC file details
-   meteo_fl   = 'met_hourly_plus6.csv'
+   meteo_fl   = 'met_hourly.csv'
    subdaily = .true. 
    wind_factor = 1.0
    sw_factor = 0.9
