@@ -167,14 +167,14 @@ write.csv(co2_output, './co2model_output.csv', quote=F, row.names = F)
 
 # Now, use the code below to create a figure of CH4 emissions from the lake over time. 
   #  You can click "Zoom" on the plot window to see a larger version of your plot
-plot(Baseline_CH4 ~ DateTime, data= ch4_output, type='b',
-     ylab = "Methane flux, mmol/m2/d")
-abline(h = 0, col = 'red', lty = 2, lwd=2)
+plot(Baseline_CH4 ~ DateTime, data= ch4_output, type='b', pch=20, lwd=2, col='gray20',
+     ylab = "Methane flux, (mmol/m2/d)")
+abline(h= 0, col= 'black', lty= 3, lwd= 3) # Add a black dashed line at 0
 
 # Now, compare that CH4 figure with a figure of CO2 emissions from the lake over time.
-plot(Baseline_CO2 ~ DateTime, data= co2_output, type='b',
-     ylab = "Carbon dioxide flux, mmol/m2/d")
-abline(h = 0, col = 'red', lty = 2, lwd=2)
+plot(Baseline_CO2 ~ DateTime, data= co2_output, type='b', pch=20, lwd=2, col='gray20',
+     ylab = "Carbon dioxide flux, (mmol/m2/d)")
+abline(h= 0, col= 'black', lty= 3, lwd= 3) # Add a black dashed line at 0
 # What do you notice about seasonal patterns in CH4 and CO2 release? When are the
 #   fluxes negative, and when are they positive? How might this be related to 
 #   seasonal trends in lake temperature, ice cover, and fall mixing? How do the 
@@ -231,7 +231,7 @@ ch4_output["Climate_CH4"] <- climate_ch4[2]
 climate_co2 <- get_var(file=climate, "CAR_atm_co2_exch") 
 co2_output["Climate_CO2"] <- climate_co2[2] 
 # Here we attach the CO2 data from your climate simulation to the same file that 
-#  contains your baseline scenario emission rates. 
+  #  contains your baseline scenario emission rates. 
 
 # Again, we'll use the command below to save a copy of our output as a .csv file:
 write.csv(ch4_output, './ch4model_output.csv', quote=F, row.names = F)
@@ -249,52 +249,58 @@ View(co2_output)
 # Plot the output using the commands you learned above. 
 # Create a heatmap of the water temperature in your climate scenario:
 plot_temp(file=climate, fig_path=FALSE) 
-  # How does this compare to your baseline?
+  # How does this output compare to your baseline temperature heatmap?
+
 # Note: If you want to control the maximum value of the color scale on your heatmaps, 
   # add the following (without quotes) after fig_path=FALSE: 'col_lim= c(0,35)'
-  # This tells R that you want your maximum value to be 35, and your min. to be 0
+  # This tells R that you want your minimum value to be 0, and your 
+  # maximum value to be 35.
 
-# Create a plot of CH4 and CO2 emissions. 
-plot_var(file = climate, "CAR_atm_ch4_exch") 
-plot_var(file = climate, "CAR_atm_co2_exch") 
+# Now let's plot CH4 and CO2 emissions in your lake from the two different 
+  #  scenarios (baseline and climate) on the same figure. We can do this by:
 
-# Do these plots from the climate scenario and the baseline support or contradict 
-  # your hypotheses about climate change effects on CH4 and CO2 emissions? 
+# First, the command below plots the timeseries of CH4 emissions from the climate 
+  #  scenario in red: 
+plot(Baseline_CH4 ~ DateTime, data= ch4_output, type='b', pch=20, lwd=2, col='gray20',
+     ylab = "Methane flux, (mmol/m2/d)", ylim = c(0,1))
 
-# Now that you've run two different scenarios (baseline and climate), let's plot 
-  #  how the CH4 and CO2 emissions in the lakes responded 
-  #  to the different scenarios on the same figures. We can do this by:
+# Second, we can superimpose the CH4 emissions from our baseline scenario as a 
+  # set of dark gray points and lines using the two lines of code below: 
+lines(Climate_CH4 ~ DateTime, data= ch4_output, lwd=2, col='red3')
+points(Climate_CH4 ~ DateTime, data= ch4_output, pch=20, col='red3')
 
-# The command below plots DateTime vs. baseline CH4 emissions data in black: 
-plot(ch4_output$DateTime, ch4_output$Baseline_CH4, type="l", lwd=2, col="black", 
-     ylab="CH4 emission rate (mmol/m2/d)", xlab="Date", ylim=c(0, 1))  
+# Third, we'll add a black dashed line at 0
+abline(h = 0, col = 'black', lty = 3, lwd=3) 
 
-# add a red line of the climate change scenario
-lines(ch4_output$DateTime, ch4_output$Climate_CH4, lwd=2, col="red")
+# And finally, we'll add a legend:
+legend("topleft", c("Baseline", "Climate"), lty=1, lwd=2, col=c("gray20","red3"))
 
-# add a legend
-legend("topleft",c("Baseline", "Climate"),  
-       lty=1, lwd=2, col=c("black","red"))
+##!!!! Note that the command ylim=c(0,1) in the first step tells R what you want 
+  #  the minimum and maximum values on the y-axis to be (here, we're plotting 
+  #  from 0 to 1 mmol/m2/day). 
+##!!!! You should adjust this range to make sure all your data from both scenarios
+  #  are shown in the plot without too much white space.
 
-##!! Note that the command ylim=c(0,1) tells R what you want the minimum and 
-  #  maximum values on the y-axis to be (here, we're plotting from 0 to 1 mmol/m2/day). 
-##!! You should adjust this range to make sure all your data are shown in the 
-  #  plot without too much white space.
+# Now we'll use the same series of plotting commands to visualize CO2 emissions 
+  #  from both the baseline and climate scenario:
+plot(Baseline_CO2 ~ DateTime, data= co2_output, type='b', pch=20, lwd=2, col='gray20',
+     ylab = "Carbon dioxide flux, (mmol/m2/d)", ylim = c(-0.5,0.5))
 
-# The command below plots DateTime vs. climate CH4 emissions data in black: 
-plot(co2_output$DateTime, co2_output$Baseline_CO2, type="l", lwd=2, col="black", 
-     ylab="CO2 emission rate (mmol/m2/d)", xlab="Date", ylim=c(-0.3, 0.2))  
+# Add a line & points for the climate warming scenario data:
+lines(Climate_CO2 ~ DateTime, data= co2_output, lwd=2, col='red3')
+points(Climate_CO2 ~ DateTime, data= co2_output, pch=20, col='red3')
 
-# add a red line of the climate change scenario
-lines(co2_output$DateTime, co2_output$Climate_CO2, lwd=2, col="red")
+# Add a black dashed line at 0
+abline(h = 0, col = 'black', lty = 3, lwd=3) 
 
-# add a legend
-legend("topleft",c("Baseline", "Climate"),  
-       lty=1, lwd=2, col=c("black","red"))
+# Add a legend:
+legend("topleft", c("Baseline", "Climate"), lty=1, lwd=2, col=c("gray20","red3"))
 
-##!! Again, adjust the y-axis range by editing the command ylim=c(-0.3,0.2) to 
-#  make sure all your data are shown in the plot without too much white space.
+##!!!! Again, adjust the y-axis range by editing the command ylim=c(-0.5,0.5) to 
+  #  make sure all your data are shown in the plot without too much white space.
 
+# Do these plots with the baseline and climate scenarios support or contradict 
+  #  your hypotheses about climate change effects on CH4 and CO2 emissions? How?
 
 ########## ACTIVITY C - OBJECTIVE 5 ############################################
 # Now we are going to calculate global warming potentials (GWPs) to estimate how much
