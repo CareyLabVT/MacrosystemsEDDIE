@@ -138,27 +138,18 @@ plot_temp(file=baseline, fig_path=FALSE)
 var_names <- sim_vars(baseline)
 print(var_names) 
 
-# We are particularly interested in the release of methane (CH4) and carbon dioxide 
-  #  from the water's surface to the atmosphere. The variable name for CH4 release 
-  #  is "CAR_atm_ch4_exch", and the variable name for CO2 release is "CAR_atm_co2_exch".
+# We are particularly interested in the release of methane (CH4) and carbon 
+  #  dioxide (CO2) from the water surface to the atmosphere. The variable name 
+  #  for CH4 release is "CAR_atm_ch4_exch", and the variable name for CO2 release 
+  #  is "CAR_atm_co2_exch".
   #  Both emissions are reported in units of mmol/m2/day, or millimoles emitted
-  #  per meters squared per day.
+  #  per meter squared (of lake surface area) per day.
   #  Search through the list of variables to find both CH4 and CO2 fluxes.
 
-# Use the code below to create a figure of CH4 emissions from the lake over time. 
-plot_var(file = baseline, "CAR_atm_ch4_exch") 
-
-# Now, compare that CH4 figure with a figure of CO2 emissions from the lake over time.
-plot_var(file = baseline, "CAR_atm_co2_exch") 
-# What do you notice about seasonal patterns in CH4 and CO2 release? When are the
-#   fluxes negative, and when are they positive? How might this be related to 
-#   seasonal trends in lake warming, ice cover, and fall mixing? How do the 
-#   patterns of CH4 and CO2 emissions compare over time?
-
-# We also want to save the model output of the daily emission rates for both CH4 
-  #  and CO2 in the lake during our baseline simulation, because we'll be comparing  
-  #  them to our climate scenarios later.  To do this, we use the following 
-  #  commands:
+# First, we want to save the model output of the daily emission rates for both CH4 
+#  and CO2 in the lake during our baseline simulation, because we'll be comparing  
+#  them to our climate scenarios later. To do this, we use the following 
+#  commands:
 
 # Save the CH4 release from the surface first:
 ch4_output <- get_var(file=baseline, "CAR_atm_ch4_exch") 
@@ -173,6 +164,21 @@ colnames(co2_output)[2] <- "Baseline_CO2"
 # We'll also use the command below to save a copy of our output as a .csv file:
 write.csv(ch4_output, './ch4model_output.csv', quote=F, row.names = F)
 write.csv(co2_output, './co2model_output.csv', quote=F, row.names = F)
+
+# Now, use the code below to create a figure of CH4 emissions from the lake over time. 
+  #  You can click "Zoom" on the plot window to see a larger version of your plot
+plot(Baseline_CH4 ~ DateTime, data= ch4_output, type='b',
+     ylab = "Methane flux, mmol/m2/d")
+abline(h = 0, col = 'red', lty = 2, lwd=2)
+
+# Now, compare that CH4 figure with a figure of CO2 emissions from the lake over time.
+plot(Baseline_CO2 ~ DateTime, data= co2_output, type='b',
+     ylab = "Carbon dioxide flux, mmol/m2/d")
+abline(h = 0, col = 'red', lty = 2, lwd=2)
+# What do you notice about seasonal patterns in CH4 and CO2 release? When are the
+#   fluxes negative, and when are they positive? How might this be related to 
+#   seasonal trends in lake temperature, ice cover, and fall mixing? How do the 
+#   patterns of CH4 and CO2 emissions compare over time?
 
 ########## ACTIVITY B - OBJECTIVE 3 ############################################
 # For Activity B, you will work with your partner to model your lake, plus another 
