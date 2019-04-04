@@ -405,7 +405,9 @@ View(data)
 
 # Now we'll create a barplot to compares the baseline vs. climate CO2 and CH4 masses, 
   #  and the GWPs between the two scenarios.
-barplot(data, col=c("gray20","red3"), font.axis=2, beside=T, ylab="kg or GWP", font.lab=2)
+barplot(data, col=c("gray20","red3"), font.axis=2, beside=T, ylab="kg or GWP", 
+        font.lab=2, main=paste0(nml$morphometry$lake_name,", ", nml$meteorology$meteo_fl))
+abline(h = 0, col = 'black', lty = 1, lwd=1) 
 legend("topleft", legend=rownames(data), pch = 19, col=c("gray20","red3"))
 #  As in our earlier plots, the gray bars represent the baseline scenario and 
   #  the red bars represent the climate scenario.
