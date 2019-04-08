@@ -61,7 +61,7 @@
    Fsed_poc = -0.01
    Fsed_doc = .1
    Fsed_dic = 10
-   Fsed_ch4 = 10
+   Fsed_ch4 = 5
    Fsed_feii = 10
 /
 !###############################################################################
@@ -116,7 +116,7 @@
    atmco2 = 400e-6
    ionic = 0.1
    !-- CH4 --
-   ch4_initial = 27
+   ch4_initial = 0.01
    Rch4ox = 0.1
    Kch4ox = 0.5
    vTch4ox = 1.07
