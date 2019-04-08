@@ -1,5 +1,5 @@
 # Macro-Scale Feedbacks Module ####
- # This module was initially developed by Carey, C.C. and K.J. Farrell. 1 April 2019.
+ # This module was developed by Carey, C.C. and K.J. Farrell. 1 April 2019.
  # Macrosystems EDDIE: Macro-Scale Feedbacks. Macrosystems EDDIE Module 4, Version 1. 
  # module4.macrosystemseddie.org
  # Module development was supported by NSF EF 1702506.
@@ -138,25 +138,29 @@ plot_temp(file=baseline, fig_path=FALSE)
 var_names <- sim_vars(baseline)
 print(var_names) 
 
-# We are particularly interested in the release of methane (CH4) and carbon 
-  #  dioxide (CO2) from the water surface to the atmosphere. The variable name 
+# We are particularly interested in the flux of methane (CH4) and carbon 
+  #  dioxide (CO2) across the water surface to the atmosphere. The variable name 
   #  for CH4 release is "CAR_atm_ch4_exch", and the variable name for CO2 release 
   #  is "CAR_atm_co2_exch".
   #  Both emissions are reported in units of mmol/m2/day, or millimoles emitted
-  #  per meter squared (of lake surface area) per day.
+  #  per meter squared (of lake surface area) per day. 
+  #  Important! These fluxes can be positive (meaning CH4 and CO2 released from
+  #  the lake into the atmosphere) OR negative (meaning CH4 and CO2 taken up from
+  #  the atmosphere into the lake). Always check the sign when you look at these
+  #  fluxes in the model output.
   #  Search through the list of variables to find both CH4 and CO2 fluxes.
 
-# First, we want to save the model output of the daily emission rates for both CH4 
+# First, we want to save the model output of the daily flux rates for both CH4 
 #  and CO2 in the lake during our baseline simulation, because we'll be comparing  
 #  them to our climate scenarios later. To do this, we use the following 
 #  commands:
 
-# Save the CH4 release from the surface first:
+# Save the CH4 flux at the surface first:
 ch4_output <- get_var(file=baseline, "CAR_atm_ch4_exch") 
 colnames(ch4_output)[2] <- "Baseline_CH4" 
 # Here we rename the CH4 column so we remember it is from the Baseline scenario
 
-# Then save the CO2 release from the surface second:
+# Then save the CO2 flux at the surface second:
 co2_output <- get_var(file=baseline, "CAR_atm_co2_exch") 
 colnames(co2_output)[2] <- "Baseline_CO2" 
 # Here we rename the CO2 column so we remember it is from the Baseline scenario
