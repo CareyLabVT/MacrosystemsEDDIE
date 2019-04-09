@@ -312,10 +312,10 @@ legend("topleft", c("Baseline", "Climate"), lty=1, lwd=2, col=c("gray20","red3")
 ########## ACTIVITY C - OBJECTIVE 5 ############################################
 # Now we are going to calculate global warming potentials (GWPs), which provide 
   #  a metric by which we can compare the relative effect of CH4 and CO2 fluxes 
-  #  from different ecosystems on global warming. If your lake has a large positive
-  #  GWP, then it will have a much bigger effect on global warming than a lake 
-  #  with a GWP of zero. Conversely, it is possible that the lake could have a
-  #  negative GWP, which means that it is offsetting global warming. 
+  #  from different ecosystems on global warming. If your lake has a positive
+  #  GWP, it means it is contributing heat-trapping gases to the atmosphere, and 
+  #  amplifying global warming. Conversely, if your lake has a negative GWP, it 
+  #  means it is a net sink of heat-trapping gases, and is offsetting global warming. 
   #  In Activity C, we are going to examine how your lake's GWPs change under 
   #  different climate change scenarios, resulting in macro-scale feedbacks.
 
