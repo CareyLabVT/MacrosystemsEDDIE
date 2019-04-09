@@ -223,23 +223,22 @@ climate <- file.path(sim_folder, 'output.nc')
 # This defines the output.nc file as being within the sim_folder. Note that we've 
   #  called this output "climate" since it is output from our climate change simulation.
 
-# As before, we want to save the model output of the daily flux rates 
-  #  in the lake during our climate change simulation, to compare to 
-  #  our baseline scenario. 
+# As before, we want to save the model output of the daily flux rates in the lake 
+  #  during our climate change simulation, to compare to our baseline scenario. 
 
 #  Extract daily CH4 flux rates:
 climate_ch4 <- get_var(file=climate, "CAR_atm_ch4_exch") 
 ch4_output["Climate_CH4"] <- climate_ch4[2] 
-# Here we attach the CH4 flux data from your climate simulation to the same file that 
-  #  contains your baseline scenario flux rates. 
+# Here we attach the CH4 flux data from your climate simulation to the same file 
+  #  that contains your baseline scenario flux rates. 
 
 #  Extract daily CO2 flux rates:
 climate_co2 <- get_var(file=climate, "CAR_atm_co2_exch") 
 co2_output["Climate_CO2"] <- climate_co2[2] 
-# Here we attach the CO2 flux data from your climate simulation to the same file that 
-  #  contains your baseline scenario flux rates. 
+# Here we attach the CO2 flux data from your climate simulation to the same file 
+  #  that contains your baseline scenario flux rates. 
 
-# Again, we'll use the command below to save a copy of our output as a .csv file:
+# Again, we'll use the command below to save a copy of our outputs as .csv files:
 write.csv(ch4_output, './ch4model_output.csv', quote=F, row.names = F)
 write.csv(co2_output, './co2model_output.csv', quote=F, row.names = F)
 
@@ -258,20 +257,21 @@ plot_temp(file=climate, fig_path=FALSE)
   # How does this output compare to your baseline water temperature heatmap?
 
 # Note: If you want to control the maximum value of the color scale on your heatmaps, 
-  # add the following (without quotes) after fig_path=FALSE: 'col_lim= c(0,35)'
+  # add the following (without quotes) after fig_path=FALSE: ', col_lim= c(0,35)'
   # This tells R that you want your minimum value to be 0, and your 
-  # maximum value to be 35.
+  # maximum value to be 35. You can change the minimum and maximum values to fit
+  # your lake.
 
 # Now let's plot CH4 and CO2 fluxes in your lake from the two different 
   #  scenarios (baseline and climate) on the same figure. We can do this by:
 
-# First, the command below plots the timeseries of CH4 fluxes from the climate 
-  #  scenario in red: 
+# First, the command below plots the timeseries of CH4 fluxes from the baseline 
+  #  scenario in gray: 
 plot(Baseline_CH4 ~ DateTime, data= ch4_output, type='b', pch=20, lwd=2, col='gray20',
-     ylab = "Methane flux, (mmol/m2/d)", ylim = c(-0.1,1))
+     ylab = "Methane flux, (mmol/m2/d)", ylim = c(-1, 1))
 
-# Second, we can superimpose the CH4 fluxes from our baseline scenario as a 
-  # set of dark gray points and lines using the two lines of code below: 
+# Second, we can superimpose the CH4 fluxes from our climate scenario as a 
+  # set of red points and lines using the two lines of code below: 
 lines(Climate_CH4 ~ DateTime, data= ch4_output, lwd=2, col='red3')
 points(Climate_CH4 ~ DateTime, data= ch4_output, pch=20, col='red3')
 
@@ -281,20 +281,21 @@ abline(h = 0, col = 'black', lty = 3, lwd=3)
 # And finally, we'll add a legend:
 legend("topleft", c("Baseline", "Climate"), lty=1, lwd=2, col=c("gray20","red3"))
 
-##!!!! Note that the command ylim=c(0,1) in the first step tells R what you want 
-  #  the minimum and maximum values on the y-axis to be (here, we're plotting 
-  #  from 0 to 1 mmol/m2/day). 
-##!!!! You should adjust this range to make sure all your data from both scenarios
-  #  are shown in the plot without too much white space.
+## Note that the command ylim=c(0,1) in the first plot step tells R what you 
+  #  want the minimum and maximum values on the y-axis to be (here, it's set up 
+  #  to plot from -1 to 1 mmol/m2/day). 
+
+##!!!! You should adjust this ylim range to make sure all your data from both 
+  #  scenarios are shown in the plot without too much white space.
 
 # Now we'll use the same series of plotting commands to visualize CO2 fluxes 
   #  from both the baseline and climate scenario:
 plot(Baseline_CO2 ~ DateTime, data= co2_output, type='b', pch=20, lwd=2, col='gray20',
-     ylab = "Carbon dioxide flux, (mmol/m2/d)", ylim = c(-0.5,0.5))
+     ylab = "Carbon dioxide flux, (mmol/m2/d)", ylim = c(-0.5, 0.5))
 
 # Add a line & points for the climate warming scenario data:
-lines(Climate_CO2 ~ DateTime, data= co2_output, lwd=2, col='red3')
-points(Climate_CO2 ~ DateTime, data= co2_output, pch=20, col='red3')
+lines(Climate2_CO2 ~ DateTime, data= co2_output, lwd=2, col='red3')
+points(Climate2_CO2 ~ DateTime, data= co2_output, pch=20, col='red3')
 
 # Add a black dashed line at 0
 abline(h = 0, col = 'black', lty = 3, lwd=3) 
