@@ -27,11 +27,18 @@ sunapee <- full_join((read_csv('./MacroScaleFeedbacks/Sunapee/ch4model_output_al
                      (read_csv('./MacroScaleFeedbacks/Sunapee/co2model_output_all.csv'))) %>% 
   mutate(Lake = "Sunapee")
 
+toolik <- full_join((read_csv('./MacroScaleFeedbacks/Toolik/ch4model_output_all.csv')),
+                     (read_csv('./MacroScaleFeedbacks/Toolik/co2model_output_all.csv'))) %>% 
+  mutate(Lake = "Toolik")
+
 data <- bind_rows(mendota, sunapee) %>% 
+  bind_rows(., toolik) %>% 
   group_by(Lake, DateTime) %>% 
   gather(sim, value, Baseline_CH4:Plus6_CO2) %>% 
   separate(sim, into = c('sim','var'), sep = "_") %>% 
-  mutate(surfarea = ifelse(Lake == "Mendota", 39866000, 16934251.6))
+  mutate(surfarea = ifelse(Lake == "Mendota", 39866000, 
+                           ifelse(Lake == "Sunapee", 16934251.6,
+                                  ifelse(Lake == "Toolik", 12602474.26, NA))))
 
 # Annual sums of fluxes; kg/yr ####
 annual <- data %>% 
