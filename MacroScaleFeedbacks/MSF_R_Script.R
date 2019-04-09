@@ -151,21 +151,21 @@ print(var_names)
   #  Search through the list of variables to find both CH4 and CO2 fluxes.
 
 # First, we want to save the model output of the daily flux rates for both CH4 
-#  and CO2 in the lake during our baseline simulation, because we'll be comparing  
-#  them to our climate scenarios later. To do this, we use the following 
-#  commands:
+  #  and CO2 in the lake during our baseline simulation, because we'll be comparing  
+  #  them to our climate scenarios later. To do this, we use the following 
+  #  commands:
 
 # Save the CH4 flux at the surface first:
 ch4_output <- get_var(file=baseline, "CAR_atm_ch4_exch") 
 colnames(ch4_output)[2] <- "Baseline_CH4" 
-# Here we rename the CH4 column so we remember it is from the Baseline scenario
+# Here we renamed the CH4 column so we remember it is from the Baseline scenario
 
 # Then save the CO2 flux at the surface second:
 co2_output <- get_var(file=baseline, "CAR_atm_co2_exch") 
 colnames(co2_output)[2] <- "Baseline_CO2" 
 # Here we rename the CO2 column so we remember it is from the Baseline scenario
 
-# We'll also use the command below to save a copy of our output as a .csv file:
+# We'll also use the commands below to save a copy of our output as .csv files:
 write.csv(ch4_output, './ch4model_output.csv', quote=F, row.names = F)
 write.csv(co2_output, './co2model_output.csv', quote=F, row.names = F)
 
@@ -173,16 +173,19 @@ write.csv(co2_output, './co2model_output.csv', quote=F, row.names = F)
   #  You can click "Zoom" on the plot window to see a larger version of your plot
 plot(Baseline_CH4 ~ DateTime, data= ch4_output, type='b', pch=20, lwd=2, col='gray20',
      ylab = "Methane flux, (mmol/m2/d)")
-abline(h= 0, col= 'black', lty= 3, lwd= 3) # Add a black dashed line at 0
+abline(h= 0, col= 'black', lty= 3, lwd= 3) 
+# Add a black dashed line at 0 to show the cutoff between positive and negative
 
 # Now, compare that CH4 figure with a figure of CO2 fluxes in the lake over time.
 plot(Baseline_CO2 ~ DateTime, data= co2_output, type='b', pch=20, lwd=2, col='gray20',
      ylab = "Carbon dioxide flux, (mmol/m2/d)")
-abline(h= 0, col= 'black', lty= 3, lwd= 3) # Add a black dashed line at 0
+abline(h= 0, col= 'black', lty= 3, lwd= 3) 
+# Add a black dashed line at 0 to show the cutoff between positive and negative
+
 # What do you notice about seasonal patterns in CH4 and CO2 fluxes? When are the
-#   fluxes negative, and when are they positive? How might this be related to 
-#   seasonal trends in lake temperature, ice cover, and spring and fall mixing? 
-#   How do the patterns of CH4 and CO2 fluxes compare over time?
+  #   fluxes negative, and when are they positive? How might this be related to 
+  #   seasonal trends in lake temperature, ice cover, and spring and fall mixing? 
+  #   How do the patterns of CH4 and CO2 fluxes compare over time?
 
 ########## ACTIVITY B - OBJECTIVE 3 ############################################
 # For Activity B, you will work with your partner to examine how your lake's CH4 and
