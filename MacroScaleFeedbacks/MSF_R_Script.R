@@ -316,7 +316,7 @@ legend("topleft", c("Baseline", "Climate"), lty=1, lwd=2, col=c("gray20","red3")
   #  GWP, then it will have a much bigger effect on global warming than a lake 
   #  with a GWP of zero. Conversely, it is possible that the lake could have a
   #  negative GWP, which means that it is offsetting global warming. 
-  #  Specifically, we are going to examine how your lake's GWPs change under 
+  #  In Activity C, we are going to examine how your lake's GWPs change under 
   #  different climate change scenarios, resulting in macro-scale feedbacks.
 
 # We need to calculate the masses of CO2 and CH4 emitted or taken up by the lake 
@@ -358,7 +358,7 @@ BaselineCH4mass
   #  time horizon as one molecule of CO2. 
 
 # We convert the kg of CH4 to CO2 equivalents (e.g., multiply by 86) so we can 
-  #  calculate the GWP impact of both gases using the same units:
+  #  calculate the GWP impact of both gases using the same units (CO2 equivalents):
 GWP_baseline <- (BaselineCO2mass * 1) + (BaselineCH4mass * 86)
 
 GWP_baseline
@@ -415,26 +415,31 @@ colnames(data) <- c("CO2 mass", "CH4 mass", "GWP")
 # Use this command to view your data matrix:
 View(data)
 
-# Now we'll create a barplot to compares the baseline vs. climate CO2 and CH4 masses, 
+# Now we'll create a barplot to compare the baseline vs. climate CO2 and CH4 masses, 
   #  and the GWPs between the two scenarios.
 barplot(data, col=c("gray20","red3"), font.axis=2, beside=T, ylab="kg or GWP", 
-        font.lab=2, main=paste0(nml$morphometry$lake_name,", ", nml$meteorology$meteo_fl))
+        main=paste0(nml$morphometry$lake_name,", ", nml$meteorology$meteo_fl),
+        font.lab=2, ylim= c(-20000, 20000))
 abline(h = 0, col = 'black', lty = 1, lwd=1) 
 legend("topleft", legend=rownames(data), pch = 19, col=c("gray20","red3"))
 #  As in our earlier plots, the gray bars represent the baseline scenario and 
   #  the red bars represent the climate scenario.
 
-# Do these data support or contradict your hypotheses about the relative importance
-  #  of CO2 and CH4 fluxes on global warming? What is the effect of the lake 
-  #  on the atmosphere? How might this change under the climate change scenario?
+##!!!! As before, adjust the ylim command to make sure your data are clearly 
+  #  visualized! 
 
-# Using the figures you created as part of the module, put together a
-  #  a brief presentation of your model simulation and output to share 
-  #  with the rest of the class.
+# Do these data support or contradict your hypotheses about the relative importance
+  #  of CO2 and CH4 fluxes on global warming? What is the net effect of the lake 
+  #  on the atmosphere in the baseline scenario? How might this change with 
+  #  climate warming?
 
 # What are the macro-scale feedbacks between your lake and its greenhouse gas fluxes?
-  #  How will your lake's CO2 and CH4 fluxex feed back to either intensify or 
+  #  How will your lake's CO2 and CH4 fluxes feed back to either intensify or 
   #  counteract climate change?
+
+# Using the figures you created as part of the module, put together a brief 
+  #  presentation of your model simulation and output to share with the rest of 
+  #  the class.
 
 # Make sure your presentation answers the questions listed in your handout.
 
