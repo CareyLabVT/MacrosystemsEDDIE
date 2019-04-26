@@ -72,11 +72,10 @@ glm_version()
 
 ##!! Edit this line to define the sim_folder location for your model lake. 
 sim_folder <- '/Users/cayelan/Desktop/macroscale_feedbacks/LakeName' 
-#sim_folder <- "C:/Users/KJF/Desktop/R/MacrosystemsEDDIE/MacroScaleFeedbacks/Mendota" # KF testing placeholder
   #  You will need to change the part after Users/ to give the name of your 
   #  computer (e.g., my computer name is cayelan, but yours will be different!) 
   #  AND change the word LakeName to be the name of your model lake (Mendota, Sunapee,
-  #  or FallingCreek). Note that these computer file paths are case-sensitive.
+  #  Toolik, or FallingCreek). Note that these computer file paths are case-sensitive.
 
 # This line of code is sets your sim_folder as the working directory 
 setwd(sim_folder) 
