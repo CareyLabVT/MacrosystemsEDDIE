@@ -49,13 +49,14 @@ annual <- data %>%
 
 # Calculate GWP for CH4, CO2 in CO2 equivalents ####
 GWP <- annual %>% 
-        mutate(GWP = ifelse(var == "CH4", kgyr*86, kgyr)) %>% 
-  select(Lake:var, GWP) %>% 
-  spread(var,GWP) %>% 
+        mutate(GWP = ifelse(var == "CH4", kgyr*86, kgyr),
+               GWP_areal = ifelse(var == "CH4", kgm2*86, kgm2)) %>% 
+  select(Lake:var, GWP_areal) %>% 
+  spread(var,GWP_areal) %>% 
   mutate(GWP_sum = CH4 + CO2)
 
 # Time series flux plots, all scenarios ####
-ggplot(data, aes(x = DateTime, y = value, col=as.factor(sim), lty=var))+ 
+ggplot(subset(data, Lake =="Toolik"), aes(x = DateTime, y = value, col=as.factor(sim), lty=var))+ 
   geom_line(lwd=.5) + mytheme +
   geom_hline(yintercept = 0, lty=2, lwd=1, col='black')+
   facet_grid(Lake~sim) + 
@@ -73,4 +74,4 @@ ggplot(GWP, aes(x = sim, y = GWP_sum, fill=as.factor(sim), group=Lake)) +
   geom_bar(stat="identity") +
   facet_grid(.~Lake, scales='free_y') +
   geom_hline(yintercept = 0, col='black', lty=2, lwd=1) +
-  ggtitle("Annual GWP, kg CO2 equivalents") 
+  ggtitle("Annual areal GWP, kg CO2 equivalents/m2 surface area") 

@@ -14,7 +14,7 @@ nml <- read_nml(nml_file)
 run_glm(sim_folder, verbose=TRUE) 
 baseline <- file.path(sim_folder, 'output.nc') 
 
-#plot_temp(file=baseline, fig_path=FALSE) 
+plot_temp(file=baseline, col_lim= c(0,30)) 
 
 ch4_output <- get_var(file=baseline, "CAR_atm_ch4_exch") 
 colnames(ch4_output)[2] <- "Baseline_CH4" 
@@ -51,6 +51,9 @@ get_nml_value(nml, 'meteo_fl')
 run_glm(sim_folder, verbose=TRUE) 
 climate <- file.path(sim_folder, 'output.nc') 
 
+plot_temp(climate, col_lim= c(0,32))
+
+
 climate_ch4 <- get_var(file=climate, "CAR_atm_ch4_exch") 
 ch4_output["Plus4_CH4"] <- climate_ch4[2] 
 
@@ -77,18 +80,18 @@ write.csv(co2_output, './co2model_output_all.csv', quote=F, row.names = F)
 plot_temp(file=climate, fig_path=FALSE) 
 
 plot(Baseline_CH4 ~ DateTime, data= ch4_output, type='b', pch=20, lwd=2, col='gray20',
-     ylab = "Methane flux, (mmol/m2/d)", ylim = c(-0.05, 0.3))
-lines(Plus2_CH4 ~ DateTime, data= ch4_output, lwd=2, col='red3')
-points(Plus2_CH4 ~ DateTime, data= ch4_output, pch=20, col='red3')
+     ylab = "Methane flux, (mmol/m2/d)")
+lines(Plus4_CH4 ~ DateTime, data= ch4_output, lwd=2, col='red3')
+points(Plus4_CH4 ~ DateTime, data= ch4_output, pch=20, col='red3')
 abline(h = 0, col = 'black', lty = 3, lwd=3) 
 legend("topleft", c("Baseline", "Climate"), lty=1, lwd=2, col=c("gray20","red3"))
 
 plot(Baseline_CO2 ~ DateTime, data= co2_output, type='b', pch=20, lwd=2, col='gray20',
-     ylab = "Carbon dioxide flux, (mmol/m2/d)", ylim = c(-0.2, 0.01))
-lines(Plus2_CO2 ~ DateTime, data= co2_output, lwd=2, col='red3')
-points(Plus2_CO2 ~ DateTime, data= co2_output, pch=20, col='red3')
+     ylab = "Carbon dioxide flux, (mmol/m2/d)")
+lines(Plus4_CO2 ~ DateTime, data= co2_output, lwd=2, col='red3')
+points(Plus4_CO2 ~ DateTime, data= co2_output, pch=20, col='red3')
 abline(h = 0, col = 'black', lty = 3, lwd=3) 
-legend("bottomleft", c("Baseline", "Climate"), lty=1, lwd=2, col=c("gray20","red3"))
+legend("topleft", c("Baseline", "Climate"), lty=1, lwd=2, col=c("gray20","red3"))
 
 ########## ACTIVITY C - OBJECTIVE 5 ############################################
 lakearea <- max(nml$morphometry$A)
