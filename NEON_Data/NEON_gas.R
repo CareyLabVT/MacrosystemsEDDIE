@@ -36,16 +36,18 @@ Toolik_gas <- sdgDataPlusConc %>%
   mutate(Date = as.Date(collectDate),
          CO2_mmolm3 = round(dissolvedCO2*1000000,2), 
          CH4_mmolm3 = round(dissolvedCH4*1000000,4)) %>% 
-  select(lake, collectDate, site, depth, CO2_mmolm3, CH4_mmolm3) %>% 
+  select(lake, Date, site, depth, CO2_mmolm3, CH4_mmolm3) %>% 
   write_csv('./Toolik_gas_mmolm3.csv')
 
 gas_long <- Toolik_gas %>% 
-  gather(var, value, CO2_mmolm3:CH4_mmolm3)
+  gather(var, value, CO2_mmolm3:CH4_mmolm3) %>% 
+  mutate(Date = as.POSIXct(Date))
 
 # CH4 and CO2 plot
 ggplot(subset(gas_long, site =='buoy'), 
-       aes(x = collectDate, y = value, col=var)) +
-  geom_point() +
-  scale_x_datetime()+
+       aes(x = Date, y = value, col=var)) +
+  geom_point(size=3) + geom_line() +
+  scale_x_datetime(date_breaks = '6 months', date_labels = "%b-%Y")+
   labs(y = expression(Concentration~(mmol~m^-3))) +
-  facet_wrap(var~depth, scales='free_y')
+  facet_wrap(var~depth, scales='free_y')+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
