@@ -1,13 +1,24 @@
+# Mac OS laundry list
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# RStudio ignores
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
-.nc
-.DS_Store
-.output.nc
-output.nc
+
+# GLM output for all modules
+/**/output.nc
+
+# CSI ignores
+/CrossScale Interactions/**/model_output.csv
 
 # MSF ignores
-output.nc
-/MacroScaleFeedbacks/**/ch4model_output_all.csv
-/MacroScaleFeedbacks/**/co2model_output_all.csv
+/MacroScaleFeedbacks/**/ch4model_output.csv
+/MacroScaleFeedbacks/**/co2model_output.csv
