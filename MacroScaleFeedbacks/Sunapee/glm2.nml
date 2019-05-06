@@ -106,7 +106,7 @@ A = 1,16.90309,38.87712,64.23176,158.88908,7254.80801,25205.89398,33207.81875,41
    start =  '2012-12-31 00:00:00'
    stop =  '2014-01-01 23:00:00'
    dt = 3600
-timezone = -5
+timezone = -5.0 !Eastern Standard Time
 /
 !-------------------------------------------------------------------------------
 ! format for output and filename(s)
@@ -115,17 +115,6 @@ timezone = -5
 ! out_dir           [string] path to output directory (set permissions)
 ! out_fn            [string] name of output netcdf file
 ! nsave             [integer, minimum = 1, maximum = 86400] save results every 'nsave' timesteps
-! csv_lake_fname    [string] name of lake.csv lake simulation daily summary information
-! csv_point_nlevs   [integer] number of depths at which to dump a csv time-series file
-! csv_point_at      [real] height from bottom for point csv file(s) (comma separated list)
-! csv_point_fname   [string] name of csv output file(s) (comma separated list)
-! csv_point_nvars   [integer] number of variables to output into csv
-! csv_point_vars    [string] list of names of variables to output, - order IS important
-! csv_outlet_allinone [bool] put all outflow data into the same csv file
-! csv_outlet_fname  [string] name of csv output file(s) (comma separated list)
-! csv_outlet_nvars  [integer] number of variables to output into outlet csv
-! csv_outlet_vars   [string] list of names of variables to output
-! csv_ovrflw_fname  [string] name of csv file to record amount and quality of overflow
 !
 !-------------------------------------------------------------------------------
 &output
@@ -148,11 +137,11 @@ nsave = 24
 !
 !-------------------------------------------------------------------------------
 &init_profiles
+    lake_depth = 33.70
     num_depths = 6
     the_depths = 0.0, 4.0, 8.0, 12.0, 16.0, 20.0
     the_temps  = 4,4,4,4,4,4
     the_sals   = 0.00, 0.00, 0.00, 0.00, 0.00, 0.00
-    lake_depth = 33.696792 ! Set based on stage on start date 
     num_wq_vars = 12
 wq_names =  'OGM_don',  
 			'OGM_pon',  
@@ -257,7 +246,7 @@ strmbd_drag = 0.0160
 inflow_factor = 1.0
 inflow_fl =  'inflow.csv'
 inflow_varnum = 7
-inflow_vars =  'FLOW','SALT','TEMP','OGM_don','NIT_nit','NIT_amm','PHS_frp'
+inflow_vars =  'FLOW','SALT','TEMP','NIT_nit','NIT_amm','PHS_frp', 'OGM_doc'
 /
 !-------------------------------------------------------------------------------
 ! outflows

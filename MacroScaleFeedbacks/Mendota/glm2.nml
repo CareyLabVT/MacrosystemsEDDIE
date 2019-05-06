@@ -259,7 +259,7 @@ nsave = 24
    inflow_factor  = 1.0
    inflow_fl      = 'inflow.csv'
    inflow_varnum  = 7
-   inflow_vars    = 'FLOW', 'SALT','TEMP', 'OGM_don', 'NIT_nit', 'NIT_amm', 'PHS_frp'
+   inflow_vars =  'FLOW','SALT','TEMP','NIT_nit','NIT_amm','PHS_frp', 'OGM_doc'
 /
 !-------------------------------------------------------------------------------
 ! outflows

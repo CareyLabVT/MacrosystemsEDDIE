@@ -17,7 +17,7 @@
 !
 !-------------------------------------------------------------------------------
 &glm_setup
-   sim_name = 'Falling Creek'
+   sim_name = 'MacrosystemsEDDIE_Falling Creek'
    max_layers = 500
    min_layer_vol = 0.025
    min_layer_thick = 0.05
@@ -100,7 +100,7 @@
    start = '2012-12-31 00:00'
    stop = '2014-01-01 23:00'
    dt = 3600
-   timezone = -5.0
+   timezone = -5.0 !Eastern Standard Time
 /
 !-------------------------------------------------------------------------------
 ! format for output and filename(s)
