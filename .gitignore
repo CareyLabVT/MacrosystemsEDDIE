@@ -9,7 +9,5 @@ output.nc
 
 # MSF ignores
 output.nc
-ch4model_output_all.csv
-.ch4model_output_all.csv
-co2model_output_all.csv
-.co2model_output_all.csv
+/MacroScaleFeedbacks/**/ch4model_output_all.csv
+/MacroScaleFeedbacks/**/co2model_output_all.csv
