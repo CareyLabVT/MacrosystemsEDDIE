@@ -1,7 +1,0 @@
-# gitignore the following files in all subfolders
-output.nc
-ch4model_output_all.csv
-co2model_output_all.csv
-
-# Just in case Mac tries to slip one of these in:
-.DS_Store

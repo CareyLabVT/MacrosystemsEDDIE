@@ -6,3 +6,8 @@
 .DS_Store
 .output.nc
 output.nc
+
+# MSF ignores
+output.nc
+ch4model_output_all.csv
+co2model_output_all.csv
