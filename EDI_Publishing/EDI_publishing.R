@@ -2,9 +2,8 @@
 
 # (install and) Load EMLassemblyline #####
 # install.packages('devtools')
-# library(devtools)
 
-#install_github("EDIorg/EMLassemblyline")
+devtools::install_github("EDIorg/EMLassemblyline")
 library(EMLassemblyline)
 
 ## Step 1: Make a new directory in this subfolder (EDI_Publishing) for module files ####
@@ -47,8 +46,6 @@ library(EMLassemblyline)
   # templates from a previous module directory (e.g., the Module 1 EDI folder):
     # - start with the metadata template word doc and then populate for all of the text files, which include:
     # - abstract.txt
-    # - bounding_boxes.txt (for modules, use site of module development, not site 
-                          # of modeled lakes): keep this in Derring for all MS EDDIE modules
     # - intellectual_rights.txt (we use CCBY); won't be altered
     # - keywords.txt (EDIT THIS FILE IN EXCEL; see LabKeywords.txt for Carey 
                       # Lab-specific keywords) and also http://vocab.lternet.edu/vocab/vocab/index.php
@@ -56,7 +53,7 @@ library(EMLassemblyline)
                       # if there is not a word in the existing vocabularies, make it:
                       # "carey lab controlled vocabulary"
     # - methods.txt
-    # - personnel.txt (EDIT THIS FILE IN EXCEL)
+    # - personnel.txt (EDIT THIS FILE IN EXCEL) Author order in the citation is in the order that 'creators' are listed in this file
   # Edit each of these files for your current module upload, by copying and 
   # pasting the relevant information from the EDI_metadata_template you prepared
 
@@ -86,19 +83,22 @@ library(EMLassemblyline)
   # zip.dir: Change the name of the module files zip folder
   # temporal.coverage: Update the dates
   # package.id: enter the ID you obtained in Step 6
-make_eml(path = "/Users/cayelan/Dropbox/ComputerFiles/Macrosystems/Github/EDI_Publishing/Macrosystems_EDDIE_Module_2_CrossScale_Interactions",
-         dataset.title = "Macrosystems EDDIE Module 2: Cross-Scale Interactions",
-         zip.dir = c("instructor_materials.zip",
-                     "cross_scale_interactions.zip"),
-         zip.dir.description = c("This zip folder contains materials for instructors to teach the Macrosystems EDDIE 
+make_eml(path = "./EDI_Publishing/Macrosystems_EDDIE_Module_3_Teleconnections",
+         dataset.title = "Macrosystems EDDIE Module 3: Teleconnections",
+         other.entity = c("instructor_materials.zip",
+                          "teleconnections.zip"),
+         other.entity.description = c("This zip folder contains materials for instructors to teach the Macrosystems EDDIE 
                                  module in their classroom. See README file for file types and descriptions",
                                  "This zip folder contains materials for students to implement the Macrosystems EDDIE 
                                  module in RStudio. See README file for file types and descriptions"),
-         temporal.coverage = c("2017-08-13", "2019-03-19"),
+         temporal.coverage = c("2018-05-18", "2019-05-10"),
+         # keep geographic site as Derring for all MS EDDIE modules
+         geographic.description = c("The Department of Biological Sciences at Virginia Tech is located in Blacksburg, Virginia, USA"),
+         geographic.coordinates = c('37.229596', '-80.424863', '37.22854', '-80.426228'), #N, E, S, W
          maintenance.description = "Completed", 
          user.id = "ccarey",
-         affiliation = 'EDI',
-         package.id = "edi.278.3") # Put your package.id here, followed by .1 (for 1st version)
+         user.domain = 'EDI',
+         package.id = "edi.282.1") # Put your package.id here, followed by .1 (for 1st version)
 
 ## Step 8: Check your data product! ####
   # Return to the EDI staging environment (https://portal-s.edirepository.org/nis/home.jsp),
@@ -125,20 +125,43 @@ make_eml(path = "/Users/cayelan/Dropbox/ComputerFiles/Macrosystems/Github/EDI_Pu
 
   # Select Tools --> Data Package Identifier Reservations and click "Reserve Next 
   # Available Identifier". A new value will appear in the "Current data package 
-  # identifier reservations" table (e.g., edi.123)
+  # identifier reservations" table (e.g., edi.518)
   # This will be your PUBLISHED package.id
 
-  # Rename your error-free xml file with your published package id. 
-  # This id should end in .1 (e.g., edi.123.1)
+  # In the make_eml command below, change the package.id to match your 
+  # PUBLISHED package id. This id should end in .1 (e.g., edi.518.1)
 
-#NOTES!! from 3/19/19: KJF & CCC had a bunch of problems with this: and found that they needed
-#  to start in the non-staging "real" environment from scratch with a brand new identifier
-#  separate from the staging environment identifier. You need to edit both the metadata.xml file
-#  name and the package ID within the .xml file each time. Be forewarned!
+  # ALL OTHER entries in the make_eml() command should match what you ran above,
+  # in step 7
+
+make_eml(path = "./EDI_Publishing/Macrosystems_EDDIE_Module_3_Teleconnections",
+         dataset.title = "Macrosystems EDDIE Module 3: Teleconnections",
+         other.entity = c("instructor_materials.zip",
+                          "teleconnections.zip"),
+         other.entity.description = c("This zip folder contains materials for instructors to teach the Macrosystems EDDIE 
+                                      module in their classroom. See README file for file types and descriptions",
+                                      "This zip folder contains materials for students to implement the Macrosystems EDDIE 
+                                      module in RStudio. See README file for file types and descriptions"),
+         temporal.coverage = c("2018-05-18", "2019-05-10"),
+         # keep geographic site as Derring for all MS EDDIE modules
+         geographic.description = c("The Department of Biological Sciences at Virginia Tech is located in Blacksburg, Virginia, USA"),
+         geographic.coordinates = c('37.229596', '-80.424863', '37.22854', '-80.426228'), #N, E, S, W
+         maintenance.description = "Completed", 
+         user.id = "ccarey",
+         user.domain = 'EDI',
+         package.id = "edi.387.4") # Put your package.id here, followed by .1 (for 1st version)
+
+  # Once your xml file with your PUBLISHED package.id is Done, return to the 
+  # EDI Production environment (https://portal.edirepository.org/nis/home.jsp)
+
+  # Select Tools --> Preview Your Metadata, then upload your metadata (.xml) file 
+  # associated with your PUBLISHED package.id. Look through the rendered 
+  # metadata one more time to check for mistakes (author order, bounding box, etc.)
 
   # Select Tools --> Evaluate/Upload Data Packages, then under "EML Metadata File", 
-  # choose your metadata (.xml) file (e.g., edi.123.1.xml), check "I want to 
-  # manually upload the data by selecting files on my local system", then click Upload.
+  # choose your metadata (.xml) file associated with your PUBLISHED package.id 
+  # (e.g., edi.518.1.xml), check "I want to manually upload the data by selecting 
+  # files on my local system", then click Upload.
 
   # Now, Choose File for each file within the data package (e.g., each zip folder), 
   # then click Upload. Files will upload and your EML metadata will be checked for 
