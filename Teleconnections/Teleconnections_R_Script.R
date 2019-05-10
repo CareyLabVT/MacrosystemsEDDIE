@@ -22,7 +22,7 @@ install.packages('sp')
 
 install.packages('devtools') 
 # This is another R package used to run modeling software. If you get an error 
-  #  that says, "package ‘devtools’ is not available (for R version x.x.x)", be 
+  #  that says, "package devtools is not available (for R version x.x.x)", be 
   #  sure to check that your R software is the most recent version.
 
 # Load the packages you just downloaded
