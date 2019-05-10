@@ -105,8 +105,9 @@ run_glm(sim_folder, verbose=TRUE)
   #  "Simulation begins.." and then (quickly!) shows all the time steps.  At the 
   #  end, it will say "Run complete".
 
-# We need to tell R where the model output (the output.nc file) is stored so that 
-  #  we can use the glmtools package to plot and analyze it. We do this using the line below:
+# We need to tell R where the model output (the output.nc file) is stored so 
+  #  that we can use the glmtools package to plot and analyze it. We do this 
+  #  using the line below:
 baseline <- file.path(sim_folder, 'output.nc') 
 # This says that the output.nc file is in the sim_folder we defined earlier 
 
@@ -117,22 +118,24 @@ print(var_names)
 # This will print a list of variables that the model simulates. In this list, 
   #  "hice" is the output variable of ice thickness on the lake surface
 
-# We are interested in how water temperatures at the surface and in the hypolimnion 
-  #  could be affected by El Nino teleconnections. To estimate the hypolimnion depth, we use 
-  #  the following command to extract the lake depth (meters) from the model output. 
+# We are interested in how water temperatures at the surface and in the 
+  #  hypolimnion could be affected by El Nino teleconnections. To estimate the 
+  #  hypolimnion depth, we use the following command to extract the lake depth 
+  #  (meters) from the model output. 
 lakeDepth <- get_surface_height(baseline)
 # Print the minimum depth of your lake during the model run
 min(lakeDepth$surface_height) 
 
-# We want to save the model output of the lake temperature from our baseline simulation, 
-  #  because we'll be comparing these temperautres to our teleconnection scenarios later. 
+# We want to save the model output of the lake temperature from our baseline 
+  #  simulation, because we'll be comparing these temperautres to our 
+  #  teleconnection scenarios later. 
   #  To do this, we use the following  command:
 lakeTemp_output <- get_temp(file=baseline, reference='surface', 
                         z_out=c(0, min(lakeDepth$surface_height))) 
 # This command extracts the water temperature at the surface and hypolimnion for 
   #  each day and saves the temperatures as "lakeTemp_output"
 
-colnames(lakeTemp_output)[2:3] <- c("Baseline_Surface_Temp", "Baseline_Bottom_Temp") 
+colnames(lakeTemp_output)[2:3] <- c("Baseline_Surface_Temp","Baseline_Bottom_Temp") 
 # This command renames the two temperature columns so we remember they are from 
   #  the Baseline scenario!
 
@@ -155,10 +158,10 @@ plot_temp(file=baseline, fig_path=FALSE)
   #  preview window. You can then paste your plot into Word, PowerPoint, etc. 
 
 # If you want to save your plot as an image file or pdf file instead of copying 
-  #  it, click "Export" within the Plots tab, then choose "Save as Image" or "Save 
-  #  as PDF". In the preview window, give your plot a descriptive file name (e.g., 
-  #  "TemperatureHeatMap.pdf"), then press "Save". Your plot image and/or PDF file 
-  #  will be saved in the sim_folder on your Desktop.
+  #  it, click "Export" within the Plots tab, then choose "Save as Image" or 
+  #  "Save as PDF". In the preview window, give your plot a descriptive file name 
+  #  (e.g., "TemperatureHeatMap.pdf"), then press "Save". Your plot image and/or 
+  #  PDF file will be saved in the sim_folder on your Desktop.
 
 # Note that if you want to save plots, you should copy and paste them as you go!
 
