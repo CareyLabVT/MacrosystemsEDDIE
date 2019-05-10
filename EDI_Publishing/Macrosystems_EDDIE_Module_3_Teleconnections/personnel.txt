@@ -1,5 +1,6 @@
 givenName	middleInitial	surName	organizationName	electronicMailAddress	userId	role	projectTitle	fundingAgency	fundingNumber
+Kaitlin	J.	Farrell	Virginia Tech	farrellk@vt.edu	0000-0002-4709-7749	creator	
 Cayelan	C.	Carey	Virginia Tech	Cayelan@vt.edu	0000-0001-8835-4476	creator			
 Cayelan	C.	Carey	Virginia Tech	Cayelan@vt.edu	0000-0001-8835-4476	contact			
 Cayelan	C.	Carey	Virginia Tech	Cayelan@vt.edu	0000-0001-8835-4476	PI	"A macrosystems science training program: developing undergraduates' simulation modeling, distributed computing, and collaborative skills"	National Science Foundation	EF 1702506
-Kaitlin	J.	Farrell	Virginia Tech	farrellk@vt.edu	0000-0002-4709-7749	creator		
+	

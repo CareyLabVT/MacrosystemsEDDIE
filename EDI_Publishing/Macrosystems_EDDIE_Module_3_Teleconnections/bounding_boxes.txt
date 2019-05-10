@@ -1,2 +1,0 @@
-geographicDescription	westBoundingCoordinate	eastBoundingCoordinate	northBoundingCoordinate	southBoundingCoordinate
-"The Department of Biological Sciences at Virginia Tech is located in Blacksburg, Virginia, USA"	-80.426228	-80.424863	37.229596	37.22854
