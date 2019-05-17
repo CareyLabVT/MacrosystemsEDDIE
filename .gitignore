@@ -22,3 +22,5 @@ Thumbs.db
 # MSF ignores
 /MacroScaleFeedbacks/**/ch4model_output.csv
 /MacroScaleFeedbacks/**/co2model_output.csv
+/MacroScaleFeedbacks/**/ch4model_output_all.csv
+/MacroScaleFeedbacks/**/co2model_output_all.csv
