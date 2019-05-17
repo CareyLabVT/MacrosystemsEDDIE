@@ -293,8 +293,8 @@ plot(Baseline_CO2 ~ DateTime, data= co2_output, type='b', pch=20, lwd=2, col='gr
      ylab = "Carbon dioxide flux, (mmol/m2/d)", ylim = c(-0.5, 0.5))
 
 # Add a line & points for the climate warming scenario data:
-lines(Climate2_CO2 ~ DateTime, data= co2_output, lwd=2, col='red3')
-points(Climate2_CO2 ~ DateTime, data= co2_output, pch=20, col='red3')
+lines(Climate_CO2 ~ DateTime, data= co2_output, lwd=2, col='red3')
+points(Climate_CO2 ~ DateTime, data= co2_output, pch=20, col='red3')
 
 # Add a black dashed line at 0
 abline(h = 0, col = 'black', lty = 3, lwd=3) 
