@@ -29,6 +29,9 @@ install.packages('devtools')
 library(sp) 
 library(devtools)
 
+Sys.setenv(R_INSTALL_STAGED = FALSE)
+# This sets the environment variables for R version 3.6.0 
+
 # Download the GLMr package. This may take a few minutes. 
 devtools::install_github("CareyLabVT/GLMr") 
 # If successful you should  see "DONE (GLMr)" at the end of the output.

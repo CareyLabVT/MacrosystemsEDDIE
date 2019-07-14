@@ -29,6 +29,9 @@ install.packages('devtools') # this is another R package used to run modeling
 library(sp) # load the packages you just downloaded
 library(devtools) 
 
+Sys.setenv(R_INSTALL_STAGED = FALSE)
+# This sets the environment variables for R version 3.6.0 
+
 devtools::install_github("CareyLabVT/GLMr", force = TRUE) #download the GLMr 
 #  software. This may take a few minutes. If downloaded successfully, you should 
 #  see "DONE (GLMr)" at the end of the output.
