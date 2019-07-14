@@ -1,8 +1,9 @@
 # Macro-Scale Feedbacks Module ####
- # This module was developed by Carey, C.C. and K.J. Farrell. 1 April 2019.
+ # This module was developed by Carey, C.C., K.J. Farrell, and A.G. Hounshell.
+ # 1 April 2019.
  # Macrosystems EDDIE: Macro-Scale Feedbacks. Macrosystems EDDIE Module 4, Version 1. 
  # module4.macrosystemseddie.org
- # Module development was supported by NSF EF 1702506.
+ # Module development was supported by NSF EF 1702506 and NSF DEB 1753639.
 
 # R code for students to work through the module activities A, B, and C.
  # This module consists of 6 objectives. Activity A consists of Objectives 1-2,
@@ -29,6 +30,9 @@ install.packages('devtools')
 library(sp) 
 library(devtools)
 
+Sys.setenv(R_INSTALL_STAGED = FALSE)
+# This sets the environment variables for R version 3.6.0 
+
 # Download the GLMr package. This may take a few minutes. 
 devtools::install_github("CareyLabVT/GLMr") 
 # If successful you should  see "DONE (GLMr)" at the end of the output.
@@ -46,7 +50,7 @@ library(GLMr)
 # If this worked, GLMr should load without error messages. Hooray!
 
 glm_version() 
-# See what version of GLM you are running- should be v.2.x.x. Note, for some 
+# See what version of GLM you are running- should be v.2.2.0rc5. Note, for some 
 #   some computers, you may not get a message. As long as you don't get an error,
 #   you should be ok!
 
@@ -186,6 +190,13 @@ abline(h= 0, col= 'black', lty= 3, lwd= 3)
   #   seasonal trends in lake temperature, ice cover, and spring and fall mixing? 
   #   How do the patterns of CH4 and CO2 fluxes compare over time?
 
+# To examine the presence (if any) of ice, let's make a plot of ice cover over time:
+ice <- get_var(file=baseline, "hice") 
+  #   This command saves the ice height (in meters) on every day of the simulation.
+plot(hice ~ DateTime, data= ice, type='b', pch=20, lwd=2, col='gray20',
+     ylab = "Ice thickness (meters)")
+
+
 ########## ACTIVITY B - OBJECTIVE 3 ############################################
 # For Activity B, you will work with your partner to examine how your lake's CH4 and
   #  CO2 fluxes will respond to climate change. First, work with your partner to select
@@ -306,7 +317,10 @@ legend("topleft", c("Baseline", "Climate"), lty=1, lwd=2, col=c("gray20","red3")
   #  make sure all your data are shown in the plot without too much white space.
 
 # Do these plots with the baseline and climate scenarios support or contradict 
-  #  your hypotheses about climate change effects on CH4 and CO2 fluxes? How?
+  #  your hypotheses about climate change effects on CH4 and CO2 fluxes? How? 
+  #  If your lake originally exhibited ice, how does the duration of ice cover 
+  #  change in response to warming air temperature? Modify and run the code from 
+  #  Activity A to learn the answer.
 
 ########## ACTIVITY C - OBJECTIVE 5 ############################################
 # Now we are going to calculate global warming potentials (GWPs), which provide 
