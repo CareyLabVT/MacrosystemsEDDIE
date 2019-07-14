@@ -108,7 +108,7 @@
 !-------------------------------------------------------------------------------
 &aed2_carbon
    !-- DIC and pH --
-   Fsed_dic = 10
+   Fsed_dic = 5
    Ksed_dic = 6.8
    theta_sed_dic = 1.07
    Fsed_dic_variable='SDF_Fsed_dic'
