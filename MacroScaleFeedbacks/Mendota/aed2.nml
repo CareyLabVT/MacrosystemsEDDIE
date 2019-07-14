@@ -49,21 +49,20 @@
 !  Fsed_feii = Sedimentation flux for iron
 !-------------------------------------------------------------------------------
 &aed2_sed_constant
-   !Fsed_oxy = -14.375
    Fsed_oxy = -12.55
-   Fsed_rsi = 0.9745
+   Fsed_rsi = 2.5
    Fsed_amm = 22.13
    Fsed_nit = -9.466 !-8.57
-   Fsed_frp = 0.40
+   Fsed_frp = 0.12
    Fsed_pon = -0.01
    Fsed_don = 0.0
    Fsed_pop = -0.01
    Fsed_dop = 0.0
    Fsed_poc = 0.0
-   Fsed_doc = 0.0
-   Fsed_dic = 3.0
-   Fsed_ch4 = 0.5
-   Fsed_feii = 0.0
+   Fsed_doc = 0.01
+   Fsed_dic = 10
+   Fsed_ch4 = 1
+   Fsed_feii = 1
 /
 !###############################################################################
 ! aed2_tracer
@@ -96,9 +95,10 @@
 !        aed_oxygen_oxy
 !-------------------------------------------------------------------------------
 &aed2_oxygen
+   !oxy_initial = 388.4
    Fsed_oxy = -12.55
    Ksed_oxy = 51.75
-   theta_sed_oxy = 1.065
+   theta_sed_oxy = 1.07
 /
 !###############################################################################
 ! aed_carbon - AED carbon model
@@ -129,13 +129,13 @@
    !-- DIC and pH --
    Fsed_dic = 100 !3.0, IC not in manual Snortheim 4.908
    Ksed_dic = 6.8 ! 20.0, Snortheim 24.338
-   theta_sed_dic = 1.07 ! 1.08, Snortheim 1.0212
+   theta_sed_dic = 1.07
    Fsed_dic_variable='SDF_Fsed_dic'
-   pH_initial = 8.4 ! 7.5, Snortheim 8.4
+   pH_initial = 6.5
    atmco2 = 400e-6
    ionic = 0.3
    !-- CH4 --
-   ch4_initial = 0.01
+   ch4_initial = 0.001
    Rch4ox = 0.1
    Kch4ox = 0.5
    vTch4ox = 1.07
@@ -143,6 +143,7 @@
    Ksed_ch4 = 100.0
    theta_sed_ch4 = 1.07
    methane_reactant_variable='OXY_oxy'
+   Fsed_ch4_variable='SDF_Fsed_ch4'
 /
 !###############################################################################
 ! aed2_silica
@@ -155,9 +156,9 @@
 !-------------------------------------------------------------------------------
 &aed2_silica
    !rsi_initial = 300 !Mendota 0.1-2 mg/L, or 3.6-214 mmol/m3; Crystal 0-0.3 mg/L
-   Fsed_rsi = 5 !Manual: 0.6, Snortheim 0.975
-   Ksed_rsi = 150 !Manual: 150, Snortheim 153.51
-   theta_sed_rsi = 1.07 ! 1.08, Snortheim 1.0302
+   Fsed_rsi = 2.5 !Manual: 0.6, Snortheim 0.975
+   Ksed_rsi = 125 !Manual: 150, Snortheim 153.51
+   theta_sed_rsi = 1.07
    silica_reactant_variable='OXY_oxy'
    Fsed_rsi_variable = 'SDF_Fsed_rsi'
 /
@@ -197,7 +198,7 @@
    Ksed_nit = 15.63 !Manual says 2-15.6
    theta_nitrif = 1.07
    theta_denit = 1.07
-   theta_sed_amm = 1.08 !Snortheim 1.139
+   theta_sed_amm = 1.07 !Snortheim 1.139
    theta_sed_nit = 1.055 !Snortheim 1.055
    nitrif_reactant_variable='OXY_oxy'
    denit_product_variable=''  !'NIT_N20'
@@ -228,9 +229,9 @@
 !        aed_phosphorus_frp_ads
 !-------------------------------------------------------------------------------
 &aed2_phosphorus
-   Fsed_frp = 0.5914 
-   Ksed_frp = 69.543
-   theta_sed_frp = 1.032
+   Fsed_frp = 0.12
+   Ksed_frp = 24.44
+   theta_sed_frp = 1.07
    phosphorus_reactant_variable = 'OXY_oxy'
    simPO4Adsorption = .true.
    ads_use_external_tss = .false.
