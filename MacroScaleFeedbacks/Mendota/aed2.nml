@@ -1,5 +1,5 @@
 !-------------------------------------------------------------------------------
-! aed2_nml
+! aed2_nml MENDOTA: following Hart et al., 2017; doi:10.6073/pasta/68ccbbeca8ae2c6c0d54e3215866b7d9
 !-------------------------------------------------------------------------------
 !
 ! List here the available aed2 modules to be included in the simulation.
@@ -48,21 +48,22 @@
 !  Fsed_ch4  = Sedimentation flux for methane
 !  Fsed_feii = Sedimentation flux for iron
 !-------------------------------------------------------------------------------
+! Changed to reflect Hart et al., 2017
 &aed2_sed_constant
-   Fsed_oxy = -12.55
-   Fsed_rsi = 2.5
-   Fsed_amm = 22.13
-   Fsed_nit = -9.466 !-8.57
-   Fsed_frp = 0.12
-   Fsed_pon = -0.01
-   Fsed_don = 0.0
-   Fsed_pop = -0.01
-   Fsed_dop = 0.0
-   Fsed_poc = 0.0
-   Fsed_doc = 0.01
-   Fsed_dic = 10
-   Fsed_ch4 = 1
-   Fsed_feii = 1
+   Fsed_oxy = -100
+   Fsed_rsi = 5
+   Fsed_amm = 15
+   Fsed_nit = -10
+   Fsed_frp = 0.3
+   Fsed_pon = -0.1
+   Fsed_don = 0.1
+   Fsed_pop = -0.1
+   Fsed_dop = 0.1
+   Fsed_poc = -0.1
+   Fsed_doc = 2.5 !15
+   Fsed_dic = 105 !100
+   Fsed_ch4 = 10
+   Fsed_feii = 10
 /
 !###############################################################################
 ! aed2_tracer
@@ -94,10 +95,11 @@
 !       AED modules should be configured to use the following names:
 !        aed_oxygen_oxy
 !-------------------------------------------------------------------------------
+! Changed to reflect Hart et al., 2017
 &aed2_oxygen
    !oxy_initial = 388.4
-   Fsed_oxy = -12.55
-   Ksed_oxy = 51.75
+   Fsed_oxy = -100 !-14.375, Manual: -38 - -6
+   Ksed_oxy = 6.8 !15.875, Manual: 15.6
    theta_sed_oxy = 1.07
 /
 !###############################################################################
@@ -125,23 +127,24 @@
 !        aed_carbon_ch4
 !        aed_carbon_pH
 !-------------------------------------------------------------------------------
+! Changed to reflect Hart et al., 2017; theta_sed_ch4 = 1.1
 &aed2_carbon
    !-- DIC and pH --
-   Fsed_dic = 100 !3.0, IC not in manual Snortheim 4.908
+   Fsed_dic = 105 !100 !3.0, IC not in manual Snortheim 4.908
    Ksed_dic = 6.8 ! 20.0, Snortheim 24.338
-   theta_sed_dic = 1.07
+   theta_sed_dic = 1.07 ! 1.08, Snortheim 1.0212
    Fsed_dic_variable='SDF_Fsed_dic'
-   pH_initial = 6.5
+   pH_initial = 8.4 ! 7.5, Snortheim 8.4
    atmco2 = 400e-6
-   ionic = 0.3
+   ionic = 0.1
    !-- CH4 --
-   ch4_initial = 0.001
+   ch4_initial = 0.05 !27
    Rch4ox = 0.1
    Kch4ox = 0.5
    vTch4ox = 1.07
    Fsed_ch4 = 10
    Ksed_ch4 = 100.0
-   theta_sed_ch4 = 1.07
+   theta_sed_ch4 = 1.1
    methane_reactant_variable='OXY_oxy'
    Fsed_ch4_variable='SDF_Fsed_ch4'
 /
@@ -154,11 +157,12 @@
 !  silica_reactant_variable = link for silica reactant variable
 !  Fsed_rsi_variable        = silica flux variable link
 !-------------------------------------------------------------------------------
+! Changed to reflect Hart et al., 2017
 &aed2_silica
    !rsi_initial = 300 !Mendota 0.1-2 mg/L, or 3.6-214 mmol/m3; Crystal 0-0.3 mg/L
-   Fsed_rsi = 2.5 !Manual: 0.6, Snortheim 0.975
-   Ksed_rsi = 125 !Manual: 150, Snortheim 153.51
-   theta_sed_rsi = 1.07
+   Fsed_rsi = 5 !Manual: 0.6, Snortheim 0.975
+   Ksed_rsi = 150 !Manual: 150, Snortheim 153.51
+   theta_sed_rsi = 1.07 ! 1.08, Snortheim 1.0302
    silica_reactant_variable='OXY_oxy'
    Fsed_rsi_variable = 'SDF_Fsed_rsi'
 /
@@ -187,19 +191,20 @@
 !        aed_nitrogen_nit
 !        aed_nitrogen_amm
 !-------------------------------------------------------------------------------
+! Changed to reflect Hart et al., 2017
 &aed2_nitrogen
-   Rnitrif = 0.106! 0.02  !0.01 Manual: 0.01 - 0.05 for lakes
-   Rdenit = 0.065! 0.01 !0.04 Snortheim 0.065, Manual: 0.01 - 0.04 for lakes
-   Fsed_amm = 22! 15 !Manual: 1.35 - 6.42 for lakes
+   Rnitrif = 0.02  !0.01 Manual: 0.01 - 0.05 for lakes
+   Rdenit = 0.01 !0.04 Snortheim 0.065, Manual: 0.01 - 0.04 for lakes
+   Fsed_amm = 15 !Manual: 1.35 - 6.42 for lakes
    Fsed_nit = -10 !Manual: -21.4 - 7.14
    Knitrif = 15 !Manual: 62.5 - 93.7 for lakes
-   Kdenit = 15.24
+   Kdenit = 18 !Manual: 12.5 - 15.6 for lakes
    Ksed_amm = 15 !Snortheim 22.158, Manual says 1.5-15.6
-   Ksed_nit = 15.63 !Manual says 2-15.6
+   Ksed_nit = 15 !Manual says 2-15.6
    theta_nitrif = 1.07
    theta_denit = 1.07
    theta_sed_amm = 1.07 !Snortheim 1.139
-   theta_sed_nit = 1.055 !Snortheim 1.055
+   theta_sed_nit = 1.07 !Snortheim 1.055
    nitrif_reactant_variable='OXY_oxy'
    denit_product_variable=''  !'NIT_N20'
    Fsed_amm_variable='SDF_Fsed_amm'
