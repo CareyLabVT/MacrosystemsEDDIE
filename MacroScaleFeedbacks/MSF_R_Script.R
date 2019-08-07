@@ -67,7 +67,7 @@ glm_version()
   #  and model output are stored.  
 # To find your folder path, navigate to the 'macroscale_feedbacks' folder on 
   # your Desktop. Right click on the folder that matches your model lake 
-  #  (Mendota, Sunapee, or FallingCreek), then select Properties (Windows) or 
+  #  (Mendota, Sunapee, Toolik, or FallingCreek), then select Properties (Windows) or 
   #  Get Info (Mac). 
   #  Look under Location (Windows) or Where (Mac) to find your folder path 
   #  (examples below):
@@ -103,6 +103,18 @@ print(nml)
 plot_meteo(nml_file)  
 # It includes short wave & long wave radiation, air temp, relative humidity, 
   #  etc. for the duration of the simulation. 
+
+# To copy your plot (e.g., onto a PowerPoint slide), click "Export" within the 
+#  Plots tab. Then click "Copy to Clipboard", and click "Copy plot" in the preview 
+#  window. You can then paste your plot into Word, PowerPoint, etc. 
+
+# If you want to save your plot as an image file or pdf file instead of copying 
+#  it, click "Export" within the Plots tab, then choose "Save as Image" or "Save 
+#  as PDF". In the preview window, give your plot a descriptive file name (e.g., 
+#  "TemperatureHeatMap.pdf"), then press "Save". Your plot image and/or PDF file 
+#  will be saved in the sim_folder on your Desktop.
+
+# Note that if you want to save plots, you should copy and paste them as you go!
  
 ########## ACTIVITY A - OBJECTIVE 2 ############################################
 # Now, the fun part- we get to run the model and look at output!
@@ -124,17 +136,13 @@ baseline <- file.path(sim_folder, 'output.nc')
   #  different colors represent different temperatures. 
 plot_temp(file=baseline, fig_path=FALSE) 
 
-# To copy your plot (e.g., onto a PowerPoint slide), click "Export" within the 
-  #  Plots tab. Then click "Copy to Clipboard", and click "Copy plot" in the preview 
-  #  window. You can then paste your plot into Word, PowerPoint, etc. 
+# Don't forget to save all your plots as you go!
 
-# If you want to save your plot as an image file or pdf file instead of copying 
-  #  it, click "Export" within the Plots tab, then choose "Save as Image" or "Save 
-  #  as PDF". In the preview window, give your plot a descriptive file name (e.g., 
-  #  "TemperatureHeatMap.pdf"), then press "Save". Your plot image and/or PDF file 
-  #  will be saved in the sim_folder on your Desktop.
-
-# Note that if you want to save plots, you should copy and paste them as you go!
+# In addition to water temperature, let's also plot simulated dissolved oxygen
+  # concentrations in a heat map, where time is on the x-axis, lake depth is
+  # displayed on the y-axis, and the different colors represent different dissolved
+  # oxygen concentrations.
+plot_var(file=baseline, "OXY_oxy", reference="surface")
 
 # This pair of commands can be used to list the variables that were output as part 
   #  of your GLM run.
@@ -147,8 +155,8 @@ print(var_names)
   #  is "CAR_atm_co2_exch".
   #  Both fluxes are reported in units of mmol/m2/day, or millimoles emitted
   #  per meter squared (of lake surface area) per day. 
-  #  Important! These fluxes can be positive (meaning CH4 and CO2 released from
-  #  the lake into the atmosphere) OR negative (meaning CH4 and CO2 taken up from
+  #  Important! These fluxes can be positive (meaning CH4 and CO2 is released from
+  #  the lake into the atmosphere) OR negative (meaning CH4 and CO2 is taken up from
   #  the atmosphere into the lake). Always check the sign when you look at these
   #  fluxes in the model output.
   #  Search through the list of variables to find both CH4 and CO2 fluxes.
@@ -266,6 +274,10 @@ View(co2_output)
 plot_temp(file=climate, fig_path=FALSE) 
   # How does this output compare to your baseline water temperature heatmap?
 
+# Create a heatmap of the dissolved oxygen concentrations in your climate scenario:
+plot_var(file=climate,"OXY_oxy",reference="surface")
+  # How does this output compare to your baseline dissolved oxygen heatmap?
+
 # Note: If you want to control the maximum value of the color scale on your heatmaps, 
   # add the following (without quotes) after fig_path=FALSE: ', col_lim= c(0,35)'
   # This tells R that you want your minimum value to be 0, and your 
@@ -376,9 +388,9 @@ GWP_baseline <- (BaselineCO2mass * 1) + (BaselineCH4mass * 86)
 
 GWP_baseline
 # This value is the baseline GWP for your lake. Is it positive or negative? If it
-  #  is positive, the value corresponds to how many kg of CO2 are released to the 
-  #  atmosphere each year. If it is negative, the value corresponds to how many 
-  #  kg of CO2 are taken up by your lake from the atmosphere each year, thereby
+  #  is positive, the value corresponds to how many equivalent kg of CO2 are released 
+  #  to the atmosphere each year. If it is negative, the value corresponds to how many 
+  #  equivalent kg of CO2 are taken up by your lake from the atmosphere each year, thereby
   #  offsetting other greenhouse gas emissions.
 
 # Let's do the same mass and GWP calculations for the climate change scenario to 
