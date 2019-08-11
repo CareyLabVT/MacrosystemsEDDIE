@@ -68,7 +68,7 @@ glm_version()
 # When working in R, we set the sim_folder to tell R where your files, scripts, 
 #  and model output are stored.  
 # To find your folder path, navigate to the 'macroscale_feedbacks' folder on 
-# your Desktop. Right click on the folder that matches your model lake 
+#  your Desktop. Right click on the folder that matches your model lake 
 #  (Mendota, Sunapee, Toolik, or FallingCreek), then select Properties (Windows) or 
 #  Get Info (Mac). 
 #  Look under Location (Windows) or Where (Mac) to find your folder path 
@@ -154,16 +154,16 @@ var_names <- sim_vars(baseline)
 print(var_names) 
 
 # We are particularly interested in the flux of methane (CH4) and carbon 
-#  dioxide (CO2) across the water surface to the atmosphere. The variable name 
-#  for CH4 release is "CAR_atm_ch4_exch", and the variable name for CO2 release 
-#  is "CAR_atm_co2_exch".
-#  Both fluxes are reported in units of mmol/m2/day, or millimoles emitted
-#  per meter squared (of lake surface area) per day. 
-#  Important! These fluxes can be positive (meaning CH4 and CO2 is released from
-#  the lake into the atmosphere) OR negative (meaning CH4 and CO2 is taken up from
-#  the atmosphere into the lake). Always check the sign when you look at these
-#  fluxes in the model output.
-#  Search through the list of variables to find both CH4 and CO2 fluxes.
+  #  dioxide (CO2) across the water surface to the atmosphere. The variable name 
+  #  for CH4 release is "CAR_atm_ch4_exch", and the variable name for CO2 release 
+  #  is "CAR_atm_co2_exch".
+  #  Both fluxes are reported in units of mmol/m2/day, or millimoles emitted
+  #  per meter squared (of lake surface area) per day. 
+  #  Important! These fluxes can be positive (meaning CH4 and CO2 is released from
+  #  the lake into the atmosphere) OR negative (meaning CH4 and CO2 is taken up from
+  #  the atmosphere into the lake). Always check the sign when you look at these
+  #  fluxes in the model output.
+  #  Search through the list of variables to find both CH4 and CO2 fluxes.
 
 # First, we want to save the model output of the daily flux rates for both CH4 
 #  and CO2 in the lake during our baseline simulation, because we'll be comparing  
@@ -282,6 +282,10 @@ plot_temp(file=climate, fig_path=FALSE)
 plot_var(file=climate,"OXY_oxy",reference="surface")
 # How does this output compare to your baseline dissolved oxygen heatmap?
 
+# Create a heatmap of the dissolved oxygen concentrations in your climate scenario:
+plot_var(file=climate,"OXY_oxy",reference="surface")
+  # How does this output compare to your baseline dissolved oxygen heatmap?
+
 # Note: If you want to control the maximum value of the color scale on your heatmaps, 
 # add the following (without quotes) after fig_path=FALSE: ', col_lim= c(0,35)'
 # This tells R that you want your minimum value to be 0, and your 
@@ -391,11 +395,11 @@ BaselineCH4mass
 GWP_baseline <- (BaselineCO2mass * 1) + (BaselineCH4mass * 86)
 
 GWP_baseline
-# This value is the baseline GWP for your lake. Is it positive or negative? (Question 15) If it
-#  is positive, the value corresponds to how many equivalent kg of CO2 are released 
-#  to the atmosphere each year. If it is negative, the value corresponds to how many 
-#  equivalent kg of CO2 are taken up by your lake from the atmosphere each year, thereby
-#  offsetting other greenhouse gas emissions.
+# This value is the baseline GWP for your lake. Is it positive or negative? (Question 15) 
+  #  If it is positive, the value corresponds to how many equivalent kg of CO2 are released 
+  #  to the atmosphere each year. If it is negative, the value corresponds to how many 
+  #  equivalent kg of CO2 are taken up by your lake from the atmosphere each year, thereby
+  #  offsetting other greenhouse gas emissions.
 
 # Let's do the same mass and GWP calculations for the climate change scenario to 
 #  see how this compares with your baseline GWP.
