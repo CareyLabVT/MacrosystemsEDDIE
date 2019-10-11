@@ -472,7 +472,7 @@ scenario3_temp <- get_temp(file= Strong_ElNino, reference= 'surface',
 # Now attach the water temperatures from the "strong" El Nino simulation to your 
   #  existing water temperature file, using the commands below
 lakeTemp_output["Strong_ElNino_Surface_Temp"] <- scenario3_temp[2] 
-lakeTemp_output["Strong_ElNino_Bottom_Temp"]  <- scenario2_temp[3]  
+lakeTemp_output["Strong_ElNino_Bottom_Temp"]  <- scenario3_temp[3]  
 
 # Extract ice cover data and rename the ice column: 
 scenario3_ice <- get_var(baseline, "hice") 
