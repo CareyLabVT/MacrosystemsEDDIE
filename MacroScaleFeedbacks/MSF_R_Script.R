@@ -78,7 +78,7 @@ glm_version()
 
 ##!! Edit this line to define the sim_folder location for your model lake. 
 sim_folder <- '/Users/cayelan/Desktop/macroscale_feedbacks/LakeName' 
-#  You will need to change the part after Users/ to give the name of your 
+# (Question 9)  You will need to change the part after Users/ to give the name of your 
 #  computer (e.g., my computer name is cayelan, but yours will be different!) 
 #  AND change the word LakeName to be the name of your model lake (Mendota, Sunapee,
 #  Toolik, or FallingCreek). Note that these computer file paths are case-sensitive.
@@ -225,7 +225,7 @@ plot(hice ~ DateTime, data= ice, type='b', pch=20, lwd=2, col='gray20',
 ##!!!! SAVE your modified glm2.nml file.
 
 # Once you have edited the nml file name, you should check to make sure that 
-#  it is correct with the following commandS:
+#  it is correct with the following commands:
 nml <- read_nml(nml_file)   
 get_nml_value(nml, 'meteo_fl') 
 ##!! The printout here should list your NEW meteorological file for your climate 
@@ -284,7 +284,7 @@ plot_var(file=climate,"OXY_oxy",reference="surface")
 
 # Create a heatmap of the dissolved oxygen concentrations in your climate scenario:
 plot_var(file=climate,"OXY_oxy",reference="surface")
-  # How does this output compare to your baseline dissolved oxygen heatmap?
+# How does this output compare to your baseline dissolved oxygen heatmap?
 
 # Note: If you want to control the maximum value of the color scale on your heatmaps, 
 # add the following (without quotes) after fig_path=FALSE: ', col_lim= c(0,35)'
@@ -336,7 +336,7 @@ legend("topleft", c("Baseline", "Climate"), lty=1, lwd=2, col=c("gray20","red3")
 ##!!!! Again, adjust the y-axis range by editing the command ylim=c(-0.5,0.5) to 
 #  make sure all your data are shown in the plot without too much white space.
 
-# (Question 13) Do these plots with the baseline and climate scenarios support or contradict 
+# (Question 12) Do these plots with the baseline and climate scenarios support or contradict 
 #  your hypotheses about climate change effects on CH4 and CO2 fluxes? How? 
 #  If your lake originally exhibited ice, how does the duration of ice cover 
 #  change in response to warming air temperature? Modify and run the code from 
@@ -382,7 +382,7 @@ BaselineCH4mass <- sum(ch4_output$Baseline_CH4) * lakearea * 16.04 / 1000000
 
 BaselineCH4mass 
 # This value is the yearly CH4 flux for your lake (in kg). Is it negative or positive? 
-#  What does that mean? (Question 15)
+#  What does that mean? (Question 14)
 
 # Now that the mass of both CO2 and CH4 fluxes are calculated, we need to calculate 
 #  the GWP of your lake in the baseline scenario. CO2 has a GWP of 1 but CH4 has 
@@ -395,7 +395,7 @@ BaselineCH4mass
 GWP_baseline <- (BaselineCO2mass * 1) + (BaselineCH4mass * 86)
 
 GWP_baseline
-# This value is the baseline GWP for your lake. Is it positive or negative? (Question 15) 
+# This value is the baseline GWP for your lake. Is it positive or negative? (Question 14) 
   #  If it is positive, the value corresponds to how many equivalent kg of CO2 are released 
   #  to the atmosphere each year. If it is negative, the value corresponds to how many 
   #  equivalent kg of CO2 are taken up by your lake from the atmosphere each year, thereby
@@ -409,14 +409,14 @@ ClimateCO2mass <- sum(co2_output$Climate_CO2) * lakearea * 44.01 / 1000000
 
 ClimateCO2mass 
 # This value is the yearly CO2 flux for your lake (in kg) under the climate change
-#  scenario. Is it negative or positive? What does that mean? (Question 15)
+#  scenario. Is it negative or positive? What does that mean? (Question 14)
 
 # Calculate the yearly CH4 flux for your lake under the climate change scenario:
 ClimateCH4mass <- sum(ch4_output$Climate_CH4) * lakearea * 16.04 / 1000000
 
 ClimateCH4mass 
 # This value is the yearly CH4 flux for your lake (in kg) under the climate change
-#  scenario. Is it negative or positive? What does that mean? (Question 15)
+#  scenario. Is it negative or positive? What does that mean? (Question 14)
 
 # As above, we will estimate the GWP for our lake under the climate change scenario
 #  by converting our CH4 mass into CO2 equivalents, since CH4 has 86 times the 
@@ -425,7 +425,7 @@ GWP_climate <- (ClimateCO2mass * 1) + (ClimateCH4mass * 86)
 
 GWP_climate
 # How does this climate GWP value compare to the baseline GWP value? Is it positive
-#  or negative? What does this mean? (Question 15)
+#  or negative? What does this mean? (Question 14)
 
 ########## ACTIVITY C - OBJECTIVE 6 ############################################
 # Now let's create some figures to show your results! 
@@ -461,12 +461,12 @@ legend("topleft", legend=rownames(data), pch = 19, col=c("gray20","red3"))
 ##!!!! As before, adjust the ylim command to make sure your data are clearly 
 #  visualized! 
 
-# (Question 16) Do these data support or contradict your hypotheses about the relative importance
+# (Question 15) Do these data support or contradict your hypotheses about the relative importance
 #  of CO2 and CH4 fluxes on global warming? What is the net effect of the lake 
 #  on the atmosphere in the baseline scenario? How might this change with 
 #  climate warming?
 
-# (Question 16) What are the macro-scale feedbacks between your lake and its greenhouse gas fluxes?
+# (Question 15) What are the macro-scale feedbacks between your lake and its greenhouse gas fluxes?
 #  How will your lake's CO2 and CH4 fluxes feed back to either intensify or 
 #  counteract climate change?
 
