@@ -188,14 +188,14 @@ write.csv(co2_output, './co2model_output.csv', quote=F, row.names = F)
 #  You can click "Zoom" on the plot window to see a larger version of your plot
 plot(Baseline_CH4 ~ DateTime, data= ch4_output, type='b', pch=20, lwd=2, col='gray20',
      ylab = "Methane flux, (mmol/m2/d)")
-abline(h= 0, col= 'black', lty= 3, lwd= 3) 
-# Add a black dashed line at 0 to show the cutoff between positive and negative
+abline(h= 0, col= 'gray68', lty= 3, lwd= 3) 
+# Add a gray dashed line at 0 to show the cutoff between positive and negative
 
 # Now, compare that CH4 figure with a figure of CO2 fluxes in the lake over time.
 plot(Baseline_CO2 ~ DateTime, data= co2_output, type='b', pch=20, lwd=2, col='gray20',
      ylab = "Carbon dioxide flux, (mmol/m2/d)")
-abline(h= 0, col= 'black', lty= 3, lwd= 3) 
-# Add a black dashed line at 0 to show the cutoff between positive and negative
+abline(h= 0, col= 'gray68', lty= 3, lwd= 3) 
+# Add a gray dashed line at 0 to show the cutoff between positive and negative
 
 # (Question 10) What do you notice about seasonal patterns in CH4 and CO2 fluxes? When are the
 #   fluxes negative, and when are they positive? How might this be related to 
@@ -282,10 +282,6 @@ plot_temp(file=climate, fig_path=FALSE)
 plot_var(file=climate,"OXY_oxy",reference="surface")
 # How does this output compare to your baseline dissolved oxygen heatmap?
 
-# Create a heatmap of the dissolved oxygen concentrations in your climate scenario:
-plot_var(file=climate,"OXY_oxy",reference="surface")
-# How does this output compare to your baseline dissolved oxygen heatmap?
-
 # Note: If you want to control the maximum value of the color scale on your heatmaps, 
 # add the following (without quotes) after fig_path=FALSE: ', col_lim= c(0,35)'
 # This tells R that you want your minimum value to be 0, and your 
@@ -306,7 +302,7 @@ lines(Climate_CH4 ~ DateTime, data= ch4_output, lwd=2, col='red3')
 points(Climate_CH4 ~ DateTime, data= ch4_output, pch=20, col='red3')
 
 # Third, we'll add a black dashed line at 0
-abline(h = 0, col = 'black', lty = 3, lwd=3) 
+abline(h = 0, col = 'gray68', lty = 3, lwd=3) 
 
 # And finally, we'll add a legend:
 legend("topleft", c("Baseline", "Climate"), lty=1, lwd=2, col=c("gray20","red3"))
@@ -328,7 +324,7 @@ lines(Climate_CO2 ~ DateTime, data= co2_output, lwd=2, col='red3')
 points(Climate_CO2 ~ DateTime, data= co2_output, pch=20, col='red3')
 
 # Add a black dashed line at 0
-abline(h = 0, col = 'black', lty = 3, lwd=3) 
+abline(h = 0, col = 'gray68', lty = 3, lwd=3) 
 
 # Add a legend:
 legend("topleft", c("Baseline", "Climate"), lty=1, lwd=2, col=c("gray20","red3"))
@@ -450,11 +446,20 @@ View(data)
 
 # Now we'll create a barplot to compare the baseline vs. climate CO2 and CH4 masses, 
 #  and the GWPs between the two scenarios.
-barplot(data, col=c("gray20","red3"), font.axis=2, beside=T, ylab="kg or GWP", 
+par(mfrow = c(1,2))
+
+barplot(data[,1:2], col=c("gray20","red3"), font.axis=2, beside=T, ylab="kg of GHG",
         main=paste0(nml$morphometry$lake_name,", ", nml$meteorology$meteo_fl),
-        font.lab=2, ylim= c(-20000, 20000))
-abline(h = 0, col = 'black', lty = 1, lwd=1) 
+        font.lab=2, ylim= c(-10000, 10000))
+abline(h = 0, col = 'black', lty = 1, lwd=1)
 legend("topleft", legend=rownames(data), pch = 19, col=c("gray20","red3"))
+
+barplot(data[,3], col=c("gray20","red3"), font.axis=2, beside=T, ylab="GWP",
+        main=paste0(nml$morphometry$lake_name,", ", nml$meteorology$meteo_fl),
+        font.lab=2, ylim= c(-20000, 40000))
+abline(h = 0, col = 'black', lty = 1, lwd=1)
+legend("topleft", legend=rownames(data), pch = 19, col=c("gray20","red3"))
+
 #  As in our earlier plots, the gray bars represent the baseline scenario and 
 #  the red bars represent the climate scenario.
 
