@@ -113,7 +113,7 @@
    theta_sed_dic = 1.07
    Fsed_dic_variable='SDF_Fsed_dic'
    pH_initial = 8.4
-   atmco2 = 400e-6
+   atmco2 = -400e-6
    ionic = 0.1
    !-- CH4 --
    ch4_initial = 0.01
