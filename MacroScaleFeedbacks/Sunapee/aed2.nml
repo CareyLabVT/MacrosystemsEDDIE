@@ -108,16 +108,16 @@
 !-------------------------------------------------------------------------------
 &aed2_carbon
    !-- DIC and pH --
-   Fsed_dic = 5
+   Fsed_dic = 15
    Ksed_dic = 6.8
    theta_sed_dic = 1.07
    Fsed_dic_variable='SDF_Fsed_dic'
-   pH_initial = 8.4
-   atmco2 = 400e-6
+   pH_initial = 6!8.4
+   atmco2 = -400e-6
    ionic = 0.1
    !-- CH4 --
    ch4_initial = 0.05
-   Rch4ox = 0.1
+   Rch4ox = 0.05
    Kch4ox = 0.5
    vTch4ox = 1.07
    Fsed_ch4 = 5
@@ -285,10 +285,10 @@
    !-- ORGANIC CARBON
    docr_initial = 0.0
    w_poc = -0.05 !Snortheim -0.1238, Manual: -1
-   Rpoc_miner = 0.0001 !Manual: 0.01 - 0.07 (0.008)
-   Rdoc_miner = 0.0001 !Manual: 0.035 - 0.05
-   Fsed_poc = -0.01 !github says = 0 (and doesn’t have divided by secs in day)
-   Fsed_doc = .1 !??, originally set to 0
+   Rpoc_miner = 0.1!0.0001 !Manual: 0.01 - 0.07 (0.008)
+   Rdoc_miner = 0.5!0.0001 !Manual: 0.035 - 0.05
+   Fsed_poc = 0!-0.01 !github says = 0 
+   Fsed_doc = 100!0.1 
    Kpoc_miner = 78 !Manual: 47 - 78 (lakes)
    Kdoc_miner = 78 !Manual: 47 - 78 (lakes)
    Ksed_doc = 15 !Manual: ??
