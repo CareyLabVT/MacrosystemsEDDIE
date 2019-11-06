@@ -15,7 +15,7 @@
 # Download R packages and GLM files onto your computer.
 
 install.packages('sp') 
-# NOTE: depending on your computer, you may get output  that says, "There is a 
+# NOTE: depending on your computer, you may get output that says, "There is a 
 #  binary version available. Do you want to install from sources that need 
 #  compilation? y/n" If this pops up, type 'y' (without the quotes) and hit enter. 
 #  You may now be prompted to download the command line developer tools in a 
@@ -203,9 +203,9 @@ abline(h= 0, col= 'gray68', lty= 3, lwd= 3)
 #   How do the patterns of CH4 and CO2 fluxes compare over time?
 
 # To examine the presence (if any) of ice, let's make a plot of ice cover over time:
-ice <- get_var(file=baseline, "hice") 
+Baseline_ice <- get_var(file=baseline, "hice") 
 #   This command saves the ice height (in meters) on every day of the simulation.
-plot(hice ~ DateTime, data= ice, type='b', pch=20, lwd=2, col='gray20',
+plot(hice ~ DateTime, data=Baseline_ice, type='b', pch=20, lwd=2, col='gray20',
      ylab = "Ice thickness (meters)")
 
 
@@ -332,11 +332,24 @@ legend("topleft", c("Baseline", "Climate"), lty=1, lwd=2, col=c("gray20","red3")
 ##!!!! Again, adjust the y-axis range by editing the command ylim=c(-0.5,0.5) to 
 #  make sure all your data are shown in the plot without too much white space.
 
+# Let's plot ice cover of your lake from both the baseline and climate scenario to
+#  examine how ice cover changes.
+Climate_ice <- get_var(file=climate, "hice") 
+#   This command saves the ice height (in meters) on every day of the simulation.
+
+plot(hice ~ DateTime, data=Baseline_ice, type='b', pch=20, lwd=2, col='gray20',
+     ylab = "Ice thickness (meters)")
+
+# Add a line for the climate warming scenario data:
+lines(hice ~ DateTime, data=Climate_ice, lwd=2, pch=20, col='red3')
+
+# Add a legend:
+legend("topright", c("Baseline","Climate"), lty=1, lwd=2, col=c('gray20','red3'))
+
 # (Question 12) Do these plots with the baseline and climate scenarios support or contradict 
 #  your hypotheses about climate change effects on CH4 and CO2 fluxes? How? 
 #  If your lake originally exhibited ice, how does the duration of ice cover 
-#  change in response to warming air temperature? Modify and run the code from 
-#  Activity A to learn the answer.
+#  change in response to warming air temperature?
 
 ########## ACTIVITY C - OBJECTIVE 5 ############################################
 # Now we are going to calculate global warming potentials (GWPs), which provide 
