@@ -131,7 +131,7 @@
    Ksed_dic = 6.8 ! 20.0, Snortheim 24.338
    theta_sed_dic = 1.07 ! 1.08, Snortheim 1.0212
    Fsed_dic_variable='SDF_Fsed_dic'
-   pH_initial = 6 ! 
+   pH_initial = 8.4 ! 
    atmco2 = 400e-6
    ionic = 0.1
    !-- CH4 --
@@ -141,7 +141,7 @@
    vTch4ox = 1.07
    Fsed_ch4 = 100
    Ksed_ch4 = 10
-   theta_sed_ch4 = 1.07
+   theta_sed_ch4 = 0.95
    methane_reactant_variable='OXY_oxy'
 /
 !###############################################################################
