@@ -141,7 +141,7 @@
    vTch4ox = 1.07
    Fsed_ch4 = 100
    Ksed_ch4 = 10
-   theta_sed_ch4 = 0.95
+   theta_sed_ch4 = 1
    methane_reactant_variable='OXY_oxy'
 /
 !###############################################################################
