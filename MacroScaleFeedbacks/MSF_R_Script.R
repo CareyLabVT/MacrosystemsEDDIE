@@ -78,7 +78,7 @@ glm_version()
 
 ##!! Edit this line to define the sim_folder location for your model lake. 
 sim_folder <- '/Users/cayelan/Desktop/macroscale_feedbacks/LakeName' 
-# (Question 9)  You will need to change the part after Users/ to give the name of your 
+# (Question 8) You will need to change the part after Users/ to give the name of your 
 #  computer (e.g., my computer name is cayelan, but yours will be different!) 
 #  AND change the word LakeName to be the name of your model lake (Mendota, Sunapee,
 #  Toolik, or FallingCreek). Note that these computer file paths are case-sensitive.
@@ -197,7 +197,7 @@ plot(Baseline_CO2 ~ DateTime, data= co2_output, type='b', pch=20, lwd=2, col='gr
 abline(h= 0, col= 'gray68', lty= 3, lwd= 3) 
 # Add a gray dashed line at 0 to show the cutoff between positive and negative
 
-# (Question 10) What do you notice about seasonal patterns in CH4 and CO2 fluxes? When are the
+# (Question 9) What do you notice about seasonal patterns in CH4 and CO2 fluxes? When are the
 #   fluxes negative, and when are they positive? How might this be related to 
 #   seasonal trends in lake temperature, ice cover, and spring and fall mixing? 
 #   How do the patterns of CH4 and CO2 fluxes compare over time?
@@ -212,7 +212,7 @@ plot(hice ~ DateTime, data=Baseline_ice, type='b', pch=20, lwd=2, col='gray20',
 ########## ACTIVITY B - OBJECTIVE 3 ############################################
 # For Activity B, you will work with your partner to examine how your lake's CH4 and
 #  CO2 fluxes will respond to climate change. First, work with your partner to select
-#  one of the pre-made climate scenarios (Question 11). 
+#  one of the pre-made climate scenarios (Question 10). 
 
 ##!!!! Once you have selected your climate scenario, you need to edit the glm2.nml 
 #  file to change the name of the input met file so that it reads in the met 
@@ -346,7 +346,7 @@ lines(hice ~ DateTime, data=Climate_ice, lwd=2, pch=20, col='red3')
 # Add a legend:
 legend("topright", c("Baseline","Climate"), lty=1, lwd=2, col=c('gray20','red3'))
 
-# (Question 12) Do these plots with the baseline and climate scenarios support or contradict 
+# (Question 11) Do these plots with the baseline and climate scenarios support or contradict 
 #  your hypotheses about climate change effects on CH4 and CO2 fluxes? How? 
 #  If your lake originally exhibited ice, how does the duration of ice cover 
 #  change in response to warming air temperature?
@@ -391,7 +391,7 @@ BaselineCH4mass <- sum(ch4_output$Baseline_CH4) * lakearea * 16.04 / 1000000
 
 BaselineCH4mass 
 # This value is the yearly CH4 flux for your lake (in kg). Is it negative or positive? 
-#  What does that mean? (Question 14)
+#  What does that mean? (Question 13)
 
 # Now that the mass of both CO2 and CH4 fluxes are calculated, we need to calculate 
 #  the GWP of your lake in the baseline scenario. CO2 has a GWP of 1 but CH4 has 
@@ -418,14 +418,14 @@ ClimateCO2mass <- sum(co2_output$Climate_CO2) * lakearea * 44.01 / 1000000
 
 ClimateCO2mass 
 # This value is the yearly CO2 flux for your lake (in kg) under the climate change
-#  scenario. Is it negative or positive? What does that mean? (Question 14)
+#  scenario. Is it negative or positive? What does that mean? (Question 13)
 
 # Calculate the yearly CH4 flux for your lake under the climate change scenario:
 ClimateCH4mass <- sum(ch4_output$Climate_CH4) * lakearea * 16.04 / 1000000
 
 ClimateCH4mass 
 # This value is the yearly CH4 flux for your lake (in kg) under the climate change
-#  scenario. Is it negative or positive? What does that mean? (Question 14)
+#  scenario. Is it negative or positive? What does that mean? (Question 13)
 
 # As above, we will estimate the GWP for our lake under the climate change scenario
 #  by converting our CH4 mass into CO2 equivalents, since CH4 has 86 times the 
@@ -434,7 +434,7 @@ GWP_climate <- (ClimateCO2mass * 1) + (ClimateCH4mass * 86)
 
 GWP_climate
 # How does this climate GWP value compare to the baseline GWP value? Is it positive
-#  or negative? What does this mean? (Question 14)
+#  or negative? What does this mean? (Question 13)
 
 ########## ACTIVITY C - OBJECTIVE 6 ############################################
 # Now let's create some figures to show your results! 
