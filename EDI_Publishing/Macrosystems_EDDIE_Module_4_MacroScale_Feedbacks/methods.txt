@@ -1,0 +1,37 @@
+MODULE DEVELOPMENT AND TESTING
+Module teaching materials were developed by C.C. Carey, K.J. Farrell, and A.G. Hounshell to provide instructors of undergraduate ecology courses with a ready-to-use, adaptable module that could be implemented in a 3-4 hour time period. 
+
+As the fourth module within the suite of Macrosystems EDDIE (www.macrosystemseddie.org) teaching materials, this module was developed to teach students fundamental concepts about macrosystems ecology, and how a macrosystems approach can be used to understand how lakes are affected by drivers that operate on multiple, interconnected temporal and spatial scales. As a secondary goal, Macrosystems EDDIE modules introduce students to advanced computational tools as a way to manage, analyze, visualize, and interpret high-frequency and long-term ecological data sets. 
+
+The specific student learning goals for this module are that by the end of the module, students will be able to: 
+- Understand the concepts of macrosystems ecology and macro-scale feedbacks, and how different ecological processes can interact at local, regional, and continental scales.
+- Simulate greenhouse gas fluxes in multiple lakes using ecosystem models of lake water chemistry set up with publicly-available high-frequency sensor datasets (Activity A).
+- Test the effects of a climate scenario on the different lake models and examine how the timing and magnitude of greenhouse gas fluxes change with climate warming (Activity B).
+- Examine how local conditions may alter the timing and magnitude of greenhouse gas fluxes from lakes to affect global climate change (Activity C).
+- Predict how lake greenhouse gas fluxes may both respond to and amplify changing climate.
+- The module was assessed by volunteer faculty testers during the 2018-2019 academic year. Faculty testers provided feedback that was used to update and optimize teaching materials. Carey, Farrell, and Hounshell also used student pre- and post-module assessment questions to gauge effectiveness of teaching materials for achieving module learning goals. Pedagogical specialists with the Science Education Resource Center at Carleton College assisted with assessment development and implementation.
+
+UNDERLYING MODEL DATA
+The module uses the General Lake Model (GLM; Hipsey et al. 2014), an open-source hydrodynamic simulation model, to simulate lake temperatures and other physical limnology metrics over the model time period. GLM in this module (version 2.2.0rc5) uses the 'GLMr' and 'glmtools' packages (Read and Winslow 2016, Winslow and Read 2016), which allow the GLM model to be run and output analyzed through the R statistical environment. Calibrated models were set up for four lakes that are part of either the United States National Ecological Observatory Network (NEON; www.neonscience.org) or the Global Lakes Ecological Observatory Network (GLEON; http://gleon.org). The four lakes are Falling Creek Reservoir (Virginia, USA), Lake Mendota (Wisconsin, USA), Lake Sunapee (New Hampshire, USA), and Toolik Lake (Alaska, USA), which encompass a range of geographic location, trophic state, mixing regime, and watershed land use. The model representation of each lake has been simplified in multiple ways for the purpose of teaching this module: for example, lakes with multiple surface inflows were simplified to one inflow in the model. 
+
+Within the module, lake configuration files (glm2.nml) have been coarsely calibrated for each lake. Meteorological driver data (met_hourly.csv) for each lake were compiled at an hourly time step from the North American Land Data Assimilation System (NLDAS-2; Cosgrove et al. 2003) and include air temperature, short and long wave radiation, relative humidity, wind speed, and precipitation (rain and snow). For lakes that include a substantial surface inflow, an inflow file (inflow.csv) is included, which includes discharge volume, water temperature, and inflow salt concentration at a daily timestep. For lakes with a surface outflow, each lake model also includes a surface outflow file (outflow.csv) that is estimated based on inflows to maintain lake volume. Climate scenarios simulated +2oC, +4oC, and +6oC warming scenarios by increasing observed surface air temperature from 2013-2014 by +2oC (met_hourly_plus2.csv), +4oC (met_hourly_plus4.csv), and +6oC (met_hourly_plus6.csv), respectively for each of the 4 lake.
+
+For more information, we refer users to the website and publications listed below.
+
+WEBSITE & PUBLICATIONS
+Carey, C.C., K.J. Farrell, and A.G. Hounshell. 15 April 2020. Macrosystems EDDIE: Macro-scale feedbacks. Macrosystems EDDIE Module 4, Version 1. http://module4.macrosystemseddie.org. 
+
+Farrell, K.J., & C.C. Carey. 2018. Power, pitfalls, and potential for integrating computational literacy into undergraduate ecology courses. Ecology and Evolution 8: 7744-7751. DOI: 10.1002/ece3.4363
+
+Carey, C. C. and Gougis, R. D. 2017. Simulation modeling of lakes in undergraduate and graduate classrooms increases comprehension of climate change concepts and interest in computational tools. Journal of Science Education and Technology 26: 1-11. DOI: 10.1007/s10956-016-9644-2
+
+NOTES AND COMMENTS
+Cosgrove, B. A., Lohmann, D., Mitchell, K. E., Houser, P. R., Wood, E. F., Schaake, J. C., Robock A., Marshall, C., Sheffield, J., Duan, Q., Luo, L., Higgins, R. W., Pinker, R. T., Tarpley, J. D., & Meng, J. (2003). Real-time and retrospective forcing in the North American Land Data Assimilation System (NLDAS) project. Journal of Geophysical Research: Atmospheres, 108(D22).
+
+Hipsey, M. R., L.C. Bruce, and D.P. Hamilton. 2014. GLM- General Lake Model: Model overview and user information. AED Report #26, The University of Western Australia, Perth, Australia. 42 pp. Available: http://aed.see.uwa.edu.au/research/models/GLM/ 
+
+Hipsey, M.R., Bruce, L.C., Boon, C., Busch, B., Carey, C.C., Hamilton, D.P., Hanson, P.C., Read, J.S., De Sousa, E., Weber, M., Winslow, L.A., 2019. A General Lake Model (GLM 3.0) for linking with high-frequency sensor data from the Global Lake Ecological Observatory Network (GLEON). Geosci. Model Dev. 12, 473-523. https://doi.org/10.5194/gmd-12-473-2019
+
+Read, J.S., and L.A. Winslow. 2016. glmtools R package v.0.14.6. Available: https://github.com/USGS-R/glmtools 
+
+Winslow, L.A., and J.S. Read. 2016. GLMr R package v.3.1.15 and GLMr R package default files. GLMr: A General Lake Model (GLM) base package. DOI: 10.5281/zenodo.595574
