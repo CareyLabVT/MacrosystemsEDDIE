@@ -1,7 +1,7 @@
 ### How to publish Macrosystems EDDIE modules with EDI ####
 
 # (install and) Load EMLassemblyline #####
-# install.packages('devtools')
+install.packages('devtools')
 
 devtools::install_github("EDIorg/EMLassemblyline")
 library(EMLassemblyline)
@@ -83,7 +83,7 @@ library(EMLassemblyline)
   # zip.dir: Change the name of the module files zip folder
   # temporal.coverage: Update the dates
   # package.id: enter the ID you obtained in Step 6
-make_eml(path = "C:/Users/ahoun/OneDrive/Desktop/EDDIE/GitHub/MacrosystemsEDDIE/EDI_Publishing/Macrosystems_EDDIE_Module_4_MacroScale_Feedbacks",
+make_eml(path = "./EDI_Publishing/Macrosystems_EDDIE_Module_4_MacroScale_Feedbacks",
          dataset.title = "Macrosystems EDDIE Module 4: Macro-scale Feedbacks",
          other.entity = c("instructor_materials.zip",
                           "macroscale_feedbacks.zip"),
