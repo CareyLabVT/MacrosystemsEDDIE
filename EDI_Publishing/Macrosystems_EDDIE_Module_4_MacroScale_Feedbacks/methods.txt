@@ -34,4 +34,4 @@ Hipsey, M.R., Bruce, L.C., Boon, C., Busch, B., Carey, C.C., Hamilton, D.P., Han
 
 Read, J.S., and L.A. Winslow. 2016. glmtools R package v.0.14.6. Available: https://github.com/USGS-R/glmtools 
 
-Winslow, L.A., and J.S. Read. 2016. GLMr R package v.3.1.15 and GLMr R package default files. GLMr: A General Lake Model (GLM) base package. DOI: 10.5281/zenodo.595574
+Winslow, L.A., and J.S. Read. 2016. GLMr R package v.3.1.15 and GLMr R package default files. GLMr: A General Lake Model (GLM) base package. DOI: 10.5281/zenodo.595574	
