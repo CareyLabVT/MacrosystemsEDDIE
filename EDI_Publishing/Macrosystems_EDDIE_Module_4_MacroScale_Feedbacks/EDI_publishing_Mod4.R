@@ -138,7 +138,7 @@ make_eml(path = sim_folder,
   # ALL OTHER entries in the make_eml() command should match what you ran above,
   # in step 7
 
-make_eml(path = "sim_folder",
+make_eml(path = sim_folder,
          dataset.title = "Macrosystems EDDIE Module 4: Macro-Scale Feedbacks",
          other.entity = c("instructor_materials.zip",
                           "macroscale_feedbacks.zip"),
