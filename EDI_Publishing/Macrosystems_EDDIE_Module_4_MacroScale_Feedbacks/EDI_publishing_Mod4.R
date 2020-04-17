@@ -83,7 +83,10 @@ library(EMLassemblyline)
   # zip.dir: Change the name of the module files zip folder
   # temporal.coverage: Update the dates
   # package.id: enter the ID you obtained in Step 6
-make_eml(path = "./EDI_Publishing/Macrosystems_EDDIE_Module_4_MacroScale_Feedbacks",
+
+sim_folder <- getwd()
+
+make_eml(path = sim_folder,
          dataset.title = "Macrosystems EDDIE Module 4: Macro-scale Feedbacks",
          other.entity = c("instructor_materials.zip",
                           "macroscale_feedbacks.zip"),
