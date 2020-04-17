@@ -87,7 +87,7 @@ library(EMLassemblyline)
 sim_folder <- getwd()
 
 make_eml(path = sim_folder,
-         dataset.title = "Macrosystems EDDIE Module 4: Macro-scale Feedbacks",
+         dataset.title = "Macrosystems EDDIE Module 4: Macro-Scale Feedbacks",
          other.entity = c("instructor_materials.zip",
                           "macroscale_feedbacks.zip"),
          other.entity.name = c("instructor_materials", "macroscale_feedbacks"),
@@ -138,22 +138,23 @@ make_eml(path = sim_folder,
   # ALL OTHER entries in the make_eml() command should match what you ran above,
   # in step 7
 
-make_eml(path = "./EDI_Publishing/Macrosystems_EDDIE_Module_3_Teleconnections",
-         dataset.title = "Macrosystems EDDIE Module 3: Teleconnections",
+make_eml(path = "sim_folder",
+         dataset.title = "Macrosystems EDDIE Module 4: Macro-Scale Feedbacks",
          other.entity = c("instructor_materials.zip",
-                          "teleconnections.zip"),
+                          "macroscale_feedbacks.zip"),
+         other.entity.name = c("instructor_materials", "macroscale_feedbacks"),
          other.entity.description = c("This zip folder contains materials for instructors to teach the Macrosystems EDDIE 
-                                      module in their classroom. See README file for file types and descriptions",
+                                 module in their classroom. See README file for file types and descriptions",
                                       "This zip folder contains materials for students to implement the Macrosystems EDDIE 
-                                      module in RStudio. See README file for file types and descriptions"),
-         temporal.coverage = c("2018-05-18", "2019-05-10"),
+                                 module in RStudio. See README file for file types and descriptions"),
+         temporal.coverage = c("2019-04-01", "2020-04-15"),
          # keep geographic site as Derring for all MS EDDIE modules
          geographic.description = c("The Department of Biological Sciences at Virginia Tech is located in Blacksburg, Virginia, USA"),
          geographic.coordinates = c('37.229596', '-80.424863', '37.22854', '-80.426228'), #N, E, S, W
          maintenance.description = "Completed", 
          user.id = "ccarey",
          user.domain = 'EDI',
-         package.id = "edi.387.4") # Put your package.id here, followed by .1 (for 1st version)
+         package.id = "edi.503.1") # Put your package.id here, followed by .1 (for 1st version) - RESERVED BY AGH ON 04-17-20
 
   # Once your xml file with your PUBLISHED package.id is Done, return to the 
   # EDI Production environment (https://portal.edirepository.org/nis/home.jsp)
