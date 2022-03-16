@@ -1,5 +1,5 @@
 givenName	middleInitial	surName	organizationName	electronicMailAddress	userId	role	projectTitle	fundingAgency	fundingNumber
-Tadhg	J.	Moore	Virginia Tech	tadhgm@vt.edu	0000-0002-3834-8868	creator			
+Tadhg	N.	Moore	Virginia Tech	tadhgm@vt.edu	0000-0002-3834-8868	creator			
 Cayelan	C.	Carey	Virginia Tech	Cayelan@vt.edu	0000-0001-8835-4476	creator			
 R.	Quinn	Thomas	Virginia Tech	rqthomas@vt.edu	0000-0003-1282-7825	creator
 Cayelan	C.	Carey	Virginia Tech	Cayelan@vt.edu	0000-0001-8835-4476	contact			
