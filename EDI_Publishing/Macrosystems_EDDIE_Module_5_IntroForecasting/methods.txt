@@ -26,6 +26,6 @@ For more information, we refer users to the website and R Shiny application list
 
 WEBSITE & PUBLICATIONS
 
-Moore, T.N., Carey, C.C., and Thomas, R.Q. 2022. Macrosystems EDDIE Module 5: Introduction to Ecological Forecasting. https://module5.macrosystemseddie.org. 
+Moore, T.N., Carey, C.C., and Thomas, R.Q. 2022. Macrosystems EDDIE Module 5: Introduction to Ecological Forecasting. http://module5.macrosystemseddie.org. 
 
 Moore, T.N., Carey, C.C., and Thomas, R.Q. 2022. Macrosystems EDDIE Module 5: Introduction to Ecological Forecasting (R Shiny application) (v1.1). Zenodo. https://doi.org/10.5281/zenodo.6363500
