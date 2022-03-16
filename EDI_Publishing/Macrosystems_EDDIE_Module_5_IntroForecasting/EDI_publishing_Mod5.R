@@ -99,7 +99,7 @@ make_eml(path = sim_folder,
          maintenance.description = "Completed", 
          user.id = "ccarey",
          user.domain = 'EDI',
-         package.id = "edi.801.2") # Put your package.id here, followed by .1 (for 1st version)
+         package.id = "edi.1021.1") # Put your package.id here, followed by .1 (for 1st version)
 
 ## Step 8: Check your data product! ####
   # Return to the EDI staging environment (https://portal-s.edirepository.org/nis/home.jsp),

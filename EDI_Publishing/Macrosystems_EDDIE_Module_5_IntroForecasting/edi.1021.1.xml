@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eml:eml xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.2" packageId="edi.1021.1" xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0/eml.xsd https://eml.ecoinformatics.org/eml-2.2.0/eml.xsd" system="edi">
+  <access authSystem="https://pasta.edirepository.org/authentication" order="allowFirst" scope="document">
+    <allow>
+      <principal>uid=ccarey,o=EDI,dc=edirepository,dc=org</principal>
+      <permission>all</permission>
+    </allow>
+    <allow>
+      <principal>public</principal>
+      <permission>read</permission>
+    </allow>
+  </access>
+  <dataset>
+    <title>Macrosystems EDDIE Module 5: Introduction to Ecological Forecasting (Instructor Materials)</title>
+    <creator>
+      <individualName>
+        <givenName>Tadhg</givenName>
+        <givenName>N.</givenName>
+        <surName>Moore</surName>
+      </individualName>
+      <organizationName>Virginia Tech</organizationName>
+      <electronicMailAddress>tadhgm@vt.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0002-3834-8868</userId>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Cayelan</givenName>
+        <givenName>C.</givenName>
+        <surName>Carey</surName>
+      </individualName>
+      <organizationName>Virginia Tech</organizationName>
+      <electronicMailAddress>Cayelan@vt.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0001-8835-4476</userId>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>R.</givenName>
+        <givenName>Quinn</givenName>
+        <surName>Thomas</surName>
+      </individualName>
+      <organizationName>Virginia Tech</organizationName>
+      <electronicMailAddress>rqthomas@vt.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0003-1282-7825</userId>
+    </creator>
+    <pubDate>2022-03-16</pubDate>
+    <abstract>
+      <para>Ecological forecasting is a tool that can be used for understanding and predicting changes in populations, communities, and ecosystems. Ecological forecasting is an emerging approach which provides an estimate of the future state of an ecological system with uncertainty, allowing society to prepare for changes in important ecosystem services. Ecological forecasters develop and update forecasts using the iterative forecasting cycle, in which they make a hypothesis of how an ecological system works; embed their hypothesis in a model; and use the model to make a forecast of future conditions. When observations become available, they can assess the accuracy of their forecast, which indicates if their hypothesis is supported or needs to be updated before the next forecast is generated.</para>
+      <para>In this Macrosystems EDDIE (Environmental Data-Driven Inquiry &amp; Exploration) module, students will apply the iterative forecasting cycle to develop an ecological forecast for a National Ecological Observation Network (NEON) site. Students will use NEON data to build an ecological model that predicts primary productivity. Using their calibrated model, they will learn about the different components of a forecast with uncertainty and compare productivity forecasts among NEON sites.</para>
+      <para>The overarching goal of this module is for students to learn fundamental concepts about ecological forecasting and build a forecast for a NEON site. Students will work with an R Shiny interface to visualize data, build a model, generate a forecast with uncertainty, and then compare the forecast with observations. The A-B-C structure of this module makes it flexible and adaptable to a range of student levels and course structures.</para>
+      <para>This EDI data package contains instructional materials and the files necessary to teach the module. Readers are referred to the Zenodo data package (Moore et al. 2022; DOI: 10.5281/zenodo.6363500) for the R Shiny application code needed to run the module locally.</para>
+    </abstract>
+    <intellectualRights>
+      <para>This information is released under the Creative Commons license - Attribution - CC BY (https://creativecommons.org/licenses/by/4.0/). The consumer of these data ("Data User" herein) is required to cite it appropriately in any publication that results from its use. The Data User should realize that these data may be actively used by others for ongoing research and that coordination may be necessary to prevent duplicate publication. The Data User is urged to contact the authors of these data if any questions about methodology or results occur. Where appropriate, the Data User is encouraged to consider collaboration or co-authorship with the authors. The Data User should realize that misinterpretation of data may occur if used out of context of the original study. While substantial efforts are made to ensure the accuracy of data and associated documentation, complete accuracy of data sets cannot be guaranteed. All data are made available "as is." The Data User should be aware, however, that data are updated periodically and it is the responsibility of the Data User to check for new versions of the data. The data authors and the repository where these data were obtained shall not be liable for damages resulting from any use or misinterpretation of the data. Thank you.</para>
+    </intellectualRights>
+    <coverage>
+      <temporalCoverage>
+        <rangeOfDates>
+          <beginDate>
+            <calendarDate>2022-01-23</calendarDate>
+          </beginDate>
+          <endDate>
+            <calendarDate>2022-03-17</calendarDate>
+          </endDate>
+        </rangeOfDates>
+      </temporalCoverage>
+    </coverage>
+    <maintenance>
+      <description>Completed</description>
+    </maintenance>
+    <contact>
+      <individualName>
+        <givenName>Cayelan</givenName>
+        <givenName>C.</givenName>
+        <surName>Carey</surName>
+      </individualName>
+      <organizationName>Virginia Tech</organizationName>
+      <electronicMailAddress>Cayelan@vt.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0001-8835-4476</userId>
+    </contact>
+    <methods>
+      <methodStep>
+        <description>
+          <para>MODULE DEVELOPMENT AND TESTING</para>
+          <para>Module teaching materials were developed by T.N. Moore, C.C. Carey, and R.Q. Thomas to provide instructors of undergraduate ecology courses with a ready-to-use, adaptable module that could be implemented in a 3-4 hour time period to introduce undergraduates to ecological forecasting. </para>
+          <para>As the fifth module within the suite of Macrosystems EDDIE (www.macrosystemseddie.org) teaching materials, this module was developed to teach students macrosystems ecology and ecolgoical forecasting. The overarching goal of this module is for students to learn fundamental concepts about ecological forecasting and build a forecast for a NEON site. Students work with an R Shiny application to visualize data, build a model, generate a forecast with uncertainty, and then compare the forecast with observations. As a secondary goal, Macrosystems EDDIE modules introduce students to advanced computational tools as a way to manage, analyze, visualize, and interpret high-frequency and long-term ecological data sets; conduct ecosystem modeling; and generate ecological forecasts with quantified uncertainty. </para>
+          <para>The specific student learning goals for this module are that by the end of the module, students will be able to: 
+- Describe an ecological forecast and the iterative forecasting cycle.
+- Explore and visualize NEON data (Activity A).
+- Construct a simple ecological model to generate forecasts of ecosystem primary productivity with uncertainty (Activity B).
+- Adjust model parameters and inputs to study how they affect forecast performance relative to observations (Activity B).
+- Compare productivity forecasts among NEON sites in different ecoclimatic regions (Activity C).
+The module was assessed by volunteer faculty testers during the 2021-2022 academic year. Faculty testers provided feedback that was used to update and optimize teaching materials. Moore, Carey, and Thomas also used student pre- and post-module assessment questions to gauge effectiveness of teaching materials for achieving module learning goals. Pedagogical specialists with the Science Education Resource Center at Carleton College assisted with assessment development and implementation.</para>
+          <para>MODULE WORKFLOW</para>
+          <para>Workflow for this module:
+- Give students their handout ahead of time to read over prior to class, or distribute handouts when they arrive to class.For virtual instruction, we recommend uploading the handout to a learning management system (e.g., Blackboard, Canvas, Moodle) for students to fill in questions as they proceed through the module activities.
+- Instructor gives a brief PowerPoint presentation that introduces ecological forecasting, the iterative forecasting cycle, forecast uncertainty, and a basic ecosystem productivity model.
+- After the presentation, the students divide into pairs. Each pair selects their own NEON site and visualizes their site's data, which is used to build and calibrate an ecosystem productivity model (Activity A). The two students within a pair each build their own model with unique inputs and parameters to compare the performance of two different models for the same ecosystem. For virtual instruction, we recommend putting two pairs together (n=4 students) into separate Zoom breakout rooms during this activity so the two pairs can compare results.
+- The instructor then introduces Activity B using a few PowerPoint slides. For virtual instruction, this would entail having the students come back to the main Zoom room for a short check-in.
+- The students work in their pairs to create hypotheses about how they expect their site's productivity to change in the future, forecast the productivity using each model, and investigate how the forecast uncertainty changes with different model inputs and parameters (Activity B). Students first compare their forecasts with their partner's and then revisit their initial hypotheses to see if they are supported or need to be updated. For virtual instruction, we recommend putting the two pairs back into the same Zoom breakout rooms.
+- Student pairs then apply their ecological model to a second NEON site (the same site that the other team in their breakout room is working on) and generate ecological forecasts for this second site using their initial productivity model (Activity C). The students work together in a group to present the results from their two sites and two different models and discuss why the forecasts are similar or different among the different sites and models.</para>
+          <para>For more information, we refer users to the website and R Shiny application listed below.</para>
+          <para>WEBSITE &amp; PUBLICATIONS</para>
+          <para>Moore, T.N., Carey, C.C., and Thomas, R.Q. 2022. Macrosystems EDDIE Module 5: Introduction to Ecological Forecasting. http://module5.macrosystemseddie.org. </para>
+          <para>Moore, T.N., Carey, C.C., and Thomas, R.Q. 2022. Macrosystems EDDIE Module 5: Introduction to Ecological Forecasting (R Shiny application) (v1.1). Zenodo. https://doi.org/10.5281/zenodo.6363500</para>
+        </description>
+      </methodStep>
+    </methods>
+    <project>
+      <title>MSA: Macrosystems EDDIE: An undergraduate training program in macrosystems science and ecological forecasting</title>
+      <personnel>
+        <individualName>
+          <givenName>Cayelan</givenName>
+          <givenName>C.</givenName>
+          <surName>Carey</surName>
+        </individualName>
+        <organizationName>Virginia Tech</organizationName>
+        <electronicMailAddress>Cayelan@vt.edu</electronicMailAddress>
+        <userId directory="https://orcid.org">https://orcid.org/0000-0001-8835-4476</userId>
+        <role>Principal Investigator</role>
+      </personnel>
+      <funding>National Science Foundation EF 1926050</funding>
+      <relatedProject>
+        <title>Collaborative Research: CIBR: Cyberinfrastructure Enabling End-to-End Workflows for Aquatic Ecosystem Forecasting</title>
+        <personnel>
+          <individualName>
+            <givenName>Cayelan</givenName>
+            <givenName>C.</givenName>
+            <surName>Carey</surName>
+          </individualName>
+          <organizationName>Virginia Tech</organizationName>
+          <electronicMailAddress>Cayelan@vt.edu</electronicMailAddress>
+          <userId directory="https://orcid.org">https://orcid.org/0000-0001-8835-4476</userId>
+          <role>Principal Investigator</role>
+        </personnel>
+        <funding>National Science Foundation EF 1933016</funding>
+      </relatedProject>
+    </project>
+    <otherEntity>
+      <entityName>instructor_materials</entityName>
+      <entityDescription>This zip folder contains materials for instructors to teach the Macrosystems EDDIE 
+                                 module in their classroom. See README file for file types and descriptions</entityDescription>
+      <physical>
+        <objectName>instructor_materials.zip</objectName>
+        <size unit="bytes">15030238</size>
+        <authentication method="MD5">b75d66c79726593758aea80b51bc193b</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>application/zip</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+      </physical>
+      <entityType>unknown</entityType>
+    </otherEntity>
+  </dataset>
+</eml:eml>
