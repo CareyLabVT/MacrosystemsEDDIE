@@ -1,4 +1,5 @@
 MODULE DEVELOPMENT AND TESTING
+
 Module teaching materials were developed by T.N. Moore, C.C. Carey, and R.Q. Thomas to provide instructors of undergraduate ecology courses with a ready-to-use, adaptable module that could be implemented in a 3-4 hour time period to introduce undergraduates to ecological forecasting. 
 
 As the fifth module within the suite of Macrosystems EDDIE (www.macrosystemseddie.org) teaching materials, this module was developed to teach students macrosystems ecology and ecolgoical forecasting. The overarching goal of this module is for students to learn fundamental concepts about ecological forecasting and build a forecast for a NEON site. Students work with an R Shiny application to visualize data, build a model, generate a forecast with uncertainty, and then compare the forecast with observations. As a secondary goal, Macrosystems EDDIE modules introduce students to advanced computational tools as a way to manage, analyze, visualize, and interpret high-frequency and long-term ecological data sets; conduct ecosystem modeling; and generate ecological forecasts with quantified uncertainty. 
@@ -12,6 +13,7 @@ The specific student learning goals for this module are that by the end of the m
 The module was assessed by volunteer faculty testers during the 2021-2022 academic year. Faculty testers provided feedback that was used to update and optimize teaching materials. Moore, Carey, and Thomas also used student pre- and post-module assessment questions to gauge effectiveness of teaching materials for achieving module learning goals. Pedagogical specialists with the Science Education Resource Center at Carleton College assisted with assessment development and implementation.
 
 MODULE WORKFLOW
+
 Workflow for this module:
 - Give students their handout ahead of time to read over prior to class, or distribute handouts when they arrive to class.For virtual instruction, we recommend uploading the handout to a learning management system (e.g., Blackboard, Canvas, Moodle) for students to fill in questions as they proceed through the module activities.
 - Instructor gives a brief PowerPoint presentation that introduces ecological forecasting, the iterative forecasting cycle, forecast uncertainty, and a basic ecosystem productivity model.
@@ -23,6 +25,7 @@ Workflow for this module:
 For more information, we refer users to the website and R Shiny application listed below.
 
 WEBSITE & PUBLICATIONS
+
 Moore, T.N., Carey, C.C., and Thomas, R.Q. 2022. Macrosystems EDDIE Module 5: Introduction to Ecological Forecasting. https://module5.macrosystemseddie.org. 
 
 Moore, T.N., Carey, C.C., and Thomas, R.Q. 2022. Macrosystems EDDIE Module 5: Introduction to Ecological Forecasting (R Shiny application) (v1.1). Zenodo. https://doi.org/10.5281/zenodo.6363500
