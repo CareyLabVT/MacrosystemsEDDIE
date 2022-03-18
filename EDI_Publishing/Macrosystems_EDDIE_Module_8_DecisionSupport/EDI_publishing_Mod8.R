@@ -148,7 +148,7 @@ make_eml(path = sim_folder,
          maintenance.description = "Completed", 
          user.id = "ccarey",
          user.domain = 'EDI',
-         package.id = "edi.808.1") # Put your package.id here, followed by .1 (for 1st version)
+         package.id = "edi.1106.2") # Put your package.id here, followed by .1 (for 1st version)
 
   # Once your xml file with your PUBLISHED package.id is Done, return to the 
   # EDI Production environment (https://portal.edirepository.org/nis/home.jsp)

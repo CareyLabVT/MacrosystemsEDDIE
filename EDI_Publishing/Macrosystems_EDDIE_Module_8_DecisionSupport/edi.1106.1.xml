@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eml:eml xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.2" packageId="edi.1106.1" xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0  https://nis.lternet.edu/schemas/EML/eml-2.2.0/xsd/eml.xsd" system="edi">
+  <access authSystem="https://pasta.edirepository.org/authentication" order="allowFirst" scope="document">
+    <allow>
+      <principal>uid=ccarey,o=EDI,dc=edirepository,dc=org</principal>
+      <permission>all</permission>
+    </allow>
+    <allow>
+      <principal>public</principal>
+      <permission>read</permission>
+    </allow>
+  </access>
+  <dataset>
+    <title>Macrosystems EDDIE Module 8: Using Ecological Forecasts to Guide Decision-Making (Instructor Materials)</title>
+    <creator>
+      <individualName>
+        <givenName>Whitney</givenName>
+        <givenName>M.</givenName>
+        <surName>Woelmer</surName>
+      </individualName>
+      <organizationName>Virginia Tech</organizationName>
+      <electronicMailAddress>wwoelmer@vt.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0001-5147-3877</userId>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>R.</givenName>
+        <givenName>Quinn</givenName>
+        <surName>Thomas</surName>
+      </individualName>
+      <organizationName>Virginia Tech</organizationName>
+      <electronicMailAddress>rqthomas@vt.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0003-1282-7825</userId>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Tadhg</givenName>
+        <givenName>N.</givenName>
+        <surName>Moore</surName>
+      </individualName>
+      <organizationName>Virginia Tech</organizationName>
+      <electronicMailAddress>tadhgm@vt.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0002-3834-8868</userId>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Cayelan</givenName>
+        <givenName>C.</givenName>
+        <surName>Carey</surName>
+      </individualName>
+      <organizationName>Virginia Tech</organizationName>
+      <electronicMailAddress>Cayelan@vt.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0001-8835-4476</userId>
+    </creator>
+    <pubDate>2022-03-18</pubDate>
+    <abstract>
+      <para>Because of increased variability in populations, communities, and ecosystems due to land use and climate change, there is a pressing need to know the future state of ecological systems across space and time. Ecological forecasting is an emerging approach which provides an estimate of the future state of an ecological system with uncertainty, allowing society to preemptively prepare for fluctuations in important ecosystem services. However, forecasts must be effectively designed and communicated to those who need them to make decisions in order to realize their potential for protecting natural resources.</para>
+      <para>In this module, students will explore real ecological forecast visualizations, identify ways to represent uncertainty, make management decisions using forecast visualizations, and learn decision support techniques. Lastly, students customize a forecast visualization for a specific stakeholder's decision needs.</para>
+      <para>The overarching goal of this module is for students to understand how forecasts are connected to decision-making of stakeholders, or the managers, policy-makers, and other members of society who use forecasts to inform decision-making. The A-B-C structure of this module makes it flexible and adaptable to a range of student levels and course structures.</para>
+      <para>This EDI data package contains instructional materials and the files necessary to teach the module. Readers are referred to the Zenodo data package (Woelmer et al. 2022; DOI: 10.5281/zenodo.6368356) for the R Shiny application code needed to run the module locally.</para>
+    </abstract>
+    <intellectualRights>
+      <para>This information is released under the Creative Commons license - Attribution - CC BY (https://creativecommons.org/licenses/by/4.0/). The consumer of these data ("Data User" herein) is required to cite it appropriately in any publication that results from its use. The Data User should realize that these data may be actively used by others for ongoing research and that coordination may be necessary to prevent duplicate publication. The Data User is urged to contact the authors of these data if any questions about methodology or results occur. Where appropriate, the Data User is encouraged to consider collaboration or co-authorship with the authors. The Data User should realize that misinterpretation of data may occur if used out of context of the original study. While substantial efforts are made to ensure the accuracy of data and associated documentation, complete accuracy of data sets cannot be guaranteed. All data are made available "as is." The Data User should be aware, however, that data are updated periodically and it is the responsibility of the Data User to check for new versions of the data. The data authors and the repository where these data were obtained shall not be liable for damages resulting from any use or misinterpretation of the data. Thank you.</para>
+    </intellectualRights>
+    <coverage>
+      <temporalCoverage>
+        <rangeOfDates>
+          <beginDate>
+            <calendarDate>2022-01-23</calendarDate>
+          </beginDate>
+          <endDate>
+            <calendarDate>2022-03-17</calendarDate>
+          </endDate>
+        </rangeOfDates>
+      </temporalCoverage>
+    </coverage>
+    <maintenance>
+      <description>Completed</description>
+    </maintenance>
+    <contact>
+      <individualName>
+        <givenName>Cayelan</givenName>
+        <givenName>C.</givenName>
+        <surName>Carey</surName>
+      </individualName>
+      <organizationName>Virginia Tech</organizationName>
+      <electronicMailAddress>Cayelan@vt.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0001-8835-4476</userId>
+    </contact>
+    <methods>
+      <methodStep>
+        <description>
+          <para>MODULE DEVELOPMENT AND TESTING</para>
+          <para>Module teaching materials were developed by W.M. Woelmer, R.Q. Thomas, T.N. Moore, and C.C. Carey to provide instructors of undergraduate ecology courses with a ready-to-use, adaptable module that could be implemented in a 3-4 hour time period to introduce undergraduates to ecological forecasting. </para>
+          <para>As the eighth module within the suite of Macrosystems EDDIE (www.macrosystemseddie.org) teaching materials, this module was developed to teach students macrosystems ecology and ecological forecasting. The overarching goal of this module is for students to understand how forecasts are connected to decision-making of stakeholders, or the managers, policy-makers, and other members of society who use forecasts to inform decision-making.The A-B-C structure of this module makes it flexible and adaptable to a range of student levels and course structures.</para>
+          <para>The specific student learning goals for this module are that by the end of the module, students will be able to: &#13;
+-Describe what ecological forecasts are and how they are used (Activity A)&#13;
+-Identify the components of a structured decision (Activity B)&#13;
+-Discuss how forecast uncertainty relates to decision-making (Activity A, B, C)&#13;
+-Match stakeholder needs with different levels of forecasting decision support (Activity B, C)&#13;
+-Identify different ways to represent uncertainty in a visualization (Activity A, B, C)&#13;
+-Create visualizations tailored to specific stakeholders (Activity C)</para>
+          <para>The module was assessed by volunteer faculty testers during the 2021-2022 academic year. Faculty testers and students provided feedback that was used to update and optimize teaching materials. Woelmer, Thomas, Moore, and Carey also used student pre- and post-module assessment questions to gauge effectiveness of teaching materials for achieving module learning goals. Pedagogical specialists with the Science Education Resource Center at Carleton College assisted with assessment development and implementation.</para>
+          <para>MODULE WORKFLOW</para>
+          <para>Workflow for this module:&#13;
+1.	Give students their handout ahead of time to read over prior to class or distribute handouts when they arrive to class. The R Shiny app is set up for students to complete discussion questions as they navigate through the module activities. Thus, students could answer questions 1-3 prior to the start of instruction and can save their progress, which will allow them to return at a different time. The questions can be saved and downloaded as a Microsoft Word file at the end of the module, which could be submitted to their instructor for potential grading. &#13;
+2.	Give a brief (~20 minutes) PowerPoint presentation that introduces ecological forecasts and uncertainty, how forecasts can be used by stakeholders to guide decision-making, and describes different ways of visualizing forecast uncertainty. Slides notes are embedded within the PowerPoint document and included below. &#13;
+3.	After the presentation, the students transition to the Shiny App, where they can work individually or in pairs. For virtual instruction, we recommend putting two sets of partners (pairs) together (n=4 students total) into separate Zoom breakout rooms during this activity.&#13;
+4.	Student first complete Activity A. In this activity, students answer questions about ecological forecasts which they choose from a curated list of current forecasting systems and then compare their responses with a partner. &#13;
+5.	Once students complete Activity A, you can check in with students and have some group discussion regarding their visualization analysis and to answer any lingering questions. Group discussion questions for each activity are included below under the respective sections for each activity below. Then introduce Activity B and C with a few PowerPoint slides reminding students of the scope of the activities. For virtual instruction, this would entail having the students come back to the main Zoom room for a short check-in.&#13;
+6.	The students then return to their partner and pairs to complete Activity B, where they will role-play as drinking water managers and make decisions about optimizing multiple objectives using two different forecast visualizations (Activity B). Students first must use structured decision-making techniques to deconstruct their management objectives. They then create hypotheses about how to manage the drinking water reservoir as the forecasts are updated with observations and uncertainty changes over time, followed by discussion of how the different forecast visualizations influenced their ability to make decisions about managing the reservoir.&#13;
+7.	Once students complete Activity B, you can choose to check in with students and have group discussion using the guiding questions below. &#13;
+8.	The students then work individually on Activity C where they will choose a stakeholder of a drinking water quality forecast and customize a visualization for the stakeholder. Students identify a decision which their stakeholder needs to make (e.g., whether or not to go swimming in a lake based on a chlorophyll-a threshold) and answer questions which will guide their decisions in creating a customized forecast visualization. The students make a hypothesis about how different types of forecast visualizations will aid in their stakeholder’s decision-making. Students then compare their visualizations with their partner (Activity C). </para>
+          <para>&#13;
+For more information, we refer users to the website and R Shiny application listed below.</para>
+          <para>WEBSITE &amp; PUBLICATIONS</para>
+          <para>Woelmer, W.M., Moore, T.N., Thomas, R.Q. and Carey, C.C. 2022. Macrosystems EDDIE Module 8: Using Ecological Forecasts to Guide Decision-Making. http://module8.macrosystemseddie.org. </para>
+          <para>Woelmer, W.M. Moore, T.N., Thomas, R.Q. and Carey, C.C. 2022. Macrosystems EDDIE Module 8: Using Ecological Forecasts to Guide Decision-Making (R Shiny application) (v1.1). Zenodo. 10.5281/zenodo.6368356</para>
+          <para>The shiny app can also be accessed via shinyapps.io at https://macrosystemseddie.shinyapps.io/module8/ or via binder at https://mybinder.org/v2/zenodo/10.5281/zenodo.6368356/?urlpath=shiny/app/. When launching first it will take a while for the Shiny app to boot up. If you are using this in a large class (&gt;20 users at the same time), we would recommend splitting the group into two and using both shinyapps.io and mybinder.org. </para>
+        </description>
+      </methodStep>
+    </methods>
+    <project>
+      <title>MSA: Macrosystems EDDIE: An undergraduate training program in macrosystems science and ecological forecasting</title>
+      <personnel>
+        <individualName>
+          <givenName>Cayelan</givenName>
+          <givenName>C.</givenName>
+          <surName>Carey</surName>
+        </individualName>
+        <organizationName>Virginia Tech</organizationName>
+        <electronicMailAddress>Cayelan@vt.edu</electronicMailAddress>
+        <userId directory="https://orcid.org">https://orcid.org/0000-0001-8835-4476</userId>
+        <role>Principal Investigator</role>
+      </personnel>
+      <funding>National Science Foundation EF 1926050</funding>
+      <relatedProject>
+        <title>Collaborative Research: CIBR: Cyberinfrastructure Enabling End-to-End Workflows for Aquatic Ecosystem Forecasting</title>
+        <personnel>
+          <individualName>
+            <givenName>Cayelan</givenName>
+            <givenName>C.</givenName>
+            <surName>Carey</surName>
+          </individualName>
+          <organizationName>Virginia Tech</organizationName>
+          <electronicMailAddress>Cayelan@vt.edu</electronicMailAddress>
+          <userId directory="https://orcid.org">https://orcid.org/0000-0001-8835-4476</userId>
+          <role>Principal Investigator</role>
+        </personnel>
+        <funding>National Science Foundation EF 1933016</funding>
+      </relatedProject>
+    </project>
+    <otherEntity>
+      <entityName>instructor_materials</entityName>
+      <entityDescription>This zip folder contains materials for instructors to teach the Macrosystems EDDIE 
+                                 module in their classroom. See README file for file types and descriptions</entityDescription>
+      <physical>
+        <objectName>instructor_materials.zip</objectName>
+        <size unit="bytes">3821121</size>
+        <authentication method="MD5">3fee879e5279b158dac6aeefd61aa82a</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>application/zip</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+      </physical>
+      <entityType>unknown</entityType>
+    </otherEntity>
+  </dataset>
+</eml:eml>
