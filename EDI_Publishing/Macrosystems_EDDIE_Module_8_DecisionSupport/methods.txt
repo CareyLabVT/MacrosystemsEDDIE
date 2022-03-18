@@ -1,0 +1,38 @@
+MODULE DEVELOPMENT AND TESTING
+
+Module teaching materials were developed by W.M. Woelmer, R.Q. Thomas, T.N. Moore, and C.C. Carey to provide instructors of undergraduate ecology courses with a ready-to-use, adaptable module that could be implemented in a 3-4 hour time period to introduce undergraduates to ecological forecasting. 
+
+As the eighth module within the suite of Macrosystems EDDIE (www.macrosystemseddie.org) teaching materials, this module was developed to teach students macrosystems ecology and ecological forecasting. The overarching goal of this module is for students to understand how forecasts are connected to decision-making of stakeholders, or the managers, policy-makers, and other members of society who use forecasts to inform decision-making.The A-B-C structure of this module makes it flexible and adaptable to a range of student levels and course structures.
+
+The specific student learning goals for this module are that by the end of the module, students will be able to: 
+-Describe what ecological forecasts are and how they are used (Activity A)
+-Identify the components of a structured decision (Activity B)
+-Discuss how forecast uncertainty relates to decision-making (Activity A, B, C)
+-Match stakeholder needs with different levels of forecasting decision support (Activity B, C)
+-Identify different ways to represent uncertainty in a visualization (Activity A, B, C)
+-Create visualizations tailored to specific stakeholders (Activity C)
+
+The module was assessed by volunteer faculty testers during the 2021-2022 academic year. Faculty testers and students provided feedback that was used to update and optimize teaching materials. Woelmer, Thomas, Moore, and Carey also used student pre- and post-module assessment questions to gauge effectiveness of teaching materials for achieving module learning goals. Pedagogical specialists with the Science Education Resource Center at Carleton College assisted with assessment development and implementation.
+
+MODULE WORKFLOW
+
+Workflow for this module:
+1.	Give students their handout ahead of time to read over prior to class or distribute handouts when they arrive to class. The R Shiny app is set up for students to complete discussion questions as they navigate through the module activities. Thus, students could answer questions 1-3 prior to the start of instruction and can save their progress, which will allow them to return at a different time. The questions can be saved and downloaded as a Microsoft Word file at the end of the module, which could be submitted to their instructor for potential grading. 
+2.	Give a brief (~20 minutes) PowerPoint presentation that introduces ecological forecasts and uncertainty, how forecasts can be used by stakeholders to guide decision-making, and describes different ways of visualizing forecast uncertainty. Slides notes are embedded within the PowerPoint document and included below. 
+3.	After the presentation, the students transition to the Shiny App, where they can work individually or in pairs. For virtual instruction, we recommend putting two sets of partners (pairs) together (n=4 students total) into separate Zoom breakout rooms during this activity.
+4.	Student first complete Activity A. In this activity, students answer questions about ecological forecasts which they choose from a curated list of current forecasting systems and then compare their responses with a partner. 
+5.	Once students complete Activity A, you can check in with students and have some group discussion regarding their visualization analysis and to answer any lingering questions. Group discussion questions for each activity are included below under the respective sections for each activity below. Then introduce Activity B and C with a few PowerPoint slides reminding students of the scope of the activities. For virtual instruction, this would entail having the students come back to the main Zoom room for a short check-in.
+6.	The students then return to their partner and pairs to complete Activity B, where they will role-play as drinking water managers and make decisions about optimizing multiple objectives using two different forecast visualizations (Activity B). Students first must use structured decision-making techniques to deconstruct their management objectives. They then create hypotheses about how to manage the drinking water reservoir as the forecasts are updated with observations and uncertainty changes over time, followed by discussion of how the different forecast visualizations influenced their ability to make decisions about managing the reservoir.
+7.	Once students complete Activity B, you can choose to check in with students and have group discussion using the guiding questions below. 
+8.	The students then work individually on Activity C where they will choose a stakeholder of a drinking water quality forecast and customize a visualization for the stakeholder. Students identify a decision which their stakeholder needs to make (e.g., whether or not to go swimming in a lake based on a chlorophyll-a threshold) and answer questions which will guide their decisions in creating a customized forecast visualization. The students make a hypothesis about how different types of forecast visualizations will aid in their stakeholder’s decision-making. Students then compare their visualizations with their partner (Activity C). 
+
+
+For more information, we refer users to the website and R Shiny application listed below.
+
+WEBSITE & PUBLICATIONS
+
+Woelmer, W.M., Moore, T.N., Thomas, R.Q. and Carey, C.C. 2022. Macrosystems EDDIE Module 8: Using Ecological Forecasts to Guide Decision-Making. http://module8.macrosystemseddie.org. 
+
+Woelmer, W.M. Moore, T.N., Thomas, R.Q. and Carey, C.C. 2022. Macrosystems EDDIE Module 8: Using Ecological Forecasts to Guide Decision-Making (R Shiny application) (v1.1). Zenodo. 10.5281/zenodo.6368356
+
+The shiny app can also be accessed via shinyapps.io at https://macrosystemseddie.shinyapps.io/module8/ or via binder at https://mybinder.org/v2/zenodo/10.5281/zenodo.6368356/?urlpath=shiny/app/. When launching first it will take a while for the Shiny app to boot up. If you are using this in a large class (>20 users at the same time), we would recommend splitting the group into two and using both shinyapps.io and mybinder.org. 
