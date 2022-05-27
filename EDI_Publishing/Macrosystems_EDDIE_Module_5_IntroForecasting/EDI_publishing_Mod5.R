@@ -84,7 +84,7 @@ library(EMLassemblyline)
   # temporal.coverage: Update the dates
   # package.id: enter the ID you obtained in Step 6
 
-sim_folder <- getwd()
+sim_folder <- paste0(getwd(), '/EDI_Publishing/Macrosystems_EDDIE_Module_5_IntroForecasting')
 
 make_eml(path = sim_folder,
          dataset.title = "Macrosystems EDDIE Module 5: Introduction to Ecological Forecasting (Instructor Materials)",
@@ -99,7 +99,7 @@ make_eml(path = sim_folder,
          maintenance.description = "Completed", 
          user.id = "ccarey",
          user.domain = 'EDI',
-         package.id = "edi.1021.1") # Put your package.id here, followed by .1 (for 1st version)
+         package.id = "edi.801.3") # Put your package.id here, followed by .1 (for 1st version)
 
 ## Step 8: Check your data product! ####
   # Return to the EDI staging environment (https://portal-s.edirepository.org/nis/home.jsp),
@@ -136,22 +136,19 @@ make_eml(path = sim_folder,
   # in step 7
 
 make_eml(path = sim_folder,
-         dataset.title = "Macrosystems EDDIE Module 4: Macro-Scale Feedbacks",
-         other.entity = c("instructor_materials.zip",
-                          "macroscale_feedbacks.zip"),
-         other.entity.name = c("instructor_materials", "macroscale_feedbacks"),
+         dataset.title = "Macrosystems EDDIE Module 5: Introduction to Ecological Forecasting (Instructor Materials)",
+         other.entity = c("instructor_materials.zip"),
+         other.entity.name = c("instructor_materials"),
          other.entity.description = c("This zip folder contains materials for instructors to teach the Macrosystems EDDIE 
-                                 module in their classroom. See README file for file types and descriptions",
-                                      "This zip folder contains materials for students to implement the Macrosystems EDDIE 
-                                 module in RStudio. See README file for file types and descriptions"),
-         temporal.coverage = c("2019-04-01", "2020-04-15"),
+                                 module in their classroom. See README file for file types and descriptions"),
+         temporal.coverage = c("2022-01-23", "2022-03-17"),
          # keep geographic site as Derring for all MS EDDIE modules
          geographic.description = c("The Department of Biological Sciences at Virginia Tech is located in Blacksburg, Virginia, USA"),
          geographic.coordinates = c('37.229596', '-80.424863', '37.22854', '-80.426228'), #N, E, S, W
          maintenance.description = "Completed", 
          user.id = "ccarey",
          user.domain = 'EDI',
-         package.id = "edi.503.1") # Put your package.id here, followed by .1 (for 1st version) - RESERVED BY AGH ON 04-17-20
+         package.id = "edi.1021.2") # Put your package.id here, followed by .1 (for 1st version)
 
   # Once your xml file with your PUBLISHED package.id is Done, return to the 
   # EDI Production environment (https://portal.edirepository.org/nis/home.jsp)
