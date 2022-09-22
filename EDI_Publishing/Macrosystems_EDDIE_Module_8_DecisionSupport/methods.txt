@@ -1,6 +1,6 @@
 MODULE DEVELOPMENT AND TESTING
 
-Module teaching materials were developed by W.M. Woelmer, R.Q. Thomas, T.N. Moore, and C.C. Carey to provide instructors of undergraduate ecology courses with a ready-to-use, adaptable module that could be implemented in a 3-4 hour time period to introduce undergraduates to ecological forecasting. 
+Module teaching materials were developed by W.M. Woelmer, R.Q. Thomas, T.N. Moore, and C.C. Carey to provide instructors of undergraduate ecology courses with a ready-to-use, adaptable module that could be implemented in a 2-3 hour time period to introduce undergraduates to ecological forecasting. 
 
 As the eighth module within the suite of Macrosystems EDDIE (www.macrosystemseddie.org) teaching materials, this module was developed to teach students macrosystems ecology and ecological forecasting. The overarching goal of this module is for students to understand how forecasts are connected to decision-making of stakeholders, or the managers, policy-makers, and other members of society who use forecasts to inform decision-making.The A-B-C structure of this module makes it flexible and adaptable to a range of student levels and course structures.
 
@@ -33,6 +33,6 @@ WEBSITE & PUBLICATIONS
 
 Woelmer, W.M., Moore, T.N., Thomas, R.Q. and Carey, C.C. 2022. Macrosystems EDDIE Module 8: Using Ecological Forecasts to Guide Decision-Making. http://module8.macrosystemseddie.org. 
 
-Woelmer, W.M. Moore, T.N., Thomas, R.Q. and Carey, C.C. 2022. Macrosystems EDDIE Module 8: Using Ecological Forecasts to Guide Decision-Making (R Shiny application) (v1.1). Zenodo. 10.5281/zenodo.6368356
+Woelmer, W.M. Moore, T.N., Thomas, R.Q. and Carey, C.C. 2022. Macrosystems EDDIE Module 8: Using Ecological Forecasts to Guide Decision-Making (R Shiny application) (v1.1). Zenodo. 10.5281/zenodo.7074674
 
-The shiny app can also be accessed via shinyapps.io at https://macrosystemseddie.shinyapps.io/module8/ or via binder at https://mybinder.org/v2/zenodo/10.5281/zenodo.6368356/?urlpath=shiny/app/. When launching first it will take a while for the Shiny app to boot up. If you are using this in a large class (>20 users at the same time), we would recommend splitting the group into two and using both shinyapps.io and mybinder.org. 
+The shiny app can also be accessed via shinyapps.io at https://macrosystemseddie.shinyapps.io/module8/ or via binder at https://mybinder.org/v2/zenodo/10.5281/zenodo.7074674/?urlpath=shiny/app/. When launching first it will take a while for the Shiny app to boot up. If you are using this in a large class (>20 users at the same time), we would recommend splitting the group into two and using both shinyapps.io and mybinder.org. 

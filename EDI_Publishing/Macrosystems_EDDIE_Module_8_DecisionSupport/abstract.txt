@@ -4,4 +4,4 @@ In this module, students will explore real ecological forecast visualizations, i
 
 The overarching goal of this module is for students to understand how forecasts are connected to decision-making of stakeholders, or the managers, policy-makers, and other members of society who use forecasts to inform decision-making. The A-B-C structure of this module makes it flexible and adaptable to a range of student levels and course structures.
 
-This EDI data package contains instructional materials and the files necessary to teach the module. Readers are referred to the Zenodo data package (Woelmer et al. 2022; DOI: 10.5281/zenodo.6368356) for the R Shiny application code needed to run the module locally.
+This EDI data package contains instructional materials and the files necessary to teach the module. Readers are referred to the Zenodo data package (Woelmer et al. 2022; DOI: 10.5281/zenodo.7074674) for the R Shiny application code needed to run the module locally.
