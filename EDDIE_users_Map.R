@@ -68,3 +68,18 @@ maps::map('world', regions= nonUS$Country, add=T, fill=T, col='dodgerblue')
 maps::map('state', add=T, fill=T, lwd=0.3, border='grey50', col='grey90')
 maps::map('state', regions=sites$State, add=T, col='dodgerblue', fill=T)
 #points(sites$Longitude, sites$Latitude,col='black', pch=18, cex=1.25,lwd=1)
+
+#### World slice to include USA + European + Asia + Australia sites ####
+nonUS <- sites %>% filter(Country != 'USA')
+
+ylim = c(-50,75)
+xlim = c(-140,1200)
+
+par(mar = c(0,0,0,0),mgp=c(0,0,0))
+maps::map('world',ylim=ylim, xlim=xlim, col='transparent') #blank to avoid partial borders
+maps::map('world', border='grey50', col='grey90', fill=T,
+          xlim=xlim+c(-2,2), ylim=ylim+c(-2,2))
+maps::map('world', regions= nonUS$Country, add=T, fill=T, col='dodgerblue')
+maps::map('state', add=T, fill=T, lwd=0.3, border='grey50', col='grey90')
+maps::map('state', regions=sites$State, add=T, col='dodgerblue', fill=T)
+points(sites$Longitude, sites$Latitude,col='black', pch=18, cex=1.25,lwd=1)
