@@ -1,0 +1,9 @@
+Authorship statement:
+
+Macrosystems EDDIE: Using Ecological Forecasts to guide Decision Making
+
+Woelmer, W.M., T.N. Moore, R.Q. Thomas, and C.C. Carey.
+
+CCC developed the Macrosystems EDDIE program. CCC and RQT expanded the EDDIE program for forecasting and acquired funding for the project. WMW led the development of module materials, with substantial guidance from RQT, CCC, and TNM. WMW and TNM developed the module assessment questions, with substantial feedback from CCC. TNM assisted with R Shiny app development, as well as administration of module assessment. 
+
+
