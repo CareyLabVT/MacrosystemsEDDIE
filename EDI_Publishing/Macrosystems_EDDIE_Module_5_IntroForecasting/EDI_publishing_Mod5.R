@@ -84,22 +84,22 @@ library(EMLassemblyline)
   # temporal.coverage: Update the dates
   # package.id: enter the ID you obtained in Step 6
 
-sim_folder <- paste0(getwd(), '/EDI_Publishing/Macrosystems_EDDIE_Module_5_IntroForecasting')
+mypath <- paste0(getwd(), '/EDI_Publishing/Macrosystems_EDDIE_Module_5_IntroForecasting')
 
-make_eml(path = sim_folder,
+make_eml(path = mypath,
          dataset.title = "Macrosystems EDDIE Module 5: Introduction to Ecological Forecasting (Instructor Materials)",
          other.entity = c("instructor_materials.zip"),
          other.entity.name = c("instructor_materials"),
          other.entity.description = c("This zip folder contains materials for instructors to teach the Macrosystems EDDIE 
                                  module in their classroom. See README file for file types and descriptions"),
-         temporal.coverage = c("2022-01-23", "2022-05-27"),
+         temporal.coverage = c("2022-05-28", "2023-12-01"),
          # keep geographic site as Derring for all MS EDDIE modules
          geographic.description = c("The Department of Biological Sciences at Virginia Tech is located in Blacksburg, Virginia, USA"),
          geographic.coordinates = c('37.229596', '-80.424863', '37.22854', '-80.426228'), #N, E, S, W
-         maintenance.description = "Completed", 
-         user.id = "ccarey",
+         maintenance.description = "Ongoing", 
+         user.id = "melofton",
          user.domain = 'EDI',
-         package.id = "edi.801.3") # Put your package.id here, followed by .1 (for 1st version)
+         package.id = "edi.1097.1") # Put your package.id here, followed by .1 (for 1st version)
 
 ## Step 8: Check your data product! ####
   # Return to the EDI staging environment (https://portal-s.edirepository.org/nis/home.jsp),
