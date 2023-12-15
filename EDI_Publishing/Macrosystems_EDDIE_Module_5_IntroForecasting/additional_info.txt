@@ -1,9 +1,8 @@
 
-AUTHORSHIP STATEMENT
-this needs to be finalized in Google Drive first
+AUTHORSHIP STATEMENT:
+CCC and RQT conceived the idea of this module and acquired funding for this project. TNM, CCC, and RQT developed the learning objectives. TNM, MEL, CCC, and RQT developed the code for the module, module lesson activities, student handout, and instructor PowerPoint. TNM developed text for the website with contributions from MEL, CCC and RQT. CCC and TNM led module testing and collection of student assessment data. TNM, CCC, MEL, and RQT worked with instructors to iteratively improve the module.
 
-
-ACKNOWLEDGEMENTS
+ACKNOWLEDGEMENTS:
 We thank Whitney Woelmer for providing friendly reviews and feedback on version 1 of this module.
 
 

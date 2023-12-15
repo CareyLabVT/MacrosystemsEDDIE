@@ -1,0 +1,8 @@
+
+AUTHORSHIP CONTRIBUTIONS: CCC and RQT conceived the idea of this module and acquired funding for this project. TNM, CCC, and RQT developed the learning objectives and website text. MEL developed RMarkdown activities with feedback from CCC and RQT. TNM and MEL developed the module activities and code for the module with feedback from CCC and RQT. TNM, MEL, and CCC developed student assessment questions and led module testing and collection of student assessment data. MEL and TNM developed the student handout, instructor powerpoint, and instructor manual with feedback from CCC and RQT. MEL, TNM, CCC, and RQT worked with instructors of the module and integrated feedback into improving the module.
+
+
+
+
+
+

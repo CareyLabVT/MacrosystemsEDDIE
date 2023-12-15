@@ -99,7 +99,7 @@ make_eml(path = mypath,
          maintenance.description = "Ongoing", 
          user.id = "melofton",
          user.domain = 'EDI',
-         package.id = "edi.1097.1") # Put your package.id here, followed by .1 (for 1st version)
+         package.id = "edi.1097.3") # Put your package.id here, followed by .1 (for 1st version)
 
 ## Step 8: Check your data product! ####
   # Return to the EDI staging environment (https://portal-s.edirepository.org/nis/home.jsp),

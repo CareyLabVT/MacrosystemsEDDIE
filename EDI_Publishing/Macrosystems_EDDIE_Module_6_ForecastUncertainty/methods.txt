@@ -1,0 +1,64 @@
+MODULE DEVELOPMENT AND TESTING
+
+Module teaching materials were developed by T.N. Moore, M.E. Lofton, C.C. Carey, and R.Q. Thomas to provide instructors of undergraduate ecology courses with a ready-to-use, adaptable module that could be implemented in a 3-4 hour time period to introduce undergraduates to ecological forecast uncertainty, how to calculate it, and how to manage and reduce it. 
+
+As the sixth module within the suite of Macrosystems EDDIE (www.macrosystemseddie.org) teaching materials, this module was developed to teach students macrosystems ecology and ecological forecasting. In this module, students will generate an ecological forecast for a NEON site and quantify the different sources of uncertainty within their forecast. This module will introduce students to the concept of uncertainty within an ecological forecast; where uncertainty in a forecast comes from; how uncertainty can be quantified within a forecast; and how uncertainty can be managed. Students work with an R Shiny application to visualize data, build a model, generate a forecast with uncertainty, and then compare the contributions of various sources of forecast uncertainty to total forecast uncertainty. As a secondary goal, Macrosystems EDDIE modules introduce students to advanced computational tools as a way to manage, analyze, visualize, and interpret high-frequency and long-term ecological data sets; conduct ecosystem modeling; and generate ecological forecasts with quantified uncertainty. 
+
+The specific student learning goals for this module are that by the end of the module, students will be able to: 
+
+- Define ecological forecast uncertainty. 
+
+- Explore the contributions of different sources of uncertainty (e.g., model parameters, model driver data) to total forecast uncertainty. 
+
+- Understand how multiple sources of uncertainty are quantified. 
+
+- Identify ways in which uncertainty can be reduced within an ecological forecast. 
+
+- Describe how forecast horizon affects forecast uncertainty. 
+
+- Explain the importance of specifying uncertainty in ecological forecasts for forecast users and decision support. 
+
+The module was assessed by volunteer faculty testers during the 2021-2022 and 2022-2023 academic years. Faculty testers provided feedback that was used to update and optimize teaching materials. Moore, Lofton, Carey, and Thomas also used student pre- and post-module assessment questions to gauge effectiveness of teaching materials for achieving module learning goals. Pedagogical specialists with the Science Education Resource Center at Carleton College assisted with assessment development and implementation.
+
+MODULE WORKFLOW
+
+Workflow for this module:
+
+1. Instructor chooses method for accessing the Shiny app (Regardless of which option you pick, all module activities are the same!).   
+
+a. In any internet browser, go to:https://macrosystemseddie.shinyapps.io/module6/.  
+
+- This option works well if there are not too many simultaneous users (<20).     
+
+- The app generally does not take a long time to load but requires consistent internet access.     
+
+- It is important to remind students that they need to save their work as they go, because this webpage will time-out after 15 idle minutes. It is frustrating for students to lose their progress, so a good rule of thumb is to get them to save their progress after completing each objective.   
+
+b. The most stable option for large classes is downloading the app and running locally, see instructions at:https://github.com/MacrosystemsEDDIE/module6.   
+
+- Once the app is downloaded and installed (which requires an internet connection), the app can be run offline locally on students' computers.   
+
+- This step requires R and RStudio to be downloaded on a student's computer, which may be challenging if a student does not have much R experience (but this could be done prior to instruction by an instructor on a shared computer lab).   
+
+- If you are teaching the module to a large class and/or have unstable internet, this is the best option.    
+
+2. Give students their handout ahead of time to read over prior to class or ask students to download the handout from the module Shiny app page when they arrive to class. The module is set up for students to complete discussion questions in the handout (Word document) as they navigate through the R Shiny app activities. As they navigate through the app, students will be prompted to answer questions in their handout, as well as download plots that they generate within the app and copy-paste them into their handout. The handout can be submitted to the instructor for potential grading. 
+
+3. Instructor gives a brief PowerPoint presentation that introduces ecological forecasting, sources of forecast uncertainty, and the different models they will be using (~30 mins).
+
+4. After the presentation, the students divide into pairs. Each pair selects their own NEON site and visualizes their site's data (Activity A Objectives 1 and 2). The two students within a pair each build their own different models for predicting water temperature (Activity A Objective 3), and generate forecasts with no uncertainty using each of their models (Activity A Objective 4). For virtual instruction, we recommend putting two pairs together (n=4 students) in separate breakout rooms during this activity so the two pairs can compare results.
+
+5. The instructor can ask students to wait until all students are finished Activity A and then they will all begin Activity B together. For virtual instruction, this would entail having the students come back to the main room for a short check-in.
+In Activity B, the students work in their pairs to generate forecasts which include different sources of uncertainty (Activity B Objectives 5-8). Students may compare their forecasts with their partners and work together to answer questions embedded throughout this activity about why the different models are affected differently by the different sources of uncertainty.
+
+6. In Activity C, student pairs generate forecasts including all sources of uncertainty and compare how the contributions of different sources of uncertainty to total forecast uncertainty varies among models (Activity C Objective 9). They then complete a management scenario individually and discuss with their partner how the uncertainty visualizations provided in the scenario affected their management decisions (Activity C Objective 10).
+
+For more information, we refer users to the website, R Shiny application, and RMarkdown version of the module listed below.
+
+WEBSITE & PUBLICATIONS
+
+Moore, T.N., Lofton, M.E., Carey, C.C., and Thomas, R.Q. 2023. Macrosystems EDDIE Module 6: Introduction to Ecological Forecasting. http://module6.macrosystemseddie.org. 
+
+Moore, T.N., Lofton, M.E., Carey, C.C., and Thomas, R.Q. 2023. Macrosystems EDDIE Module 6: Understanding Uncertainty in Ecological Forecasts (R Shiny application) (v2.0). Zenodo. https://zenodo.org/doi/10.5281/zenodo.10380759
+
+Moore, T.N., Lofton, M.E., Carey, C.C., and Thomas, R.Q. 2023. Macrosystems EDDIE Module 6: Understanding Uncertainty in Ecological Forecasts (RMarkdown module) (v1.0). Zenodo. https://zenodo.org/doi/10.5281/zenodo.10380339
