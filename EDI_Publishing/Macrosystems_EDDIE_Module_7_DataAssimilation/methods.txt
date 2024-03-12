@@ -1,0 +1,63 @@
+MODULE DEVELOPMENT AND TESTING
+
+Module teaching materials were developed by M.E. Lofton, T.N. Moore, R.Q. Thomas, and C.C. Carey to provide instructors of undergraduate ecology courses with a ready-to-use, adaptable module that could be implemented in a 3-4 hour time period to introduce undergraduates to data assimilation in ecological forecasting. 
+
+As the seventh module within the suite of Macrosystems EDDIE (www.macrosystemseddie.org) teaching materials, this module was developed to teach students macrosystems ecology and ecological forecasting. In this module, students will generate an ecological forecast for a NEON site and explore how to use ecological data to improve forecast accuracy. This module will introduce students to the concept of data assimilation within an ecological forecast; how data assimilation can be used to improve forecast accuracy; how the level of uncertainty and temporal frequency of observations affects forecast output; and how data assimilation can affect decision-making using ecological forecasts. As a secondary goal, Macrosystems EDDIE modules introduce students to advanced computational tools as a way to manage, analyze, visualize, and interpret high-frequency and long-term ecological data sets; conduct ecosystem modeling; and generate ecological forecasts with quantified uncertainty and data assimilation. 
+
+The specific student learning goals for this module are that by the end of the module, students will be able to: 
+
+- Define data assimilation. 
+
+- Generate an ecological forecast for chlorophyll-a in a lake. 
+
+- Describe how to assess ecological forecast accuracy. 
+
+- Describe how data assimilation affects forecast accuracy and uncertainty. 
+
+- Explain how updating models with data collected at different time scales (e.g., daily, weekly) and with different levels of associated uncertainty affects ecological forecasts. 
+
+The module was assessed by volunteer faculty testers during the 2022-2023 academic year. Faculty testers provided feedback that was used to update and optimize teaching materials. Lofton, Carey, and Thomas also used student pre- and post-module assessment questions to gauge effectiveness of teaching materials for achieving module learning goals. Pedagogical specialists with the Science Education Resource Center at Carleton College assisted with assessment development and implementation.
+
+MODULE WORKFLOW
+
+Workflow for this module:
+
+1. Instructor chooses method for accessing the Shiny app (Regardless of which option you pick, all module activities are the same!).   
+
+a. In any internet browser, go to:https://macrosystemseddie.shinyapps.io/module7/.  
+
+- This option works well if there are not too many simultaneous users (<50).     
+
+- The app generally does not take a long time to load but requires consistent internet access.     
+
+- It is important to remind students that they need to save their work as they go, because this webpage will time-out after 15 idle minutes. It is frustrating for students to lose their progress, so a good rule of thumb is to get them to save their progress after completing each objective.   
+
+b. The most stable option for large classes is downloading the app and running locally, see instructions at:https://github.com/MacrosystemsEDDIE/module7.   
+
+- Once the app is downloaded and installed (which requires an internet connection), the app can be run offline locally on students' computers.   
+
+- This step requires R and RStudio to be downloaded on a student's computer, which may be challenging if a student does not have much R experience (but this could be done prior to instruction by an instructor on a shared computer lab).   
+
+- If you are teaching the module to a large class and/or have unstable internet, this is the best option.    
+
+2. Give students their handout ahead of time to read over prior to class or ask students to download the handout from the module Shiny app page when they arrive to class. The module is set up for students to complete discussion questions in the handout (Word document) as they navigate through the R Shiny app activities. As they navigate through the app, students will be prompted to answer questions in their handout, as well as download plots that they generate within the app and copy-paste them into their handout. The handout can be submitted to the instructor for potential grading. 
+
+3. Instructor gives a brief PowerPoint presentation that introduces ecological forecasting, data assimilation, and the forecast model students will be using (~30 mins).
+
+4. After the presentation, the students divide into pairs. Each pair selects their own NEON site and visualizes their site's data (Activity A Objectives 1 and 2). The two students within a pair each build their own different models for predicting chlorophyll-a (Activity A Objective 3), and generate forecasts with uncertainty using their fitted models (Activity A Objective 4). For virtual instruction, we recommend putting two pairs together (n=4 students) in separate breakout rooms during this activity so the two pairs can compare results.
+
+5. The instructor can ask students to wait until all students are finished Activity A and then they will all begin Activity B together. For virtual instruction, this would entail having the students come back to the main room for a short check-in.
+
+6. In Activity B, the students work in their pairs to generate forecasts with and without data assimilation (Activity B Objective 5) as well as forecasts that assimilate data with different amounts of observation uncertainty (Activity B Objective 6) and at different frequencies (e.g., daily vs. weekly; Activity B Objective 7). Students should compare their forecasts with their partners and with students working on different lakes and work together to answer questions embedded throughout this activity about how the forecasts are affected by assimilating data with different levels of observation uncertainty and at different frequencies.
+
+7. In Activity C, student pairs complete a management scenario individually and discuss with their partner how the forecasts with different methods of data assimilation provided in the scenario affected their management decisions (Activity C Objective 8).
+
+For more information, we refer users to the website, R Shiny application, and RMarkdown version of the module listed below.
+
+WEBSITE & PUBLICATIONS
+
+Lofton, M.E., Moore, T.N., Thomas, R.Q., and Carey, C.C. 2024. Macrosystems EDDIE Module 7: Introduction to Ecological Forecasting. http://module7.macrosystemseddie.org. 
+
+Lofton, M.E., Moore, T.N., Thomas, R.Q., and Carey, C.C. 2024. Macrosystems EDDIE Module 7: Introduction to Ecological Forecasting. (R Shiny application) (v1.0). Zenodo. DOI XXX
+
+Lofton, M.E., Moore, T.N., Thomas, R.Q., and Carey, C.C. 2024. Macrosystems EDDIE Module 7: Introduction to Ecological Forecasting. (RMarkdown module) (v1.0). Zenodo. DOI XXX

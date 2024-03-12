@@ -1,0 +1,8 @@
+givenName	middleInitial	surName	organizationName	electronicMailAddress	userId	role	projectTitle	fundingAgency	fundingNumber
+Mary	E.	Lofton	Virginia Tech	melofton@vt.edu	0000-0003-3270-1330	creator			
+Tadhg	N.	Moore	Virginia Tech	tadhgm@vt.edu	0000-0002-3834-8868	creator	
+R.	Quinn	Thomas	Virginia Tech	rqthomas@vt.edu	0000-0003-1282-7825	creator
+Cayelan	C.	Carey	Virginia Tech	Cayelan@vt.edu	0000-0001-8835-4476	creator			
+Cayelan	C.	Carey	Virginia Tech	Cayelan@vt.edu	0000-0001-8835-4476	contact			
+Cayelan	C.	Carey	Virginia Tech	Cayelan@vt.edu	0000-0001-8835-4476	PI	"MSA: Macrosystems EDDIE: An undergraduate training program in macrosystems science and ecological forecasting"	National Science Foundation	EF 1926050
+Cayelan	C.	Carey	Virginia Tech	Cayelan@vt.edu	0000-0001-8835-4476	PI	"Collaborative Research: CIBR: Cyberinfrastructure Enabling End-to-End Workflows for Aquatic Ecosystem Forecasting"	National Science Foundation	DBI 1933016
