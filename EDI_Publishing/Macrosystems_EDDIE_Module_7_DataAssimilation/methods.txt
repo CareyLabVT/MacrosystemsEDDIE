@@ -32,7 +32,7 @@ a. In any internet browser, go to:https://macrosystemseddie.shinyapps.io/module7
 
 - It is important to remind students that they need to save their work as they go, because this webpage will time-out after 15 idle minutes. It is frustrating for students to lose their progress, so a good rule of thumb is to get them to save their progress after completing each objective.   
 
-b. The most stable option for large classes is downloading the app and running locally, see instructions at:https://github.com/MacrosystemsEDDIE/module7.   
+b. The most stable option for large classes is downloading the app and running locally; see instructions at: https://github.com/MacrosystemsEDDIE/module7.   
 
 - Once the app is downloaded and installed (which requires an internet connection), the app can be run offline locally on students' computers.   
 
@@ -58,6 +58,6 @@ WEBSITE & PUBLICATIONS
 
 Lofton, M.E., Moore, T.N., Thomas, R.Q., and Carey, C.C. 2024. Macrosystems EDDIE Module 7: Introduction to Ecological Forecasting. http://module7.macrosystemseddie.org. 
 
-Lofton, M.E., Moore, T.N., Thomas, R.Q., and Carey, C.C. 2024. Macrosystems EDDIE Module 7: Introduction to Ecological Forecasting. (R Shiny application) (v1.0). Zenodo. DOI XXX
+Lofton, M.E., Moore, T.N., Thomas, R.Q., and Carey, C.C. 2024. Macrosystems EDDIE Module 7: Introduction to Ecological Forecasting. (R Shiny application) (v1.0). Zenodo. DOI 10.5281/zenodo.10903839.
 
-Lofton, M.E., Moore, T.N., Thomas, R.Q., and Carey, C.C. 2024. Macrosystems EDDIE Module 7: Introduction to Ecological Forecasting. (RMarkdown module) (v1.0). Zenodo. DOI XXX
+Lofton, M.E., Moore, T.N., Thomas, R.Q., and Carey, C.C. 2024. Macrosystems EDDIE Module 7: Introduction to Ecological Forecasting. (RMarkdown module) (v1.0). Zenodo. DOI 10.5281/zenodo.10909589.
