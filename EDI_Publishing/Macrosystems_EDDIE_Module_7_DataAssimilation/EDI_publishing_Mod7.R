@@ -136,19 +136,20 @@ make_eml(path = mypath,
   # in step 7
 
 make_eml(path = mypath,
-         dataset.title = "Macrosystems EDDIE Module 6: Understanding Uncertainty in Ecological Forecasts (Instructor Materials)",
+         dataset.title = "Macrosystems EDDIE Module 7: Using Data to Improve Ecological Forecasts (Instructor Materials)",
          other.entity = c("instructor_materials.zip"),
          other.entity.name = c("instructor_materials"),
          other.entity.description = c("This zip folder contains materials for instructors to teach the Macrosystems EDDIE 
                                  module in their classroom. See README file for file types and descriptions"),
-         temporal.coverage = c("2021-09-01", "2023-12-12"),
+         temporal.coverage = c("2022-03-01", "2024-03-12"),
          # keep geographic site as Derring for all MS EDDIE modules
          geographic.description = c("The Department of Biological Sciences at Virginia Tech is located in Blacksburg, Virginia, USA"),
          geographic.coordinates = c('37.229596', '-80.424863', '37.22854', '-80.426228'), #N, E, S, W
          maintenance.description = "Ongoing", 
          user.id = "ccarey",
          user.domain = 'EDI',
-         package.id = "edi.1543.1") # Put your package.id here, followed by .1 (for 1st version)
+         package.id = "edi.1609.1") # Put your package.id here, followed by .1 (for 1st version)
+
 
   # Once your xml file with your PUBLISHED package.id is Done, return to the 
   # EDI Production environment (https://portal.edirepository.org/nis/home.jsp)
