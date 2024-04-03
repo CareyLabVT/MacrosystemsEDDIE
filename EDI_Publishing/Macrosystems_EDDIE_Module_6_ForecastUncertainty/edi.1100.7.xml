@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eml:eml xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.2" packageId="edi.1100.7" xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0/eml.xsd https://eml.ecoinformatics.org/eml-2.2.0/eml.xsd" system="edi">
+  <access authSystem="https://pasta.edirepository.org/authentication" order="allowFirst" scope="document">
+    <allow>
+      <principal>uid=melofton,o=EDI,dc=edirepository,dc=org</principal>
+      <permission>all</permission>
+    </allow>
+    <allow>
+      <principal>public</principal>
+      <permission>read</permission>
+    </allow>
+  </access>
+  <dataset>
+    <title>Macrosystems EDDIE Module 6: Understanding Uncertainty in Ecological Forecasts (Instructor Materials)</title>
+    <creator>
+      <individualName>
+        <givenName>Tadhg</givenName>
+        <givenName>N.</givenName>
+        <surName>Moore</surName>
+      </individualName>
+      <organizationName>Virginia Tech</organizationName>
+      <electronicMailAddress>tadhgm@vt.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0002-3834-8868</userId>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Mary</givenName>
+        <givenName>E.</givenName>
+        <surName>Lofton</surName>
+      </individualName>
+      <organizationName>Virginia Tech</organizationName>
+      <electronicMailAddress>melofton@vt.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0003-3270-1330</userId>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Cayelan</givenName>
+        <givenName>C.</givenName>
+        <surName>Carey</surName>
+      </individualName>
+      <organizationName>Virginia Tech</organizationName>
+      <electronicMailAddress>Cayelan@vt.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0001-8835-4476</userId>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>R.</givenName>
+        <givenName>Quinn</givenName>
+        <surName>Thomas</surName>
+      </individualName>
+      <organizationName>Virginia Tech</organizationName>
+      <electronicMailAddress>rqthomas@vt.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0003-1282-7825</userId>
+    </creator>
+    <pubDate>2023-12-14</pubDate>
+    <abstract>
+      <para>This EDI data package contains instructional materials necessary to teach Macrosystems EDDIE Module 6: Understanding Uncertainty in Ecological Forecasts, a ~3-hour educational module for undergraduates. Ecological forecasting is an emerging approach that provides an estimate of the future state of an ecological system with uncertainty, allowing society to prepare for changes in important ecosystem services. Forecast uncertainty is derived from multiple sources, including model parameters and driver data, among others. Knowing the uncertainty associated with a forecast enables forecast users to evaluate the forecast and make more informed decisions. This module will guide students through an exploration of the sources of uncertainty within an ecological forecast, how uncertainty can be quantified, and steps that can be taken to reduce the uncertainty in a forecast that students develop for a lake ecosystem, using data from the National Ecological Observatory Network (NEON). Students will visualize data, build a model, generate a forecast with uncertainty, and then compare the contributions of various sources of forecast uncertainty to total forecast uncertainty. The flexible, three-part (A-B-C) structure of this module makes it adaptable to a range of student levels and course structures. There are two versions of the module: an R Shiny application which does not require students to code, and an RMarkdown version which requires students to read and alter R code to complete module activities. The R Shiny application is published to shinyapps.io and is available at the following link: https://macrosystemseddie.shinyapps.io/module6/. GitHub repositories are available for both the R Shiny (https://github.com/MacrosystemsEDDIE/module6) and RMarkdown versions (https://github.com/MacrosystemsEDDIE/module6_R) of the module, and both code repositories have been published with DOIs to Zenodo (R Shiny version at https://zenodo.org/doi/10.5281/zenodo.10380759 and RMarkdown version at https://zenodo.org/doi/10.5281/zenodo.10380339). Readers are referred to the module landing page for additional information (https://serc.carleton.edu/eddie/teaching_materials/modules/module6.html). </para>
+    </abstract>
+    <additionalInfo>
+      <para>
+AUTHORSHIP CONTRIBUTIONS: CCC and RQT conceived the idea of this module and acquired funding for this project. TNM, CCC, and RQT developed the learning objectives and website text. MEL developed RMarkdown activities with feedback from CCC and RQT. TNM and MEL developed the module activities and code for the module with feedback from CCC and RQT. TNM, MEL, and CCC developed student assessment questions and led module testing and collection of student assessment data. MEL and TNM developed the student handout, instructor powerpoint, and instructor manual with feedback from CCC and RQT. MEL, TNM, CCC, and RQT worked with instructors of the module and integrated feedback into improving the module.</para>
+      <para/>
+      <para>
+</para>
+    </additionalInfo>
+    <intellectualRights>
+      <para>This information is released under the Creative Commons license - Attribution - CC BY (https://creativecommons.org/licenses/by/4.0/). The consumer of these data ("Data User" herein) is required to cite it appropriately in any publication that results from its use. The Data User should realize that these data may be actively used by others for ongoing research and that coordination may be necessary to prevent duplicate publication. The Data User is urged to contact the authors of these data if any questions about methodology or results occur. Where appropriate, the Data User is encouraged to consider collaboration or co-authorship with the authors. The Data User should realize that misinterpretation of data may occur if used out of context of the original study. While substantial efforts are made to ensure the accuracy of data and associated documentation, complete accuracy of data sets cannot be guaranteed. All data are made available "as is." The Data User should be aware, however, that data are updated periodically and it is the responsibility of the Data User to check for new versions of the data. The data authors and the repository where these data were obtained shall not be liable for damages resulting from any use or misinterpretation of the data. Thank you.</para>
+    </intellectualRights>
+    <coverage>
+      <geographicCoverage>
+        <geographicDescription>The Department of Biological Sciences at Virginia Tech is located in Blacksburg, Virginia, USA</geographicDescription>
+        <boundingCoordinates>
+          <westBoundingCoordinate>-80.426228</westBoundingCoordinate>
+          <eastBoundingCoordinate>-80.424863</eastBoundingCoordinate>
+          <northBoundingCoordinate>37.229596</northBoundingCoordinate>
+          <southBoundingCoordinate>37.22854</southBoundingCoordinate>
+        </boundingCoordinates>
+      </geographicCoverage>
+      <temporalCoverage>
+        <rangeOfDates>
+          <beginDate>
+            <calendarDate>2021-09-01</calendarDate>
+          </beginDate>
+          <endDate>
+            <calendarDate>2023-12-12</calendarDate>
+          </endDate>
+        </rangeOfDates>
+      </temporalCoverage>
+    </coverage>
+    <maintenance>
+      <description>Ongoing</description>
+    </maintenance>
+    <contact>
+      <individualName>
+        <givenName>Cayelan</givenName>
+        <givenName>C.</givenName>
+        <surName>Carey</surName>
+      </individualName>
+      <organizationName>Virginia Tech</organizationName>
+      <electronicMailAddress>Cayelan@vt.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0001-8835-4476</userId>
+    </contact>
+    <methods>
+      <methodStep>
+        <description>
+          <para>MODULE DEVELOPMENT AND TESTING</para>
+          <para>Module teaching materials were developed by T.N. Moore, M.E. Lofton, C.C. Carey, and R.Q. Thomas to provide instructors of undergraduate ecology courses with a ready-to-use, adaptable module that could be implemented in a 3-4 hour time period to introduce undergraduates to ecological forecast uncertainty, how to calculate it, and how to manage and reduce it. </para>
+          <para>As the sixth module within the suite of Macrosystems EDDIE (www.macrosystemseddie.org) teaching materials, this module was developed to teach students macrosystems ecology and ecological forecasting. In this module, students will generate an ecological forecast for a NEON site and quantify the different sources of uncertainty within their forecast. This module will introduce students to the concept of uncertainty within an ecological forecast; where uncertainty in a forecast comes from; how uncertainty can be quantified within a forecast; and how uncertainty can be managed. Students work with an R Shiny application to visualize data, build a model, generate a forecast with uncertainty, and then compare the contributions of various sources of forecast uncertainty to total forecast uncertainty. As a secondary goal, Macrosystems EDDIE modules introduce students to advanced computational tools as a way to manage, analyze, visualize, and interpret high-frequency and long-term ecological data sets; conduct ecosystem modeling; and generate ecological forecasts with quantified uncertainty. </para>
+          <para>The specific student learning goals for this module are that by the end of the module, students will be able to: </para>
+          <para>- Define ecological forecast uncertainty. </para>
+          <para>- Explore the contributions of different sources of uncertainty (e.g., model parameters, model driver data) to total forecast uncertainty. </para>
+          <para>- Understand how multiple sources of uncertainty are quantified. </para>
+          <para>- Identify ways in which uncertainty can be reduced within an ecological forecast. </para>
+          <para>- Describe how forecast horizon affects forecast uncertainty. </para>
+          <para>- Explain the importance of specifying uncertainty in ecological forecasts for forecast users and decision support. </para>
+          <para>The module was assessed by volunteer faculty testers during the 2021-2022 and 2022-2023 academic years. Faculty testers provided feedback that was used to update and optimize teaching materials. Moore, Lofton, Carey, and Thomas also used student pre- and post-module assessment questions to gauge effectiveness of teaching materials for achieving module learning goals. Pedagogical specialists with the Science Education Resource Center at Carleton College assisted with assessment development and implementation.</para>
+          <para>MODULE WORKFLOW</para>
+          <para>Workflow for this module:</para>
+          <para>1. Instructor chooses method for accessing the Shiny app (Regardless of which option you pick, all module activities are the same!).   </para>
+          <para>a. In any internet browser, go to:https://macrosystemseddie.shinyapps.io/module6/.  </para>
+          <para>- This option works well if there are not too many simultaneous users (&lt;20).     </para>
+          <para>- The app generally does not take a long time to load but requires consistent internet access.     </para>
+          <para>- It is important to remind students that they need to save their work as they go, because this webpage will time-out after 15 idle minutes. It is frustrating for students to lose their progress, so a good rule of thumb is to get them to save their progress after completing each objective.   </para>
+          <para>b. The most stable option for large classes is downloading the app and running locally, see instructions at:https://github.com/MacrosystemsEDDIE/module6.   </para>
+          <para>- Once the app is downloaded and installed (which requires an internet connection), the app can be run offline locally on students' computers.   </para>
+          <para>- This step requires R and RStudio to be downloaded on a student's computer, which may be challenging if a student does not have much R experience (but this could be done prior to instruction by an instructor on a shared computer lab).   </para>
+          <para>- If you are teaching the module to a large class and/or have unstable internet, this is the best option.    </para>
+          <para>2. Give students their handout ahead of time to read over prior to class or ask students to download the handout from the module Shiny app page when they arrive to class. The module is set up for students to complete discussion questions in the handout (Word document) as they navigate through the R Shiny app activities. As they navigate through the app, students will be prompted to answer questions in their handout, as well as download plots that they generate within the app and copy-paste them into their handout. The handout can be submitted to the instructor for potential grading. </para>
+          <para>3. Instructor gives a brief PowerPoint presentation that introduces ecological forecasting, sources of forecast uncertainty, and the different models they will be using (~30 mins).</para>
+          <para>4. After the presentation, the students divide into pairs. Each pair selects their own NEON site and visualizes their site's data (Activity A Objectives 1 and 2). The two students within a pair each build their own different models for predicting water temperature (Activity A Objective 3), and generate forecasts with no uncertainty using each of their models (Activity A Objective 4). For virtual instruction, we recommend putting two pairs together (n=4 students) in separate breakout rooms during this activity so the two pairs can compare results.</para>
+          <para>5. The instructor can ask students to wait until all students are finished Activity A and then they will all begin Activity B together. For virtual instruction, this would entail having the students come back to the main room for a short check-in.
+In Activity B, the students work in their pairs to generate forecasts which include different sources of uncertainty (Activity B Objectives 5-8). Students may compare their forecasts with their partners and work together to answer questions embedded throughout this activity about why the different models are affected differently by the different sources of uncertainty.</para>
+          <para>6. In Activity C, student pairs generate forecasts including all sources of uncertainty and compare how the contributions of different sources of uncertainty to total forecast uncertainty varies among models (Activity C Objective 9). They then complete a management scenario individually and discuss with their partner how the uncertainty visualizations provided in the scenario affected their management decisions (Activity C Objective 10).</para>
+          <para>For more information, we refer users to the website, R Shiny application, and RMarkdown version of the module listed below.</para>
+          <para>WEBSITE &amp; PUBLICATIONS</para>
+          <para>Moore, T.N., Lofton, M.E., Carey, C.C., and Thomas, R.Q. 2023. Macrosystems EDDIE Module 6: Introduction to Ecological Forecasting. http://module6.macrosystemseddie.org. </para>
+          <para>Moore, T.N., Lofton, M.E., Carey, C.C., and Thomas, R.Q. 2023. Macrosystems EDDIE Module 6: Understanding Uncertainty in Ecological Forecasts (R Shiny application) (v2.0). Zenodo. https://zenodo.org/doi/10.5281/zenodo.10380759</para>
+          <para>Moore, T.N., Lofton, M.E., Carey, C.C., and Thomas, R.Q. 2023. Macrosystems EDDIE Module 6: Understanding Uncertainty in Ecological Forecasts (RMarkdown module) (v1.0). Zenodo. https://zenodo.org/doi/10.5281/zenodo.10380339</para>
+        </description>
+      </methodStep>
+    </methods>
+    <project>
+      <title>MSA: Macrosystems EDDIE: An undergraduate training program in macrosystems science and ecological forecasting</title>
+      <personnel>
+        <individualName>
+          <givenName>Cayelan</givenName>
+          <givenName>C.</givenName>
+          <surName>Carey</surName>
+        </individualName>
+        <organizationName>Virginia Tech</organizationName>
+        <electronicMailAddress>Cayelan@vt.edu</electronicMailAddress>
+        <userId directory="https://orcid.org">https://orcid.org/0000-0001-8835-4476</userId>
+        <role>Principal Investigator</role>
+      </personnel>
+      <funding>National Science Foundation EF 1926050</funding>
+      <relatedProject>
+        <title>Collaborative Research: CIBR: Cyberinfrastructure Enabling End-to-End Workflows for Aquatic Ecosystem Forecasting</title>
+        <personnel>
+          <individualName>
+            <givenName>Cayelan</givenName>
+            <givenName>C.</givenName>
+            <surName>Carey</surName>
+          </individualName>
+          <organizationName>Virginia Tech</organizationName>
+          <electronicMailAddress>Cayelan@vt.edu</electronicMailAddress>
+          <userId directory="https://orcid.org">https://orcid.org/0000-0001-8835-4476</userId>
+          <role>Principal Investigator</role>
+        </personnel>
+        <funding>National Science Foundation DBI 1933016</funding>
+      </relatedProject>
+    </project>
+    <otherEntity>
+      <entityName>instructor_materials</entityName>
+      <entityDescription>This zip folder contains materials for instructors to teach the Macrosystems EDDIE 
+                                 module in their classroom. See README file for file types and descriptions</entityDescription>
+      <physical>
+        <objectName>instructor_materials.zip</objectName>
+        <size unit="bytes">9585173</size>
+        <authentication method="MD5">c10226e4f276c227d16aa9cbe9b579f8</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>application/zip</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+      </physical>
+      <entityType>unknown</entityType>
+    </otherEntity>
+  </dataset>
+  <additionalMetadata>
+    <metadata>
+      <emlEditor>
+        <app>EMLassemblyline</app>
+        <release>3.5.5</release>
+      </emlEditor>
+    </metadata>
+  </additionalMetadata>
+</eml:eml>
