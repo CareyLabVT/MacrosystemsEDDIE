@@ -1,0 +1,8 @@
+givenName	middleInitial	surName	organizationName	electronicMailAddress	userId	role	projectTitle	fundingAgency	fundingNumber
+Mary	E.	Lofton	Virginia Tech	melofton@vt.edu	0000-0003-3270-1330	creator	
+Matthew	R.	Hipsey	University of Western Australia	matt.hipsey@uwa.edu.au	0000-0001-8386-4354	creator	
+Kamilla		Kurucz	University of Western Australia	kamilla.kurucz@reseach.uwa.edu.au	0000-0003-2162-8326	creator	
+Cayelan	C.	Carey	Virginia Tech	Cayelan@vt.edu	0000-0001-8835-4476	creator			
+Cayelan	C.	Carey	Virginia Tech	Cayelan@vt.edu	0000-0001-8835-4476	contact			
+Cayelan	C.	Carey	Virginia Tech	Cayelan@vt.edu	0000-0001-8835-4476	PI	"Collaborative Research: URoL:ASC: Applying rules of life to forecast emergent behavior of phytoplankton and advance water quality management"	National Science Foundation	EF 2318861
+Cayelan	C.	Carey	Virginia Tech	Cayelan@vt.edu	0000-0001-8835-4476	PI	"Global Centers Track 2: Building the Global Center for Forecasting Freshwater Futures"	National Science Foundation	OISE 2330211
