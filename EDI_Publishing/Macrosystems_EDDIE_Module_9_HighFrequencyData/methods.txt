@@ -8,7 +8,7 @@ The learning goals for this module are that students will be able to::
 
 - Define key measures of freshwater quality (water temperature, dissolved oxygen, and turbidity).  
 
-- Explain how water temperature changes over the course of a year in a temperate reservoir and how these changes affect water quality. 
+- Explain how water temperature changes over a year in a temperate reservoir and how these changes affect water quality. 
 
 - Interpret high-frequency water quality data to make decisions about water extraction depth for a drinking water reservoir.  
 
@@ -32,9 +32,9 @@ b. Watch the "Guide to Module" video embedded in the interactive R Shiny web app
 
 c. Select a focal reservoir.
 
-d. Open the Canvas quiz questions associated with the reservoir you have chosen OR if you are not using Canvas, download a copy of all the questions as a Word document by clicking the "Download student handout" button within the Shiny app.
+d. Open the Canvas quiz questions associated with the reservoir you have chosen OR if you are not using Canvas, download a copy of all the questions as a Word document by clicking the "Download student handout" button within the R Shiny app.
 
-e. Work through the module to complete the Introduction questions and Activities A, B, and C in this web app. When you are prompted to answer questions, enter your answers in the Canvas quiz. Be sure to fill in the Canvas quiz that corresponds to the reservoir site you have chosen! If you are not completing the module using Canvas, you may type your answers into the Word document.
+e. Work through the module to complete the Introduction questions and Activities A, B, and C in the R Shiny web app. When you are prompted to answer questions, enter your answers in the Canvas quiz. Be sure to fill in the Canvas quiz that corresponds to the reservoir site you have chosen! If you are not completing the module using Canvas, you may type your answers into the Word document.
 
 f. If you would like to take a break and come back later, or if you lose internet connection, all you have to do is re-load this web app, re-select your reservoir site in the Introduction, and you will be able to resume your progress. On Canvas, you can save your quiz responses using the "Save" button. In Word, you can save your answers in the document on your computer.
 

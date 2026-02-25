@@ -6,7 +6,7 @@ As the tenth module within the suite of Macrosystems EDDIE (www.macrosystemseddi
 
 The learning goals for this module are that students will be able to:: 
 
-- Define what disinfection byproducts are.  
+- Define disinfection byproducts.  
 
 - Describe the environmental and water treatment processes that influence the formation of disinfection byproducts. 
 
@@ -31,7 +31,7 @@ b. Watch the "Guide to Module" video embedded in the interactive R Shiny web app
 
 c. Select a focal reservoir.
 
-d. Open the Canvas quiz questions associated with the reservoir you have chosen OR if you are not using Canvas, download a copy of all the questions as a Word document by clicking the "Download student handout" button within the Shiny app.
+d. Open the Canvas quiz questions associated with the reservoir you have chosen OR if you are not using Canvas, download a copy of all the questions as a Word document by clicking the "Download student handout" button within the R Shiny app.
 
 e. Work through the module to complete the Introduction questions and Activities A, B, and C in this web app. When you are prompted to answer questions, enter your answers in the Canvas quiz. Be sure to fill in the Canvas quiz that corresponds to the reservoir site you have chosen! If you are not completing the module using Canvas, you may type your answers into the Word document.
 
