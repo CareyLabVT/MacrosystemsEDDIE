@@ -99,7 +99,7 @@ make_eml(path = mypath,
          maintenance.description = "Ongoing", 
          user.id = "melofton",
          user.domain = 'EDI',
-         package.id = "edi.1802.1") # Put your package.id here, followed by .1 (for 1st version)
+         package.id = "edi.1802.2") # Put your package.id here, followed by .1 (for 1st version)
 
 ## Step 8: Check your data product! ####
   # Return to the EDI staging environment (https://portal-s.edirepository.org/nis/home.jsp),
@@ -135,22 +135,22 @@ make_eml(path = mypath,
   # ALL OTHER entries in the make_eml() command should match what you ran above,
   # in step 7
 
-mypath <- paste0(getwd(), '/EDI_Publishing/Macrosystems_EDDIE_Module_9_HighFrequencyData')
+mypath <- paste0(getwd(), '/EDI_Publishing/Macrosystems_EDDIE_Module_10_DecisionTradeoffs')
 
 make_eml(path = mypath,
-         dataset.title = "Macrosystems EDDIE Module 9: Using High-Frequency Data to Improve Water Quality (Instructor Materials)",
+         dataset.title = "Macrosystems EDDIE Module 10: Exploring Tradeoffs in Water Quality Management Using Environmental Data (Instructor Materials)",
          other.entity = c("instructor_materials.zip"),
          other.entity.name = c("instructor_materials"),
          other.entity.description = c("This zip folder contains materials for instructors to teach the Macrosystems EDDIE 
                                  module in their classroom. See README file for file types and descriptions"),
-         temporal.coverage = c("2024-02-22", "2024-08-28"),
+         temporal.coverage = c("2025-02-26", "2026-02-20"),
          # keep geographic site as Derring for all MS EDDIE modules
          geographic.description = c("The Department of Biological Sciences at Virginia Tech is located in Blacksburg, Virginia, USA"),
          geographic.coordinates = c('37.229596', '-80.424863', '37.22854', '-80.426228'), #N, E, S, W
          maintenance.description = "Ongoing", 
          user.id = "ccarey",
          user.domain = 'EDI',
-         package.id = "edi.1776.1") # Put your package.id here, followed by .1 (for 1st version)
+         package.id = "edi.2289.1") # Put your package.id here, followed by .1 (for 1st version)
 
 
   # Once your xml file with your PUBLISHED package.id is Done, return to the 
