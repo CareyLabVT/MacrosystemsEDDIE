@@ -11,10 +11,11 @@ National Ecological Observatory Network	carey lab controlled vocabulary
 uncertainty	carey lab controlled vocabulary
 modeling	lter controlled vocabulary
 models	lter controlled vocabulary
+forecast	carey lab controlled vocabulary
+forecasting	carey lab controlled vocabulary
+high-frequency data	carey lab controlled vocabulary
 chlorophyll a	lter controlled vocabulary
 net ecosystem exchange	lter controlled vocabulary
 time series modeling	carey lab controlled vocabulary
 machine learning	carey lab controlled vocabulary
 University of Western Australia	carey lab controlled vocabulary
-
-

@@ -1,8 +1,8 @@
 MODULE DEVELOPMENT AND TESTING
 
-Module teaching materials were developed by M.E. Lofton, M.R. Hipsey, K. Kurucz, and C.C. Carey to provide instructors of undergraduate ecology courses with a ready-to-use, adaptable module that could be implemented in a 3-4 hour time period to introduce undergraduates to time series modeling and prediction of environmental data. 
+Module teaching materials were developed by M.E. Lofton, M.R. Hipsey, K. Kurucz, and C.C. Carey to provide instructors of undergraduate ecology courses with a ready-to-use, adaptable module that could be implemented in a ~3-hour time period to introduce undergraduates to time series modeling and prediction of environmental data. 
 
-As the eleventh module within the suite of Macrosystems EDDIE (www.macrosystemseddie.org) teaching materials, this module was developed to teach students key concepts related to time series modeling, the importance of data standards, and prediction of environmental data. In this module, students will apply several different time series and machine learning models to explore, analyze, and interpret environmental data. They will explore data from an environmental case study of their choice, choose which environmental variables to use to fit a time series model, assess the model, and apply the model to make predictions of future ecosystem conditions. Then, students will process a new dataset into a standardized format, upload it into the module's R Shiny App, and fit several other models to compare predictive performance across models. Students will also evaluate the ecological understanding that can be drawn from each model (e.g., which driver variables are important for explaining the dynamics of the target environmental variable being predicted).    
+As the eleventh module within the suite of Macrosystems EDDIE (www.macrosystemseddie.org) teaching materials, this module was developed to teach students key concepts related to time series modeling, the importance of data standards, and prediction of environmental data. In this module, students will apply several different time series and machine learning models to explore, analyze, and interpret environmental data. They will explore data from an environmental case study of their choice, choose which environmental variables to use to fit a time series model, assess the model, and apply the model to make predictions of future ecosystem conditions. Then, students will process a new dataset into a standardized format, upload it into the module's R Shiny App, and fit several other models to compare predictive performance across models. Students will also evaluate the ecological understanding that can be gained from each model (e.g., which driver variables are important for explaining the dynamics of the target environmental variable being predicted).    
 
 The specific student learning goals for this module are that by the end of the module, students will be able to:    
 
@@ -18,7 +18,8 @@ The specific student learning goals for this module are that by the end of the m
 
 The module was piloted at the University of Western Australia by M.R. Hipsey and K. Kurucz in 2025. Student and instructor feedback was used to update and optimize teaching materials.   
 
-CONTEXT FOR USE   
+CONTEXT FOR USE  
+
 This entire module can be completed in one 3-hour lab period or three 60-minute lecture periods for introductory undergraduate students in Ecology, Environmental Science, Ecological Modeling, and Quantitative Ecology classes. After the introductory 30-minute presentation, we found that students completed Activity A in about 1 hour, with Activities B and C taking about 20-30 minutes each. However, if the instructor chooses to have students work with a dataset that is not provided within the module for Activity B, the instructor should allocate adequate additional time for students to learn about and process this dataset into a standardized format.     
 
 MODULE WORKFLOW
@@ -27,7 +28,7 @@ Workflow for this module:
 
 1. Instructor chooses method for accessing the Shiny app (Regardless of which option you pick, all module activities are the same!).   
 
-a. In any internet browser, go to:https://macrosystemseddie.shinyapps.io/module11/.  
+a. In any internet browser, go to: https://macrosystemseddie.shinyapps.io/module11/.  
 
 - This option works well if there are not too many simultaneous users (<50).     
 
@@ -56,6 +57,7 @@ b. The most stable option for large classes is downloading the app and running l
 7. Student pairs then fit additional time series models to their uploaded datasets and compare performance across models on out-of-sample predictions (Activity C). The students work together in groups to present the results from their dataset and different models to the rest of the class. The class may discuss why the models perform similarly or differently among the different sites, as well as the skill of more complex models (with environmental drivers) vs. simple models at various sites.
 
 For more information, we refer users to the website and R Shiny application associated with the module and listed below.
+
 
 WEBSITE & PUBLICATIONS
 
