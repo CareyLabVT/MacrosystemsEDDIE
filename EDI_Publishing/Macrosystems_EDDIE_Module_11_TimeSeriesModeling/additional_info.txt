@@ -1,7 +1,1 @@
-
 AUTHORSHIP CONTRIBUTIONS: MEL led the development of all module materials (R Shiny App and associated code, PowerPoint presentations, instructor manual, student handout). The module was conceptualized by MEL, CCC, and MRH. KK provided dataset assistance and all coauthors provided feedback on the module content and materials. Funding was provided by CCC.
-
-
-
-
-
