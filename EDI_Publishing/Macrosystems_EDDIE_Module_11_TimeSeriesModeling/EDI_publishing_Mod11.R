@@ -99,7 +99,7 @@ make_eml(path = mypath,
          maintenance.description = "Ongoing", 
          user.id = "melofton",
          user.domain = 'EDI',
-         package.id = "edi.1803.1") # Put your package.id here, followed by .1 (for 1st version)
+         package.id = "edi.1803.2") # Put your package.id here, followed by .1 (for 1st version)
 
 ## Step 8: Check your data product! ####
   # Return to the EDI staging environment (https://portal-s.edirepository.org/nis/home.jsp),
@@ -135,20 +135,22 @@ make_eml(path = mypath,
   # ALL OTHER entries in the make_eml() command should match what you ran above,
   # in step 7
 
+mypath <- paste0(getwd(), '/EDI_Publishing/Macrosystems_EDDIE_Module_11_TimeSeriesModeling')
+
 make_eml(path = mypath,
-         dataset.title = "Macrosystems EDDIE Module 7: Using Data to Improve Ecological Forecasts (Instructor Materials)",
+         dataset.title = "Macrosystems EDDIE Module 11: Time Series Modeling and Prediction of Environmental Data (Instructor Materials)",
          other.entity = c("instructor_materials.zip"),
          other.entity.name = c("instructor_materials"),
          other.entity.description = c("This zip folder contains materials for instructors to teach the Macrosystems EDDIE 
                                  module in their classroom. See README file for file types and descriptions"),
-         temporal.coverage = c("2022-03-01", "2024-03-12"),
+         temporal.coverage = c("2025-06-08", "2026-02-25"),
          # keep geographic site as Derring for all MS EDDIE modules
          geographic.description = c("The Department of Biological Sciences at Virginia Tech is located in Blacksburg, Virginia, USA"),
          geographic.coordinates = c('37.229596', '-80.424863', '37.22854', '-80.426228'), #N, E, S, W
          maintenance.description = "Ongoing", 
          user.id = "ccarey",
          user.domain = 'EDI',
-         package.id = "edi.1609.1") # Put your package.id here, followed by .1 (for 1st version)
+         package.id = "edi.2292.1") # Put your package.id here, followed by .1 (for 1st version)
 
 
   # Once your xml file with your PUBLISHED package.id is Done, return to the 

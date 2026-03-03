@@ -63,4 +63,4 @@ WEBSITE & PUBLICATIONS
 
 Lofton, M.E., Hipsey, M.R., Kurucz, K., and Carey, C.C. 2026. Macrosystems EDDIE Module 11: Time Series Modeling and Prediction of Environmental Data. http://module11.macrosystemseddie.org. 
 
-Lofton, M.E., Hipsey, M.R., Kurucz, K., and Carey, C.C. 2026. Macrosystems EDDIE Module 11: Time Series Modeling and Prediction of Environmental Data. (R Shiny application) (v1.0). Zenodo. [ADD ZENODO DOI HERE].
+Lofton, M.E., Hipsey, M.R., Kurucz, K., and Carey, C.C. 2026. Macrosystems EDDIE Module 11: Time Series Modeling and Prediction of Environmental Data. (R Shiny application) (v1.0). Zenodo. https://doi.org/10.5281/zenodo.18841929.

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eml:eml xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.2" packageId="edi.1803.2" xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0/eml.xsd https://eml.ecoinformatics.org/eml-2.2.0/eml.xsd" system="edi">
+  <access authSystem="https://pasta.edirepository.org/authentication" order="allowFirst" scope="document">
+    <allow>
+      <principal>uid=melofton,o=EDI,dc=edirepository,dc=org</principal>
+      <permission>all</permission>
+    </allow>
+    <allow>
+      <principal>public</principal>
+      <permission>read</permission>
+    </allow>
+  </access>
+  <dataset>
+    <title>Macrosystems EDDIE Module 11: Time Series Modeling and Prediction of Environmental Data (Instructor Materials)</title>
+    <creator>
+      <individualName>
+        <givenName>Mary</givenName>
+        <givenName>E.</givenName>
+        <surName>Lofton</surName>
+      </individualName>
+      <organizationName>Virginia Tech</organizationName>
+      <electronicMailAddress>melofton@vt.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0003-3270-1330</userId>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Matthew</givenName>
+        <givenName>R.</givenName>
+        <surName>Hipsey</surName>
+      </individualName>
+      <organizationName>University of Western Australia</organizationName>
+      <electronicMailAddress>matt.hipsey@uwa.edu.au</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0001-8386-4354</userId>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Kamilla</givenName>
+        <surName>Kurucz</surName>
+      </individualName>
+      <organizationName>University of Western Australia</organizationName>
+      <electronicMailAddress>kamilla.kurucz@research.uwa.edu.au</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0003-2162-8326</userId>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Cayelan</givenName>
+        <givenName>C.</givenName>
+        <surName>Carey</surName>
+      </individualName>
+      <organizationName>Virginia Tech</organizationName>
+      <electronicMailAddress>Cayelan@vt.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0001-8835-4476</userId>
+    </creator>
+    <pubDate>2026-03-02</pubDate>
+    <abstract>
+      <para>This EDI data package contains instructional materials necessary to teach Macrosystems EDDIE Module 11: Time Series Modeling and Prediction of Environmental Data, a ~3-hour educational module for undergraduates. Advances in environmental sensor technology in recent decades are enabling the collection of environmental data at high temporal frequencies (e.g., every 10 minutes) across many ecosystems. These time series of environmental data can be used to gain information about previous and current conditions of ecosystems, as well as make predictions about ecosystem conditions in the future. Researchers and managers commonly apply a range of time series models to understand the complex patterns that can occur in high-frequency environmental time series data. These models use statistical and machine learning methods to identify signals in high-frequency environmental data. In this module, students will apply several different time series and machine learning models to explore, analyze, and interpret environmental data. They will explore data from an environmental case study of their choice, choose which environmental variables to use to fit a time series model, assess the model, and apply the model to make predictions of future ecosystem conditions. Then, students will process a new dataset into a standardized format, upload it into the module's R Shiny App, and fit several other models to compare predictive performance across models. Students will also evaluate the ecological understanding that can be gained from each model (e.g., which driver variables are important for explaining the dynamics of the target environmental variable being predicted). The flexible, three-part (A-B-C) structure of this module makes it adaptable to a range of student levels and course structures. Students complete module activities using an R Shiny web application which can be accessed from an internet browser on a computer. The R Shiny application is published to shinyapps.io and is available at the following link: https://macrosystemseddie.shinyapps.io/module11/. A GitHub repository is available for the R Shiny application code (https://github.com/MacrosystemsEDDIE/module11), and the code repository has been published with a DOI to Zenodo (https://doi.org/10.5281/zenodo.18841929). This data package includes open source versions of module introductory lecture slides, a student handout, and an instructor manual which can be used to teach the module. Readers are referred to the module landing page for additional information (https://serc.carleton.edu/eddie/teaching_materials/modules/module11.html).  </para>
+    </abstract>
+    <additionalInfo>
+      <para>AUTHORSHIP CONTRIBUTIONS: MEL led the development of all module materials (R Shiny App and associated code, PowerPoint presentations, instructor manual, student handout). The module was conceptualized by MEL, CCC, and MRH. KK provided dataset assistance and all coauthors provided feedback on the module content and materials. Funding was provided by CCC.
+</para>
+    </additionalInfo>
+    <intellectualRights>
+      <para>This data product is released under the Creative Commons Attribution Non Commercial 4.0 International license, following the terms detailed here: https://creativecommons.org/licenses/by-nc/4.0/legalcode. The consumer of these data (“Data User” herein) is required to cite it appropriately in any publication or derivative product (adapted material) that results from its use. The Data User should realize that these data may be actively used by others for ongoing research and that coordination may be necessary to prevent duplicate publication. The Data User is urged to contact the authors of these data if any questions about methodology or results occur. Where appropriate, the Data User is encouraged to consider collaboration or co-authorship with the authors. The Data User should realize that misinterpretation of data may occur if used out of context of the original study. While substantial efforts are made to ensure the accuracy of data and associated documentation, complete accuracy of data sets cannot be guaranteed. All data are made available “as is.” The Data User should be aware, however, that data are updated periodically and it is the responsibility of the Data User to check for new versions of the data. The data authors and the repository where these data were obtained shall not be liable for damages resulting from any use or misinterpretation of the data. Any work by data users to produce, reproduce, and share adapted material is for Non Commercial purposes only. Thank you.</para>
+    </intellectualRights>
+    <coverage>
+      <geographicCoverage>
+        <geographicDescription>The Department of Biological Sciences at Virginia Tech is located in Blacksburg, Virginia, USA</geographicDescription>
+        <boundingCoordinates>
+          <westBoundingCoordinate>-80.426228</westBoundingCoordinate>
+          <eastBoundingCoordinate>-80.424863</eastBoundingCoordinate>
+          <northBoundingCoordinate>37.229596</northBoundingCoordinate>
+          <southBoundingCoordinate>37.22854</southBoundingCoordinate>
+        </boundingCoordinates>
+      </geographicCoverage>
+      <temporalCoverage>
+        <rangeOfDates>
+          <beginDate>
+            <calendarDate>2025-06-08</calendarDate>
+          </beginDate>
+          <endDate>
+            <calendarDate>2026-02-25</calendarDate>
+          </endDate>
+        </rangeOfDates>
+      </temporalCoverage>
+    </coverage>
+    <maintenance>
+      <description>Ongoing</description>
+    </maintenance>
+    <contact>
+      <individualName>
+        <givenName>Cayelan</givenName>
+        <givenName>C.</givenName>
+        <surName>Carey</surName>
+      </individualName>
+      <organizationName>Virginia Tech</organizationName>
+      <electronicMailAddress>Cayelan@vt.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0001-8835-4476</userId>
+    </contact>
+    <methods>
+      <methodStep>
+        <description>
+          <para>MODULE DEVELOPMENT AND TESTING</para>
+          <para>Module teaching materials were developed by M.E. Lofton, M.R. Hipsey, K. Kurucz, and C.C. Carey to provide instructors of undergraduate ecology courses with a ready-to-use, adaptable module that could be implemented in a ~3-hour time period to introduce undergraduates to time series modeling and prediction of environmental data. </para>
+          <para>As the eleventh module within the suite of Macrosystems EDDIE (www.macrosystemseddie.org) teaching materials, this module was developed to teach students key concepts related to time series modeling, the importance of data standards, and prediction of environmental data. In this module, students will apply several different time series and machine learning models to explore, analyze, and interpret environmental data. They will explore data from an environmental case study of their choice, choose which environmental variables to use to fit a time series model, assess the model, and apply the model to make predictions of future ecosystem conditions. Then, students will process a new dataset into a standardized format, upload it into the module's R Shiny App, and fit several other models to compare predictive performance across models. Students will also evaluate the ecological understanding that can be gained from each model (e.g., which driver variables are important for explaining the dynamics of the target environmental variable being predicted).    </para>
+          <para>The specific student learning goals for this module are that by the end of the module, students will be able to:    </para>
+          <para>- Explore relationships between ecological variables from environmental case studies.   </para>
+          <para>- Understand the structure of four time series models (including machine learning models) that are commonly applied in environmental science.    </para>
+          <para>- Fit time series models using environmental data and assess the importance of ecological driver variables in making model predictions.   </para>
+          <para>- Process environmental datasets into standardized formats suitable for training and assessing time series models.   </para>
+          <para>- Compare multiple time series models to assess their performance on out-of-sample predictions.   </para>
+          <para>The module was piloted at the University of Western Australia by M.R. Hipsey and K. Kurucz in 2025. Student and instructor feedback was used to update and optimize teaching materials.   </para>
+          <para>CONTEXT FOR USE  </para>
+          <para>This entire module can be completed in one 3-hour lab period or three 60-minute lecture periods for introductory undergraduate students in Ecology, Environmental Science, Ecological Modeling, and Quantitative Ecology classes. After the introductory 30-minute presentation, we found that students completed Activity A in about 1 hour, with Activities B and C taking about 20-30 minutes each. However, if the instructor chooses to have students work with a dataset that is not provided within the module for Activity B, the instructor should allocate adequate additional time for students to learn about and process this dataset into a standardized format.     </para>
+          <para>MODULE WORKFLOW</para>
+          <para>Workflow for this module:</para>
+          <para>1. Instructor chooses method for accessing the Shiny app (Regardless of which option you pick, all module activities are the same!).   </para>
+          <para>a. In any internet browser, go to: https://macrosystemseddie.shinyapps.io/module11/.  </para>
+          <para>- This option works well if there are not too many simultaneous users (&lt;50).     </para>
+          <para>- The app generally does not take a long time to load but requires consistent internet access.     </para>
+          <para>- It is important to remind students that they need to save their work as they go, because this webpage will time-out after 15 idle minutes. It is frustrating for students to lose their progress, so a good rule of thumb is to get them to save their progress after completing each objective.   </para>
+          <para>b. The most stable option for large classes is downloading the app and running locally; see instructions at: https://github.com/MacrosystemsEDDIE/module11.   </para>
+          <para>- Once the app is downloaded and installed (which requires an internet connection), the app can be run offline locally on students' computers.   </para>
+          <para>- This step requires R and RStudio to be downloaded on a student's computer, which may be challenging if a student does not have much R experience (but this could be done prior to instruction by an instructor on a shared computer lab).   </para>
+          <para>- If you are teaching the module to a large class and/or have unstable internet, this is the best option.    </para>
+          <para>2. Give students their handout ahead of time to read over prior to class or ask students to download the handout from the module Shiny app page when they arrive to class. The module is set up for students to complete discussion questions in the handout (Word document) as they navigate through the R Shiny app activities. As they navigate through the app, students will be prompted to answer questions in their handout, as well as download plots that they generate within the app and copy-paste them into their handout. The handout can be submitted to the instructor for potential grading. </para>
+          <para>3. Instructor gives a brief PowerPoint presentation that introduces ecological forecasting, data assimilation, and the forecast model students will be using (~30 mins).</para>
+          <para>4. After the presentation, the students divide into pairs. Each pair selects their own environmental case study and visualizes their case study's data, which is used to fit and assess a time series model (Activity A). The two students within a pair each build their own model with unique inputs and parameters to compare the performance of two different models for the same ecosystem. For virtual instruction, we recommend putting two pairs together (n=4 students) into separate Zoom breakout rooms during this activity so the two pairs can compare results.</para>
+          <para>5. The instructor then introduces Activities B and C, potentially revisiting some of the slides from the introductory presentation as a reminder to students about the next steps. For virtual instruction, this would entail having the students come back to the main Zoom room for a short check-in.</para>
+          <para>6. The students work in their pairs to process and upload data in a standardized format and fit a new time series model to their uploaded data (Activity B). Note: the amount of time required for data wrangling may vary widely depending on the datasets the instructor chooses to use for the module. The datasets provided within the module require minimal data wrangling that can be done in Microsoft Excel (~5-10 minutes depending on student experience). However, instructors should plan to allocate additional time if they are asking students to do more extensive data wrangling prior to uploading their own data in Activity B. For virtual instruction, we recommend putting the two pairs back into the same Zoom breakout rooms. Optionally, instructors may bring the class back together at the end of Activity B to discuss performance of students' time series models before beginning Activity C.</para>
+          <para>7. Student pairs then fit additional time series models to their uploaded datasets and compare performance across models on out-of-sample predictions (Activity C). The students work together in groups to present the results from their dataset and different models to the rest of the class. The class may discuss why the models perform similarly or differently among the different sites, as well as the skill of more complex models (with environmental drivers) vs. simple models at various sites.</para>
+          <para>For more information, we refer users to the website and R Shiny application associated with the module and listed below.</para>
+          <para>
+WEBSITE &amp; PUBLICATIONS</para>
+          <para>Lofton, M.E., Hipsey, M.R., Kurucz, K., and Carey, C.C. 2026. Macrosystems EDDIE Module 11: Time Series Modeling and Prediction of Environmental Data. http://module11.macrosystemseddie.org. </para>
+          <para>Lofton, M.E., Hipsey, M.R., Kurucz, K., and Carey, C.C. 2026. Macrosystems EDDIE Module 11: Time Series Modeling and Prediction of Environmental Data. (R Shiny application) (v1.0). Zenodo. https://doi.org/10.5281/zenodo.18841929.</para>
+        </description>
+      </methodStep>
+    </methods>
+    <project>
+      <title>Collaborative Research: URoL:ASC: Applying rules of life to forecast emergent behavior of phytoplankton and advance water quality management</title>
+      <personnel>
+        <individualName>
+          <givenName>Cayelan</givenName>
+          <givenName>C.</givenName>
+          <surName>Carey</surName>
+        </individualName>
+        <organizationName>Virginia Tech</organizationName>
+        <electronicMailAddress>Cayelan@vt.edu</electronicMailAddress>
+        <userId directory="https://orcid.org">https://orcid.org/0000-0001-8835-4476</userId>
+        <role>Principal Investigator</role>
+      </personnel>
+      <funding>National Science Foundation EF 2318861</funding>
+      <relatedProject>
+        <title>Global Centers Track 2: Building the Global Center for Forecasting Freshwater Futures</title>
+        <personnel>
+          <individualName>
+            <givenName>Cayelan</givenName>
+            <givenName>C.</givenName>
+            <surName>Carey</surName>
+          </individualName>
+          <organizationName>Virginia Tech</organizationName>
+          <electronicMailAddress>Cayelan@vt.edu</electronicMailAddress>
+          <userId directory="https://orcid.org">https://orcid.org/0000-0001-8835-4476</userId>
+          <role>Principal Investigator</role>
+        </personnel>
+        <funding>National Science Foundation OISE 2330211</funding>
+      </relatedProject>
+      <relatedProject>
+        <title>Collaborative Research: MRA: Advancing process understanding of lake water quality to macrosystem scales with knowledge-guided machine learning</title>
+        <personnel>
+          <individualName>
+            <givenName>Cayelan</givenName>
+            <givenName>C.</givenName>
+            <surName>Carey</surName>
+          </individualName>
+          <organizationName>Virginia Tech</organizationName>
+          <electronicMailAddress>Cayelan@vt.edu</electronicMailAddress>
+          <userId directory="https://orcid.org">https://orcid.org/0000-0001-8835-4476</userId>
+          <role>Principal Investigator</role>
+        </personnel>
+        <funding>National Science Foundation DEB 2213550</funding>
+      </relatedProject>
+    </project>
+    <otherEntity>
+      <entityName>instructor_materials</entityName>
+      <entityDescription>This zip folder contains materials for instructors to teach the Macrosystems EDDIE 
+                                 module in their classroom. See README file for file types and descriptions</entityDescription>
+      <physical>
+        <objectName>instructor_materials.zip</objectName>
+        <size unit="bytes">8462263</size>
+        <authentication method="MD5">02a1f9b155c84ec9c467d3d8205cb069</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>application/zip</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+      </physical>
+      <entityType>unknown</entityType>
+    </otherEntity>
+  </dataset>
+  <additionalMetadata>
+    <metadata>
+      <emlEditor>
+        <app>EMLassemblyline</app>
+        <release>3.6.0</release>
+      </emlEditor>
+    </metadata>
+  </additionalMetadata>
+</eml:eml>
