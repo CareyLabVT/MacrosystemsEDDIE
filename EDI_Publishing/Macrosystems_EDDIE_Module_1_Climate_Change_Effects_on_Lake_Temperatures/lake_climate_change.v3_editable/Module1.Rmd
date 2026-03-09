@@ -1,0 +1,596 @@
+---
+title: 'Macrosystems EDDIE Module 1: Climate Change Effects on Lake Temperatures, Version 2'
+author: Carey, C.C., S. Aditya, K. Subratie, V. Daneshmand, R. Figueiredo, and K.J.
+  Farrell
+date: "2026-03-03"
+output: html_document
+---
+
+**Module webpage:**  http://module1.macrosystemseddie.org 		
+**Authorship contributions:** Some parts of this module were developed by Carey, C.C., S. Aditya, K. Subratie, and R. Figueiredo as part of the Project EDDIE module, "Modeling Climate Change Effects on Lakes Using Distributed Computing Module" and were subsequently revised by Carey, C.C. and K.J. Farrell on 21 July 2017 as part of the Macrosystems EDDIE project. 
+
+Activity C of this module was updated in October 2024 by M.E. Lofton.
+
+## This R Markdown Document
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+This R Markdown document contains text instructions as well as 'chunks' of R code for students to work through the module activities A, B, and C. R code 'chunks' are inserted like this:
+```{r hello world}
+print('hello world')
+```
+
+You can run all the code in the chunk by pushing the green play button in the top right corner of the code chunk. If you only want to run one line of code in the chunk, insert your cursor in the line you would like to run and press `Ctrl+Enter` on a Windows machine or `Command+Enter` on a Mac.
+
+As you go through the module, you should read the text carefully as you will need to edit the code to complete the module. As you work through the module, you should run the code 'chunks' one at a time. After you have completed all the module activities, you can generate a single document with all of your completed work using the **Knit** button. When you click the **Knit** button at the top of this window, a document will be generated that includes both text content as well as the output of any embedded R code chunks within the document. For some of the code chunks, you will notice options such as `echo = TRUE, message = FALSE` at the top of the chunk. This means that when the knitted document is generated, you will still be able to see the code, but not all of the messages generated when the code is run. This is done to keep your document clear of clutter.
+
+## Activity A - Objective 1
+Download R packages and GLM files successfully onto your computer.
+
+Run the code below to install the `sp` package.
+```{r install sp, echo = TRUE, message = FALSE}
+if(!require(sp)) install.packages('sp', repos = "http://cran.us.r-project.org")
+```
+
+**NOTE**: depending on your computer, you may get output that says, *"There is a binary version available. Do you want to install from sources that need compilation? y/n"* If this pops up, type `y` and hit enter. You may now be prompted to download the command line developer tools in a pop-up window. Command line developer tools is a program used to run modeling software. Click Install and then re-run the `if(!require(sp)) install.packages('sp', repos = "http://cran.us.r-project.org")` once the install of the tools is finished. This should now successfully load- when it's done, it should say *"DONE(sp)"* if it worked.
+
+Run the code below to install the `devtools` package.
+```{r install devtools, echo = TRUE, message = FALSE}
+if(!require(devtools)) install.packages('devtools', repos = "http://cran.us.r-project.org")
+```
+
+**NOTE**: This is another R package used to run modeling software. If you get an error message that says, *"package ‘devtools’ is not available (for R version x.x.x)"*, be sure to check that your R software is up to date to the most recent version.
+
+Download the GLMr software. This may take a few minutes. If downloaded successfully, you should see *"DONE (GLMr)"* at the end of the output.
+
+**NOTE**: Because this module uses legacy, archived versions of the GLMr and glmtools software, the following two code chunks are written so that the GLMr and glmtools packages will be downloaded **even if you already have them on your computer**. This is to avoid errors that occur if newer and older versions of the two packages are used together. If you already have GLMr or glmtools installed on your computer, your current versions will be overwritten by this module.
+```{r install GLMr, echo = TRUE, message = FALSE}
+devtools::install_github("CareyLabVT/GLMr", force = TRUE, INSTALL_opts=c("--no-staged-install"))
+library(GLMr)
+```
+
+This step downloads the R packages that allow you to work with GLM in R. 
+```{r install glmtools, echo = TRUE, message = FALSE}
+devtools::install_github("CareyLabVT/glmtools", force = TRUE)
+library(glmtools)
+```
+
+**NOTE:** you may get lots of output messages at this step- if this worked successfully, you should read a lot of text that starts with: *"This information is preliminary or provisional..."*
+
+See what version of GLM you are running- should be v.2.2.0rc5.
+```{r glm_version(), echo = TRUE, message = FALSE, results = 'hide'}
+GLMr::glm_version()
+```
+
+### CONGRATS!
+You've now loaded GLM onto your computer! Proceed to Objective 2! 
+
+## Activity A - Objective 2
+Now, we will explore the files that you downloaded with GLM.
+
+**NOTE:** Throughout the rest of the module, you will need to modify some of the 
+chunks of code to run on your computer. If you need to modify a chunk, I have written **MODIFY** at the beginning of that chunk's text instruction. If you do not see **MODIFY**, you do not need to edit that chunk of code and can run it as written.
+
+Read in and print your nml, or namelist, file. This is the 'master script' of the GLM simulation; the nml file tells the GLM model all of the initial conditions about your lake, how you are defining parameters, and more - this is a really important file! There should be multiple sections, including glm_setup, morphometry, meteorology, etc.
+```{r nml}
+nml_file <- "./glm2.nml"
+nml <- glmtools::read_nml(nml_file)
+print(nml)
+```
+
+**MODIFY:** Use this command to find out the values of different parameters that you are running within your nml file. Here, you are first asking what the lake name is in the nml file. After you find out the `lake_name`, try changing the end of this command (the `lake_name` part) to learn the `lake_depth`, `latitude`, and `longitude`.
+```{r explore nml}
+glmtools::get_nml_value(nml, 'lake_name')
+```
+
+Finally, just before we run the model, we will double-check that we are running the model using the correct meteorological data file. This won't matter the first time you go through this R Markdown, but if you knit this document multiple times after developing various climate scenarios as part of the activities below, you can get yourself in quite a tangle of model simulations if you don't check which meteorological file you are using!
+```{r check met file}
+nml <- glmtools::set_nml(nml, arg_name = "meteo_fl", arg_val = "met_hourly.csv")
+glmtools::write_nml(nml, file = nml_file)
+```
+
+This command plots the meteorological input data for the simulation- short wave & long wave radiation, air temp, etc. for the duration of the simulation run. The figure will be inserted just below the code chunk. The figure window can be expanded, collapsed, or removed by clicking the icons at the top of the figure window. 
+```{r plot_meteo}
+glmtools::plot_meteo(nml_file)
+```
+
+
+## Activity A - Objective 3
+Now, the fun part- we get to run the model and look at output!
+
+So simple and elegant... if this works, you should see output that says "Simulation begins.." and then shows all the time steps.  At the end, it should say "Run complete" if everything worked ok. This may take a few minutes.
+
+**NOTE:** If you do not want to keep all the message text generated while running the model in your R Markdown window, you can remove it from your R Markdown window by clicking the "x" icon in the results window. 
+```{r run_glm, echo = TRUE, message = FALSE, results = 'hide'}
+GLMr::run_glm(verbose=TRUE)
+```
+
+Now, go to the folder on your computer containing this R Markdown document (in RStudio, you can find this by clicking on the 'Files' tab)- if everything happened correctly, you should see the addition of new files that were created during the simulation with a recent date and time stamp, including `output.nc`, `lake.csv`, and `overflow.csv`. The most important of these is the `output.nc` file, which contains all of the output data from your simulation in netCDF format.
+
+We need to know where the `output.nc` file is so that the `glmtools` package can
+plot and analyze the model output. We tell R where to find the output file 
+using the line below:
+```{r name output}
+model_output_file <- 'output.nc'
+```
+
+This names the output file as an object in your R environment. We will consider this our baseline model simulation because it is based on the observed data.
+
+We also want to save the model output of the daily surface water temperatures 
+in the lake during our baseline simulation, because we'll be comparing it to 
+our climate scenario later. To do this, we use the following commands:
+
+Save the water temperature from the surface only:
+```{r surf_temp}
+surf_temp <- glmtools::get_var(file=model_output_file, "temp", reference='surface', z_out=c(1)) 
+```
+
+Here we rename the temperature column so we remember it came from the baseline scenario:
+```{r change colnames}
+colnames(surf_temp)[2] <- "Baseline_Temp"
+```
+
+This plots your simulated water temperatures in a heat map, where time is displayed on the x-axis, lake depth is displayed on the y-axis, and the different colors represent different temperatures. 
+```{r plot temp}
+glmtools::plot_temp(file=model_output_file)
+```
+
+To copy your plot (e.g., onto a PowerPoint slide), right click on the plot image, then select 'Copy Image'. When you paste into PowerPoint, choose the option 'Paste as Picture' and the plot will show up.
+
+If you want to save your plot as an image file instead of copying it, right click on the plot image, then select 'Save image as...'. This will open a browser window. Give your plot a descriptive file name (e.g., "Temp_HeatMap.jpeg"), then press "Save". Your plot image will be saved in the same folder that contains this R Markdown document.
+
+## Activity A - Objective 4
+Examine how the modeled GLM data compares to the observed field data for your lake.
+
+Let's compare the model data (model_output_file) to the observed data (field_data.csv). Here, we define the observed field data.
+```{r field_file}
+field_file <- 'field_data.csv'
+```
+
+Plot your GLM model (simulated) data vs. the observed data. The black circles in the observed data  (top panel) represent temperatures measured at different depths and times. Because our observed data were collected with high-frequency thermistors on a buoy, there are lots of black circles in the figure from the same depths over time.
+```{r plot_temp_compare}
+glmtools::plot_temp_compare(model_output_file, field_file)
+```
+
+Now, let's compare different physical lake characteristics between the simulated 
+and the observed lake.  Run the command below to see what variables we can 
+compare and plot between the observed and simulated data:
+```{r sim_metrics}
+glmtools::sim_metrics(with_nml = FALSE)
+```
+
+The options include "thermo.depth" (depth of the thermocline), "buoyancy.freq" (buoyancy frequency, an index of thermal stratification), "water.density", and "water.temperature".
+
+Use the command below to extract the observed and simluated thermocline depths
+("thermo.depth").
+```{r therm_depths}
+therm_depths <- glmtools::compare_to_field(model_output_file, field_file, metric="thermo.depth", 
+                                 as_value=TRUE, na.rm=TRUE)
+```
+
+You can look at the first few lines of this comparison using the code below:
+```{r view therm_depths}
+head(therm_depths)
+```
+
+To make a simple plot of the observed vs. simulated thermocline depths, run the 
+commands below:
+```{r plot thermocline depth}
+plot(therm_depths$DateTime, therm_depths$obs, type="l", col="blue", ylim=c(0,32), 
+     ylab="Thermocline depth in meters", xlab="Date") # This plots the observed data over time in blue, with a y-axis set to 0-32 m, and a y-axis label
+lines(therm_depths$DateTime, therm_depths$mod, col="red") # this adds a red line of the modeled baseline thermocline depths to the plot
+legend("topleft",c("Observed", "Modeled Baseline"),lty=c(1,1), col=c("blue", "red")) # this adds a legend 
+```
+
+Run the code below to extract the observed and simluated water temperatures.
+```{r get water temp}
+water_temp <- glmtools::compare_to_field(model_output_file, field_file, metric="water.temperature", 
+                               as_value=TRUE, na.rm=TRUE)
+```
+
+Run the code below to create a line plot of observed and simulated water temperature. 
+```{r plot water temp}
+plot(water_temp$DateTime, water_temp$obs, type="p", col="blue", ylim=c(15,35), 
+     ylab="Water temperature in degrees C", xlab="Date")  # This plots the observed data over time in blue, with a y-axis set to 0-35 degrees, and a y-axis label
+points(water_temp$DateTime, water_temp$mod, col="red") # this adds a red line of the modeled water temperatures to the plot
+legend("topleft",c("Observed", "Modeled Baseline"),lty=c(1,1), col=c("blue", "red")) # this adds a legend
+```
+
+**MODIFY:** Now, try modifying the code below to extract the observed vs. simulated water.density instead of water.temperature. 
+```{r get water density}
+water_temp <- glmtools::compare_to_field(model_output_file, field_file, metric="water.temperature", 
+                               as_value=TRUE, na.rm=TRUE)
+```
+
+**MODIFY:** Modify the code below to create a line plot of observed and simulated water density based on the data you extracted in the line above. 
+
+*Hint:* You may need to change your y-axis (the ylim=c(15,35) part of the code) 
+to fit all the data on the plot! Also make sure you change your y-axis label! 
+```{r plot water density}
+plot(water_temp$DateTime, water_temp$obs, type="p", col="blue", ylim=c(15,35), 
+     ylab="Water temperature in degrees C", xlab="Date")  # This plots the observed 
+#  data over time in blue
+points(water_temp$DateTime, water_temp$mod, col="red") # this adds a red line of 
+#  the modeled water temperatures to the plot
+legend("topleft",c("Observed", "Modeled Baseline"),lty=c(1,1), col=c("blue", "red")) 
+```
+
+For both the temperature and density plots, there are multiple data points for 
+each day. Why?
+
+
+## Activity B - Objective 5
+Using your knowledge of potential climate change, work with a partner to develop a climate change scenario for your model lake. 
+
+To complete this activity, you will need to modify the input meterological 
+data and then run the model to examine the effects of your scenario on the 
+thermal structure of the lake. 
+
+Here is an overview of the steps you will complete with your partner to accomplish this:
+
+1) Develop a climate scenario (it can be for any region!)
+
+2) Create a corresponding meteorological input (met) file. See below for detailed directions. 
+
+3) Test your hypotheses! Run the GLM using your new met file and examine how it changes lake temperatures. 
+
+4) Compare the modeled output to the observed. What are the implications of your climate scenario for future water quality and quantity?
+
+5) Create and save a few figures to highlight the results of your climate 
+scenario and present them to the rest of the class. It would be helpful to 
+present both the meteorological input file as well as the lake thermal plots 
+so that we can see how the lake responded to your climate forcing.
+
+### Detailed directions for modifying your met file: 
+[**Note:** if your instructor has asked your to use one of the pre-made climate scenarios, skip to line 274]
+
+#### SOMETHING THAT IS REALLY REALLY IMPORTANT! 
+Opening up the met_hourly.csv file in Microsoft Excel (or similar software) will alter the date/time formatting of the file so that GLM cannot read it. You will get an error something like this: "Day 2451545 (2000-01-01) not found". To avoid this 
+error, you need to follow the FIVE steps listed below when changing your met file.
+
+**FIRST**, just in case, run the code below to make an extra version of the met_hourly.csv file in your sim folder so that you have a backup in case of any mistakes. Rename this file `met_hourly_UNALTERED.csv` and be sure *not* to open it.
+```{r save copy of met file}
+file.copy(from = "met_hourly.csv", to = "met_hourly_UNALTERED.csv")
+```
+
+
+**SECOND**, open the `met_hourly.csv` file in R and view the first few rows of the file.
+```{r read and view met file}
+metdata <- read.csv("met_hourly.csv")
+head(metdata)
+```
+
+**THIRD**, manipulate the different input variables to create your climate/weather scenario (be creative!). 
+
+*NOTE ABOUT UNITS:* In the met_hourly file, the units for rain are in meters per day. You will likely think about the amount of rain you change in the met_hourly file as millimeters per day instead-- to convert from mm/d to m/d, simply multiply by 0.001.
+
+*NOTE ABOUT COLUMN NAMES:* the order of the columns in the met file does not 
+matter- but you can only have one of each variable and they must keep the EXACT same name (e.g., it must always be 'AirTemp', not 'AirTemp+3oC').
+
+**MODIFY** the example code in the chunk below to create your scenario. The example scenario changes air temperature and rain - but you can change any variable you like, in any way you would like! You will just need to change the name of the column you are modifying (e.g., change `AirTemp` to `WindSpeed`) and the manipulation of the column (e.g., change `+ 1` to `- 5` or `* 0.9` to `* 1.1`). You do not need to make any or all of the changes shown below; they are just provided as examples so that you have code to work from.
+```{r make climate scenario}
+metdata$AirTemp <- metdata$AirTemp + 1 # this adds 1 degree Celsius to every observed air temperature
+
+metdata$Rain <- metdata$Rain * 0.9 # this decreases all rainfall by 10%
+metdata$Rain[6649:6672] <- 0.74 # this changes Rain on Oct. 4, 2000 to 0.74 m/day, which is equivalent to 29 inches of rain in one day; the numbers in brackets [6649:6672] correspond to the rows in metdata for Oct. 4
+```
+
+**FOURTH**, write your climate scenario to file. 
+
+**MODIFY:** Edit the code below so the new met file name describes your climate scenario - for example, you might name your file `met_hourly_SUMMERSTORMS.csv`. 
+```{r write scenario to file}
+write.csv(metdata, "met_hourly_climate_scenario.csv", row.names = FALSE, quote = FALSE)
+```
+
+**FIFTH**, you need to edit the glm2.nml file to change the name of the input 
+meteorological file so that it reads in the new, edited file for your 
+climate scenario, not the default "met_hourly.csv". 
+
+**MODIFY:** Edit the code below so the name of the input meteorological file matches the name of your climate scenario meteorological file
+```{r modify nml}
+nml <- glmtools::set_nml(nml, arg_name = "meteo_fl", arg_val = "met_hourly_climate_scenario.csv") # this command sets the meteorological input file name; edit the name of the csv to match your file
+glmtools::write_nml(nml, file = nml_file) # write the modified nml to file
+```
+
+Once you have edited the nml file name, you should check to make sure that it is correct:
+```{r check nml}
+nml <- glmtools::read_nml(nml_file)  # Read in your updated nml file
+glmtools::get_nml_value(nml, 'meteo_fl') # If you have done this correctly, you should get an output that lists the name of the meteorological file you altered for your weather/climate scenario.
+```
+
+You can now run the model for your climate change scenario using the new edited 
+nml file using the commands below. Exciting!
+```{r run climate scenario}
+GLMr::run_glm(verbose=TRUE) # Run your GLM model for your lake climate scenario.
+```
+
+As we did with the baseline model simulation, we want to save the model output of the daily surface temperature in the lake during our climate change simulation, to compare to our baseline scenario.
+
+Extract surface temperature:
+```{r get scenario water temp}
+climate_temp <- glmtools::get_var(file=model_output_file, "temp", reference='surface', z_out=c(1))
+```
+
+Here we attach the temperature data from your climate scenario simulation to the same file that contains your baseline scenario surface temperatures. You can now compare your climate scenario to your baseline- well done! 
+```{r}
+surf_temp["Climate_Temp"] <- climate_temp[2] 
+```
+
+
+## Activity B - Objective 6
+Prepare figures to share with your classmates that demonstrate the effects of 
+your climate change scenario on the thermal structure of your model lake. 
+
+You can plot the climate scenario output using the same commands you learned above.
+
+Create a heatmap of temperature:
+```{r plot scenario water temp}
+glmtools::plot_temp(file=model_output_file) 
+```
+
+Plot your climate change simulation model output against the observed data:
+```{r compare scenario temperature to field}
+glmtools::plot_temp_compare(model_output_file, field_file)
+```
+
+You can also plot how surface water temperature differed between the baseline
+scenario and your climate change scenario. You can do this by running the code chunk below.
+
+*Note* that the command `ylim=c(0, 40)` in the `plot()` command below tells R what you want the minimum and maximum values on the y-axis to be (here, we're plotting from 0 to 40 degrees C). You may need to adjust this range to make sure all your data are shown in the plot.
+```{r compare scenario temperature to baseline}
+plot(surf_temp$DateTime, surf_temp$Baseline_Temp, type="l", lwd=2, col="black", ylim=c(0, 40),
+     ylab="Surface water temperature in degrees C", xlab="Date") # Plot the baseline surface temperature data in black
+lines(surf_temp$DateTime, surf_temp$Climate_Temp, lwd=2, col="red") # this adds a red line of the climate change scenario
+legend("bottomright",c("Baseline", "Climate Change"), lty=c(1,1), lwd=c(2,2), col=c("black","red")) # this adds a legend
+```
+
+### Organize your plots into a short presentation to share with your classmates.
+
+#### Make sure your presentation includes the following elements: 
+
+1) An introduction of your climate scenario (what you changed and why)
+
+2) Your hypothesized changes in lake thermal structure
+
+3) Some figures of the model output
+
+4) Whether the model output supports or contradicts your hypotheses
+
+Ultimately, we want you to explore the implications of your scenario for future water quality and quantity. 
+
+
+## Activity C - Objective 7
+Design and compare among multiple climate scenarios using a for-loop.
+
+In Objective 5 above, you designed a climate scenario for one lake and ran code to modify the meteorological input data and nml file to run that scenario. But what if you want to repeat this process for hundreds of simulations that all have slightly different meteorological input data? It would not be very efficient to do this by manually re-running the same lines of code over and over again. Instead, we are	going to use the concepts of a **function** and a **for-loop**, which will help you set up, run, and retrieve output from multiple simulations via an automated method, saving you MANY hours of time!		
+		
+To start, let us first create a scenario in which we want to examine the effects of altered air temperatures on lakes throughout the year. In Objective 5 above, you may have done this manually by setting a constant offset of +1 degrees C to all of the baseline air temperatures in a year. But what if you also want to know the effects of a constant offset of +2 degrees C, +3 degrees C, etc. all the way to +6 degrees C? How do these different changes in the temperature offset alter thermal structure in the lake over the year? Are there any thresholds in lake responses that happen when you compare the different offsets?		
+		
+To answer this question, we first need to define a scenario in which we vary 
+air temperatures between +1 degrees C and +6 degrees C from the baseline air 
+temperature in the meteorological file for the entire simulation period.
+
+First, we need to do a bit of "housekeeping" - we will create a new folder to contain all our scenario files and help us stay organized:
+```{r create scenario directory}
+dir.create("./activity_c_scenarios")
+```
+
+This folder should appear in the same location as this R Markdown file on your computer.
+
+Next, we will name our scenarios:
+```{r example scenario_names}
+example_scenario_names <- c("plus1","plus2","plus3","plus4","plus5","plus6")
+```
+		
+After that, we will create sub-directories (sub-folders) to contain our model scenarios and make sure we stay organized. To do this, I will introduce the concept of a **for-loop**.
+
+#### What is a for-loop?
+A **for-loop** runs a section of code repeatedly. The number of times the for-loop runs is specified by the coder, either by specifying the number of times the code should be run before the for-loop stops. For example, below we write a for-loop that prints "Hello World!" eight times.
+```{r for-loop demo part 1}
+for(i in 1:8){
+  print("hello world")
+}
+```
+
+**Notice:**      
+1. We specify the number of times the for-loop should run with the code `for(i in 1:8)`. We will explain what the `i` refers to when we discuss indexing below.  
+2. The code that is repeatedly run is contained in brackets `{}`.
+
+#### What is indexing in a for-loop?
+Within a for-loop, **indexing** allows you to refer to a particular iteration, or individual code run, of the loop. This can be useful if you want to, for example, perform a particular calculation on every row of a data frame. In R, `i` is commonly used for indexing in for-loops. Below we write a for-loop that prints the numbers 1 to 8 using indexing.
+```{r for-loop demo part 2}
+for(i in 1:8){
+  print(i)
+}
+```
+
+#### How is indexing in a for-loop useful for running model scenarios?
+Today, we want to run a model repeatedly using different scenarios to understand how future climate can affect lake temperature. For-loops can be a useful way to accomplish this, because the for-loop can run the model many times, each time using a different climate scenario.
+
+Before we use the for-loop to run our lake model, I'll illustrate how it works by using a for-loop to create many sub-folders that we will use to store our model files.
+
+This code chunk creates a folder for each model scenario that we named above, and adds two files to each folder: `glm2.nml`, and `met_hourly.csv`. 
+```{r create example scenario sub-folders}
+for (i in 1:length(example_scenario_names)){ # iterate through the scenario names
+  subdirName <- paste0("./activity_c_scenarios/",example_scenario_names[i]) # create the name of the new sub-folder we want to make, using the current scenario name
+  folder<-dir.create(subdirName) # we create the sub-folder
+  file.copy(from = "./glm2.nml", to = subdirName, recursive = TRUE) # copy the glm2.nml file into the sub-folder
+  file.copy(from = "./met_hourly.csv", to = subdirName, recursive = TRUE) # copy the met_hourly.csv file into the sub-folder
+}
+```
+
+The next step is to create a customized **function** that will manipulate the meteorological input file to our lake model according to the scenario we want to run. 
+
+#### What is a function?
+A **function** allows you to define and store some code that does a specific task, so that rather than re-typing all the code every time you want to do the task, you can just type the name of the function.  
+
+In this case, we always want to increase air temperature by a fixed amount - but we want to increase it by a different amount for each simulation. Below is a simple function to do this:
+```{r example scenario_function}
+example_scenario_function <- function(metdata, increase){
+  metdata$AirTemp <- metdata$AirTemp + increase
+  return(metdata)
+}
+```
+
+Once you run this code chunk, you should notice that `scenario_function` shows up in your R environment under `Functions`. This function has two **arguments**: `metdata` and `increase`. `metdata` is the meteorological input file for our model simulation, and `increase` is an integer number of degrees that we want to add to the `metdata$AirTemp` column.
+
+Finally, we will make a vector (a series of entities; in our case, numbers) of the air temperature increases that we want to use in our scenarios. We want to increase air temperature by 1-degree increments from 1 to 6 degrees Celsius:
+```{r create example scenario vector}
+example_scenario_vector <- c(1,2,3,4,5,6) # these are the AirTemp increases
+```
+
+Phew! Our "housekeeping" is complete. We are now ready to generate scenarios and run our model. To do this, we will iterate through our scenarios using a **for-loop**. For each scenario, we will modify the meteorological input file using our custom **function**, run the model, and retrieve the surface temperature output.
+
+You have seen a lot of this code already! Don't be intimidated; we are simply  combining several of the previous lines of code you have run into a loop that runs by itself while you... have a snack...take a nap....etc. ;-)
+```{r run example model scenarios}
+for (i in 1:length(example_scenario_names)){
+  
+  # get met data filepath and read in met data
+  scenario_met_filepath <- paste0("./activity_c_scenarios/",example_scenario_names[i],"/met_hourly.csv")
+  scenario_metdata <- read.csv(scenario_met_filepath)
+  
+  # here the scenario is applied using the custom function
+  scenario_metdata <- example_scenario_function(metdata = scenario_metdata, increase = example_scenario_vector[i]) 
+  
+  # write the modified met data to file with a new name to reflect the scenario
+  new_scenario_met_filepath <- paste0("./activity_c_scenarios/",example_scenario_names[i],"/met_hourly_",example_scenario_names[i],".csv")
+  write.csv(scenario_metdata, new_scenario_met_filepath, row.names = FALSE, quote = FALSE)
+  
+  # set nml to use scenario met data
+  scenario_nml_file <- file.path(paste0("./activity_c_scenarios/",example_scenario_names[i],"/glm2.nml"))
+  scenario_nml <- glmtools::read_nml(nml_file = scenario_nml_file)
+  scenario_nml <- glmtools::set_nml(scenario_nml, arg_name = "meteo_fl", arg_val = paste0("met_hourly_",example_scenario_names[i],".csv"))
+  glmtools::write_nml(scenario_nml, file = scenario_nml_file)
+  
+  # identify the folder where the scenario model files are stored
+  scenario_sim_folder = paste0("./activity_c_scenarios/",example_scenario_names[i])
+  
+  # run the model
+  GLMr::run_glm(scenario_sim_folder)
+  
+  # name the output file
+  scenario_model_output_file <- file.path(paste0("activity_c_scenarios/",example_scenario_names[i],"/output.nc")) 
+  
+  # access and save surface temperature
+  scenario_temp <- glmtools::get_var(file=scenario_model_output_file, "temp", reference='surface', z_out=c(1))
+  surf_temp[example_scenario_names[i]] <- scenario_temp[2] 
+
+}
+```
+
+Let's see how our scenarios look! Once again, we can use the concept of a for-loop to plot the surface temperature from each of our scenarios. In this case, we will loop through the scenarios to add a line to a plot of the surface water temperature from all the scenarios.
+```{r plot example model scenarios}
+cols <- heat.colors(n = 6, rev = TRUE) # make a list of colors we want to use for plotting
+
+plot(surf_temp$DateTime, surf_temp$Baseline_Temp, type="l", lwd=2, col="black", ylim=c(0, 40),
+     ylab="Surface water temperature in degrees C", xlab="Date") # Plot the baseline surface temperature data in black
+
+for(i in 1:length(example_scenario_names)){ # loop through scenarios
+  lines(surf_temp$DateTime, unlist(surf_temp[example_scenario_names[i]]), lwd=2, col=cols[i]) # this adds a line of the water temperature from each scenario
+} # end of loop
+
+legend("bottomright",c("Baseline", example_scenario_names), lty=c(1,rep(1,length(example_scenario_names))), lwd=c(2,rep(2, length(example_scenario_names))), col=c("black",cols), ncol = 3) # this adds a legend with multiple columns
+```
+
+
+## Activity C - Objective 8 
+Now that you and your partner have run through this demonstration, it is 
+time for you to design your own GLM "experiment" with your partner and 
+use a custom function and a for-loop to examine a climate change effect of your choice. Create some figures from your simulation and share them with the class!  Note that there are many different ways to analyze the output from each of the simulations- e.g., you could aggregate all of the days to calculate maximum Schimdt stability or thermocline depth and then plot how that value changes over the different simulation numbers. The glmtools package has many different options for analyzing and plotting GLM output that we invite you to explore.
+
+**MODIFY:** Name your scenarios.
+```{r scenario_names}
+scenario_names <- c("plus1","plus2","plus3","plus4","plus5","plus6") # THESE WILL NEED TO BE EDITED!!
+```
+
+Create your scenario sub-folders.
+```{r create scenario sub-folders}
+for (i in 1:length(scenario_names)){ # iterate through the scenario names
+  subdirName <- paste0("./activity_c_scenarios/",scenario_names[i]) # create the name of the new sub-folder we want to make, using the current scenario name
+  folder<-dir.create(subdirName) # we create the sub-folder
+  file.copy(from = "./glm2.nml", to = subdirName, recursive = TRUE) # copy the glm2.nml file into the sub-folder
+  file.copy(from = "./met_hourly.csv", to = subdirName, recursive = TRUE) # copy the met_hourly.csv file into the sub-folder
+}
+```
+
+**MODIFY:** this function to create your own scenario. You can choose to modify a different variable (e.g., change `metdata$AirTemp <- metdata$AirTemp + increase` to `metdata$WindSpeed <- metdata$WindSpeed + increase`), make a different modification (e.g., multiply instead of add), or make more than one modification (e.g., add another line of code `metdata$Rain <- metdata$Rain * 0.9`).
+
+You may also need to change the **arguments** to the function. You should keep `metdata` as an argument. But you may need to add additional arguments (if you modify more than one variable) or change the name of the `increase` argument to make it more intuitive (for example, if you are exploring how decreases in Rain affect lake temperature, it doesn't make very much sense to call that argument `increase`).
+```{r scenario_function}
+scenario_function <- function(metdata, increase){
+  metdata$AirTemp <- metdata$AirTemp + increase
+  return(metdata)
+}
+```
+
+**MODIFY:** the vector to use values that are relevant to your scenario. If you decide to change more than one climate variable, you will need to create more vectors! (Each vector should have a unique name, e.g., `scenario_vector2`, `scenario_vector3`, etc.)
+```{r create scenario vector}
+scenario_vector <- c(1,2,3,4,5,6) # these are the AirTemp increases
+```
+
+**MODIFY:** the loop below to be sure the arguments of the `scenario_function` match what you have specified in your custom function above.
+```{r run model scenarios}
+for (i in 1:length(scenario_names)){
+  
+  # get met data filepath and read in met data
+  scenario_met_filepath <- paste0("./activity_c_scenarios/",scenario_names[i],"/met_hourly.csv")
+  scenario_metdata <- read.csv(scenario_met_filepath)
+  
+  # here the scenario is applied using the custom function - IF YOU CHANGE THE ARGUMENTS TO THE SCENARIO FUNCTION YOU WILL NEED TO EDIT THIS!!
+  scenario_metdata <- scenario_function(metdata = scenario_metdata, increase = scenario_vector[i]) 
+  
+  # write the modified met data to file with a new name to reflect the scenario
+  new_scenario_met_filepath <- paste0("./activity_c_scenarios/",scenario_names[i],"/met_hourly_",scenario_names[i],".csv")
+  write.csv(scenario_metdata, new_scenario_met_filepath, row.names = FALSE, quote = FALSE)
+  
+  # set nml to use scenario met data
+  scenario_nml_file <- file.path(paste0("./activity_c_scenarios/",scenario_names[i],"/glm2.nml"))
+  scenario_nml <- glmtools::read_nml(nml_file = scenario_nml_file)
+  scenario_nml <- glmtools::set_nml(scenario_nml, arg_name = "meteo_fl", arg_val = paste0("met_hourly_",scenario_names[i],".csv"))
+  glmtools::write_nml(scenario_nml, file = scenario_nml_file)
+  
+  # identify the folder where the scenario model files are stored
+  scenario_sim_folder = paste0("./activity_c_scenarios/",scenario_names[i])
+  
+  # run the model
+  GLMr::run_glm(scenario_sim_folder)
+  
+  # name the output file
+  scenario_model_output_file <- file.path(paste0("activity_c_scenarios/",scenario_names[i],"/output.nc")) 
+  
+  # access and save surface temperature
+  scenario_temp <- glmtools::get_var(file=scenario_model_output_file, "temp", reference='surface', z_out=c(1))
+  surf_temp[scenario_names[i]] <- scenario_temp[2] 
+
+}
+```
+
+Prepare figures to share with your classmates that demonstrate the effects of your many model simulation climate change scenarios on the thermal structure of your model lake. 
+
+Plot the output of your model simulation experiment using the commands you learned above. Organize some of your plots into a short presentation to share with your classmates.
+
+Make sure your presentation addresses the following questions: 
+
+1) What did your scenario test? What was the range of conditions you ran over your model simulation experiment? 
+
+2) In which scenarios did you see the biggest change in lake thermal structure?
+
+**MODIFY** the plotting code to make whatever plots you would like to share with the class!
+```{r plot model scenarios}
+cols <- heat.colors(n = 6, rev = TRUE) # make a list of colors we want to use for plotting
+
+plot(surf_temp$DateTime, surf_temp$Baseline_Temp, type="l", lwd=2, col="black", ylim=c(0, 40),
+     ylab="Surface water temperature in degrees C", xlab="Date") # Plot the baseline surface temperature data in black
+
+for(i in 1:length(scenario_names)){ # loop through scenarios
+  lines(surf_temp$DateTime, unlist(surf_temp[scenario_names[i]]), lwd=2, col=cols[i]) # this adds a line of the water temperature from each scenario
+} # end of loop
+
+legend("bottomright",c("Baseline", scenario_names), lty=c(1,rep(1,length(scenario_names))), lwd=c(2,rep(2, length(scenario_names))), col=c("black",cols), ncol = 3) # this adds a legend with multiple columns
+```
+
+Thinking ahead: how could you use the coding concepts you have learned (functions and for-loops) in your own research? You could use these concepts to examine hundreds of simulations for any model (not just GLM for lakes!) so think through what science questions you can ask using these R coding skills.
+
+## Bravo, you are done!! 
+
+We welcome feedback on this module and encourage you to provide comments, questions, and suggestions. Please visit the website (MacrosystemsEDDIE.org) to submit feedback to the module developers. 

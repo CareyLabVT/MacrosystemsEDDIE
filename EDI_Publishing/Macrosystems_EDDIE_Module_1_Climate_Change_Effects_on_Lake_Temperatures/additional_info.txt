@@ -1,0 +1,5 @@
+This module was developed by Carey, C.C., S. Aditya, K. Subratie, V. Daneshmand, R. Figueiredo, and K.J. Farrell in 2017-2018. 
+
+Parts of this module were originally developed for the Lake Modeling Module as part of the Project EDDIE suite of modules.
+
+Activity C of this module was updated in October 2024 by M.E. Lofton.
