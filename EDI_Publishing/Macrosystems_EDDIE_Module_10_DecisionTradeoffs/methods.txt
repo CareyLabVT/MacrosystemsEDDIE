@@ -47,4 +47,4 @@ WEBSITE & R SHINY APPLICATION
 
 Lofton, M.E., Cooke, R.L., and Carey, C.C. 2026. Macrosystems EDDIE Module 10: Using High-Frequency Data to Improve Water Quality. https://serc.carleton.edu/eddie/teaching_materials/modules/module10.html. 
 
-Lofton, M.E., Cooke, R.L., and Carey, C.C. 2026. Macrosystems EDDIE Module 10: Using High-Frequency Data to Improve Water Quality. (R Shiny application) (v1.0). Zenodo. https://doi.org/10.5281/zenodo.18837863
+Lofton, M.E., Cooke, R.L., and Carey, C.C. 2026. Macrosystems EDDIE Module 10: Using High-Frequency Data to Improve Water Quality. (R Shiny application) (v2.0). Zenodo. https://doi.org/10.5281/zenodo.18942883
